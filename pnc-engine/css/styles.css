@@ -1,0 +1,272 @@
+/* general */
+html, body, .wrapper {height:100%;}
+header, footer, section, article, span, div, p, b, h1, h2, h3, h4, {background:none;margin:0;padding:0;}
+body {
+    list-style:none;
+}
+/* */
+
+/** DEBUG! **/
+#debug {
+    position:absolute;
+    top:0;
+    left:800px;
+    padding:0;
+    z-index:12;
+}
+#debug button {
+    background:#000;
+    color:#fff;
+    border-radius:4px;
+    width:120px;
+}
+#debug-info {
+    background:url(../img/interface/trans-mini-bg.png);
+    height:400px;
+    width:350px;
+    position:absolute;
+    right:120px;
+    top:0
+}
+#debug-info p,
+#debug-info ul li {
+    color:#333;
+    background:#f2f2f2;
+    margin:2px;
+    padding:1px;
+}
+/** END DEBUG! **/
+
+/* colors */
+html,
+body,
+.wrapper {
+    background:#222;
+    color:#999;
+}
+body {
+    background:#000;
+}
+p {
+    color:#fff;
+    font-size:12px;
+}
+/* */
+
+/* layout */
+.body, .wrapper {
+    display:inline-block;
+    width:800px;
+    height:600px;
+}
+.body {
+    background:#fff url(../img/background/bg-3.png) 0 0 no-repeat fixed;
+}
+.ui,
+.actor,
+.item,
+.object
+{
+    position:absolute;
+}
+/* */
+
+/** INTERFACE **/
+/* status bar */
+#avatar {
+    height:44px;
+    width:46px;
+    background:url(../img/interface/doomface2.gif) -2px 0 no-repeat;
+    overflow:hidden;
+    border:#000 2px solid;
+    border-radius:3px;
+    z-index:5;
+}
+
+/* inventory */
+#inventory { /* inventory wrapper */
+    padding:0 30px 5px 5px;
+    z-index:6;
+    border:#fff 2px solid;
+    border-radius:3px;
+    background:url(../img/interface/trans-mini-bg.png) 0 0 repeat;
+    height:40px;
+}
+.trigger { /* open/close button */
+    padding:10px;
+    height:15px;
+    width:5px;
+    margin:0;
+    border:#000 1px solid;
+    position:relative;
+    left:0;
+    z-index:3;
+    font-size:16px;
+    font-weight:bold;
+    background:#444;
+    cursor:pointer;
+}
+.trigger p {
+    position:relative;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor:pointer;
+    font-size:16px;
+}
+.trigger,
+#inventory,
+#inventory ul {
+    display:inline-block;
+}
+#inventory ul { /* item list wrapper */
+    z-index:1;
+    height:40;
+    position:relative;
+    top:4px;
+}
+#inventory ul li { /* individual stashed items */
+    display:inline-block;
+    margin:0;
+    position:relative;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index:3;
+}
+#prompt {
+    width:200px;
+    min-height:40px;
+    background:#999;
+    border:#000 2px solid;
+    border-radius:5px;
+    z-index:6;
+}
+#prompt p{
+    text-align:center;
+    margin:5px;
+}
+/** END INTERFACE **/
+
+
+/** ITEMS **/
+.item {
+    display:inline-block;
+    padding:10px;
+    height:5px;
+    width:5px;
+    background:#fff url(../img/item/glyphicons-halflings.png) 5px 5px no-repeat;
+    margin:0 5px;
+}
+.item.active {
+    border:#ccc333 1px solid;
+}
+#alpha {
+    background:url(../img/item/mug.png);
+}
+#bravo {
+    background:url(../img/item/mag_glass.png);
+}
+#charlie {
+    background:url(../img/item/paper_scrap.png);
+}
+#delta {
+    height:15px;
+    width:15px;
+    background:url(../img/item/blob_head.png);
+}
+/* objects */
+#radio {
+    background:url(../img/object/radio.png) 0 0 no-repeat;
+    height:100px;
+    width:100px;
+}
+.dropspot {
+    height:100px;
+    width:80px;
+    background:url(../img/object/trash.png) 0 0 no-repeat;
+    overflow:hidden;
+}
+.dropspot.valid-drop {
+    background:#456ddd;
+}
+/** END ITEMS **/
+
+/** PLAYER **/
+#player {
+    left:0;
+    top:0;
+    height:195px;
+    width:110px;
+    background:url(../img/actor/unimike/unimike-stack-sprite-3.png) 0 3px no-repeat;
+}
+#player.idle {
+    border:yellow 1px solid;
+}
+#player.face-left {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+#player.active {
+    border:red 1px solid;
+}
+/** END PLAYER **/
+
+/** ENVIRONMENT **/
+/* foreground */
+.foreground.boxes-left {
+    background:url(../img/terrain/area-1/foreground_left.png) 0 0 no-repeat;
+    height:100px;
+    width:290px; /* TODO: need height and width for foreground elements */
+}
+.foreground.boxes-right {
+    background:url(../img/terrain/area-1/foreground_right.png) 0 0 no-repeat;
+    height:100px;
+    width:175px;
+}
+/* passable terrain */
+.terrain {
+    height:300px; /* height and width = default */
+    width:inherit;
+    background:#888;
+    overflow:visible;
+}
+.terrain.low {
+    height:275px;
+}
+.terrain.high {
+}
+/* END ENVIRONMENT */
+
+/* z-indexes */
+.terrain {
+    z-index:0;
+}
+.foreground {
+    z-index:5;
+}
+.object {
+    z-index:1;
+}
+.item {
+    z-index:2;
+}
+.actor {
+    z-index:3;
+}
+.ui {
+    z-index:5;
+}
+#player {
+    z-index:3;
+}

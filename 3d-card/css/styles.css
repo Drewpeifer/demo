@@ -1,0 +1,162 @@
+/* layout */
+    html, body, div.wrapper, div.body {
+        height:100%;
+        width:100%;
+        overflow:hidden;
+    }
+    body {
+        padding:0;
+        background:#111;
+    }
+    div {
+        margin:0;
+        padding:0;
+        background:transparent;
+    }
+    div.wrapper {
+        background:url(../img/fiber.png) 0 0 repeat;
+        background-size:100%;
+        display:none;
+    }
+/* */
+
+/* card */
+    #card > div {
+       -moz-box-sizing:border-box;
+       -webkit-box-sizing:border-box;
+        box-sizing:border-box;
+        border-left:#333300 2px solid;
+        border-bottom:#333300 1px solid;
+    }
+    #card {
+        display:inline-block;
+        min-width:804px;
+        min-height:200px;
+    }
+    #front,
+    #back {
+        background:#fff;
+        min-width:400px;
+        min-height:200px;
+        display:inline-block;
+        position:absolute;
+        border-radius:4px;
+    }
+    #front {
+        z-index:1;
+        background:url(../img/paper-texture.png) 0 0 no-repeat;
+    }
+    #back {
+        z-index:0;
+        right:4px;
+        background:url(../img/paper-texture.png) 0 0 no-repeat;
+    }
+/* */
+
+/* card text */
+    #card, #card p, #card p span {
+        /* make the card un-selectable */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    #card p {
+        margin:10px;
+        color:#000;
+        font-size:1.5em;
+        font-weight:bold;
+        opacity:0.4;
+        filter:alpha(opacity=40);
+        text-align:center;
+    }
+    #card p span {
+        cursor:pointer;
+    }
+    #card p.name {
+        font-size:3em;
+        margin:25px 0 10px 0;
+    }
+    #card p.title {
+        font-size:14px;
+        margin:10px 0;
+    }
+    #card p.work,
+    #card p.play {
+        display:inline-block;
+        margin-left:75px;
+    }
+    #card p.play {
+        float:right;
+        margin-left:0px;
+        margin-right:75px;
+    }
+    #card p.contact {
+    }
+    #card #back p span {
+        width:360px;
+        height:50px;
+        overflow:visible;
+        display:inline-block;
+    }
+    #card p.twitter span {
+        background:url(../img/twitter-handle.png) 0 0 no-repeat;
+    }
+    #card p.google-voice span {
+        background:url(../img/google-voice.png) 0 0 no-repeat;
+        cursor:auto;
+    }
+/* */
+
+/* overlay */
+    .overlay {
+        background:#f2f2f2;
+        z-index:4;
+        position:absolute;
+        top:0;
+        opacity:.9;
+        border:#777 3px solid;
+        border-radius:3px;
+        overflow:scroll;
+        max-height:600px;
+        max-width:1200px;
+        display:none;
+    }
+    .overlay::-webkit-scrollbar {
+        display:none;
+    }
+    .overlay p,
+    .overlay h1 {
+        display:inline-block;
+        color:#333;
+        opacity:1;
+        margin:10px 5%;
+    }
+    .overlay h1 {
+        margin:1%;
+        margin-left:5%;
+        font-size:18px;
+        display:block;
+        margin-bottom:0px;
+    }
+/* */
+
+/* mobile styles */
+p.mobile {
+    text-align:center;
+    color:#f2f2f2;
+    padding:5px;
+    display:none;
+    opacity:.5;
+}
+/* */
+
+/* IE Specific */
+.ie7 #card #back,
+.ie8 #card #back,
+.ie9 #card #back {
+    display:none;
+}
+/* * /
