@@ -1,6 +1,8 @@
 PNCMaker
 =========
-This is a work-in-progress prototype for a browser-based point-and-click (PNC) game engine.
+This is a work-in-progress (on hiatus) prototype for a browser-based point-and-click (PNC) game engine.
+
+Demo: [drewpeifer.com/demo/pnc-engine](http://www.drewpeifer.com/demo/pnc-engine "PNC-Engine demo")
 
 Using this library of files along with a set of basic instructions,
 a person with no HTML/CSS/jQuery experience should be able to
