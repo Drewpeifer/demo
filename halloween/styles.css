@@ -1,5 +1,5 @@
 #pumpkin, #bat {
-	height:400px;
+	height:250px;
 	width:400px;
 	border:#000 1px solid;
 	display:block;
@@ -9,9 +9,56 @@
 	overflow:hidden;
 }
 
+/* ------- */
 /* pumpkin */
+/* ------- */
+.oval {
+	display:inline-block;
+	position:relative;
+	top:10%;
+	height:80%;
+	width:35%;
+	background:orange;
+	border-radius:40%;
+	margin-left:-15%;
+}
+.oval.one {
+	margin-left:0;
+}
+/* cap */
+.cap, .cap div {
+	display:inline-block;
+}
+.cap {
+	width:50%;
+	height:75%;
+	position:absolute;
+	top:5%;
+	left:25%;
+}
+.stem {
+	margin-left:40%;
+	height:40%;
+	width:20%;
+	background:brown;
+	position:absolute;
+}
+.cap .oval {
+	height:50%;
+	width:48%;
+	border-top:#333 2px solid;
+	border-radius:30% 30% 0 0;
+	background:orange;
+	margin-left:2%;
+	top:20%;
+}
+.cap .oval.six {
+	margin-left:-2%;
+}
 
+/* --- */
 /* bat */
+/* --- */
 #bat {
 	height:250px;
 }
