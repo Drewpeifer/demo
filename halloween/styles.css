@@ -11,7 +11,6 @@
 
 /* pumpkin */
 
-
 /* bat */
 #bat {
 	height:250px;
@@ -30,7 +29,7 @@
 	top:10%;
 }
 #bat .big.circle.right {
-	left:-5%;
+	left:-5%; /* make circles tuck together behind head */
 }
 #bat .small.circle {
 	height:50%;
@@ -39,7 +38,7 @@
 	top:50%;
 }
 #bat .small.circle.right {
-	left:-5%; /* make circles overlap to form bottom of batwings */
+	left:-2%; /* make circles overlap to form bottom of batwings */
 }
 
 #bat .big.circle .hider {
@@ -63,17 +62,14 @@
 	left:35%;
 }
 #bat .head .ear {
-	width: 0;
-	height: 0;
+	width:10%;
+	height:30%;
 	display:inline-block;
 	position:relative;
-	left:0px;
-	margin:0;
-	border-bottom: 30px solid #000;
-	border-right: 30px solid transparent;
+	left:5%;
+	border-radius:50%;
+	background:#000;
 }
 #bat .head .ear.right {
-	left:20%;
-	border-right:none;
-	border-left: 30px solid transparent;
+	left:70%;
 }
