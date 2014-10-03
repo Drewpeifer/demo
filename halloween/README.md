@@ -1,5 +1,10 @@
 Spooky CSS Shapes
 =================
 
-Two stretchy-squishy HTML/CSS shapes for your holiday enjoyment,
-a squat pumpkin and faceless bat!
+Some stretchy-squishy HTML/CSS shapes for your holiday enjoyment:
+
+* Squat-looking pumpkin
+
+* Faceless bat
+
+* Gravestone
