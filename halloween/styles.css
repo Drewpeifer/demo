@@ -70,11 +70,12 @@
 	width:20%;
 	background:#4c2e00; /* brown */
 	position:absolute;
+	border-radius:10%;
 }
 .cap .oval {
 	height:50%;
 	width:48%;
-	border-top:#333 2px solid;
+	border-top:#b26b00 2px solid;
 	border-radius:30% 30% 0 0;
 	margin-left:2%;
 	top:20%;
