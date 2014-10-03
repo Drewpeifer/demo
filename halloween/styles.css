@@ -1,4 +1,4 @@
-#pumpkin, #bat {
+#pumpkin, #bat, #grave {
 	height:250px;
 	width:400px;
 	border:#000 1px solid;
@@ -8,6 +8,34 @@
 	resize:both;
 	overflow:hidden;
 }
+/* ----- */
+/* grave */
+/* ----- */
+#grave {
+	height:300px;
+	width:259px;
+}
+#grave div {
+	display:block;
+}
+.headstone {
+	height:90%;
+	width:80%;
+	position:absolute;
+	top:10%;
+	background:#666;
+	border-radius:50% 50% 0 0;
+}
+.headstone.shadow {
+	background:#000;
+	left:10%;
+}
+.epitaph {
+	width:60%;
+	height:25%;
+	color:#999;
+}
+
 
 /* ------- */
 /* pumpkin */
