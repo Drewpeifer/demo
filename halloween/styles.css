@@ -17,11 +17,11 @@
 }
 #grave div {
 	display:block;
+	position:absolute;
 }
 .headstone {
 	height:90%;
 	width:80%;
-	position:absolute;
 	top:10%;
 	background:#666;
 	border-radius:50% 50% 0 0;
@@ -32,8 +32,27 @@
 }
 .epitaph {
 	width:60%;
-	height:25%;
+	height:35%;
+	top:25%;
+	left:30%;
+}
+.epitaph span { /* curved text, funky but works in small doses */
+	position:absolute;
+	left:30%;
 	color:#999;
+	font-size:2.5em;
+	height:100%;
+}
+span.r {
+	transform: rotate(-20deg);
+	left:0;
+}
+span.i {
+	top:-5%;
+}
+span.p {
+	transform: rotate(20deg);
+	left:54%;
 }
 
 
