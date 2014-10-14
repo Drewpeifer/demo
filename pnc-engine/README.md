@@ -4,7 +4,7 @@ This is a work-in-progress (on hiatus) prototype for a browser-based point-and-c
 
 Demo: [drewpeifer.com/demo/pnc-engine](http://www.drewpeifer.com/demo/pnc-engine "PNC-Engine demo")
 
-Using this library of files along with a set of basic instructions,
+*When completed*, using this library of files along with a set of basic instructions,
 a person with no HTML/CSS/jQuery experience should be able to
 create a cross-browser point-and-click adventure game, similar to
 old titles like _Beneath a Steel Sky_, _Full Throttle_, or _Space Quest_.
