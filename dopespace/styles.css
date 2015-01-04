@@ -1,0 +1,54 @@
+/* general */
+body {
+    background:#222;
+    color:#f2f2f2;
+}
+div,
+span,
+p,
+table {
+    display:inline-block;
+}
+.header,
+.market,
+.stats {
+    border:#fff 1px dashed;
+    display:block;
+}
+ul {
+    list-style:none;
+}
+
+/* header */
+
+/* market */
+.market table {
+    border-collapse:collapse;
+}
+.market table td {
+    border:#888 1px solid;
+    margin:0;
+    padding:5px;
+}
+td.buy,
+td.sell {
+    background:#fff;
+    color:#000;
+}
+td.loot,
+td.stock {
+    background:#999;
+}
+td.loot.empty,
+td.stock.empty {
+    background:#ccc333;
+}
+/* stats */
+.dialog {
+    display:block;
+}
+
+/* peripherals */
+.map ul li b {
+    text-decoration:underline;
+}
