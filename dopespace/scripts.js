@@ -86,27 +86,68 @@ function buySell() {
 
 // travelling between locations
 function travel() {
-    nextPort = $(this).attr('id'),
-    portLabel = $(this).text();
+    currentPort = $('.location p'),
+    nextPort = $(this).attr('id');
 
     if (fuel == 0) {
         alert('out of fuel, you\'re stuck!');
+    } else if (currentPort.text() === nextPort) {
+        alert('already there');
     } else {
-        $('.location p').text(portLabel);// set new currentPort
+        currentPort.text(nextPort);// set new currentPort
 
-        newFuel = fuel -= 1
-
-        if (newFuel == 1) {
+        newFuel = fuel -= 1;// subtract fuel
+        fuelTank.text(newFuel);// set new fuel
+        
+        if (newFuel == 1) {// warn pilot if 1 gallon of fuel left
             alert('almost out of fuel, next trip is the last stop!');
         } else {}
 
-        fuelTank.text(newFuel);
-        evalStock();
+        evalStock();// check new location's stock levels
     }
 }
 
-$('.buy, .sell').click(buySell)
+// populate map, will be dynamically chosen later
+function buildMap() {
+    // build map
+    map.forEach( function (location) {
+
+        $('.map ul').append(
+            '<li><a href="#" id="' +
+            location +
+            '">' +
+            location.toUpperCase() +
+            '</a></li>');
+
+    });
+}
+// enable/disable/populate stock
+// for current port
+function stockMarket() {
+
+}
+
+// objects
+var map = [ "Earth",
+            "Rilos",
+            "Xartha",
+            "Arrakis" ];
+
+var menu = [];
+
+//map[0] = { "description" : "hooba",
+//           "fuelStation" : true,
+//           "embargo" : "stockname" };
+
+// onLoad
 $(function() {
+
     evalLoot();
     evalStock();
-}); 
+    buildMap();
+
+    // bindings
+    $('.map ul li a').click(travel);
+    $('.buy, .sell').click(buySell);
+
+});
