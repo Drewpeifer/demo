@@ -41,8 +41,18 @@ td.stock {
 }
 td.loot.empty,
 td.stock.empty {
-    background:#ccc333;
+    background:red;
 }
+
+/* map */
+.map ul li a {
+    font-size:24px;
+    color:#999;
+}
+.map ul li a:visited {
+    color:green;
+}
+
 /* stats */
 .dialog {
     display:block;

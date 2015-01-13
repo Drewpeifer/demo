@@ -29,8 +29,6 @@ function evalLoot() {
     });
 }
 
-$('.map ul li a').click(travel);
-
 function buySell() {
     var $this = $(this),// buy/sell button
         stock = $this.siblings('.stock'),
