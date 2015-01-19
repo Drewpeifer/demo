@@ -126,7 +126,22 @@ function buildMap() {
 // enable/disable/populate stock
 // for current port
 function stockMarket() {
+    menu.forEach( function (stock) {
 
+        $('.market table').append('<tr>' +
+                '<td class="item">' +
+                stock.title +
+                '</td><td class="price">&#36;<p>' +
+                stock.basePrice +
+                '</p>/lb</td>' +
+                '<td class="buy">Buy<br />>></td>' +
+                '<td class="stock">' +
+                stock.baseStock +
+                '</td><td class="loot">0</td>' +
+                '<td class="sell">Sell<br /><<</td>' +
+            '</tr>');
+
+    });
 }
 
 // onLoad
@@ -135,6 +150,7 @@ $(function() {
 
     evalLootStock();
     buildMap();
+    stockMarket();
 
     // bindings
     $('.map ul li a').click(travel);

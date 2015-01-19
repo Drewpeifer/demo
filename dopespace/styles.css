@@ -20,6 +20,13 @@ ul {
 }
 
 /* header */
+.location {
+    margin-left:5px;
+}
+.fuel {
+    margin-right:5px;
+    float:right;
+}
 
 /* market */
 .market table {
@@ -45,6 +52,9 @@ td.stock.empty {
 }
 
 /* map */
+.map {
+    vertical-align:top;
+}
 .map ul li a {
     font-size:24px;
     color:#999;
