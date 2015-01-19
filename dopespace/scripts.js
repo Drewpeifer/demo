@@ -114,11 +114,12 @@ function buildMap() {
     // build map
     map.forEach( function (location) {
 
+console.log(location);
         $('.map ul').append(
             '<li><a href="#" id="' +
-            location + 
+            location.title +
             '">' +
-            location.toUpperCase() +
+            location.title.toUpperCase() +
             '</a></li>');
 
     });
@@ -129,19 +130,8 @@ function stockMarket() {
 
 }
 
-// objects
-var map = [ "Earth",
-            "Rilos",
-            "Xartha",
-            "Arrakis" ];
-
-var menu = [];
-
-//map[0] = { "description" : "hooba",
-//           "fuelStation" : true,
-//           "embargo" : "stockname" };
-
 // onLoad
+//////////
 $(function() {
 
     evalLootStock();
