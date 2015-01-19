@@ -114,7 +114,6 @@ function buildMap() {
     // build map
     map.forEach( function (location) {
 
-console.log(location);
         $('.map ul').append(
             '<li><a href="#" id="' +
             location.title +
