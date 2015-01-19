@@ -38,26 +38,24 @@ function buySell() {
         price = $this.siblings('.price').children('p'),
         priceVal = parseInt(price.text()),// price of item per unit
         wallet = $('.wallet p'),
-        walletVal = parseInt(wallet.text());// user's current money
+        walletVal = parseInt(wallet.text()),// user's current money
+        newStock = parseInt(stockVal) - 1,// subtract from merchant's stock
+        newLoot = parseInt(lootVal) + 1,// add one to your loot
+        newWallet = walletVal - priceVal;// subtract unit price from wallet
 
     if ($this.hasClass('buy')) {
         // making a purchase
-
         if (stockVal == 0) {
-            // purchase denied
-            alert('no stock to buy')
-        } else if (walletVal == 0) {
-            // purchase denied
-            alert('aint got no moneys')
+            // purchase denied, no stock to buy
+            alert('no stock to buy');
+        } else if (newWallet <= 0) {
+            //purchase  denied, not enough money
+            alert('aint got enough moneys');
         } else {
             // purchase approved
-            newStock = parseInt(stockVal) - 1;// subtract from merchant's stock
             stock.text(newStock);// set new stock
-            newLoot = parseInt(lootVal) + 1;// add one to your loot
             loot.text(newLoot);// set new loot
-            newWallet = walletVal - priceVal;// subtract unit price from wallet
             wallet.text(newWallet);// set new wallet
-
             evalStock();// check if merchant is out of stock after purchase
         }
 
@@ -98,7 +96,7 @@ function travel() {
 
         newFuel = fuel -= 1;// subtract fuel
         fuelTank.text(newFuel);// set new fuel
-        
+
         if (newFuel == 1) {// warn pilot if 1 gallon of fuel left
             alert('almost out of fuel, next trip is the last stop!');
         } else {}
@@ -114,7 +112,7 @@ function buildMap() {
 
         $('.map ul').append(
             '<li><a href="#" id="' +
-            location +
+            location + 
             '">' +
             location.toUpperCase() +
             '</a></li>');
