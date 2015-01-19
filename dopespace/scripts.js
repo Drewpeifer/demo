@@ -5,7 +5,20 @@ var currentPort = $('.location p').text(),
 // check each stock and loot amount,
 // if any equal zero, disable the
 // corresponding buy/sell button
-function evalStock() {
+function evalLootStock() {
+    // TODO: only run this onLoad and
+    // other crucial times, build smaller
+    // function for buy/sell that just
+    // checks sibling loot and stock instead of all
+    $('.loot').each(function() {
+        lootQ = $(this).text();
+
+        if (lootQ == 0) {
+            $(this).addClass('empty');
+        } else {
+            $(this).removeClass('empty');
+        }
+    });
     $('.stock').each(function() {
         stockQ = $(this).text();
 
@@ -15,17 +28,6 @@ function evalStock() {
             $(this).removeClass('empty');
         }
 
-    });
-}
-function evalLoot() {
-    $('.loot').each(function() {
-        lootQ = $(this).text();
-
-        if (lootQ == 0) {
-            $(this).addClass('empty');
-        } else {
-            $(this).removeClass('empty');
-        }
     });
 }
 
@@ -38,17 +40,18 @@ function buySell() {
         price = $this.siblings('.price').children('p'),
         priceVal = parseInt(price.text()),// price of item per unit
         wallet = $('.wallet p'),
-        walletVal = parseInt(wallet.text()),// user's current money
+        walletVal = parseInt(wallet.text());// user's current money
+
+    if ($this.hasClass('buy')) {
+        // making a purchase
         newStock = parseInt(stockVal) - 1,// subtract from merchant's stock
         newLoot = parseInt(lootVal) + 1,// add one to your loot
         newWallet = walletVal - priceVal;// subtract unit price from wallet
 
-    if ($this.hasClass('buy')) {
-        // making a purchase
         if (stockVal == 0) {
             // purchase denied, no stock to buy
             alert('no stock to buy');
-        } else if (newWallet <= 0) {
+        } else if (newWallet < 0) {
             //purchase  denied, not enough money
             alert('aint got enough moneys');
         } else {
@@ -56,7 +59,7 @@ function buySell() {
             stock.text(newStock);// set new stock
             loot.text(newLoot);// set new loot
             wallet.text(newWallet);// set new wallet
-            evalStock();// check if merchant is out of stock after purchase
+            evalLootStock();// check if merchant is out of stock after purchase
         }
 
     } else if ($this.hasClass('sell')) {
@@ -68,13 +71,14 @@ function buySell() {
         } else {
             // sale approved
             newStock = parseInt(stockVal) + 1;// add to stock 
-            stock.text(newStock);// set new stock
             newLoot = parseInt(lootVal) - 1;// subtract from loot
-            loot.text(newLoot);// set new loot
             newWallet = walletVal + priceVal;// add unit price to wallet
+
+            stock.text(newStock);// set new stock
+            loot.text(newLoot);// set new loot
             wallet.text(newWallet);// set new wallet
 
-            evalLoot();// check if loot is empty
+            evalLootStock();// check if loot is empty
         }
 
     } else {
@@ -101,7 +105,7 @@ function travel() {
             alert('almost out of fuel, next trip is the last stop!');
         } else {}
 
-        evalStock();// check new location's stock levels
+        evalLootStock();// check new location's stock levels
     }
 }
 
@@ -140,8 +144,7 @@ var menu = [];
 // onLoad
 $(function() {
 
-    evalLoot();
-    evalStock();
+    evalLootStock();
     buildMap();
 
     // bindings
