@@ -1,7 +1,3 @@
-var currentPort = $('.location p').text(),
-    fuelTank = $('.fuel p'),
-    fuel = fuelTank.text();
-
 // check each stock and loot amount,
 // if any equal zero, disable the
 // corresponding buy/sell button
@@ -31,6 +27,7 @@ function evalLootStock() {
     });
 }
 
+// buying and selling
 function buySell() {
     var $this = $(this),// buy/sell button
         stock = $this.siblings('.stock'),
@@ -88,15 +85,22 @@ function buySell() {
 
 // travelling between locations
 function travel() {
-    currentPort = $('.location p'),
-    nextPort = $(this).attr('id');
+    fuelTank = $('.fuel p'),// fuel label container
+    fuel = parseInt(fuelTank.text()),// current fuel value
+    portTitle = $('.location p'),// port label container
+    portDescription = $('.stats .dialog p'),// port description container
+    nextPort = $(this).attr('id'),// clicked location
+    port = map.filter(function (location) {
+        // find the corresponsing JS map location obj
+        return location.title == nextPort;});
 
     if (fuel == 0) {
         alert('out of fuel, you\'re stuck!');
-    } else if (currentPort.text() === nextPort) {
+    } else if (portTitle.text() === nextPort) {
         alert('already there');
     } else {
-        currentPort.text(nextPort);// set new currentPort
+        portTitle.text(port[0].title);// set new currentPort
+        portDescription.text(port[0].description);// set new descrip
 
         newFuel = fuel -= 1;// subtract fuel
         fuelTank.text(newFuel);// set new fuel
@@ -124,8 +128,8 @@ function buildMap() {
 
     });
 }
-// enable/disable/populate stock
-// for current port
+
+// build marketplace for initial port
 function stockMarket() {
     menu.forEach( function (stock) {
 
