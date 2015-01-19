@@ -94,22 +94,25 @@ function travel() {
         // find the corresponsing JS map location obj
         return location.title == nextPort;});
 
+    console.dir(port);
+
     if (fuel == 0) {
         alert('out of fuel, you\'re stuck!');
     } else if (portTitle.text() === nextPort) {
         alert('already there');
     } else {
+        newFuel = fuel -= 1;// subtract fuel
+        fuelTank.text(newFuel);// set new fuel
         portTitle.text(port[0].title);// set new currentPort
         portDescription.text(port[0].description);// set new descrip
 
-        newFuel = fuel -= 1;// subtract fuel
-        fuelTank.text(newFuel);// set new fuel
+
+        $('.map').slideUp();// hide map
 
         if (newFuel == 1) {// warn pilot if 1 gallon of fuel left
             alert('almost out of fuel, next trip is the last stop!');
         } else {}
 
-        $('.map').slideUp();
         evalLootStock();// check new location's stock levels
     }
 }
@@ -118,21 +121,18 @@ function travel() {
 function buildMap() {
     // build map
     map.forEach( function (location) {
-
         $('.map ul').append(
             '<li><a href="#" id="' +
             location.title +
             '">' +
             location.title.toUpperCase() +
             '</a></li>');
-
     });
 }
 
 // build marketplace for initial port
 function stockMarket() {
     menu.forEach( function (stock) {
-
         $('.market table').append('<tr>' +
                 '<td class="item">' +
                 stock.title +
@@ -145,7 +145,6 @@ function stockMarket() {
                 '</td><td class="loot">0</td>' +
                 '<td class="sell">Sell<br /><<</td>' +
             '</tr>');
-
     });
 }
 
@@ -156,8 +155,7 @@ $(function() {
     buildMap();
     stockMarket();
     evalLootStock();
-
-    $('.map').slideUp();
+    $('div').css({"width":"275px"});
 
     // bindings
     $('button#map').click(function() {
@@ -168,6 +166,8 @@ $(function() {
     });
     $('.map ul li a').click(travel);
     $('.buy, .sell').click(buySell);
-    $('div').css({"width":"275px"});
+
+    // TODO: find better way to do first travel
+    $('#Earth').click();
 
 });

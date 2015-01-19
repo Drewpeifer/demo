@@ -41,19 +41,22 @@ map[0] = {  title : "Earth",
             fuelStation : true,
             embargo : menu[0],
             saleMod : .3,
-            description : "Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb."};
+            description : "Earth! Home sweet home, the most stable marketplace in the galaxy."};
 
 map[1] = {  title : "Rilos",
             fuelStation : false,
             embargo : menu[1],
-            saleMod : .5 };
+            saleMod : .5,
+            description : "Rilos, HQ for the Star League, which defends the Frontier from Xur and the Kodan Armada." };
 
 map[2] = {  title : "Arrakis",
             fuelStation : false,
             embargo : menu[2],
-            saleMod : .7 };
+            saleMod : .7,
+            description : "Arrakis, also known as Dune, home the spice Melange and also giant worms." };
 
 map[3] = {  title : "Risa",
             fuelStation : true,
             embargo : menu[3],
-            saleMod : .4 };
+            saleMod : .4,
+            description : "Risa, known throughout the Alpha Quadrant for its recreational attractions and open-minded populace." };
