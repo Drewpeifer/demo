@@ -105,6 +105,7 @@ function travel() {
             alert('almost out of fuel, next trip is the last stop!');
         } else {}
 
+        $('.map').slideUp();
         evalLootStock();// check new location's stock levels
     }
 }
@@ -148,12 +149,21 @@ function stockMarket() {
 //////////
 $(function() {
 
-    evalLootStock();
     buildMap();
     stockMarket();
+    evalLootStock();
+
+    $('.map').slideUp();
 
     // bindings
+    $('button#map').click(function() {
+        $('.map').slideDown();
+    });
+    $('.map .close').click(function() {
+        $('.map').slideUp();
+    });
     $('.map ul li a').click(travel);
     $('.buy, .sell').click(buySell);
+    $('div').css({"width":"275px"});
 
 });
