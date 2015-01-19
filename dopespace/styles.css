@@ -37,7 +37,7 @@ td.sell {
 }
 td.loot,
 td.stock {
-    background:#999;
+    background:#666;
 }
 td.loot.empty,
 td.stock.empty {
