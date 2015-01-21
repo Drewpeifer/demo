@@ -27,13 +27,13 @@ function buySell() {
 
         if (stockVal == 0) {
             // purchase denied, no stock to buy
-            alert('no stock to buy');
+            showAlert('No stock to buy!', 'Zero means none. Dummy.');
         } else if (newWallet < 0) {
             //purchase  denied, not enough money
-            alert('aint got enough moneys');
+            showAlert('Ain\'t got no moneys!', 'Get outta here, deadbeat.');
         } else if (newCargo > cargoCapVal) {
             //purchase  denied, not enough cargo room
-            alert('no more cargo room, sell loot to make space');
+            showAlert('No more cargo space!', 'Sell loot to make room. Or not. It\'s up to you.');
         } else {
             // purchase approved
             stock.text(newStock);// set new stock
@@ -48,7 +48,7 @@ function buySell() {
         // making a sale
         if (lootVal == 0) {
             // sale denied
-            alert('no loot to sell')
+            showAlert('No loot to sell!', 'Zero means none. Dummy.');
         } else {
             // sale approved
             newStock = parseInt(stockVal) + 1;// add to stock 

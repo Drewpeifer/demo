@@ -36,7 +36,7 @@ menu[4] = { title : "Unobtainium",
             loot : 0,
             unit : "item",
             baseStock : 0,
-            basePrice : 15000,
+            basePrice : 8000,
             stockFlux : 0 };
 
 // locations
@@ -66,7 +66,7 @@ map[2] = {  title : "Arrakis",
             priceFlux : .4,
             saleMod : .7,
             peakMod : 9,
-            description : "Arrakis, also known as Dune, home the spice Melange and also giant worms."
+            description : "Arrakis, also known as Dune, home to the spice Melange and also giant worms."
          };
 
 map[3] = {  title : "Risa",

@@ -11,6 +11,17 @@ function buildMap() {
     });
 }
 
+// custom alert message
+function showAlert(title, description) {
+    var alert = $('.alert'),
+        alertTitle = $('.alert-title'),
+        alertDescrip = $('.alert-description');
+
+    alertTitle.text(title);
+    alertDescrip.text(description);
+    alert.show();
+
+}
 // onLoad
 //////////
 $(function() {
@@ -24,6 +35,9 @@ $(function() {
         $('.map').slideUp();
     });
     $('.map ul li a').click(travel);
+    $('.alert .close').click(function() {
+        $('.alert').fadeOut(500);
+    });
     // TODO: find better way to do first travel
     $('#Earth').click();
     evalLootStock();

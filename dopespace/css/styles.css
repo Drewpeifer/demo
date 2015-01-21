@@ -20,7 +20,7 @@ button, .buy, .sell {
     cursor:pointer;
 }
 .wrapper {
-    width:325px;
+    width:345px;
 }
 .header,
 .market,
@@ -66,6 +66,19 @@ td.stock.empty {
     background:red;
 }
 
+/* stats */
+.dialog {
+    display:block;
+}
+.cargo {
+    float:right;
+}
+
+/*** peripherals ***/
+.close {
+    float:right;
+    font-size:1.5em;
+}
 /* map */
 #map {
     position:relative;
@@ -85,16 +98,26 @@ td.stock.empty {
 .map ul li a:visited {
     color:green;
 }
-
-/* stats */
-.dialog {
-    display:block;
-}
-.cargo {
-    float:right;
-}
-
-/* peripherals */
 .map ul li b {
     text-decoration:underline;
+}
+/* alert */
+.alert {
+    background:#000;
+    color:#f2f2f2;
+    position:absolute;
+    top:0;
+    height:100%;
+    width:345px;
+    padding:10px;
+}
+.alert p {
+    display:block;
+}
+.alert-title {
+    font-weight:bold;
+    border-bottom:red 1px solid;
+}
+.alert-description {
+    font-style:italic;
 }
