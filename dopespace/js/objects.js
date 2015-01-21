@@ -41,22 +41,30 @@ map[0] = {  title : "Earth",
             fuelStation : true,
             embargo : menu[0],
             saleMod : .3,
-            description : "Earth! Home sweet home, the most stable marketplace in the galaxy."};
+            peakMod : 4,
+            description : "Earth! Home sweet home, the most stable marketplace in the galaxy."
+         };
 
 map[1] = {  title : "Rilos",
             fuelStation : false,
             embargo : menu[1],
             saleMod : .5,
-            description : "Rilos, HQ for the Star League, which defends the Frontier from Xur and the Kodan Armada." };
+            peakMod : 6,
+            description : "Rilos, HQ for the Star League, which defends the Frontier from Xur and the Kodan Armada."
+         };
 
 map[2] = {  title : "Arrakis",
             fuelStation : false,
             embargo : menu[2],
             saleMod : .7,
-            description : "Arrakis, also known as Dune, home the spice Melange and also giant worms." };
+            peakMod : 9,
+            description : "Arrakis, also known as Dune, home the spice Melange and also giant worms."
+         };
 
 map[3] = {  title : "Risa",
             fuelStation : true,
             embargo : menu[3],
             saleMod : .4,
-            description : "Risa, known throughout the Alpha Quadrant for its recreational attractions and open-minded populace." };
+            peakMod : 8,
+            description : "Risa, known throughout the Alpha Quadrant for its recreational attractions and open-minded populace."
+         };
