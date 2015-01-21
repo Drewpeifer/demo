@@ -4,19 +4,19 @@
 // stock base prices and props
 var menu = [];
 
-menu[0] = { title : "Dilithium",
+menu[0] = { title : "Meteorite Ore",
             baseStock : 10,
-            basePrice : 500,
-            minPrice : 80,
-            maxPrice : 1000 };
+            basePrice : 20,
+            minPrice : 17,
+            maxPrice : 100 };
 
-menu[1] = { title : "Tritanium",
+menu[1] = { title : "Dilithium Crystals",
             baseStock : 20,
             basePrice : 200,
             minPrice : 80,
             maxPrice : 1000 };
 
-menu[2] = { title : "Anti-Matter",
+menu[2] = { title : "Gravitonium",
             baseStock : 30,
             basePrice : 200,
             minPrice : 80,
@@ -28,7 +28,7 @@ menu[3] = { title : "Laudinum",
             minPrice : 80,
             maxPrice : 1000 };
 
-menu[4] = { title : "Plasma",
+menu[4] = { title : "Unobtainium",
             baseStock : 50,
             basePrice : 200,
             minPrice : 80,
@@ -40,8 +40,8 @@ var map = [];
 map[0] = {  title : "Earth",
             fuelStation : true,
             embargo : menu[0],
-            saleMod : .3,
-            peakMod : 4,
+            saleMod : .9,
+            peakMod : 2,
             description : "Earth! Home sweet home, the most stable marketplace in the galaxy."
          };
 
