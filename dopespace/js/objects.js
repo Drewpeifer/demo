@@ -5,34 +5,34 @@
 var menu = [];
 
 menu[0] = { title : "Meteorite Ore",
-            baseStock : 10,
+            unit : "ton",
+            baseStock : 15,
             basePrice : 20,
-            minPrice : 17,
-            maxPrice : 100 };
+            flux : .1 };
 
 menu[1] = { title : "Dilithium Crystals",
+            unit : "kilo",
             baseStock : 20,
-            basePrice : 200,
-            minPrice : 80,
-            maxPrice : 1000 };
+            basePrice : 50,
+            flux : .2 };
 
 menu[2] = { title : "Gravitonium",
-            baseStock : 30,
-            basePrice : 200,
-            minPrice : 80,
-            maxPrice : 1000 };
+            unit : "kilo",
+            baseStock : 20,
+            basePrice : 100,
+            flux : .3 };
 
 menu[3] = { title : "Laudinum",
-            baseStock : 40,
-            basePrice : 200,
-            minPrice : 80,
-            maxPrice : 1000 };
+            unit : "bar",
+            baseStock : 10,
+            basePrice : 250,
+            flux : .4 };
 
 menu[4] = { title : "Unobtainium",
-            baseStock : 50,
-            basePrice : 200,
-            minPrice : 80,
-            maxPrice : 1000 };
+            unit : "item",
+            baseStock : 0,
+            basePrice : 15000,
+            flux : 0 };
 
 // locations
 var map = [];
