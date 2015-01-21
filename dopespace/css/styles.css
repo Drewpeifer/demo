@@ -27,17 +27,14 @@ button, .buy, .sell {
 .stats {
     border:#fff 1px dashed;
     display:block;
+    padding:5px;
 }
 ul {
     list-style:none;
 }
 
 /* header */
-.location {
-    margin-left:5px;
-}
 .fuel {
-    margin-right:5px;
     float:right;
 }
 
@@ -92,6 +89,9 @@ td.stock.empty {
 /* stats */
 .dialog {
     display:block;
+}
+.cargo {
+    float:right;
 }
 
 /* peripherals */
