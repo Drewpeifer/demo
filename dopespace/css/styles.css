@@ -19,9 +19,8 @@ div, span, p, table, td {
 button, .buy, .sell {
     cursor:pointer;
 }
-div {
-    width:inherit;
-    max-width:inherit;
+.wrapper {
+    width:325px;
 }
 .header,
 .market,
@@ -93,7 +92,6 @@ td.stock.empty {
 /* stats */
 .dialog {
     display:block;
-    max-width:inherit;
 }
 
 /* peripherals */
