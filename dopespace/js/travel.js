@@ -9,8 +9,6 @@ function travel() {
         // find the corresponsing JS map location obj
         return location.title == nextPort;});
 
-    console.dir(port);
-
     if (fuel == 0) {
         alert('out of fuel, you\'re stuck!');
     } else if (portTitle.text() === nextPort) {
