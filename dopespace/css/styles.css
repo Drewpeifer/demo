@@ -28,6 +28,7 @@ div {
 .stats {
     border:#fff 1px dashed;
     display:block;
+    width:300px;
 }
 ul {
     list-style:none;
@@ -43,8 +44,11 @@ ul {
 }
 
 /* market */
-.market table {
+.market table,
+.market tbody,
+.market tr {
     border-collapse:collapse;
+    width:300px;
 }
 .market table td {
     border:#888 1px solid;
@@ -69,6 +73,11 @@ td.stock.empty {
 }
 
 /* map */
+#map {
+    position:relative;
+    bottom:2px;
+    left:5px;
+}
 .map {
     position:absolute;
     top:0;

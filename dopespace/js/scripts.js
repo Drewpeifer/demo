@@ -18,7 +18,6 @@ $(function() {
     buildMap();
     stockMarket();
     evalLootStock();
-    $('div').css({"width":"275px"});
 
     // bindings
     $('button#map').click(function() {
