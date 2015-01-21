@@ -1,6 +1,10 @@
 // buying and selling
 function buySell() {
     var $this = $(this),// buy/sell button
+        item = menu.filter(function (item) {
+                // find the current port's JS object
+                return item.title == $this.siblings('.item').text();
+           }),
         stock = $this.siblings('.stock'),
         stockVal = stock.text(),// merchant item quantity
         loot = $this.siblings('.loot'),
@@ -25,7 +29,8 @@ function buySell() {
         } else {
             // purchase approved
             stock.text(newStock);// set new stock
-            loot.text(newLoot);// set new loot
+            loot.text(newLoot);// set new loot in DOM
+            item[0].loot = newLoot;//set new loot on object
             wallet.text(newWallet);// set new wallet
             evalLootStock();// check if merchant is out of stock after purchase
         }
@@ -43,6 +48,7 @@ function buySell() {
 
             stock.text(newStock);// set new stock
             loot.text(newLoot);// set new loot
+            item[0].loot = newLoot;//set new loot on object
             wallet.text(newWallet);// set new wallet
 
             evalLootStock();// check if loot is empty

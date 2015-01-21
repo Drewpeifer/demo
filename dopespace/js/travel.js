@@ -18,6 +18,8 @@ function travel() {
         fuelTank.text(newFuel);// set new fuel
         portTitle.text(port[0].title);// set new currentPort
         portDescription.text(port[0].description);// set new descrip
+        stockMarket();// build/rebuild
+        $('.buy, .sell').click(buySell);// rebind after market build
 
 
         $('.map').slideUp();// hide map

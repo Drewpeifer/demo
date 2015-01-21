@@ -1,16 +1,39 @@
+/**
+ * Returns a random integer between min (inclusive) and max (inclusive)
+ * Using Math.round() will give you a non-uniform distribution!
+ */
+function getRandomStock(min, max) {
+    return Math.round(Math.floor(Math.random() * (max - min + 1)) + min);
+}
+
 // build marketplace for initial port
 function stockMarket() {
+    port = map.filter(function (location) {
+                // find the current port's JS object
+                return location.title == $('.location p').text();
+           });
+
+    $('.market table').empty();// clear out old location data
+
     menu.forEach( function (stock) {
+
+        minStock = stock.baseStock + (stock.baseStock * -stock.stockFlux),
+        maxStock = stock.baseStock + (stock.baseStock * stock.stockFlux),
+        newStock = getRandomStock(minStock, maxStock),
+        minPrice = stock.basePrice + (stock.basePrice * -port[0].priceFlux),
+        maxPrice = stock.basePrice + (stock.basePrice * port[0].priceFlux),
+        newPrice = getRandomStock(minPrice, maxPrice);
+
         $('.market table').append('<tr>' +
                 '<td class="item">' +
                 stock.title +
                 '</td><td class="price">&#36;<p>' +
-                stock.basePrice +
-                '</p>/lb</td>' +
+                newPrice +
+                '</p>/' + stock.unit + '</td>' +
                 '<td class="buy">Buy<br />>></td>' +
                 '<td class="stock">' +
-                stock.baseStock +
-                '</td><td class="loot">0</td>' +
+                newStock +
+                '</td><td class="loot">' + stock.loot + '</td>' +
                 '<td class="sell">Sell<br /><<</td>' +
             '</tr>');
     });

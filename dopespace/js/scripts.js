@@ -16,9 +16,6 @@ function buildMap() {
 $(function() {
 
     buildMap();
-    stockMarket();
-    evalLootStock();
-
     // bindings
     $('button#map').click(function() {
         $('.map').slideDown();
@@ -27,8 +24,8 @@ $(function() {
         $('.map').slideUp();
     });
     $('.map ul li a').click(travel);
-    $('.buy, .sell').click(buySell);
-
     // TODO: find better way to do first travel
     $('#Earth').click();
+    evalLootStock();
+
 });
