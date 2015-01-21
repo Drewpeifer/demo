@@ -5,6 +5,7 @@ body {
 }
 div, span, p, table {
     display:inline-block;
+    font-size:14px;
 }
 div, span, p, table, td {
     cursor:default;
@@ -54,10 +55,13 @@ td.buy,
 td.sell {
     background:#fff;
     color:#000;
+    font-size:.9em;
 }
 td.loot,
 td.stock {
     background:#666;
+    width:20px;
+    font-size:.9em;
 }
 td.loot.empty,
 td.stock.empty {
