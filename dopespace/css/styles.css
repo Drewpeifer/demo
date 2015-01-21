@@ -28,7 +28,6 @@ div {
 .stats {
     border:#fff 1px dashed;
     display:block;
-    width:300px;
 }
 ul {
     list-style:none;
@@ -48,7 +47,6 @@ ul {
 .market tbody,
 .market tr {
     border-collapse:collapse;
-    width:300px;
 }
 .market table td {
     border:#888 1px solid;
