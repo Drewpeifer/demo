@@ -22,18 +22,29 @@ button, .buy, .sell {
 .wrapper {
     width:345px;
 }
+.box {
+    border:#fff 3px solid;
+    border-radius:5px;
+}
 .header,
 .market,
 .stats {
-    border:#fff 1px dashed;
     display:block;
     padding:5px;
+}
+.market, .stats {
+    border-top:#fff 3px solid;
 }
 ul {
     list-style:none;
 }
 
 /* icons */
+.location .icon {
+    background:url(../img/sign_32x50.png) 0 0 no-repeat;
+    width:32px;
+    height:50px;
+}
 .fuel .icon {
     background:url(../img/elements/element_red_39x43.png) 0 0 no-repeat;
     width:39px;
@@ -53,11 +64,26 @@ ul {
 .header {
     height:50px;
 }
+.location p {
+    font-size:45px;
+    margin:0;
+    line-height:0;
+}
+#map {
+    background:url(../img/buttons/button_up_36x35.png) 0 0 no-repeat;
+    width:36px;
+    height:35px;
+}
+#map:active {
+    background:url(../img/buttons/button_down_36x35.png) 0 0 no-repeat;
+}
 .fuel {
     float:right;
 }
 .fuel p {
-    font-size:24px;
+    font-size:54px;
+    margin:0;
+    line-height:0;
 }
 
 /* market */
@@ -93,13 +119,19 @@ td.stock.empty {
     display:block;
 }
 .wallet p {
-    font-size:24px;
+    font-size:42px;
+    margin:0;
+    line-height:0;
 }
 .cargo {
     float:right;
+    position:relative;
+    top:-5px;
 }
 .cargo, .cargo p, .cargo span {
-    font-size:24px;
+    font-size:32px;
+    margin:0;
+    line-height:0;
 }
 
 /*** peripherals ***/
