@@ -40,6 +40,6 @@ $(function() {
     });
     // TODO: find better way to do first travel
     $('#Earth').click();
-    evalLootStock();
+    evalLootStockCargo();
 
 });

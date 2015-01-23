@@ -42,7 +42,7 @@ function stockMarket() {
 // check each stock and loot amount,
 // if any equal zero, disable the
 // corresponding buy/sell button
-function evalLootStock() {
+function evalLootStockCargo() {
     // TODO: only run this onLoad and
     // other crucial times, build smaller
     // function for buy/sell that just
@@ -66,4 +66,9 @@ function evalLootStock() {
         }
 
     });
+    if ($('.cargo p').text() == $('.cap').text()) {
+        $('.cargo').removeClass('valid').addClass('invalid');
+    } else {
+        $('.cargo').removeClass('invalid').addClass('valid');
+    }
 }

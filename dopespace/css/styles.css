@@ -50,10 +50,15 @@ ul {
     width:39px;
     height:43px;
 }
-.cargo .icon {
+.cargo.valid .icon {
     background:url(../img/bag_open_35x44.png) 0 0 no-repeat;
     width:35px;
     height:44px;
+}
+.cargo.full .icon {
+    background:url(../img/bag_closed_34x46.png) 0 0 no-repeat;
+    width:34px;
+    height:46px;
 }
 .wallet .icon {
     background:url(../img/ingot_silver_41x37.png) 0 0 no-repeat;
@@ -85,7 +90,12 @@ ul {
     margin:0;
     line-height:0;
 }
-
+.fuel p.valid {
+    color:#fff;
+}
+.fuel p.invalid {
+    color:red;
+}
 /* market */
 .market table,
 .market tbody,
@@ -128,10 +138,18 @@ td.stock.empty {
     position:relative;
     top:-5px;
 }
-.cargo, .cargo p, .cargo span {
+.cargo,
+.cargo p,
+.cargo span {
     font-size:32px;
     margin:0;
     line-height:0;
+}
+.cargo.valid p {
+    color:#fff;
+}
+.cargo.invalid p {
+    color:red;
 }
 
 /*** peripherals ***/

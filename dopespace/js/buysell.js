@@ -41,7 +41,7 @@ function buySell() {
             item[0].loot = newLoot;// set new loot on object
             cargo.text(newCargo);// set new cargo
             wallet.text(newWallet);// set new wallet
-            evalLootStock();// check if merchant is out of stock after purchase
+            evalLootStockCargo();// check if merchant is out of stock after purchase
         }
 
     } else if ($this.hasClass('sell')) {
@@ -62,7 +62,7 @@ function buySell() {
             cargo.text(newCargo);// set new cargo
             wallet.text(newWallet);// set new wallet
 
-            evalLootStock();// check if loot is empty
+            evalLootStockCargo();// check if loot is empty
         }
 
     } else {

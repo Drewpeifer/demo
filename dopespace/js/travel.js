@@ -16,6 +16,11 @@ function travel() {
     } else {
         newFuel = fuel -= 1;// subtract fuel
         fuelTank.text(newFuel);// set new fuel
+        if (newFuel <= 1) {
+            fuelTank.removeClass('valid').addClass('invalid');
+        } else {
+            fuelTank.removeClass('invalid').addClass('valid');
+        }
         portTitle.text(port[0].title);// set new currentPort
         portDescription.text(port[0].description);// set new descrip
         stockMarket();// build/rebuild
@@ -28,6 +33,6 @@ function travel() {
             showAlert('You\'re almost out of fuel!', 'Hope you can reach a fuel station, genius.');
         } else {}
 
-        evalLootStock();// check new location's stock levels
+        evalLootStockCargo();// check new location's stock levels
     }
 }
