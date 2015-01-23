@@ -33,9 +33,31 @@ ul {
     list-style:none;
 }
 
+/* icons */
+.fuel .icon {
+    background:url(../img/elements/element_red_39x43.png) 0 0 no-repeat;
+    width:39px;
+    height:43px;
+}
+.cargo .icon {
+    background:url(../img/bag_open_35x44.png) 0 0 no-repeat;
+    width:35px;
+    height:44px;
+}
+.wallet .icon {
+    background:url(../img/ingot_silver_41x37.png) 0 0 no-repeat;
+    width:41px;
+    height:37px;
+}
 /* header */
+.header {
+    height:50px;
+}
 .fuel {
     float:right;
+}
+.fuel p {
+    font-size:24px;
 }
 
 /* market */
@@ -70,8 +92,14 @@ td.stock.empty {
 .dialog {
     display:block;
 }
+.wallet p {
+    font-size:24px;
+}
 .cargo {
     float:right;
+}
+.cargo, .cargo p, .cargo span {
+    font-size:24px;
 }
 
 /*** peripherals ***/

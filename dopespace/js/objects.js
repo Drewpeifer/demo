@@ -84,6 +84,6 @@ map[3] = {  title : "Risa",
 var events = [];
 
 events[0] = { title : "Something happened!",
-              description : "Something crazy happened and you have to make a decision."
-
+              description : "Something crazy happened and you have to make a decision.",
+              options : ["Bargain", "Leave"]
             };
