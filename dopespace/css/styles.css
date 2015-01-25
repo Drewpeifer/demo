@@ -102,10 +102,15 @@ ul {
     padding:0;
 }
 /* market */
+/* table display is stupid */
 .market table,
 .market tbody,
 .market tr {
+    width:100%;
     border-collapse:collapse;
+}
+.market tbody {
+    display:table;
 }
 .market table td {
     border:#888 1px solid;

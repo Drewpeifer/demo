@@ -37,6 +37,7 @@ function stockMarket() {
                 '<td class="sell">Sell<br /><<</td>' +
             '</tr>');
     });
+
 }
 
 // check each stock and loot amount,
