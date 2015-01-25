@@ -40,11 +40,6 @@ ul {
 }
 
 /* icons */
-.location .icon {
-    background:url(../img/sign_32x50.png) 0 0 no-repeat;
-    width:32px;
-    height:50px;
-}
 .fuel .icon {
     background:url(../img/elements/element_red_39x43.png) 0 0 no-repeat;
     width:39px;
@@ -55,7 +50,7 @@ ul {
     width:35px;
     height:44px;
 }
-.cargo.full .icon {
+.cargo.invalid .icon {
     background:url(../img/bag_closed_34x46.png) 0 0 no-repeat;
     width:34px;
     height:46px;
@@ -65,15 +60,6 @@ ul {
     width:41px;
     height:37px;
 }
-/* header */
-.header {
-    height:50px;
-}
-.location p {
-    font-size:45px;
-    margin:0;
-    line-height:0;
-}
 #map {
     background:url(../img/buttons/button_up_36x35.png) 0 0 no-repeat;
     width:36px;
@@ -82,19 +68,38 @@ ul {
 #map:active {
     background:url(../img/buttons/button_down_36x35.png) 0 0 no-repeat;
 }
+/* header */
+.header {
+}
+.location {
+    float:left;
+}
+.location p {
+    font-size:4em;
+    margin:0;
+}
 .fuel {
     float:right;
+    height:100%;
 }
-.fuel p {
-    font-size:54px;
+.fuel p, .fuel span {
+    font-size:2em;
     margin:0;
-    line-height:0;
+    vertical-align:bottom
 }
 .fuel p.valid {
     color:#fff;
 }
 .fuel p.invalid {
     color:red;
+}
+.dialog {
+    display:block;
+}
+.dialog p {
+    font-style:italic;
+    margin:0;
+    padding:0;
 }
 /* market */
 .market table,
@@ -125,25 +130,20 @@ td.stock.empty {
 }
 
 /* stats */
-.dialog {
-    display:block;
-}
 .wallet p {
-    font-size:42px;
+    font-size:2em;
     margin:0;
-    line-height:0;
 }
 .cargo {
     float:right;
     position:relative;
-    top:-5px;
 }
 .cargo,
 .cargo p,
 .cargo span {
-    font-size:32px;
-    margin:0;
+    font-size:2em;
     line-height:0;
+    margin:0;
 }
 .cargo.valid p {
     color:#fff;
@@ -170,7 +170,7 @@ td.stock.empty {
     height:50%;
 }
 .map ul li a {
-    font-size:24px;
+    font-size:1.5em;
     color:#999;
 }
 .map ul li a:visited {
