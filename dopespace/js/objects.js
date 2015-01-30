@@ -44,6 +44,7 @@ var map = [];
 
 map[0] = {  title : "Earth",
             fuelStation : true,
+            fuelPrice : 1000,
             embargo : menu[0],
             priceFlux : .1,
             saleMod : .9,

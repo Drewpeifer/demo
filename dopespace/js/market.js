@@ -11,9 +11,21 @@ function stockMarket() {
     port = map.filter(function (location) {
                 // find the current port's JS object
                 return location.title == $('.location p').text();
-           });
+           }),
+    marketTable = $('.market table');
 
-    $('.market table').empty();// clear out old location data
+    marketTable.empty();// clear out old location data
+
+    if (port[0].fuelStation) {
+        marketTable.append('<tr>' +
+                 '<td>Fuel</td><td class="price">&#36;<p>' +
+                port[0].fuelPrice +
+                '</p>/unit</td>' +
+                '<td onclick="buyFuel()" class="buy">Buy<br />>></td>' +
+                '<td class="stock">3</td><td class="loot"></td>' +
+                '<td></td>' +
+            '</tr>');
+    } else {}
 
     menu.forEach( function (stock) {
 
@@ -24,7 +36,7 @@ function stockMarket() {
         maxPrice = stock.basePrice + (stock.basePrice * port[0].priceFlux),
         newPrice = getRandomStock(minPrice, maxPrice);
 
-        $('.market table').append('<tr>' +
+        marketTable.append('<tr>' +
                 '<td class="item">' +
                 stock.title +
                 '</td><td class="price">&#36;<p>' +

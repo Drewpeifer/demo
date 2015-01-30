@@ -1,3 +1,17 @@
+function buyFuel() {
+    $this = $(this),// fuel buy button
+    fuelStock = $this.sibling('.stock'),// store's fuel label container
+    fuelVal = parseInt(fuelStock.text()),// store's fuel value
+    fuelTank = $('.fuel p'),// user's fuel label container
+    fuel = parseInt(fuelTank.text());// user's current fuel value
+
+
+    newFuel = fuel + 1;
+    fuelTank.text(newFuel);// set new user fuel
+    newFuelStock = fuelStock - 1;
+    fuelStock.text(newFuelStock);// set new store stock
+}
+
 // buying and selling
 function buySell() {
     var $this = $(this),// buy/sell button

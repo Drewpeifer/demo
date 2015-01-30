@@ -60,12 +60,12 @@ ul {
     width:41px;
     height:37px;
 }
-#map {
+.map-control {
     background:url(../img/buttons/button_up_36x35.png) 0 0 no-repeat;
     width:36px;
     height:35px;
 }
-#map:active {
+.map-control:active {
     background:url(../img/buttons/button_down_36x35.png) 0 0 no-repeat;
 }
 /* header */
@@ -163,7 +163,7 @@ td.stock.empty {
     font-size:1.5em;
 }
 /* map */
-#map {
+.map-control {
     position:relative;
     bottom:2px;
     left:5px;
@@ -173,6 +173,7 @@ td.stock.empty {
     top:0;
     background:#333;
     height:50%;
+    width:60%;
 }
 .map ul li a {
     font-size:1.5em;

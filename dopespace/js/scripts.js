@@ -28,7 +28,7 @@ $(function() {
 
     buildMap();
     // bindings
-    $('#map').click(function() {
+    $('.map-control').click(function() {
         $('.map').slideDown();
     });
     $('.map .close').click(function() {
