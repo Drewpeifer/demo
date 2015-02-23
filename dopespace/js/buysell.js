@@ -1,14 +1,28 @@
 function buyFuel() {
     $this = $(this),// fuel buy button
+    price = $this.siblings('.price').children('p'),
+    priceVal = parseInt(price.text()),// price of fuel per unit
+    wallet = $('.wallet p'),
+    walletVal = parseInt(wallet.text()),// user's current money
     fuelStock = $this.siblings('.stock'),// store's fuel label container
     fuelVal = parseInt(fuelStock.text()),// store's fuel value
     fuelTank = $('.fuel p'),// user's fuel label container
     fuel = parseInt(fuelTank.text());// user's current fuel value
 
-    newFuel = fuel + 1;
-    fuelTank.text(newFuel);// set new user fuel
-    newFuelStock = fuelVal - 1;
-    fuelStock.text(newFuelStock);// set new store stock
+    if (walletVal < priceVal) {
+        // not enough money
+        alert('out of moneys');
+    } else if (fuelVal == 0) {
+        alert('no fuel to buy')
+    } else {
+        // successful purchase
+        newWallet = walletVal - priceVal;// subtract unit price from wallet
+        wallet.text(newWallet);// set new wallet
+        newFuel = fuel + 1;
+        fuelTank.text(newFuel);// set new user fuel
+        newFuelStock = fuelVal - 1;
+        fuelStock.text(newFuelStock);// set new store stock
+    }
 }
 
 // buying and selling
