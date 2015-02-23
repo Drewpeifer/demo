@@ -11,9 +11,9 @@ function buyFuel() {
 
     if (walletVal < priceVal) {
         // not enough money
-        alert('out of moneys');
+        showAlert('not enough moneys');
     } else if (fuelVal == 0) {
-        alert('no fuel to buy')
+        showAlert('no fuel to buy')
     } else {
         // successful purchase
         newWallet = walletVal - priceVal;// subtract unit price from wallet

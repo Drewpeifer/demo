@@ -46,7 +46,7 @@ var map = [];
 
 map[0] = {  title : "Earth",
             fuelStation : true,
-            fuelPrice : 1000,
+            fuelPrice : 400,
             embargo : menu[0],
             priceFlux : .1,
             saleMod : .9,
@@ -76,7 +76,7 @@ map[2] = {  title : "Arrakis",
 
 map[3] = {  title : "Risa",
             fuelStation : true,
-            fuelPrice : 400,
+            fuelPrice : 600,
             embargo : menu[3],
             priceFlux : .3,
             saleMod : .4,
