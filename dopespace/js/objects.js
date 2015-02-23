@@ -1,5 +1,7 @@
 // objects
 ///////////
+var config = {};
+
 
 // stock base prices and props
 var menu = [];
