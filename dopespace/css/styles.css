@@ -118,6 +118,7 @@ ul {
     padding:5px;
 }
 td.buy,
+td.buy.fuel,
 td.sell {
     background:#fff;
     color:#000;

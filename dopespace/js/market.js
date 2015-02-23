@@ -17,12 +17,12 @@ function stockMarket() {
     marketTable.empty();// clear out old location data
 
     if (port[0].fuelStation) {
-        marketTable.append('<tr>' +
+        marketTable.append('<tr class="fuel-station">' +
                  '<td>Fuel</td><td class="price">&#36;<p>' +
                 port[0].fuelPrice +
                 '</p>/unit</td>' +
-                '<td onclick="buyFuel()" class="buy">Buy<br />>></td>' +
-                '<td class="stock">3</td><td class="loot"></td>' +
+                '<td class="buy">Buy<br />>></td>' +
+                '<td class="stock">3</td><td></td>' +
                 '<td></td>' +
             '</tr>');
     } else {}

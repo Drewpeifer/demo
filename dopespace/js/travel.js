@@ -31,7 +31,8 @@ function travel() {
         stockMarket();// build/rebuild
 
         $('.buy, .sell').click(buySell);// rebind after market build
-
+        $('.fuel-station .buy').unbind()// TODO: this seems hacky
+                               .click(buyFuel);// but i like semantics
         $('.map').slideUp();// hide map
 
         if (newFuel == 1) {// warn pilot if 1 gallon of fuel left
