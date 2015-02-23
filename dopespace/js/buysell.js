@@ -27,9 +27,9 @@ function buySell() {
         priceVal = parseInt(price.text()),// price of item per unit
         wallet = $('.wallet p'),
         walletVal = parseInt(wallet.text()),
-        cargo = $('.cargo p'),
+        cargo = $('.cargo p.loot'),
         cargoVal = parseInt(cargo.text()),// user's current money
-        cargoCap = $('.cargo .cap'),
+        cargoCap = $('.cargo p.cap'),
         cargoCapVal = parseInt(cargoCap.text());// user current cargo limit
 
     if ($this.hasClass('buy')) {

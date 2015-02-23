@@ -48,7 +48,7 @@ ul {
 .cargo.valid .icon {
     background:url(../img/bag_open_35x44.png) 0 0 no-repeat;
     width:35px;
-    height:44px;
+    height:46px;
 }
 .cargo.invalid .icon {
     background:url(../img/bag_closed_34x46.png) 0 0 no-repeat;
@@ -58,7 +58,7 @@ ul {
 .wallet .icon {
     background:url(../img/ingot_silver_41x37.png) 0 0 no-repeat;
     width:41px;
-    height:37px;
+    height:46px;
 }
 .map-control {
     background:url(../img/buttons/button_up_36x35.png) 0 0 no-repeat;
@@ -135,20 +135,9 @@ td.stock.empty {
 }
 
 /* stats */
-.wallet p {
-    font-size:2em;
-    margin:0;
-}
-.cargo {
-    float:right;
-    position:relative;
-}
-.cargo,
-.cargo p,
-.cargo span {
-    font-size:2em;
-    line-height:0;
-    margin:0;
+.wallet, .cargo {
+    height:60px;
+    width:49%;
 }
 .cargo.valid p {
     color:#fff;
@@ -156,7 +145,16 @@ td.stock.empty {
 .cargo.invalid p {
     color:red;
 }
-
+.wallet p,
+.cargo p {
+    margin:0;
+    font-size:2em;
+    vertical-align:top;
+    padding-top:5%;
+}
+.cargo {
+    text-align:right;
+}
 /*** peripherals ***/
 .close {
     float:right;

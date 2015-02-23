@@ -79,7 +79,7 @@ function evalLootStockCargo() {
         }
 
     });
-    if ($('.cargo p').text() == $('.cap').text()) {
+    if ($('.cargo p.loot').text() == $('.cargo p.cap').text()) {
         $('.cargo').removeClass('valid').addClass('invalid');
     } else {
         $('.cargo').removeClass('invalid').addClass('valid');
