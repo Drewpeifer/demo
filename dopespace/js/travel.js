@@ -92,7 +92,14 @@ function travel() {
                                .click(buyFuel);// but i like semantics
         $('.map').slideUp();// hide map
 
-        randomIncident();// arrival event occurs (or not)
+        // arrival event occurs (or not)
+        // with a 30% chance of occurring
+        rando = getRandomNumber(1,7)
+        if (rando == 1 || rando == 3) {// TODO: am I crazy? if you're not caching the odds, does it help to have pool bigger?
+            randomIncident();// TODO: this seems like a clumsy way to do this
+        } else {
+            // no incident occurs
+        };
 
         evalLootStockCargo();// check new location's stock levels
     }

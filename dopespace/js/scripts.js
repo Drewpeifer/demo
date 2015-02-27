@@ -1,3 +1,8 @@
+// return random number from min (inclusive) to max (exclusive)
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
 // populate map, will be dynamically chosen later
 function buildMap() {
     // build map
