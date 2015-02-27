@@ -1,3 +1,9 @@
+var config = {
+    turn : 0,
+    startingFuel : 10,
+    startingPort : map[0]
+}
+
 // return random number from min (inclusive) to max (exclusive)
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
@@ -51,8 +57,17 @@ $(function() {
     $('.alert .close').click(function() {
         $('.alert').fadeOut(500);
     });
-    // TODO: find better way to do first travel
-    $('#Earth').click();
+
+    // Set initial variables (port, fuel, etc)
+    portTitle = $('.location p'),// port label container
+    portDescription = $('.header .dialog p'),// port description container
+    fuelTank = $('.fuel p');// fuel label container
+
+    fuelTank.text(config.startingFuel);// set initial fuel
+    portTitle.text(config.startingPort.title);// set initial port title
+    portDescription.text(config.startingPort.description);// set initial port descrip
+    stockMarket();// build initial marketplace
+
     evalLootStockCargo();
 
 });
