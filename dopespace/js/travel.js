@@ -15,7 +15,8 @@ function randomIncident() {
     })
 
     // pick a random incident from newIncidents
-    incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
+    //incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
+    incident = incidents[0];
     // pick random alternative text
     alternative = incident.alternatives[Math.floor(Math.random()*incident.alternatives.length)];
     choices = incident.choices;
@@ -41,8 +42,11 @@ function randomIncident() {
 }
 // called after choice button is clicked, before alert is closed by user
 function showOutcome() {
-    $('.alert').append('<p class="alert-outcome">' +
-        incident.outcomes[index] + '</p>');
+    $('.alert-content').append('<p class="alert-outcome">' + incident.outcomes[index] + '</p>');
+}
+function showEffect(effect) {
+    $('.alert-outcome').append(effect);
+    $('.alert-content button').attr("disabled", "disabled");
 }
 
 // END ARRIVAL EVENTS
@@ -63,8 +67,8 @@ function travel() {
 
     if (fuel == 0) {
         // TODO: more subtle fuel alerts
-        //showAlert('Out of fuel!', 'You\'re stuck, unless your current port has fuel to sell. And you have some money, right?');
-
+        showAlert('Out of fuel!', 'You\'re stuck, unless your current port has fuel to sell. And you have some money, right?');
+        $('.map').slideUp();
     } else if (portTitle.text() === nextPort) {
         showAlert('You\'re already at that location', 'What\'re you, some kind of jokester?');
 

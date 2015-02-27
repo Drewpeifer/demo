@@ -204,3 +204,21 @@ td.stock.empty {
 .alert-description {
     font-style:italic;
 }
+
+/* arrival events (incidents) */
+.incident-outcome {
+    font-weight:normal;
+    display:block;
+}
+.incident-outcome.good {
+    color:#00cc66;
+}
+.incident-outcome.neutral {
+    color:#ccc333;
+}
+.incident-outcome.bad {
+    color:#ff6666;
+}
+.alert-content button:disabled {
+    color:#fff;
+}

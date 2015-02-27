@@ -23,12 +23,14 @@ incidents[0] = {
 		"Whew. Coasted by without incident. Luckily our approach was far enough from the epicenter to give us time to steer away.",
 		"Our plasma exhaust has been ignited by an unknown source, we're safely away from the black hole but fuel reserves briefly leaked into space.",
 		"Our cargo module was struck by a peice of incoming debris attracted by the singularity. We lost some goods, but we escaped with our lives. Well, Dobson died."
+
 	],
 	rewards : [
 		function nothingHappened() {// nothing happened
 			// print outcome
 			index = $(this).attr('data-index');
 			showOutcome();
+			showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
 		},
 		function lost2Fuel() {// lost 2 fuel
 			fuel = parseInt($('.fuel p').text());
@@ -38,10 +40,11 @@ incidents[0] = {
 				newfuel = fuel - 2;
 				$('.fuel p').text(newfuel);
 			}
+			currentFuel = parseInt($('.fuel p').text());
 			// print outcome
 			index = $(this).attr('data-index');
 			showOutcome();
-
+			showEffect("<b class='incident-outcome bad'>Effect: We lost 2 fuel, we currently have " + currentFuel + " left.</b>");
 		 },
 		function lostRandomGoods() {// lost some random goods
 			ownedLoot = [];
@@ -51,19 +54,29 @@ incidents[0] = {
 			        ownedLoot.push(stock);
 			    }
 			});
-			// pick a random item from the list
-			randomOwnedLoot = ownedLoot[Math.floor(Math.random()*ownedLoot.length)];
-			// find accompanying DOM row
-			targetLoot = $('.market td:contains("' + randomOwnedLoot.title + '")').siblings('.loot');
-			// recalc value
-			newLootVal = parseInt(randomOwnedLoot.loot) / 2;
-			// set new loot value on obj
-			randomOwnedLoot.loot = newLootVal;
-			//set new loot value in DOM
-			targetLoot.text(newLootVal);
-			// print outcome
-			index = $(this).attr('data-index');
-			showOutcome();
+			console.log(ownedLoot.length);
+			if (ownedLoot.length < 1) {
+				// print outcome
+				index = $(this).attr('data-index');
+				showOutcome();
+				showEffect("<b class='incident-outcome neutral'>Effect: Dobson's gone (no big loss), and we didn't have any cargo in storage, so we just patched the hull and ejected ol' Dobbie's personal effects into space. That's procedure, right?.</b>");
+			} else {
+				// pick a random item from the list
+				randomOwnedLoot = ownedLoot[Math.floor(Math.random()*ownedLoot.length)];
+				// find accompanying DOM row
+				targetLoot = $('.market td:contains("' + randomOwnedLoot.title + '")').siblings('.loot');
+				targetLootVal = targetLoot.text();
+				// recalc value
+				newLootVal = parseInt(randomOwnedLoot.loot) / 2;
+				// set new loot value on obj
+				randomOwnedLoot.loot = newLootVal;
+				//set new loot value in DOM
+				targetLoot.text(newLootVal);
+				// print outcome
+				index = $(this).attr('data-index');
+				showOutcome();
+				showEffect("<b class='incident-outcome bad'>Effect: Dobson's gone (no big loss), and we lost " + parseInt(targetLootVal - newLootVal)  + " of our " + randomOwnedLoot.title + ". It was probably Dobson's fault anyway, so I personally shot all his personal crap out the airlock. He didn't have anything good anyway.</b>");
+			}
 		}
 	],
 	hasHappened : false

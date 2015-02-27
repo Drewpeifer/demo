@@ -22,8 +22,7 @@ function showAlert(title, description) {
     alertContent = $('.alert-content');
 
     alertContent.empty();
-    alertContent.append('<span class="close">[X]</span>' +
-                 '<span><p class="alert-title"></p>' +
+    alertContent.append('<span><p class="alert-title"></p>' +
                  '<p class="alert-description">' +
                  '</p>' +
                  '</span>');
