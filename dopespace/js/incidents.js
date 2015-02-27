@@ -26,6 +26,7 @@ incidents[0] = {
 
 	],
 	rewards : [
+		// TODO: collect reward functions into separate file, just call them here
 		function nothingHappened() {// nothing happened
 			// print outcome
 			index = $(this).attr('data-index');
@@ -88,10 +89,54 @@ incidents[1] = {
 	description : "Our sensors can't seem to penetrate their hull to analyze their systems, " +
 				  "but we can see they have an unknown shield configuration. They seem to be using " +
 				  "their engine exhaust to envelope their ship in a plasma shield. Pretty clever,captain.",
-	alternatives : [],
-	choices : [],
-	outcomes : [],
-	rewards : [],
+	alternatives : [
+		"Maybe we could learn something from them. Science Officer recommends we try to initiate communication via mathematical and visual signals.",
+		"Could mean they're more clever than we are. Tactical Officer recommends raising shields and waiting to see how this plays out.",
+		"But, if they have shields we haven't seen before, they probably have weapons we haven't seen before, too. I recommend we raise shields and hightail it out of here."
+	],
+	choices : [
+		"Initiate communication on all frequencies, using all methods and dialects in sequence. Let's try to make a friend.",
+		"Raise shields and ask them to identify their planet of origin. We don't lower shields or move from this spot until we know who they are and what they're about.",
+		"I don't like the looks of this! Raise shields, charge weapons, and fire a warning shot across their bow. If they don't retreat, hit them with a torpedo and make a run for it!"
+	],
+	outcomes : [
+		"They've responded to our musical intonation array! It seems they communicate by singing complex songs that can last up to ten hours. The computer is currently building a dictionary or their language but so far we know they are peaceful, advanced, and happy to meet us. They say our ship can't be fitted with a shield like theirs, but they've graciously refined our current fuel (somehow) to burn twice as efficiently!",
+		"They broadcasted for a few minutes longer, Captain, but they seem to be resuming their original course at speeds we cannot match. I'm not sure if our posture was taken as overly offensive or overly defensive, or maybe they just got bored waiting for a reply, but I guess we'll never know who they were.",
+		"Captain, our warning shot accidentally hit their shields! They've returned fire and melted our phasers right through our shields! I think they even teleported out torpedos out of their tubes and into space. We can make repairs but it'll take time and cost money; luckily, they seem to be resuming their course at high speed. We've received a message as well, Captain. The computer's translation approximates it to be 'LATER, JERKS'."
+	],
+	rewards : [
+		function fuelDoubled() {// fuel amount is doubled
+			index = $(this).attr('data-index');
+			fuel = parseInt($('.fuel p').text());
+			if (fuel == 0) {
+				newFuel = 5;
+				$('.fuel p').text(newfuel);		
+				showOutcome();		
+				showEffect("<b class='incident-outcome good'>Effect: Well, we didn't have any fuel, so they gave us 5 units. Man, they were nice.</b>");
+			} else {
+				newfuel = fuel * 2;
+				$('.fuel p').text(newfuel);
+				currentFuel = parseInt($('.fuel p').text());
+				showOutcome();
+				showEffect("<b class='incident-outcome good'>Effect: Current fuel stores doubled from " + fuel + " to " + currentFuel + "!</b>");
+			}
+		},
+		function nothingHappened() {// nothing happened
+			index = $(this).attr('data-index');
+			showOutcome();
+			showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
+		},
+		function lostTenthMoney() {// lose a tenth of current wallet
+			index = $(this).attr('data-index'),
+			wallet = parseInt($('.wallet p').text()),// get current money
+			lostAmount = Math.floor(wallet / 10),// divide by ten
+			newWallet = wallet - lostAmount;// subtract a tenth from initial money
+
+			$('.wallet p').text(newWallet);// set new wallet
+			showOutcome();
+			showEffect("<b class='incident-outcome bad'>Effect: Repairs have been completed but they were expensive, our funds dropped from " + wallet + " to " + newWallet + ".</b>");
+		}
+	],
 	hasHappened : false
 };
 
