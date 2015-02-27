@@ -320,14 +320,3 @@ incidents[9] = {
 	rewards : [],
 	hasHappened : false
 };
-
-// Beacon found 2 (ancient distress signal)
-incidents[10] = {
-	title : "Sample Incident",
-	description : "Description Text (This is what you're going through)",
-	alternatives : [],
-	choices : [],
-	outcomes : [],
-	rewards : [],
-	hasHappened : false
-};
