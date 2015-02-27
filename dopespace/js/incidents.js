@@ -33,7 +33,7 @@ incidents[0] = {
 			showOutcome();
 			showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
 		},
-		function lost2Fuel() {// lost 2 fuel
+		function lostTwoFuel() {// lost 2 fuel
 			fuel = parseInt($('.fuel p').text());
 			if (fuel <= 2) {
 				$('.fuel p').text("0");
@@ -142,23 +142,116 @@ incidents[1] = {
 
 // Strange ship 2 (allies in distress)
 incidents[2] = {
-	title : "Sample Incident",
-	description : "Description Text (This is what you're going through)",
-	alternatives : [],
-	choices : [],
-	outcomes : [],
-	rewards : [],
+	title : "Captain, there's an unknown vessel approaching, broadcasting a distress signal on all frequencies.",
+	description : "They say their engines are malfunctioning, and exhaust plasma has leaked into the ship's engineering section. " +
+				  "Scanners show their engines are indeed operating at 10 percent efficiency, and their life support systems are overloading " +
+				  "one by one, radiating out from the engineering section. Their weapons are offline and their shields are down, they " +
+				  "may be diverting power to life support but the damage may have affected those systems as well.",
+	alternatives : [
+		"We may be the only ship within range that can help, and judging by their ship registration, they are a private transport ship for a local planetary government. Too small to carry anyone important, probably just shuttling bureaucrats from system to system.",
+		"That radiation may affect our systems if we attempt to dock or approach too close. Their engines may also overload at any time, and the resulting explosion would severly damage our ship if we were within docking range. I recommend assisting in any way we can, from a healthy distance. If necessary, we can evacuate their personnel.",
+		"Keep in mind, some pirates use this same type of scenario to lure in repair vessels, then rob them blind and sometimes even kill the crew. Something seems fishy to me, Captain, but I did have fish for lunch, so there's that."
+	],
+	choices : [
+		"Tractor beam them as close as possible without endangering our ship. Beam aboard an away team in hazard suits to investigate the engine room trouble. If we can fix it before we all explode, perfect. If not, beam their entire crew aboard and we warp out of here like we stole something.",
+		"Maintain a safe distance. Try to assist remotely, either by advising over comms or transporting supplies aboard. We can't afford to get close enough to dock or evacuate.",
+		"Something's fishy here. Let's wait a few minutes and continue scanning their systems. If they're not lying, their engine core should overheat shortly, and we can move in and evacuate. If they are lying or turn hostile, denotate their core with a phaser blast."
+	],
+	outcomes : [
+		"Ridiculous. They had their manifolds set to minimum and their ionization compensator set to 80 percent, what a bunch of dummies! Our engineers pushed a few buttons and sent them on their way. They paid us well for our time though, probably out of embarassment.",
+		"We were able to identify the trouble and Engineering beamed over some parts, but when they powered up their teleporter to receive the parts, their electrical systems shorted out. Life support started failing so we beamed the crew of twelve aboard immediately, and their ship exploded shortly thereafter. They didn't seem too upset, apparently it was a rental, and they plan to leave at the next port. At least we salvaged one unit of fuel from their wreckage.",
+		"Sensors indicate they're low on fuel and oxygen. There's minor radiation all over the ship but levels increase closer to the engineering section, peaking at levels of WHOA they just exploded. I think we waited too long to help, Captain. We should probably just move along now..."
+	],
+	rewards : [
+		function gotThousandCash() {// add 1000 to wallet
+			index = $(this).attr('data-index'),
+			wallet = parseInt($('.wallet p').text()),// get current money
+			newWallet = wallet + 1000;// add 1000 to initial money
+
+			$('.wallet p').text(newWallet);// set new wallet
+			showOutcome();
+			showEffect("<b class='incident-outcome good'>Effect: Gained 1000 cash.</b>");
+		},
+		function gotOneFuel() {// add 1 to fuel
+			index = $(this).attr('data-index');
+			fuel = parseInt($('.fuel p').text());
+			newfuel = fuel + 1;
+			$('.fuel p').text(newfuel);
+			currentFuel = parseInt($('.fuel p').text());
+			// print outcome
+			index = $(this).attr('data-index');
+			showOutcome();
+			showEffect("<b class='incident-outcome good'>Effect: Gained 1 unit of fuel.</b>");
+		},
+		function nothingHappened() {// nothing happened
+			index = $(this).attr('data-index');
+			showOutcome();
+			showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
+		},
+	],
 	hasHappened : false
 };
 
 // Strange ship 3 (pirates in disguise)
 incidents[3] = {
-	title : "Sample Incident",
-	description : "Description Text (This is what you're going through)",
-	alternatives : [],
-	choices : [],
-	outcomes : [],
-	rewards : [],
+	title : "Captain, a small ship is approaching with no interplanetary registration markings.",
+	description : "Their engines are offline and they're only moving due to their existing momentum. Comms are unresponsive." +
+				  "Sensors detect faint eight life signs, they could be injured, sick, or in stasis but there's no " +
+				  "way to tell without boarding or beaming them over directly. The ship itself doesn't seem to be damaged, " +
+				  "but it is over twelve years old, and the starboard docking panel looks like it's seen heavy use. " +
+				  "It's definitely too small to be a cargo or transport ship, it looks more like an orbital craft " +
+				  "used to shuttle crews from space station to space station.",
+	alternatives : [
+		"They may have lost control and drifted out of orbit, there are a few inhabited planets in this system with that level of technology. If they're in stasis, they may not even know they're adrift.",
+		"If they need assistance, they may pay us for our help. Or we could speed their situation along with a phaser blast or two, and salvage what's left...? Just thinking out loud, Captain.",
+		"Three words, Captain: Not. Our. Problem. I suggest we keep moving, we have cargo to buy and sell and we're almost to our destination."
+	],
+	choices : [
+		"Let's see if they need help. See if you can get them on the Comm again and get a sit-rep. If not, send an away team to see what's what.",
+		"Tractor them in and begin docking procedures. Send a salvage team and a medic team over with a small security compliment. If they're healable, heal away. If we can't help, we take what we can carry and get back on board.",
+		"Time is money, and that ship looks interesting. They shouldn't even be out here anyway, nobody probably knows they're here. Put a hole in the hull, wait for the oxygen to evacuate, and then see what we can salvage."
+	],
+	outcomes : [
+		"Captain, please don't be mad. The ship didn't reply to our hails, so we sent an away team like you ordered, with security and everything. So, they got on board, went to the cargo hold, and then they found some bodies in stasis. That's kind of where everything went wrong. When they woke up, the ship's crew activated security protocols, which deactivated our security team's weapons, and took our team hostage with a bunch of improvised weapons. Turns out they're escaped prisoners, and they want all our cash for the return of our away team.",
+		"Oh boy, that didn't go well. Ah, Captain, the crew of the ship wasn't in stasis, or injured, they were masking their life signs with portable biorhythmic dampeners. They tried to take the medical crew hostage, but the salvage crew fought back, and then security joined in, and well, basically everyone got shot. Also, the airlock control got shot, and their ship forcably ejected away from ours. We lost the medics, the salvage team, and the security force, but worst of all, the airlock door cost 1000 cash to repair.",
+		"We did just what you said, and after the air vented from the ship we sent an away team to investigate. Turns out they were escaped inmates from a penal colony on a nearby moon. Looks like they ran out of supplies a few days into their escape and went into stasis to wait for a ship to rescue them, presumably planning to hijack it and continue their escape. Good thing we shot first and asked questions much, much later, Captain. We got a good haul from that one."
+	],
+	rewards : [
+		function lostAllCash() {// set wallet to zero
+			index = $(this).attr('data-index'),
+			wallet = parseInt($('.wallet p').text()),// get current money
+			newWallet = 0;// set money to 0 (boo hoo)
+
+			$('.wallet p').text(newWallet);// set new wallet
+			showOutcome();
+			showEffect("<b class='incident-outcome bad'>Effect: Lost all cash.</b>");
+		},
+		function lostThousandCash() {// subtract 1000 from wallet
+			index = $(this).attr('data-index'),
+			wallet = parseInt($('.wallet p').text()),// get current money
+			newWallet = wallet - 1000;// subtract 1000 from initial money
+
+			if (wallet < 1000) {
+				newWallet = 0;
+			} else {
+				// do nothing
+			}
+
+			$('.wallet p').text(newWallet);// set new wallet
+			showOutcome();
+			showEffect("<b class='incident-outcome bad'>Effect: Lost 1000 cash.</b>");
+		},
+		function gotRandomCash() {// add random amount of cash from 400 to 1000
+			index = $(this).attr('data-index'),
+			rando = getRandomNumber(400, 1000),// get random amount of cash
+			wallet = parseInt($('.wallet p').text()),// get current money
+			newWallet = wallet + rando;// add random amount to wallet
+
+			$('.wallet p').text(newWallet);// set new wallet
+			showOutcome();
+			showEffect("<b class='incident-outcome good'>Effect: Gained " + rando + " cash.</b>");
+		}
+	],
 	hasHappened : false
 };
 
