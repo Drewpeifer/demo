@@ -7,20 +7,33 @@ function randomIncident() {
     incident = incidents[Math.floor(Math.random()*incidents.length)];
     alternative = incident.alternatives[Math.floor(Math.random()*incident.alternatives.length)];
     choices = incident.choices;
+    rewards = incident.rewards;
     console.dir(incident);
-
 
     incidentDescrip = incident.description + " " + alternative;
 
-
     showAlert(incident.title, incidentDescrip);
+    // build choice buttons
     $.each(choices, function(index, value) {
         $('.alert').append(
-                '<button class="alert-action" data-index="' + index + '" >' +
+                '<button class="alert-action" ' +
+                'data-index="' + index + '" >' +
                 value + '</button>'
             );
     });
+    // bind each button to corresponding reward function
+    $.each(rewards, function(index, value) {
+        $('button[data-index="' + index + '"]').bind('click', incident.rewards[index]);
+    });
 }
+// called after choice button is clicked, before alert is closed by user
+function showOutcome() {
+    $('.alert').append('<p class="alert-outcome">' +
+                    incident.outcomes[index] +
+                    '</p>'
+                  );
+}
+
 
 // travelling between locations
 function travel() {
