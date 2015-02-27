@@ -1,21 +1,34 @@
+// Arrival Events
+//////////////////
 function randomIncident() {
+    // DEBUG
     // incident props:
     // title, description, alternatives, choices, outcomes, rewards, hasHappened
+    newIncidents = [];
+    // loop through incidents, add to newIncidents if they havent happened yet
+    $.each(incidents, function(index, value) {
+        if (!incidents[index].hasHappened) {
+            newIncidents.push(value)
+        } else {
+            // do nothing
+        }
+    })
 
-
-    // pick a random incident from incidents.js
-    incident = incidents[Math.floor(Math.random()*incidents.length)];
+    // pick a random incident from newIncidents
+    incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
+    // pick random alternative text
     alternative = incident.alternatives[Math.floor(Math.random()*incident.alternatives.length)];
     choices = incident.choices;
     rewards = incident.rewards;
-    console.dir(incident);
-
+    // concatenate description text
     incidentDescrip = incident.description + " " + alternative;
+    // flag this incident as having happened
+    incident.hasHappened = true;
 
     showAlert(incident.title, incidentDescrip);
     // build choice buttons
     $.each(choices, function(index, value) {
-        $('.alert').append(
+        $('.alert-content').append(
                 '<button class="alert-action" ' +
                 'data-index="' + index + '" >' +
                 value + '</button>'
@@ -29,10 +42,11 @@ function randomIncident() {
 // called after choice button is clicked, before alert is closed by user
 function showOutcome() {
     $('.alert').append('<p class="alert-outcome">' +
-                    incident.outcomes[index] +
-                    '</p>'
-                  );
+        incident.outcomes[index] + '</p>');
 }
+
+// END ARRIVAL EVENTS
+////////////////////////
 
 
 // travelling between locations

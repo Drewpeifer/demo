@@ -2,18 +2,9 @@
 // as part of the travel() function in travel.js
 var incidents = [];
 
-//incidents[0] = {
-//	title : "Sample Incident",
-//	description : "Description Text (This is what you're going through)",
-//	alternatives : [],
-//	choices : [],
-//	outcomes : [],
-//	rewards : [],
-//	hasHappened : false
-//};
-
+// Black Hole encounter
 incidents[0] = {
-	title : "Black Hole Encountered!",
+	title : "Captain, we've warped right to a black hole!",
 	description : "It's been a while since you've seen any debris around, " +
 				  "turns out there's a nearby singularity pulling everything in. " +
 				  "A lot of spacers liken black holes to quicksand, some rely on " +
@@ -35,6 +26,7 @@ incidents[0] = {
 	],
 	rewards : [
 		function nothingHappened() {// nothing happened
+			// print outcome
 			index = $(this).attr('data-index');
 			showOutcome();
 		},
@@ -46,6 +38,9 @@ incidents[0] = {
 				newfuel = fuel - 2;
 				$('.fuel p').text(newfuel);
 			}
+			// print outcome
+			index = $(this).attr('data-index');
+			showOutcome();
 
 		 },
 		function lostRandomGoods() {// lost some random goods
@@ -66,8 +61,122 @@ incidents[0] = {
 			randomOwnedLoot.loot = newLootVal;
 			//set new loot value in DOM
 			targetLoot.text(newLootVal);
-			return false;
+			// print outcome
+			index = $(this).attr('data-index');
+			showOutcome();
 		}
 	],
+	hasHappened : false
+};
+
+// Strange ship 1 (new civilization encounter)
+incidents[1] = {
+	title : "Captain, a strange ship is on approach, hailing in an unknown language.",
+	description : "Our sensors can't seem to penetrate their hull to analyze their systems, " +
+				  "but we can see they have an unknown shield configuration. They seem to be using " +
+				  "their engine exhaust to envelope their ship in a plasma shield. Pretty clever,captain.",
+	alternatives : [],
+	choices : [],
+	outcomes : [],
+	rewards : [],
+	hasHappened : false
+};
+
+// Strange ship 2 (allies in distress)
+incidents[2] = {
+	title : "Sample Incident",
+	description : "Description Text (This is what you're going through)",
+	alternatives : [],
+	choices : [],
+	outcomes : [],
+	rewards : [],
+	hasHappened : false
+};
+
+// Strange ship 3 (pirates in disguise)
+incidents[3] = {
+	title : "Sample Incident",
+	description : "Description Text (This is what you're going through)",
+	alternatives : [],
+	choices : [],
+	outcomes : [],
+	rewards : [],
+	hasHappened : false
+};
+
+// Derelict ship 1 (supply ship)
+incidents[4] = {
+	title : "Sample Incident",
+	description : "Description Text (This is what you're going through)",
+	alternatives : [],
+	choices : [],
+	outcomes : [],
+	rewards : [],
+	hasHappened : false
+};
+
+// Derelict ship 2 (evil science ship)
+incidents[5] = {
+	title : "Sample Incident",
+	description : "Description Text (This is what you're going through)",
+	alternatives : [],
+	choices : [],
+	outcomes : [],
+	rewards : [],
+	hasHappened : false
+};
+
+// Asteroid field
+incidents[6] = {
+	title : "Sample Incident",
+	description : "Description Text (This is what you're going through)",
+	alternatives : [],
+	choices : [],
+	outcomes : [],
+	rewards : [],
+	hasHappened : false
+};
+
+// Nebula ahead
+incidents[7] = {
+	title : "Sample Incident",
+	description : "Description Text (This is what you're going through)",
+	alternatives : [],
+	choices : [],
+	outcomes : [],
+	rewards : [],
+	hasHappened : false
+};
+
+// Wormhole spotted
+incidents[8] = {
+	title : "Sample Incident",
+	description : "Description Text (This is what you're going through)",
+	alternatives : [],
+	choices : [],
+	outcomes : [],
+	rewards : [],
+	hasHappened : false
+};
+
+// Beacon found 1 (civilization archive)
+incidents[9] = {
+	title : "Sample Incident",
+	description : "Description Text (This is what you're going through)",
+	alternatives : [],
+	choices : [],
+	outcomes : [],
+	rewards : [],
+	hasHappened : false
+};
+
+// Beacon found 2 (ancient distress signal)
+incidents[10] = {
+	title : "Sample Incident",
+	description : "Description Text (This is what you're going through)",
+	alternatives : [],
+	choices : [],
+	outcomes : [],
+	rewards : [],
 	hasHappened : false
 };

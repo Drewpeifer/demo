@@ -13,9 +13,18 @@ function buildMap() {
 
 // custom alert message
 function showAlert(title, description) {
-    var alert = $('.alert'),
-        alertTitle = $('.alert-title'),
-        alertDescrip = $('.alert-description');
+    alert = $('.alert'),
+    alertContent = $('.alert-content');
+
+    alertContent.empty();
+    alertContent.append('<span class="close">[X]</span>' +
+                 '<span><p class="alert-title"></p>' +
+                 '<p class="alert-description">' +
+                 '</p>' +
+                 '</span>');
+
+    alertTitle = $('.alert-title'),
+    alertDescrip = $('.alert-description');
 
     alertTitle.text(title);
     alertDescrip.text(description);
