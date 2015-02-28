@@ -42,10 +42,10 @@ ul {
 }
 
 .price p.sale {
-    color:green;
+    color:#66ff66;
 }
 .price p.hike {
-    color:red;
+    color:#ff5050;
 }
 /* icons */
 .fuel .icon {
