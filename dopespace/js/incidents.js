@@ -60,7 +60,7 @@ incidents[0] = {
 				// print outcome
 				index = $(this).attr('data-index');
 				showOutcome();
-				showEffect("<b class='incident-outcome neutral'>Effect: Dobson's gone (no big loss), and we didn't have any cargo in storage, so we just patched the hull and ejected ol' Dobbie's personal effects into space. That's procedure, right?.</b>");
+				showEffect("<b class='incident-outcome neutral'>Effect: Dobson's gone (no big loss), and we didn't have any cargo in storage, so we just patched the hull and ejected ol' Dobbie's personal effects into space. That's procedure, right?</b>");
 			} else {
 				// pick a random item from the list
 				randomOwnedLoot = ownedLoot[Math.floor(Math.random()*ownedLoot.length)];
@@ -179,7 +179,6 @@ incidents[2] = {
 			$('.fuel p').text(newfuel);
 			currentFuel = parseInt($('.fuel p').text());
 			// print outcome
-			index = $(this).attr('data-index');
 			showOutcome();
 			showEffect("<b class='incident-outcome good'>Effect: Gained 1 unit of fuel.</b>");
 		},
@@ -195,8 +194,8 @@ incidents[2] = {
 // Strange ship 3 (pirates in disguise)
 incidents[3] = {
 	title : "Captain, a small ship is approaching with no interplanetary registration markings.",
-	description : "Their engines are offline and they're only moving due to their existing momentum. Comms are unresponsive." +
-				  "Sensors detect faint eight life signs, they could be injured, sick, or in stasis but there's no " +
+	description : "Their engines are offline and they're only moving due to their existing momentum. Comms are unresponsive. " +
+				  "Sensors detect eight faint life signs, they could be injured, sick, or in stasis but there's no " +
 				  "way to tell without boarding or beaming them over directly. The ship itself doesn't seem to be damaged, " +
 				  "but it is over twelve years old, and the starboard docking panel looks like it's seen heavy use. " +
 				  "It's definitely too small to be a cargo or transport ship, it looks more like an orbital craft " +
@@ -257,66 +256,355 @@ incidents[3] = {
 
 // Derelict ship 1 (supply ship)
 incidents[4] = {
-	title : "Sample Incident",
-	description : "Description Text (This is what you're going through)",
-	alternatives : [],
-	choices : [],
-	outcomes : [],
-	rewards : [],
+	title : "Captain, derelict ship ahead. Freighter class, no life signs detected.",
+	description : "Sensors detect damage to the starboard engine and surrounding hull. Engineering says it looks like a mid-flight collision, they're not sure with what though. " +
+	    "However, they can tell she's been adrift for a while by the nacell deterioration and " +
+	    "complete lack of heat signature. One thing's for sure: there's cargo in that hold.",
+	alternatives : [
+	    "Their life support systems seem to have failed at some point, and the oxygen has seeped out. Everything inside should have been preserved by the vacuum pretty well.",
+	    "It's always a gamble climbing aboard an unknown vessel, but it doesn't look like much could go wrong here.",
+	    "Just for the record though, something killed that crew, Captain. Maybe we should tread lightly."
+	],
+	choices : [
+	    "Pop the doors and loot the hold, boys. Just wear your hazard suits and don't push any buttons while you're over there.",
+	    "Cut the cargo bay doors open with the phasers. We'll grab what we can with the tractor beam but we're not boarding that deathtrap.",
+	    "Meh. It's a freighter but not heavily armed, I bet the cargo's not very valuable. Let's keep moving."
+	],
+	outcomes : [
+	    "Loot secured, Captain! We found some good stuff, we even brought back some movies and books from their library. Dobson found some logs about an experimental asteroid mining procedure, but it was boring stuff so we grabbed some old episodes of Matlock instead.",
+	    "Most of the stuff sucked out into space was miscellaneous mining equipment, just parts really. Engineering said they could sell some of it next time a peddler probe comes by.",
+	    "Probably a good call, Captain. Never hurts to play it safe. Kind of boring though, right?"
+	],
+	rewards : [
+	    function gotRandomLoot() {
+            index = $(this).attr('data-index');
+            
+            if ($('.cargo').hasClass('invalid')) {
+    			showOutcome();
+    			showEffect("<b class='incident-outcome neeutral'>Effect: We can't hold any more cargo, unfortunately. We'll just continue on our current heading.</b>");                
+            } else {
+                currentCargo = parseInt($('.cargo p.loot').text()),
+                currentCap = parseInt($('.cargo p.cap').text()),
+                availableSpace = currentCap - currentCargo,
+                randomLootAmount = getRandomNumber(1, availableSpace),
+                randomLoot = menu[Math.floor(Math.random()*ownedLoot.length)],
+                currentStock = randomLoot.loot,
+                newStock = currentStock + randomLootAmount;
+
+                $('.cargo p.loot').text(newStock);
+    			showOutcome();
+    			showEffect("<b class='incident-outcome good'>Effect: Gained " + randomLootAmount + " " + randomLoot.title + ".</b>");   
+            }
+	    },
+        function gotRandomCash() {// add random amount of cash from 
+			index = $(this).attr('data-index'),
+			rando = getRandomNumber(200, 500),// get random amount of cash
+			wallet = parseInt($('.wallet p').text()),// get current money
+			newWallet = wallet + rando;// add random amount to wallet
+
+			$('.wallet p').text(newWallet);// set new wallet
+			showOutcome();
+			showEffect("<b class='incident-outcome good'>Effect: Gained " + rando + " cash.</b>");
+		},
+        function nothingHappened() {// nothing happened
+			index = $(this).attr('data-index');
+			showOutcome();
+			showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
+		},
+	],
 	hasHappened : false
 };
 
 // Derelict ship 2 (evil science ship)
 incidents[5] = {
-	title : "Sample Incident",
-	description : "Description Text (This is what you're going through)",
-	alternatives : [],
-	choices : [],
-	outcomes : [],
-	rewards : [],
+	title : "Captain, derelict sighted in the distance.",
+	description : "Scanners show no humanoid lifesigns, though we do see readings that " +
+	              "might indicate plant-based lifeforms, or vegetation we're unfamiliar with. " +
+	              "From the large dome structures on either side of the ship, I'd say it was " +
+	              "most likely a science vessel, or terraforming crew. Those domes " +
+	              "seem to have minimal power, but the rest of the ship is dead in the water.",
+	alternatives : [
+	    "Maybe it's a new lifeform we can make contact with, even though we don't have 'plant' language in our translation matrix.",
+	    "Maybe there's edible vegetation, or stasis tech we could, uh, appropriate?",
+	    "With no damage to the ship and remaining power shifted to the domes, that may be where the crew is waiting, or whatever cargo they died trying to save."
+	],
+	choices : [
+	    "Send a Science team and a Security team. See what they can recover from the domes and the databanks.",
+	    "Send a Security team and an Engineering team. I want to know what those domes are preserving, and what tech we can salvage.",
+	    "Approach and scan the vessel. Get more readings from the domes and the Engineering section. Something's odd here."
+	],
+	outcomes : [
+	    "Our Science team recovered some logs from the ship's databanks. Seems it was a Research vessel trying to breed sentient plants that could grow in any conditions. The plants decided to take over the ship, and the interior of the ship is now covered in vegetation. It doesn't seem hostile, but without hazard suits, the oxygen levels would be poisonous. That's probably what killed the crew.",
+	    "The entire vessel was lined with vegetation, but we were able to cut into the Engineering section and find some usable fuel cells. Apparently they were growing some sort of new plant life that got out of control and overran the ship. We didn't go in the domes, the vegetation was too thick, but we downloaded the schematics on their power systems. Could be useful later.",
+	    "You were right captain, we read 125 corpses in the entire ship, oxygen levels at 500% the lethal limit for humans. Looks like some kind of vegetation escaped the domes and took over the ship, overloading the oxygen scrubbers and asphyxiating the crew. Yikes." 
+	],
+	rewards : [
+        function nothingHappened() {// nothing happened
+			index = $(this).attr('data-index');
+			showOutcome();
+			showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
+		},
+	    function gotFiveFuel() {
+			index = $(this).attr('data-index');
+			fuel = parseInt($('.fuel p').text());
+			newfuel = fuel + 5;
+			$('.fuel p').text(newfuel);
+			currentFuel = parseInt($('.fuel p').text());
+			// print outcome
+			showOutcome();
+			showEffect("<b class='incident-outcome good'>Effect: Gained 5 units of fuel.</b>");
+	    },
+        function nothingHappened() {// nothing happened
+			index = $(this).attr('data-index');
+			showOutcome();
+			showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
+		}
+	],
 	hasHappened : false
 };
 
 // Asteroid field
 incidents[6] = {
-	title : "Sample Incident",
-	description : "Description Text (This is what you're going through)",
-	alternatives : [],
-	choices : [],
-	outcomes : [],
-	rewards : [],
+	title : "Asteroid field ahead, Captain.",
+	description : "There's a gaseous nebula above the field, and a belt of radiation below it. " +
+	              "Our hull is tough enough to take a few minor impacts, if you want to try " +
+	              "going straight through. The repair cost may be lower than the fuel cost if " +
+	              "we try to go around it. We definitely need to get to the other side, though." +
+	              "The field density is low enough we can fit the ship through most of the " +
+	              "larger gaps, but we can't predict the motions of the asteroids at all." +
+	              "Basically we have 3 choices: Go over, go under, or go through. Your call, Cap'n.",
+	alternatives : [
+	    "If I were a gambler, which I'm not, I'd say we could make it through the field with minimal damage from collisions.",
+	    "If I were a gambler, which I am, I'd say we should try our luck going over the field, skimming through the bottom of the nebula. It may affect instruments but won't cause any damage.",
+	    "If I were a gambler, which I may or may not be, I'd say go under. We can handle a little radiation. Right?"
+	],
+	choices : [
+	    "Go over the field. Keep an eye on instrumentation but we can handle a short trip in the nebula.",
+	    "Raise shields and go right through the field! Do some barrel rolls, too.",
+	    "Go under the field, and keep an eye on radiation levels. Let's all get tans."
+	],
+	outcomes : [
+	    "The nebula didn't cause any damage but we got turned around a little. We spent some extra fuel and time fixing our course, but we're no worse for wear.",
+	    "That was AWESOME-- uh, sorry Captain, sir. We took a few bumps but repairs will be cheap, and our Pilot got to do some sweet barrel rolls. You're the best, Captain.",
+	    "Ugh, Captain, that radiation was a type we've never experienced before. The effects were more severe than we anticipated. Dobson is still sick but we've mostly recovered, med supplies weren't cheap though."
+	],
+	rewards : [
+	    function lostTwoFuel() {
+			index = $(this).attr('data-index');
+			fuel = parseInt($('.fuel p').text());
+			newfuel = fuel - 2;
+			$('.fuel p').text(newfuel);
+			currentFuel = parseInt($('.fuel p').text());
+			// print outcome
+			showOutcome();
+			showEffect("<b class='incident-outcome bad'>Effect: Lost 2 units of fuel.</b>");
+	    },
+	    function lostTwoHundCash() {
+			index = $(this).attr('data-index'),
+			wallet = parseInt($('.wallet p').text());// get current money
+			
+			if (wallet < 200) {
+			        newWallet = 0;// avoids confusion
+			    } else {
+        			newWallet = wallet - 200;// cut wallet in half			    
+			    }
+
+			$('.wallet p').text(newWallet);// set new wallet
+			showOutcome();
+			showEffect("<b class='incident-outcome bad'>Effect: Spent 200 cash on repairs.</b>");
+	    },
+	    function lostHalfMoney() {
+			index = $(this).attr('data-index'),
+			wallet = parseInt($('.wallet p').text());// get current money
+
+			if (wallet < 2) {
+			        newWallet = 0;// avoids confusion
+			    } else {
+        			newWallet = Math.floor(wallet / 2);// cut wallet in half			    
+			    }
+
+			$('.wallet p').text(newWallet);// set new wallet
+			showOutcome();
+			showEffect("<b class='incident-outcome bad'>Effect: Lost half your cash.</b>");
+	    }
+	],
 	hasHappened : false
 };
 
 // Nebula ahead
 incidents[7] = {
-	title : "Sample Incident",
-	description : "Description Text (This is what you're going through)",
-	alternatives : [],
-	choices : [],
-	outcomes : [],
-	rewards : [],
+	title : "Captain, there's a gaseous nebula directly in our path.",
+	description : "It's a few aU's in length captain, there's no way we can go around. " +
+	              "We can try going through with our shields up, but electrical and " +
+	              "plasma-based systems are known to react chaotically with radiation " +
+	              "that forms within nebula. The gas is too thick for our scanners to " +
+	              "penetrate, but we do know the distance directly through the nebula " +
+	              "is much shorter than any route we can safely navigate.",
+	alternatives : [
+	    "Perhaps our shields will provide enough protection from radiation that we can pass through unharmed.",
+	    "The dense dust may prove problematic for our engine intake modulators, so high speeds are not recommended within the nebula, Captain. They're certainly possible though.",
+	    "We do know asteroids and other particulates pass through to the other side virtually unchanged, at least according to our sensors."
+	],
+	choices : [
+	    "Shields up, maximum speed. The less time we spend in there, the better.",
+	    "Keep the shields down and shut down all non-necessary systems. Let's slip through at full impulse power, quiet and steady.",
+	    "Let's try acting like a rock. Give us a quick warp boost and then shut down all systems except life support. We'll drift through like an asteroid slowly, but safely."
+	],
+	outcomes : [
+	    "Captain, we did get through quickly, but we had to use twice as much fuel as projected. But the engine intakes couldn't handle the rapid influx of dust and gasses, they got pretty clogged up, and the shields overloaded a little in the aft sections but we recovered quickly. Repairs were minor, but we had to buy parts from a nearby outpost moon.",
+	    "Whew, that was tense. Sensors malfunctioned in just about every possible way but we maintained course and got through unscathed. We also found some wreckage within the nebula, and retrieved it with the tractor beam. Looks valuable to me, but what do I know.",
+	    "We coasted through without incident, Captain. Our ship needs all the dust and crap washed off of it, but we can handle that in the next port. We even saved a unit of fuel by travelling completely under momentum instead of propulsion! But, we were a little late to port, and we needed to get our ship registration renewed a few days ago. There is, shall we say, a late fee."
+	],
+	rewards : [
+	    function lostOneFuel() {
+			index = $(this).attr('data-index');
+			fuel = parseInt($('.fuel p').text());
+			newfuel = fuel - 1;
+			$('.fuel p').text(newfuel);
+			currentFuel = parseInt($('.fuel p').text());
+			// print outcome
+			showOutcome();
+			showEffect("<b class='incident-outcome bad'>Effect: Lost 1 unit of fuel.</b>");
+	    },
+        function gotRandomCash() {// add random amount of cash from 
+			index = $(this).attr('data-index'),
+			rando = getRandomNumber(200, 500),// get random amount of cash
+			wallet = parseInt($('.wallet p').text()),// get current money
+			newWallet = wallet + rando;// add random amount to wallet
+
+			$('.wallet p').text(newWallet);// set new wallet
+			showOutcome();
+			showEffect("<b class='incident-outcome good'>Effect: Gained " + rando + " cash.</b>");
+		},
+	    function gotFuelLostCash() {
+			index = $(this).attr('data-index'),
+			wallet = parseInt($('.wallet p').text()),// get current money
+			fuel = parseInt($('.fuel p').text()),// get current fuel
+            newFuel = fuel + 1;
+            
+            if (wallet <= 1000) {
+                newWallet = 0;
+            } else {
+    			newWallet = wallet - 1000;
+            } 
+
+            $('.fuel p').text(newWallet);// set new wallet
+            $('.fuel p').text(newFuel);// set new fuel
+			showOutcome();
+			showEffect("<b class='incident-outcome neutral'>Effect: Gained 1 fuel, lost 1000 cash.</b>");
+	    }
+	],
 	hasHappened : false
 };
 
 // Wormhole spotted
 incidents[8] = {
-	title : "Sample Incident",
-	description : "Description Text (This is what you're going through)",
-	alternatives : [],
-	choices : [],
-	outcomes : [],
-	rewards : [],
+	title : "Wormhole sighted, Captain!",
+	description : "We detected an energy fluctuation dead ahead, and just as " +
+	              "our ship decelerated this crazy wormhole opened up! What should " +
+	              "we do, Captain? We can go through it and end up who knows where, " +
+	              "or stay here and take some readings before we move on. Or, we can just " +
+	              "drop a beacon and log it on our charts before resuming course.",
+	alternatives : [
+	    "It's kind of intriguing though, right? A door to anywhere, and we can just fly right in.",
+	    "Without knowing where we're going to end up though, I'd suggest we steer clear of it, whatever you decide.",
+	    "Most wormholes are unstable though, we may never get another chance to see one again. I say we cowboy up and head on in!",
+	],
+	choices : [
+	    "Stow your gear and hang on tight, we're going to find out where this leads. Full speed ahead!",
+	    "Let's send in a Class 1 probe, set it for automatic return in ten minutes, then we're on our way. I'm not risking this ship and its crew for some nerdy research joyride.",
+        "Nope! I've seen enough movies to know that wormholes never take you somewhere good. Steady as she goes, let's float right on by."
+	],
+	outcomes : [
+	    "Um, we seem to be exactly where we were when we entered the wormhole, Captain, just facing the opposite direction. Also, our clothes are on backwards. Interesting.",
+        "Captain, you're not going to believe this. We launched the probe like you ordered, and ten minutes later it came flying out of the wormhole WAY faster than we programmed it to, and it crashed right through the docking bay doors. We fixed everything, but Dobson is dead, and the probe's completely destroyed so we don't even know where it went. Also, we lost some cargo. I blame Dobson.",
+        "Captain! We tried to coast by but something came out of the wormhole right in our path! It ripped through the hull and grabbed Dobson! The security cameras only caught a few frames, but it looked like a giant tentacle! That's CRAZY! And sad, about Dobson."
+	],
+	rewards : [
+        function nothingHappened() {// nothing happened
+			index = $(this).attr('data-index');
+			showOutcome();
+			showEffect("<b class='incident-outcome neutral'>Effect: Backwards clothes.</b>");
+		},
+		function lostRandomLoot() {// lost some random goods
+			ownedLoot = [];
+			// build list of loot that you own
+			menu.forEach(function(stock){ 
+			    if(stock.loot != 0) {
+			        ownedLoot.push(stock);
+			    }
+			});
+			console.log(ownedLoot.length);
+			if (ownedLoot.length < 1) {
+				// print outcome
+				index = $(this).attr('data-index');
+				showOutcome();
+				showEffect("<b class='incident-outcome neutral'>Effect: Dobson's gone (no big loss), and we didn't have any cargo in storage, so we just patched the hull and ejected ol' Dobbie's personal effects into space. That's procedure, right?</b>");
+			} else {
+				// pick a random item from the list
+				randomOwnedLoot = ownedLoot[Math.floor(Math.random()*ownedLoot.length)];
+				// find accompanying DOM row
+				targetLoot = $('.market td:contains("' + randomOwnedLoot.title + '")').siblings('.loot');
+				targetLootVal = targetLoot.text();
+				// recalc value
+				newLootVal = parseInt(randomOwnedLoot.loot) / 2;
+				// set new loot value on obj
+				randomOwnedLoot.loot = newLootVal;
+				//set new loot value in DOM
+				targetLoot.text(newLootVal);
+				// print outcome
+				index = $(this).attr('data-index');
+				showOutcome();
+				showEffect("<b class='incident-outcome bad'>Effect: Dobson's gone (no big loss), and we lost " + parseInt(targetLootVal - newLootVal)  + " of our " + randomOwnedLoot.title + ". It was probably Dobson's fault anyway, so I personally shot all his personal crap out the airlock. He didn't have anything good anyway.</b>");
+			}
+		},
+        function nothingHappened() {// nothing happened
+			index = $(this).attr('data-index');
+			showOutcome();
+			showEffect("<b class='incident-outcome neutral'>Effect: Dobson died. Meh.</b>");
+		}
+	],
 	hasHappened : false
 };
 
-// Beacon found 1 (civilization archive)
+// Future self encounter
 incidents[9] = {
-	title : "Sample Incident",
-	description : "Description Text (This is what you're going through)",
-	alternatives : [],
-	choices : [],
-	outcomes : [],
-	rewards : [],
+	title : "Ah, Captain? We seem to be receiving hails from... ourselves.",
+	description : "I'm really not sure what's going on, Captain. That looks like " +
+	              "our ship, heavily damaged, and they're using our communication encryptions, but " +
+	              "they just came out of nowhere! They're broadcasting a message on " +
+	              "an endless loop in old Morse code: YOURE BEING FOLLOWED!",
+	alternatives : [
+	    "HOPE YOU DO BETTER THAN WE DID!",
+	    "WE OUTRAN THEM AND HIT A TIME VORTEX! AVOID THE VORTEX!",
+	    "DONT TRY TO FIGHT THEM! YOU WILL BE WARPED INTO THE PAST!"
+	],
+	choices : [
+	    "That was us, I know it! I have to do something unpredictable! Pilot, fly randomly! Engineering, vary speed randomly! Communications, broadcast all music files on all frequencies! Everybody HANG ON!",
+	    "Whoever that is in front of us, they may not be lying about whoever's behind us. Full speed ahead, evasive maneuvers if anyone is sighted along our route. Go!",
+	    "I don't know who that is, or who might be following us, but I'm not playing games here. Raise shields, power up weapons, and hold position. We'll see soon enough what's going on here."
+	],
+	outcomes : [
+	    "Captain, that was the craziest idea ever. I'm not sure who that ship was, or if anyone was really following us, but we've lost them both. Also, everyone on board threw up except for you.",
+	    "Whoa, Captain, that ship that looked like us flew away as we powered up our engines. We climbed up to warp speed and suddenly hit an energy rift of some kind, causing mild damage to our ship. We're close to our last coordinates, and we're only able to activate the Morse transmitter, I suggest we travel there and warn ourselves immediately. Hopefully we do better next time.",
+	    "Captain, we were being followed by freaky space pirates! They attacked as soon as they caught up with us, but with the combined firepower of our ship and the other mirror universe bizarro version of our ship, we totally kicked the crap out of them! That was so crazy! The other us flew off after the battle, and even though it'd be awesome, I don't think we should follow them."
+	],
+	rewards : [
+        function nothingHappened() {// nothing happened
+			index = $(this).attr('data-index');
+			showOutcome();
+			showEffect("<b class='incident-outcome bad'>Effect: Everyone threw up. Except for you.</b>");
+		},
+        function nothingHappened() {// nothing happened
+			index = $(this).attr('data-index');
+			showOutcome();
+			showEffect("<b class='incident-outcome neutral'>Effect: Deja vu.</b>");
+		},
+        function nothingHappened() {// nothing happened
+			index = $(this).attr('data-index');
+			showOutcome();
+			showEffect("<b class='incident-outcome good'>Effect: Confidence boost.</b>");
+		}
+	],
 	hasHappened : false
 };
