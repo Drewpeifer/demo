@@ -2,6 +2,8 @@
 body {
     background:#222;
     color:#f2f2f2;
+    font-family:helvetica;
+    font-weight:normal;
 }
 div, span, p, table {
     display:inline-block;
@@ -39,6 +41,12 @@ ul {
     list-style:none;
 }
 
+.price p.sale {
+    color:green;
+}
+.price p.hike {
+    color:red;
+}
 /* icons */
 .fuel .icon {
     background:url(../img/elements/element_red_39x43.png) 0 0 no-repeat;
@@ -172,7 +180,7 @@ td.stock.empty {
     top:0;
     background:#333;
     height:50%;
-    width:60%;
+    width:345px;
 }
 .map ul li a {
     font-size:1.5em;
