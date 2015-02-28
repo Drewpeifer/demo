@@ -67,6 +67,7 @@ $(function() {
     portTitle.text(config.startingPort.title);// set initial port title
     portDescription.text(config.startingPort.description);// set initial port descrip
     stockMarket();// build initial marketplace
+    $('.buy, .sell').click(buySell);// rebind after market build
 
     evalLootStockCargo();
 
