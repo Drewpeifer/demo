@@ -30,23 +30,29 @@ function randomIncident() {
     // build choice buttons
     $.each(choices, function(index, value) {
         $('.alert-content').append(
-                '<button class="alert-action" ' +
-                'data-index="' + index + '" >' +
-                value + '</button>'
+                '<div class="button alert-action" ' +
+                'data-index="' + index + '" ><p>' +
+                value + '</p></div>'
             );
     });
     // bind each button to corresponding reward function
     $.each(rewards, function(index, value) {
-        $('button[data-index="' + index + '"]').bind('click', incident.rewards[index]);
+        $('.button.alert-action[data-index="' + index + '"]').bind('click', incident.rewards[index]
+        );
     });
 }
 // called after choice button is clicked, before alert is closed by user
-function showOutcome() {
+function showOutcome(index) {
+    clickedButton = $('.alert-action.button[data-index=' + index + ']');
     $('.alert-content').append('<p class="alert-outcome">' + incident.outcomes[index] + '</p>');
+    clickedButton.addClass('clicked')
+                 .unbind()
+                 .siblings()
+                 .addClass('unclicked')
+                 .unbind();
 }
 function showEffect(effect) {
     $('.alert-outcome').append(effect);
-    $('.alert-content button').attr("disabled", "disabled");
 }
 
 // END ARRIVAL EVENTS
