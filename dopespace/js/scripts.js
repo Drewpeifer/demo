@@ -1,7 +1,9 @@
 var config = {
     turn : 0,
     startingFuel : 10,
-    startingPort : map[0]
+    startingPort : map[0],
+    startingLoot : 0,
+    startingCap : 20
 }
 
 // return random number from min (inclusive) to max (exclusive)
@@ -62,10 +64,15 @@ $(function() {
     portTitle = $('.location p'),// port label container
     portDescription = $('.header .dialog p'),// port description container
     fuelTank = $('.fuel p');// fuel label container
+    cargo = $('span.cargo');// cargo container (ha)
+    cargoLoot = $('.cargo p.loot');
+    cargoCap = $('.cargo p.cap');
 
     fuelTank.text(config.startingFuel);// set initial fuel
     portTitle.text(config.startingPort.title);// set initial port title
     portDescription.text(config.startingPort.description);// set initial port descrip
+    cargoLoot.text(config.startingLoot);
+    cargoCap.text(config.startingCap);
     stockMarket();// build initial marketplace
     $('.buy, .sell').click(buySell);// rebind after market build
 
