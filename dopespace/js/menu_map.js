@@ -78,13 +78,3 @@ map[3] = {  title : "Risa",
             peakMod : 8,
             description : "Risa, known throughout the Alpha Quadrant for its recreational attractions and open-minded populace."
          };
-
-// events
-//////////
-
-var events = [];
-
-events[0] = { title : "Something happened!",
-              description : "Something crazy happened and you have to make a decision.",
-              options : ["Bargain", "Leave"]
-            };

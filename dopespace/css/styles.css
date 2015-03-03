@@ -176,11 +176,11 @@ td.stock.empty {
     left:5px;
 }
 .map {
-    position:absolute;
-    top:0;
     background:#333;
-    height:50%;
-    width:345px;
+}
+.map ul {
+    padding:5px;
+    margin:0px;
 }
 .map ul li a {
     font-size:1.5em;
@@ -193,24 +193,29 @@ td.stock.empty {
     text-decoration:underline;
 }
 /* alert */
-.alert {
+.map, .alert {
     background:#000;
     color:#f2f2f2;
     position:absolute;
     top:0;
+    left:0;
     height:100%;
     width:345px;
-    padding:10px;
+    padding:5px;
 }
 .alert p {
     display:block;
+    text-align:center;
 }
-.alert-title {
+p.alert-title {
     font-weight:bold;
     border-bottom:red 1px solid;
+    text-align:left;
+    font-size:1.2em;
 }
-.alert-description {
+p.alert-description {
     font-style:italic;
+    text-align:center;
 }
 
 /* arrival events (incidents) */
