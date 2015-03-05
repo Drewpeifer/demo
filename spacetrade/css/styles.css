@@ -216,7 +216,7 @@ td.stock.empty {
     top:0;
     left:0;
     height:100%;
-    width:345px;
+    width:350px;
     padding:5px;
 }
 .alert p {
@@ -285,6 +285,9 @@ p.fuel-alert {
 }
 
 /* stars */
+.controls {
+    display:block;
+}
 #starfield {
     position:absolute;
     top:0;
