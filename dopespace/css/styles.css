@@ -217,6 +217,9 @@ p.alert-description {
     font-style:italic;
     text-align:center;
 }
+p.fuel-alert {
+    color:#ff5050;
+}
 
 /* arrival events (incidents) */
 .incident-outcome {

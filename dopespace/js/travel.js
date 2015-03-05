@@ -50,9 +50,16 @@ function showOutcome(index) {
                  .siblings()
                  .addClass('unclicked')
                  .unbind();
+    $('.alert-content').append("<div id='awesome' class='button alert-action'><p>AWESOME!</p></div>");
+    $('#awesome').on('click', function() {
+        $('.alert').fadeOut(500);
+    });
 }
 function showEffect(effect) {
     $('.alert-outcome').append(effect);
+}
+function fuelAlert(text) {
+    $('.header .dialog').append('<p class="fuel-alert">' + text + '</p>');
 }
 
 // END ARRIVAL EVENTS
@@ -75,23 +82,28 @@ function travel() {
         // TODO: more subtle fuel alerts
         showAlert('Out of fuel!', 'You\'re stuck, unless your current port has fuel to sell. And you have some money, right?');
         $('.map').slideUp();
+        $('.alert-content').append("<div id='uh-oh' class='button alert-action'><p>Uh-oh</p></div>");
+        $('#uh-oh').on('click', function() {
+            $('.alert').fadeOut(500);
+        });
     } else if (portTitle.text() === nextPort) {
-        showAlert('You\'re already at that location', 'What\'re you, some kind of jokester?');
-
+        showAlert('Ah, you\'re already at that location', 'Captain, have you been drinking?');
+        $('.alert-content').append("<div id='sorry' class='button alert-action'><p>Sorry</p></div>");
+        $('#sorry').on('click', function() {
+            $('.alert').fadeOut(500);
+        });
     } else {
         newFuel = fuel -= 1;// subtract fuel
         fuelTank.text(newFuel);// set new fuel
 
-        if (newFuel <= 1) {
+        if (newFuel == 0) {
             fuelTank.removeClass('valid').addClass('invalid');
+            fuelAlert("We're out of fuel, Captain! Hope this port has some for sale.");
+        } else if (newFuel == 1) {
+            fuelAlert("Almost out of fuel, Captain. Better find a port that has some for sale.");
         } else {
             fuelTank.removeClass('invalid').addClass('valid');
         }
-
-        if (newFuel == 1) {// warn pilot if 1 gallon of fuel left
-            // TODO: more subtle fuel alerts
-            //showAlert('You\'re almost out of fuel!', 'Hope you can reach a fuel station, genius.');
-        } else {}
 
         portTitle.text(port[0].title);// set new currentPort
         portDescription.text(port[0].description);// set new descrip
@@ -104,10 +116,10 @@ function travel() {
 
         // arrival event occurs (or not)
         // with a 30% chance of occurring
-        rando = getRandomNumber(1,7)
+        rando = getRandomNumber(1,2)// returns 1 or 2
         //rando = 1;
-        if (rando == 1 || rando == 3) {// TODO: am I crazy? if you're not caching the odds, does it help to have pool bigger?
-            randomIncident();// TODO: this seems like a clumsy way to do this
+        if (rando == 1) {// TODO: am I crazy? if you're not caching the odds, does it help to have pool bigger?
+            randomIncident();
         } else {
             // no incident occurs
         };
