@@ -264,7 +264,6 @@ p.fuel-alert {
 .alert-action {
     height:auto;
     display:block;
-    background:#f2f2f2;
     color:#222;
     border:#fff 2px solid;
     border-left:none;
@@ -272,6 +271,28 @@ p.fuel-alert {
     border-radius:3px;
     margin:10px 0;
     padding:0;
+}
+/* alert action buttons background gradient */
+.alert-action {
+    background: rgb(226,226,226); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(226,226,226,1) 0%, rgba(208,208,208,1) 47%, rgba(189,189,189,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(47%,rgba(208,208,208,1)), color-stop(100%,rgba(189,189,189,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(226,226,226,1) 0%,rgba(208,208,208,1) 47%,rgba(189,189,189,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(226,226,226,1) 0%,rgba(208,208,208,1) 47%,rgba(189,189,189,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(226,226,226,1) 0%,rgba(208,208,208,1) 47%,rgba(189,189,189,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(226,226,226,1) 0%,rgba(208,208,208,1) 47%,rgba(189,189,189,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#bdbdbd',GradientType=0 ); /* IE6-9 */
+}
+/* click state */
+.alert-action:active {
+    background: rgb(189,189,189); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(189,189,189,1) 0%, rgba(208,208,208,1) 53%, rgba(226,226,226,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(189,189,189,1)), color-stop(53%,rgba(208,208,208,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(189,189,189,1) 0%,rgba(208,208,208,1) 53%,rgba(226,226,226,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(189,189,189,1) 0%,rgba(208,208,208,1) 53%,rgba(226,226,226,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(189,189,189,1) 0%,rgba(208,208,208,1) 53%,rgba(226,226,226,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(189,189,189,1) 0%,rgba(208,208,208,1) 53%,rgba(226,226,226,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bdbdbd', endColorstr='#e2e2e2',GradientType=0 ); /* IE6-9 */
 }
 .alert-action.clicked {
     background:#91e374;
