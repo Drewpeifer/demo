@@ -1,5 +1,6 @@
 var config = {
     turn : 0,
+    startingWallet : 3000,
     startingFuel : 10,
     startingPort : map[0],
     startingLoot : 0,
@@ -84,18 +85,20 @@ $(function() {
     portDescription = $('.header .dialog p'),// port description container
     fuelTank = $('.fuel p');// fuel label container
     cargo = $('span.cargo');// cargo container (ha)
-    cargoLoot = $('.cargo p.loot');
-    cargoCap = $('.cargo p.cap');
+    cargoLoot = $('.cargo p.loot');// user's starting goods (0 default)
+    cargoCap = $('.cargo p.cap');// inventory cap (20 default)
+    wallet = $('.wallet p');// user money (3000 default)
 
     fuelTank.text(config.startingFuel);// set initial fuel
     portTitle.text(config.startingPort.title);// set initial port title
     portDescription.text(config.startingPort.description);// set initial port descrip
-    cargoLoot.text(config.startingLoot);
-    cargoCap.text(config.startingCap);
+    cargoLoot.text(config.startingLoot);// set starting user cargo
+    cargoCap.text(config.startingCap);// set starting cargo cap
+    wallet.text(config.startingWallet);// set starting user money
     stockMarket();// build initial marketplace
     $('.buy, .sell').click(buySell);// rebind after market build
 
     evalLootStockCargo();
-    welcomeAlert();
+    welcomeAlert();// show welcome splash
 
 });
