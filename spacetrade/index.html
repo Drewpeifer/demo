@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SpaceTrade</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dope Wars in space">
+  <meta name="author" content="drew peifer">
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/styles.css">
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="wrapper">
+    <div class="box">
+        <div class="header">
+            <span class="location">
+                <p></p>
+            </span>
+            <span class="map-control icon" title="Map"></span>
+            <span class="fuel">
+                <span class="icon" title="Fuel"></span>
+                <p></p>
+            </span>
+            <span class="dialog"><p></p></span>
+        </div>
+        <div class="market">
+            <table>
+            </table>
+        </div>
+        <div class="stats">
+            <span class="wallet">
+                <span class="icon" title="Wallet"></span>
+                <p>3000</p>
+            </span>
+            <span class="cargo valid">
+                <span class="icon" title="Cargo"></span>
+                <p class="loot"></p>
+                <p>/</p>
+                <p class="cap"></p>
+            </span>
+        </div>
+    </div>
+    <!-- peripherals -->
+    <div class="map" style="display:none;">
+        <span class="close">[X]</span>
+        <ul>
+            <li><b>Map locations:</b></li>
+        </ul>
+    </div>
+    <div class="alert" style="display:none;">
+        <div class="alert-content"></div>
+    </div>
+</div>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="js/browser.js"></script><!-- browser detection -->
+<script src="js/menu_map.js"></script><!-- market item & location objects -->
+<script src="js/incidents.js"></script><!-- arrival events -->
+<script src="js/market.js"></script><!-- stocking and manipulating the market -->
+<script src="js/buysell.js"></script><!-- buy/sell interactions -->
+<script src="js/travel.js"></script><!-- travel/map functionality -->
+<script src="js/market.js"></script><!-- stocking and manipulating the market -->
+<script src="js/scripts.js"></script><!-- onload and misc funcs -->
+</body>
+</html>
