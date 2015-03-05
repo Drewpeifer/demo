@@ -43,6 +43,25 @@ function showAlert(title, description) {
     alert.show();
 
 }
+
+function welcomeAlert() {
+
+    welcomeTitle = "SpaceTrade";
+    welcomeDescrip = "It's the year 3021 and planets are now boring, but space is still the " +
+                     "coolest. That's why you sold everything you own and love, including " +
+                     "your family, to buy this awesome new starship. It goes super fast, " +
+                     "comes with a crew already inside it, trained and everything, plus " +
+                     "a sweet sound system.";
+
+    showAlert(welcomeTitle, welcomeDescrip);
+    $('.alert-content span').append("<p class='alert-description'>You're still on Earth but you're ready to blast off. Feel free to peruse the marketplace on Earth, or just hit the Big Red Button to pick your next destination.</p>")
+                       .append("<p class='alert-description'>Careful though. Space is big and weird. So are the things that live in it. It can also make people go crazy just from being in it. Space, that is. Because it's big and weird. Just be careful.</p>")
+                       .append("<div id='close' class='button alert-action'><p>AWESOME!</p></div>");
+    $('#close').on('click', function() {
+        $('.alert').fadeOut(500);
+    });
+}
+
 // onLoad
 //////////
 $(function() {
@@ -77,5 +96,6 @@ $(function() {
     $('.buy, .sell').click(buySell);// rebind after market build
 
     evalLootStockCargo();
+    welcomeAlert();
 
 });
