@@ -4,7 +4,8 @@ var config = {
     startingFuel : 10,
     startingPort : map[0],
     startingLoot : 0,
-    startingCap : 20
+    startingCap : 20,
+    cargoUpgrades : 3
 }
 
 // return random number from min (inclusive) to max (exclusive)
@@ -97,6 +98,11 @@ $(function() {
     wallet.text(config.startingWallet);// set starting user money
     stockMarket();// build initial marketplace
     $('.buy, .sell').click(buySell);// rebind after market build
+    $('.fuel-station .buy').unbind()// TODO: this seems hacky
+                           .click(buyFuel);// but i like semantics
+    // cargo upgrade stations
+    $('.cargo-upgrade .buy').unbind()
+                           .click(upgradeCargo);
 
     evalLootStockCargo();
     makeManyStars(); // build the first new stars

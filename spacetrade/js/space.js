@@ -31,7 +31,6 @@ function starCrawl(starField) {
 					
 							$(this).stop() // stop animation
 						   		   .remove(), // implode this star
-							console.log('a star has died'),
 							makeOneStar() // make a new star
 						} else {
 							// never do anything here,
@@ -61,8 +60,7 @@ function makeOneStar() {
 				'box-shadow':         '0 0 10px 3px ' + randoColor
 		}),
 	
-	++starCount,
-	console.log('a star is born, starCount is now ' + starCount)
+	++starCount;
 
 	// here is where the incremental events are fired off
 	if (starCount % 20 == 0) {
@@ -142,7 +140,6 @@ $('#engage').click(function() {
 
 	// creates long bars of light L to R
 	function warp() {
-		console.log('warp');
 		for (var i = 0; i < 15; i++) {
 
 			randoTop = Math.floor(Math.random() * 100),
@@ -197,7 +194,6 @@ $('#engage').click(function() {
 });
 
 $('#impulse').click(function() {
-	console.log('returning to impulse'),
 	$('.star').transition({ width: '1px', left: '-1000px' }),
 	$(this).hide(),
 	$('#engage').show(killAllStars);

@@ -279,7 +279,6 @@ incidents[4] = {
             index = $(this).attr('data-index');
             
             if ($('.cargo').hasClass('invalid')) {
-                
                 showOutcome(index);
                 showEffect("<b class='incident-outcome neutral'>Effect: We can't hold any more cargo, unfortunately. We'll just continue on our current heading.</b>");
             } else {
@@ -290,6 +289,9 @@ incidents[4] = {
                 randomLoot = menu[Math.floor(Math.random()*menu.length)],
                 currentStock = randomLoot.loot,
                 newStock = currentStock + randomLootAmount;
+                // find accompanying DOM row
+                targetLoot = $('.market td:contains("' + randomLoot.title + '")').siblings('.loot');
+                targetLoot.text(newStock);
 
                 $('.cargo p.loot').text(newStock);
                 showOutcome(index);

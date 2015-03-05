@@ -17,12 +17,25 @@ function stockMarket() {
     marketTable.empty();// clear out old location data
 
     if (port[0].fuelStation) {
+        // build fuel station row in market table
         marketTable.append('<tr class="fuel-station">' +
                  '<td>Fuel</td><td class="price">&#36;<p>' +
                 port[0].fuelPrice +
                 '</p></td>' +
                 '<td class="buy">Buy</td>' +
-                '<td class="stock">3</td><td></td>' +
+                '<td class="stock">' + port[0].fuelAvailable + '</td><td></td>' +
+                '<td></td>' +
+            '</tr>');
+    } else {}
+
+    if (port[0].cargoUpgrade) {
+        // build fuel station row in market table
+        marketTable.append('<tr class="cargo-upgrade">' +
+                 '<td>Cargo Hold Upgrade (+20 Cargo Space)</td><td class="price">&#36;<p>' +
+                port[0].cargoUpgradePrice +
+                '</p></td>' +
+                '<td class="buy">Buy</td>' +
+                '<td class="stock">' + config.cargoUpgrades + '</td><td></td>' +
                 '<td></td>' +
             '</tr>');
     } else {}

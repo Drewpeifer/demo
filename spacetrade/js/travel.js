@@ -15,8 +15,8 @@ function randomIncident() {
     })
 
     // pick a random incident from newIncidents
-    //incident = newIncidents[0];// DEBUG: uncomment to always return first random incident from list
-    incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
+    incident = newIncidents[4];// DEBUG: uncomment to always return first random incident from list
+    //incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
     // pick random alternative text
     alternative = incident.alternatives[Math.floor(Math.random()*incident.alternatives.length)];
     choices = incident.choices;
@@ -110,14 +110,19 @@ function travel() {
         stockMarket();// build/rebuild
 
         $('.buy, .sell').click(buySell);// rebind after market build
+        // fuel stations
         $('.fuel-station .buy').unbind()// TODO: this seems hacky
                                .click(buyFuel);// but i like semantics
-        $('.map').slideUp();// hide map
+        // cargo upgrade stations
+        $('.cargo-upgrade .buy').unbind()
+                               .click(upgradeCargo);
+        // hide map
+        $('.map').slideUp();
 
         // arrival event occurs (or not)
         // with a 30% chance of occurring
-        rando = getRandomNumber(1,2)// returns 1 or 2
-        //rando = 1;
+        //rando = getRandomNumber(1,2)// returns 1 or 2
+        rando = 1;
         if (rando == 1) {// TODO: am I crazy? if you're not caching the odds, does it help to have pool bigger?
             randomIncident();
         } else {

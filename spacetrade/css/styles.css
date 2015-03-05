@@ -43,7 +43,10 @@ button, .buy, .sell {
 ul {
     list-style:none;
 }
-
+.price {
+    padding:5px 0;
+    width:60px;
+}
 .price p.sale {
     color:#66ff66;
 }
@@ -223,6 +226,13 @@ td.stock.empty {
     display:block;
     text-align:center;
 }
+.alert-content,
+.alert-content div,
+.alert-content span,
+.alert-content p {
+    width:100%;
+}
+
 p.alert-title {
     font-weight:bold;
     border-bottom:red 1px solid;
