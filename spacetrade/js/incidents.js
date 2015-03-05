@@ -334,16 +334,11 @@ incidents[5] = {
         "Approach and scan the vessel. Get more readings from the domes and the Engineering section. Something's odd here."
     ],
     outcomes : [
-        "Our Science team recovered some logs from the ship's databanks. Seems it was a Research vessel trying to breed sentient plants that could grow in any conditions. The plants decided to take over the ship, and the interior of the ship is now covered in vegetation. It doesn't seem hostile, but without hazard suits, the oxygen levels would be poisonous. That's probably what killed the crew.",
-        "The entire vessel was lined with vegetation, but we were able to cut into the Engineering section and find some usable fuel cells. Apparently they were growing some sort of new plant life that got out of control and overran the ship. We didn't go in the domes, the vegetation was too thick, but we downloaded the schematics on their power systems. Could be useful later.",
-        "You were right captain, we read 125 corpses in the entire ship, oxygen levels at 500% the lethal limit for humans. Looks like some kind of vegetation escaped the domes and took over the ship, overloading the oxygen scrubbers and asphyxiating the crew. Yikes." 
+        "Our Science team recovered some logs from the ship's databanks. Seems it was a Research vessel trying to breed sentient plants that could grow in any conditions. The plants decided to take over the ship, and the interior of the ship is now covered in vegetation. It doesn't seem hostile, but without hazard suits, the oxygen levels would be poisonous. That's probably what killed the crew. The Science team was able to salvage some extra fuel, though!",
+        "The entire vessel was lined with vegetation, but the Security team was able to activate flame turrets around the ship, incinerating all the plants. After they shot all the ashes out into space, the Engineering team was able to cut one of the domes off the ship and attach it to our stern! Now our cargo hold is HUGE!",
+        "You were right captain, we read 125 corpses in the entire ship, oxygen levels at 500% the lethal limit for humans. Looks like some kind of vegetation escaped the domes and took over the ship, overloading the oxygen scrubbers and asphyxiating the crew. Yikes."
     ],
     rewards : [
-        function nothingHappened() {// nothing happened
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
-        },
         function gotFiveFuel() {
             index = $(this).attr('data-index');
             fuel = parseInt($('.fuel p').text());
@@ -353,6 +348,15 @@ incidents[5] = {
             // print outcome
             showOutcome(index);
             showEffect("<b class='incident-outcome good'>Effect: Gained 5 units of fuel.</b>");
+        },
+        function cargoCapDoubled() {
+            index = $(this).attr('data-index');
+            cargoCap = parseInt($('.cargo p.cap').text());
+            newCap = cargoCap * 2;
+            $('.cargo p.cap').text(newCap);
+            // print outcome
+            showOutcome(index);
+            showEffect("<b class='incident-outcome good'>Effect: Cargo capacity doubled!</b>");
         },
         function nothingHappened() {// nothing happened
             index = $(this).attr('data-index');
