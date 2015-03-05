@@ -99,6 +99,7 @@ $(function() {
     $('.buy, .sell').click(buySell);// rebind after market build
 
     evalLootStockCargo();
+    makeManyStars(); // build the first new stars
     welcomeAlert();// show welcome splash
 
 });

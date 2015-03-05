@@ -1,6 +1,6 @@
 /* general */
 body {
-    background:#222;
+    background:#000;
     color:#f2f2f2;
     font-family: 'Ubuntu', sans-serif;
     font-weight:normal;
@@ -21,21 +21,24 @@ div, span, p, table, td {
 button, .buy, .sell {
     cursor:pointer;
 }
-.wrapper {
-    width:345px;
+#wrapper {
+    height:100%;
+    width:100%;
 }
 .box {
     border:#fff 3px solid;
     border-radius:5px;
+    width:345px;
+    z-index:1;
 }
 .header,
-.market,
 .stats {
     display:block;
     padding:5px;
 }
-.market, .stats {
-    border-top:#fff 3px solid;
+.market {
+    width:100%;
+    padding:0;
 }
 ul {
     list-style:none;
@@ -111,36 +114,49 @@ ul {
 }
 /* market */
 /* table display is stupid */
-.market table,
-.market tbody,
-.market tr {
+table,
+tbody,
+tr {
     width:100%;
     border-collapse:collapse;
+    padding:0;
+    margin:0;
 }
-.market tbody {
+tbody {
     display:table;
+    border:#fff 3px solid;
+    border-left:none;
+    border-right:none;
 }
-.market table td {
-    border:#888 1px solid;
+table td {
     margin:0;
     padding:5px;
+}
+td.item, td.price {
+    padding:0 0 0 5px;
+    text-align:left;
 }
 td.buy,
 td.buy.fuel,
 td.sell {
-    background:#fff;
-    color:#000;
+    color:#fff;
     font-size:.9em;
+    border:#fff 1px solid;
+}
+td.buy,
+td.sell,
+td.loot,
+td.stock {
+    text-align:center;
+    padding:5px;
 }
 td.loot,
 td.stock {
-    background:#666;
     width:20px;
     font-size:.9em;
 }
 td.loot.empty,
 td.stock.empty {
-    background:red;
 }
 
 /* stats */
@@ -259,4 +275,69 @@ p.fuel-alert {
     padding:10px 5px;
     text-align:center;
     margin:0;
+}
+
+/* starfield background */
+.starfield {
+    height:100%;
+    width:100%;
+    z-index:-1;
+}
+
+/* stars */
+#starfield {
+    position:absolute;
+    top:0;
+    height:100%;
+    width:100%;
+    background:transparent;
+    z-index:-1;
+    overflow:hidden;
+}
+.star {
+    height:1px;
+    width:1px;
+    border-radius:2px;
+    background:#f2f2f2;
+    margin:20px;
+    -moz-box-shadow:    0 0 10px 3px #f2f2f2;
+    -webkit-box-shadow: 0 0 10px 3px #f2f2f2;
+    box-shadow:         0 0 10px 3px #f2f2f2;
+    position:absolute;
+}
+.star.flare {
+    height:3px;
+    width:3px;
+}
+
+/* ufo */
+.star.ufo {
+    height:10px;
+    width:30px;
+    background:#333;
+    -moz-border-radius: 10px / 5px;
+    -webkit-border-radius: 10px / 5px;
+    border-radius: 10px / 5px;
+    border-bottom:#666 2px solid;
+    overflow:visible;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    opacity:1;
+}
+.dome {
+    height:2px;
+    width:13px;
+    background:#999;
+    border:none;
+    border-top:#999 5px solid;
+    border-bottom:#999 1px solid;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 2px 2px;
+    border-radius: 5px 5px 2px 2px;
+    position:relative;
+    left:8px;
+    top:-8px;
+    opacity:.6;
 }
