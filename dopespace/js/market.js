@@ -20,8 +20,8 @@ function stockMarket() {
         marketTable.append('<tr class="fuel-station">' +
                  '<td>Fuel</td><td class="price">&#36;<p>' +
                 port[0].fuelPrice +
-                '</p>/unit</td>' +
-                '<td class="buy">Buy<br />>></td>' +
+                '</p></td>' +
+                '<td class="buy">Buy</td>' +
                 '<td class="stock">3</td><td></td>' +
                 '<td></td>' +
             '</tr>');
@@ -41,12 +41,12 @@ function stockMarket() {
                 stock.title +
                 '</td><td class="price">&#36;<p>' +
                 newPrice +
-                '</p>/' + stock.unit + '</td>' +
-                '<td class="buy">Buy<br />>></td>' +
+                '</p></td>' +
+                '<td class="buy">Buy</td>' +
                 '<td class="stock">' +
                 newStock +
                 '</td><td class="loot">' + stock.loot + '</td>' +
-                '<td class="sell">Sell<br /><<</td>' +
+                '<td class="sell">Sell</td>' +
             '</tr>');
     });
 
