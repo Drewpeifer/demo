@@ -279,14 +279,15 @@ incidents[4] = {
             index = $(this).attr('data-index');
             
             if ($('.cargo').hasClass('invalid')) {
+                
                 showOutcome(index);
-                showEffect("<b class='incident-outcome neeutral'>Effect: We can't hold any more cargo, unfortunately. We'll just continue on our current heading.</b>");
+                showEffect("<b class='incident-outcome neutral'>Effect: We can't hold any more cargo, unfortunately. We'll just continue on our current heading.</b>");
             } else {
                 currentCargo = parseInt($('.cargo p.loot').text()),
                 currentCap = parseInt($('.cargo p.cap').text()),
                 availableSpace = currentCap - currentCargo,
                 randomLootAmount = getRandomNumber(1, availableSpace),
-                randomLoot = menu[Math.floor(Math.random()*ownedLoot.length)],
+                randomLoot = menu[Math.floor(Math.random()*menu.length)],
                 currentStock = randomLoot.loot,
                 newStock = currentStock + randomLootAmount;
 
