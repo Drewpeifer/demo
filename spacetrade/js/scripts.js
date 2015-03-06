@@ -10,7 +10,7 @@ var config = {
 
 // return random number from min (inclusive) to max (exclusive)
 function getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
+    return Math.round(Math.random() * (max - min) + min);
 }
 
 // populate map, will be dynamically chosen later
