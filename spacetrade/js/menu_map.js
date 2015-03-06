@@ -1,6 +1,16 @@
 // stock base prices and props
 var menu = [];
 
+// sample menu item
+////////////////////
+//menu[i] = { title : name of item,
+//            loot : user's starting amount of item,
+//            unit : increment the item is sold in (currently unused),
+//            baseStock : the average amount that a port usually has in stock,
+//            basePrice : the average price of the good in each port,
+//            stockFlux : the amount that the item stock fluctuates at each port, on average
+//}
+
 menu[0] = { title : "Meteorite Ore",
             loot : 0,
             unit : "ton",
@@ -38,6 +48,23 @@ menu[4] = { title : "Unobtainium",
 
 // locations
 var map = [];
+
+// sample map location
+///////////////////////
+//map[i] = {  title : location name,
+//            fuelStation : do they sell fuel true/falsem
+//            fuelPrice : price of fuel (0 if they don't sell it),
+//            fuelAvailable : starting stock of fuel,
+//            cargoUpgrade : can you upgrade cargo here true/false,
+//            cargoUpgrades : how many times can you upgrade (20 per upgrade for now),
+//            cargoUpgradePrice : cost to upgrade, 0 if no upgrade station,
+//            embargo : list of items port does not buy/sell (unused for now),
+//            priceFlux : amount that prices will fluctuate up/down on average,
+//            saleMod : percentage of an items price that will be subtracted dring a sale,
+//            peakMod : amount an items price will be multiplied by during a hike,
+//            description : the white text below a locations name, above the marketplace
+//         };
+
 
 map[0] = {  title : "Earth",
             fuelStation : true,

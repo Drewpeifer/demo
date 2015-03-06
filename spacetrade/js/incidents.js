@@ -2,6 +2,30 @@
 // as part of the travel() function in travel.js
 var incidents = [];
 
+// sample incident
+///////////////////
+//incidents[i] - {
+//  title : "This is what appears above the red line",
+//  description : "This is first part of the text below the line",
+//  alternatives : [ "Three options, one of which is chose randomly.",
+//                 "It will be last line of text before the",
+//                 "choice buttons, they represent good/bad/neutral advice"
+//  ],
+//  choices : [ "Three options, describing the actions",
+//              "that captain can take to solve",
+//              "the problem. Text is the button text."
+//  ],
+//  outcomes : [ "Three outcomes that correspond to the choice buttons.",
+//               "The first choice results in the first outcome, etc.",
+//               "These will be the resulting white text after choice is made."
+//  ],
+//  rewards  : [ "Three functions that are triggered  by the corresponding",
+//               "choice buttons onclick. These use the index of the button clicked to trigger",
+//               "showOutcome()/showEffect(). showEffect() displays custom Effect text."
+//  ],
+//  hasHappened : this is always set to false. It will be changed to true after the event occurs.
+//}
+
 // Black Hole encounter
 incidents[0] = {
     title : "Captain, we've warped right to a black hole!",
