@@ -419,16 +419,20 @@ incidents[6] = {
         "Ugh, Captain, that radiation was a type we've never experienced before. The effects were more severe than we anticipated. Dobson is still sick but we've mostly recovered, med supplies weren't cheap though."
     ],
     rewards : [
-        function lostTwoFuel() {
-            index = $(this).attr('data-index');
+        function lostTwoFuel() {// lost 2 fuel
             fuel = parseInt($('.fuel p').text());
-            newfuel = fuel - 2;
-            $('.fuel p').text(newfuel);
+            if (fuel <= 2) {
+                $('.fuel p').text("0");
+            } else {
+                newfuel = fuel - 2;
+                $('.fuel p').text(newfuel);
+            }
             currentFuel = parseInt($('.fuel p').text());
             // print outcome
+            index = $(this).attr('data-index');
             showOutcome(index);
-            showEffect("<b class='incident-outcome bad'>Effect: Lost 2 units of fuel.</b>");
-        },
+            showEffect("<b class='incident-outcome bad'>Effect: We lost 2 fuel, we currently have " + currentFuel + " left.</b>");
+         },
         function lostTwoHundCash() {
             index = $(this).attr('data-index'),
             wallet = parseInt($('.wallet p').text());// get current money
@@ -489,7 +493,12 @@ incidents[7] = {
         function lostOneFuel() {
             index = $(this).attr('data-index');
             fuel = parseInt($('.fuel p').text());
-            newfuel = fuel - 1;
+            if (fuel == 0) {
+                newFuel = 0;
+            } else {
+                newfuel = fuel - 1;
+            }
+
             $('.fuel p').text(newfuel);
             currentFuel = parseInt($('.fuel p').text());
             // print outcome
