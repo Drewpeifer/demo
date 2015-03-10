@@ -10,7 +10,7 @@ function getRandomStock(min, max) {
 function stockMarket() {
     port = map.filter(function (location) {
                 // find the current port's JS object
-                return location.title == $('.location p:not(.drawer)').text();
+                return location.title == $('.location p').text();
            }),
     marketTable = $('.market table');
 
@@ -67,7 +67,7 @@ function stockMarket() {
     });
 
 
-    $('.has-drawer').on('click', function() {
+    $('.has-drawer').off().on('click', function() {
         if ($(this).hasClass('drawer-open')) {
             $(this).removeClass('drawer-open')
                    .children('.drawer')

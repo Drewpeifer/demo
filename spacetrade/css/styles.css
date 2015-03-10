@@ -98,6 +98,7 @@ p.hike {
 }
 .fuel {
     float:right;
+    text-align:right;
     height:100%;
 }
 .fuel p, .fuel span.icon {
@@ -147,6 +148,7 @@ table td {
 td.item, td.item.drawer-open {
     width:300px;
     max-width:300px;
+    padding:0 5px;
 }
 .drawer {
     max-width:300px;
