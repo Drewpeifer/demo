@@ -100,7 +100,7 @@ p.hike {
     float:right;
     height:100%;
 }
-.fuel p, .fuel span {
+.fuel p, .fuel span.icon {
     font-size:2em;
     margin:0;
     vertical-align:bottom
@@ -148,14 +148,17 @@ td.item, td.item.drawer-open {
     width:300px;
     max-width:300px;
 }
-td.item .drawer,
-td.item.drawer-open .drawer {
+.drawer {
     max-width:300px;
     display:block;
     text-align:left;
     color:#4682b4;
+    font-size:1em;
     margin:0;
     padding:0;
+}
+.cargo .drawer {
+    text-align:right;
 }
 td.item, td.price {
     padding:0 0 0 5px;

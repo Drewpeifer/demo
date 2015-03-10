@@ -57,7 +57,7 @@ function welcomeAlert() {
 
     showAlert(welcomeTitle, welcomeDescrip);
     $('.alert-content span').append("<p class='alert-description'>You're still on Earth but you're ready to blast off. Feel free to peruse the marketplace on Earth, or just hit the Big Red Button to pick your next destination.</p>")
-                       .append("<p class='alert-description'>Careful though. Space is big and weird. So are the things that live in it. It can also make people go crazy just from being in it. Space, that is. Because it's big and weird. Just be careful.</p>")
+                       .append("<p class='alert-description'>The objective is to buy low, sell high, and never stop flying. If we run out of cash, gas, or both, we're cooked. Also, if we hit a star, we're cooked. Or if someone hits us with a microwave gun... you get the idea. It's dangerous out here.</p>")
                        .append("<div id='close' class='button alert-action'><p>AWESOME!</p></div>");
     $('#close').on('click', function() {
         $('.alert').fadeOut(500);

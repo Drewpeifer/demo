@@ -10,16 +10,17 @@ function getRandomStock(min, max) {
 function stockMarket() {
     port = map.filter(function (location) {
                 // find the current port's JS object
-                return location.title == $('.location p').text();
+                return location.title == $('.location p:not(.drawer)').text();
            }),
     marketTable = $('.market table');
 
     marketTable.empty();// clear out old location data
+    console.log(map);
 
     if (port[0].fuelStation) {
         // build fuel station row in market table
         marketTable.append('<tr class="fuel-station">' +
-                 '<td class="item">Fuel<p class="drawer" style="display:none;">Adds 1 to your fuel</p></td><td class="price">&#36;<p>' +
+                 '<td class="item has-drawer">Fuel<span class="drawer" style="display:none;">Adds 1 to your fuel</span></td><td class="price">&#36;<p>' +
                 port[0].fuelPrice +
                 '</p></td>' +
                 '<td class="buy">Buy</td>' +
@@ -31,7 +32,7 @@ function stockMarket() {
     if (port[0].cargoUpgrade) {
         // build fuel station row in market table
         marketTable.append('<tr class="cargo-upgrade">' +
-                 '<td class="item">Cargo Hold Upgrade<p class="drawer" style="display:none;">(Cargo Capacity +20)</p></td><td class="price">&#36;<p>' +
+                 '<td class="item has-drawer">Cargo Hold Upgrade<span class="drawer" style="display:none;">(Cargo Capacity +20)</span></td><td class="price">&#36;<p>' +
                 port[0].cargoUpgradePrice +
                 '</p></td>' +
                 '<td class="buy">Buy</td>' +
@@ -50,11 +51,11 @@ function stockMarket() {
         newPrice = getRandomStock(minPrice, maxPrice);
 
         marketTable.append('<tr>' +
-                '<td class="item">' +
+                '<td class="item has-drawer">' +
                 stock.title +
-                '<p class="drawer" style="display:none;">' +
+                '<span class="drawer" style="display:none;">' +
                 stock.description +
-                '</p></td><td class="price">&#36;<p>' +
+                '</span></td><td class="price">&#36;<p>' +
                 newPrice +
                 '</p></td>' +
                 '<td class="buy">Buy</td>' +
@@ -66,7 +67,7 @@ function stockMarket() {
     });
 
 
-    $('td.item').on('click', function() {
+    $('.has-drawer').on('click', function() {
         if ($(this).hasClass('drawer-open')) {
             $(this).removeClass('drawer-open')
                    .children('.drawer')
