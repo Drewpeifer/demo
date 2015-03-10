@@ -8,7 +8,7 @@ var config = {
     cargoUpgrades : 3
 }
 
-// return random number from min (inclusive) to max (exclusive)
+// return random number from min (inclusive) to max (inclusive, because we round)
 function getRandomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
 }
