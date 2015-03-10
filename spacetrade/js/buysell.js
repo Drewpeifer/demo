@@ -74,7 +74,7 @@ function buySell() {
     var $this = $(this),// buy/sell button
         item = menu.filter(function (item) {
                 // find the current item's JS object
-                return item.title == $this.siblings('.item').text();
+                return item.title == $this.siblings('.item').children('p.title').text();
            }),
         stock = $this.siblings('.stock'),
         stockVal = stock.text(),// merchant item quantity

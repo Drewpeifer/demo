@@ -20,7 +20,7 @@ function stockMarket() {
     if (port[0].fuelStation) {
         // build fuel station row in market table
         marketTable.append('<tr class="fuel-station">' +
-                 '<td class="item has-drawer">Fuel<span class="drawer" style="display:none;">Adds 1 to your fuel</span></td><td class="price">&#36;<p>' +
+                 '<td class="item has-drawer"><p class="title">Fuel</p><span class="drawer" style="display:none;">Adds 1 to your fuel</span></td><td class="price">&#36;<p>' +
                 port[0].fuelPrice +
                 '</p></td>' +
                 '<td class="buy">Buy</td>' +
@@ -32,7 +32,7 @@ function stockMarket() {
     if (port[0].cargoUpgrade) {
         // build fuel station row in market table
         marketTable.append('<tr class="cargo-upgrade">' +
-                 '<td class="item has-drawer">Cargo Hold Upgrade<span class="drawer" style="display:none;">(Cargo Capacity +20)</span></td><td class="price">&#36;<p>' +
+                 '<td class="item has-drawer"><p clas="title">Cargo Hold Upgrade</p><span class="drawer" style="display:none;">(Cargo Capacity +20)</span></td><td class="price">&#36;<p>' +
                 port[0].cargoUpgradePrice +
                 '</p></td>' +
                 '<td class="buy">Buy</td>' +
@@ -51,9 +51,9 @@ function stockMarket() {
         newPrice = getRandomStock(minPrice, maxPrice);
 
         marketTable.append('<tr>' +
-                '<td class="item has-drawer">' +
+                '<td class="item has-drawer"><p class="title">' +
                 stock.title +
-                '<span class="drawer" style="display:none;">' +
+                '</p><span class="drawer" style="display:none;">' +
                 stock.description +
                 '</span></td><td class="price">&#36;<p>' +
                 newPrice +
