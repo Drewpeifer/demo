@@ -49,6 +49,7 @@ ul {
 .price {
     padding:5px 0;
     width:60px;
+    min-width:60px;
 }
 p.sale {
     color:#66ff66;
@@ -145,13 +146,16 @@ table td {
 }
 td.item, td.item.drawer-open {
     width:300px;
+    max-width:300px;
 }
 td.item .drawer,
 td.item.drawer-open .drawer {
-    width:300px;
+    max-width:300px;
     display:block;
     text-align:left;
-    color:#eee8aa;
+    color:#4682b4;
+    margin:0;
+    padding:0;
 }
 td.item, td.price {
     padding:0 0 0 5px;
@@ -163,6 +167,8 @@ td.sell {
     color:#fff;
     font-size:.9em;
     border:#fff 1px solid;
+    width:25px;
+    min-width:25px;
 }
 td.buy,
 td.sell,
@@ -174,6 +180,7 @@ td.stock {
 td.loot,
 td.stock {
     width:20px;
+    min-width:20px;
     font-size:.9em;
 }
 
@@ -409,5 +416,9 @@ p.fuel-alert {
 @media all and (max-width: 600px) {
     .map, .alert, .box {
         width:98%;
+    }
+    td.item, td.item.drawer-open,
+    td.item .drawer {
+        max-width:210px;
     }
 }
