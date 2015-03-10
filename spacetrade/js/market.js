@@ -19,7 +19,7 @@ function stockMarket() {
     if (port[0].fuelStation) {
         // build fuel station row in market table
         marketTable.append('<tr class="fuel-station">' +
-                 '<td>Fuel</td><td class="price">&#36;<p>' +
+                 '<td class="item">Fuel<p class="drawer" style="display:none;">Adds 1 to your fuel</p></td><td class="price">&#36;<p>' +
                 port[0].fuelPrice +
                 '</p></td>' +
                 '<td class="buy">Buy</td>' +
@@ -31,7 +31,7 @@ function stockMarket() {
     if (port[0].cargoUpgrade) {
         // build fuel station row in market table
         marketTable.append('<tr class="cargo-upgrade">' +
-                 '<td>Cargo Hold Upgrade (+20 Cargo Space)</td><td class="price">&#36;<p>' +
+                 '<td class="item">Cargo Hold Upgrade<p class="drawer" style="display:none;">(Cargo Capacity +20)</p></td><td class="price">&#36;<p>' +
                 port[0].cargoUpgradePrice +
                 '</p></td>' +
                 '<td class="buy">Buy</td>' +
@@ -52,7 +52,9 @@ function stockMarket() {
         marketTable.append('<tr>' +
                 '<td class="item">' +
                 stock.title +
-                '</td><td class="price">&#36;<p>' +
+                '<p class="drawer" style="display:none;">' +
+                stock.description +
+                '</p></td><td class="price">&#36;<p>' +
                 newPrice +
                 '</p></td>' +
                 '<td class="buy">Buy</td>' +
@@ -61,6 +63,22 @@ function stockMarket() {
                 '</td><td class="loot">' + stock.loot + '</td>' +
                 '<td class="sell">Sell</td>' +
             '</tr>');
+    });
+
+
+    $('td.item').on('click', function() {
+        if ($(this).hasClass('drawer-open')) {
+            $(this).removeClass('drawer-open')
+                   .children('.drawer')
+                   .slideUp();
+        } else {
+            $('.drawer-open').removeClass('drawer-open')
+                   .children('.drawer')
+                   .slideUp();
+            $(this).addClass('drawer-open')
+                   .children('.drawer')
+                   .slideDown();
+        }
     });
 
     marketFlux = getRandomNumber(1,3);// returns 1 or 2, max is actually exclusive

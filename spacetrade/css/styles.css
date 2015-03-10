@@ -121,6 +121,7 @@ ul {
 }
 /* market */
 /* table display is stupid */
+
 table,
 tbody,
 tr {
@@ -141,6 +142,16 @@ tbody {
 table td {
     margin:0;
     padding:5px;
+}
+td.item, td.item.drawer-open {
+    width:300px;
+}
+td.item .drawer,
+td.item.drawer-open .drawer {
+    width:300px;
+    display:block;
+    text-align:left;
+    color:#eee8aa;
 }
 td.item, td.price {
     padding:0 0 0 5px;
@@ -164,9 +175,6 @@ td.loot,
 td.stock {
     width:20px;
     font-size:.9em;
-}
-td.loot.empty,
-td.stock.empty {
 }
 
 /* stats */
