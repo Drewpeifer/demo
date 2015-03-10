@@ -28,7 +28,7 @@ button, .buy, .sell {
 .box {
     border:#fff 3px solid;
     border-radius:5px;
-    width:345px;
+    width:600px;
     z-index:1;
 }
 .header,
@@ -219,7 +219,7 @@ td.stock.empty {
     top:0;
     left:0;
     height:100%;
-    width:350px;
+    width:600px;
     padding:5px;
 }
 .alert p {
@@ -309,7 +309,6 @@ p.fuel-alert {
 }
 .alert-description.game-over {
     text-align:left;
-    margin-left:10%;
 }
 
 /* starfield background */
@@ -378,4 +377,16 @@ p.fuel-alert {
     left:8px;
     top:-8px;
     opacity:.6;
+}
+
+/* responsive @media calls for nice browsers*/
+@media all and (max-width: 600px) {
+    .map, .alert, .box {
+        width:98%;
+    }
+    .box {
+        border-left:none;
+        border-right:none;
+        border-radius:0px;
+    }
 }
