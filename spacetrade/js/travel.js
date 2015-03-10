@@ -95,6 +95,7 @@ function travel() {
     } else {
         newFuel = fuel -= 1;// subtract fuel
         fuelTank.text(newFuel);// set new fuel
+        $('.fuel-alert').remove();// remove any fuel alerts that exist already
 
         if (newFuel == 0) {
             fuelTank.removeClass('valid').addClass('invalid');
