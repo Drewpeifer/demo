@@ -8,14 +8,6 @@ body {
     overflow-x:hidden;
     overflow-y:scroll;
 }
-body.portrait {
-    overflow-x:hidden;
-    overflow-y:scroll;
-}
-body.landscape {
-    overflow-x:scroll;
-    overflow-y:hidden;
-}
 div, span, p, table {
     display:inline-block;
     font-size:14px;
