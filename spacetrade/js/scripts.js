@@ -85,8 +85,10 @@ function gameOverAlert() {
         }
     });
 
-    console.log("all your goods are worth " + totalLootValue);
-    finalScore = turns * walletVal * totalLootValue;// calculate score
+    numOfUpgrades = ((parseInt($('.cargo .cap').text()) / 20) - 1);
+    console.log("all your goods are worth " + totalLootValue + " and you've upgraded " + numOfUpgrades + " times.");
+    // calculate final score
+    finalScore = (turns + numOfUpgrades) * (walletVal + totalLootValue);
 
     endTitle = "Game Over, Man!";
     endDescrip = "This sucks, Captain! We're out of fuel, and this isn't a fuel port! " +
@@ -94,14 +96,13 @@ function gameOverAlert() {
                  "wait, that's pretty cool actually. Can I be the greeter?";
 
     showAlert(endTitle, endDescrip);
-    $('.alert-content span').append("<p class='alert-description'>" + walletVal + " (Remaining Cash)</p>")
-                       .append("<p class='alert-description'>" + totalLootValue + " (Value of Remaining Goods)</p>")
-                       .append("<p class='alert-description'>" + turns + " (Turns Taken)</p>")
-                       .append("<p class='alert-title'>&nbsp;</p>")
-                       .append("<p class='alert-decsription'>" + finalScore + " (Final Score)</p>")
-                       .append("<div id='close' class='button alert-action game-over'><p>AWESOME!</p></div>");
+    $('.alert-content span').append("<p class='alert-description game-over'>Remaining Cash : &nbsp;" + walletVal + "</p>")
+                       .append("<p class='alert-description game-over'>Value of Remaining Loot : &nbsp;" + totalLootValue + "</p>")
+                       .append("<p class='alert-description game-over'>Turns Taken : &nbsp;" + turns + "</p>")
+                       .append("<p class='alert-title'>Final Score : &nbsp;" + finalScore + "</p>")
+                       .append("<div id='close' class='button alert-action game-over'><p>LEMME PLAY AGAIN!</p></div>");
     $('#close').on('click', function() {
-        $('.alert').fadeOut(500);
+        location.reload();// refresh page, start game over
     });
 }
 

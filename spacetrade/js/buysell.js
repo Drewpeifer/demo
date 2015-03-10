@@ -44,7 +44,9 @@ function upgradeCargo() {
                 return item.title == $('.location p').text();
            }),
     upgrades = $(this).siblings('.stock'),
-    remainingUpgrades = parseInt(upgrades.text());
+    upgradePrice = parseInt($(this).siblings('.price').children('p').text()),
+    remainingUpgrades = parseInt(upgrades.text()),
+    walletVal = parseInt($('.wallet p').text());
 
     if (remainingUpgrades == 0) {
         showAlert('No Upgrades Remaining', 'Your cargo hold can\'t be upgraded any more at this port.');
@@ -52,13 +54,18 @@ function upgradeCargo() {
         $('#okay').on('click', function() {
             $('.alert').fadeOut(500);
         });
+    } else if (walletVal < upgradePrice) {
+        showAlert('No money, Captain!', "We don't have enough money to upgrade out cargo");
     } else {
         cargoCap = parseInt($('.cargo p.cap').text());
         newCap = cargoCap + 20;// raise cargo cap
         remainingUpgrades = port[0].cargoUpgrades -= 1;// lower stock of upgrades
         port[0].cargoUpgrades = remainingUpgrades;// udpate config obj
-        upgrades.text(remainingUpgrades);
+        newWallet = walletVal - upgradePrice;// subtract price from wallet
+        $('.wallet p').text(newWallet);// set new wallet
+        upgrades.text(remainingUpgrades);// set new upgrade stock
         $('.cargo p.cap').text(newCap);// set new cap
+
     }
 }
 

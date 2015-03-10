@@ -307,6 +307,10 @@ p.fuel-alert {
     text-align:center;
     margin:0;
 }
+.alert-description.game-over {
+    text-align:left;
+    margin-left:10%;
+}
 
 /* starfield background */
 .starfield {
