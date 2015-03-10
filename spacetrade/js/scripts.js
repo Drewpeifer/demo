@@ -29,7 +29,7 @@ function buildMap() {
 // custom alert message
 function showAlert(title, description) {
     alert = $('.alert'),
-    alertContent = $('.alert-content');
+    alertContent = $('.alert .alert-content');
 
     alertContent.empty();
     alertContent.append('<span><p class="alert-title"></p>' +
@@ -37,8 +37,8 @@ function showAlert(title, description) {
                  '</p>' +
                  '</span>');
 
-    alertTitle = $('.alert-title'),
-    alertDescrip = $('.alert-description');
+    alertTitle = $('.alert span .alert-title'),
+    alertDescrip = $('.alert span .alert-description');
 
     alertTitle.text(title);
     alertDescrip.text(description);
@@ -56,7 +56,7 @@ function welcomeAlert() {
                      "a sweet sound system.";
 
     showAlert(welcomeTitle, welcomeDescrip);
-    $('.alert-content span').append("<p class='alert-description'>You're still on Earth but you're ready to blast off. Feel free to peruse the marketplace on Earth, or just hit the Big Red Button to pick your next destination.</p>")
+    $('.alert .alert-content span').append("<p class='alert-description'>You're still on Earth but you're ready to blast off. Feel free to peruse the marketplace on Earth, or just hit the Big Red Button to pick your next destination.</p>")
                        .append("<p class='alert-description'>The objective is to buy low, sell high, and never stop flying. If we run out of cash, gas, or both, we're cooked. Also, if we hit a star, we're cooked. Or if someone hits us with a microwave gun... you get the idea. It's dangerous out here.</p>")
                        .append("<div id='close' class='button alert-action'><p>AWESOME!</p></div>");
     $('#close').on('click', function() {

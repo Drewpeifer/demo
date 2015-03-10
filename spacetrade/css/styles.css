@@ -248,7 +248,7 @@ td.stock {
     text-align:center;
 }
 /* alert */
-.map, .alert {
+.map, .alert, #browser-alert {
     background:#000;
     color:#f2f2f2;
     position:absolute;
@@ -258,9 +258,12 @@ td.stock {
     width:600px;
     padding:5px;
 }
-.alert p {
+.alert p, #browser-alert p {
     display:block;
     text-align:center;
+}
+#browser-alert {
+    display:none;
 }
 .alert-content,
 .alert-content div,
@@ -420,10 +423,16 @@ p.fuel-alert {
 /* responsive @media calls for nice browsers*/
 @media all and (max-width: 600px) {
     .map, .alert, .box {
-        width:98%;
+        width:100%;
     }
     td.item, td.item.drawer-open,
     td.item .drawer {
         max-width:210px;
+    }
+}
+
+@media all and (max-device-width:600px) and (orientation:landscape) {
+    #browser-alert {
+        display:block;
     }
 }

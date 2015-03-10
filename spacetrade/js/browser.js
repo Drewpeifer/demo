@@ -28,21 +28,4 @@ var uA = navigator.userAgent,
     console.log('navigator.useragent = ' + uA);
 // end browser detection
 
-// rotate body if device rotates
-// TODO: this happens way more often than it should on resize
-$(window).on("reload, resize",function(){
-    if (window.innerHeight > window.innerWidth){
-        console.log('portrait ' + event.type);
-        $('#browser-alert').remove();
-    } else {
-        console.log('landscape ' + event.type);
-        $('#browser-alert').remove();// this ain't good
-        $('body').append('<div id="browser-alert" class="alert" onclick="$(this).remove()">' +
-                         '<div class="alert-content"><span>' +
-                         '<p class="alert-title">Please orient your device to portrait mode</p>' +
-                         '<p class="alert-description">Landscape layout will be implemented for your device later</p>' +
-                         '</span></div></div>');
-    }
-});
-
 //$(document).ready(function() {});
