@@ -204,8 +204,11 @@ td.stock.empty {
     padding:5px;
     margin:0px;
 }
+.map ul li {
+    padding:10px 0;
+}
 .map ul li a {
-    font-size:1.5em;
+    font-size:2em;
     color:#999;
 }
 .map ul li a:visited {
@@ -213,6 +216,12 @@ td.stock.empty {
 }
 .map ul li b {
     text-decoration:underline;
+}
+/* map close button */
+#close-map {
+    width:30%;
+    margin-left:30%;
+    text-align:center;
 }
 /* alert */
 .map, .alert {
@@ -313,7 +322,6 @@ p.fuel-alert {
 .alert-description.game-over {
     text-align:left;
 }
-
 /* starfield background */
 .starfield {
     height:100%;
