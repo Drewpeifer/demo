@@ -78,8 +78,9 @@ function travel() {
         return location.title == nextPort;
     });
 
+    console.log('port fuelStation = ' + port[0].fuelStation);
+
     if (fuel == 0) {
-        // TODO: more subtle fuel alerts
         showAlert('Out of fuel!', 'You\'re stuck, unless your current port has fuel to sell. And you have some money, right?');
         $('.map').slideUp();
         $('.alert-content').append("<div id='uh-oh' class='button alert-action'><p>Uh-oh</p></div>");
@@ -120,12 +121,19 @@ function travel() {
         // hide map
         $('.map').slideUp();
 
-        // arrival event occurs (or not)
-        // with a 30% chance of occurring
-        rando = getRandomNumber(1,2)// returns 1 or 2
-        //rando = 1;
+        rando = 2;// by default, there's no event, unless it's a non-game-over scenario
         config.turn = config.turn += 1;
         console.log("turn number " + config.turn);
+        if (newFuel == 0) {
+            if (!port[0].fuelStation) {
+                // game over man!
+                gameOverAlert();
+            } else {
+                // arrival event occurs (or not)
+                // with a 30% chance of occurring
+                rando = getRandomNumber(1,2)// returns 1 or 2
+            }
+        }
         if (rando == 1) {// TODO: am I crazy? if you're not caching the odds, does it help to have pool bigger?
             randomIncident();
         } else {

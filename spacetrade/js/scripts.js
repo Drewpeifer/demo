@@ -64,6 +64,47 @@ function welcomeAlert() {
     });
 }
 
+function gameOverAlert() {
+    walletVal = parseInt($('.wallet p').text()),// current money
+    turns = config.turn,// current number of turns taken
+    totalLootValue = 0;
+
+    // here we loop through the menu, find any items that you own,
+    // find out how many you own, multiply that by the current port's price
+    // for that item, and then store that value in ownedLootVals. The sum of that
+    // array is the current market value of your remaining stock,
+    // if you wished to sell it
+    menu.forEach(function(stock){
+        if(stock.loot != 0) {// do you own any?
+            lootAmount = stock.loot;// how many do you own?
+            // find the dom row of that loot, and the current price
+            lootPrice = parseInt($('.market td:contains("' + stock.title + '")').siblings('.price').children('p').text());
+            lootValue = lootAmount * lootPrice;// find out how much it's worth
+            console.log("you own " + lootAmount + " of " + stock.title + " selling for " + lootPrice);
+            totalLootValue += lootValue;// add it to the totalLootValue
+        }
+    });
+
+    console.log("all your goods are worth " + totalLootValue);
+    finalScore = turns * walletVal * totalLootValue;// calculate score
+
+    endTitle = "Game Over, Man!";
+    endDescrip = "This sucks, Captain! We're out of fuel, and this isn't a fuel port! " +
+                 "Guess we'll have to set up shop here and open a space store-- " +
+                 "wait, that's pretty cool actually. Can I be the greeter?";
+
+    showAlert(endTitle, endDescrip);
+    $('.alert-content span').append("<p class='alert-description'>" + walletVal + " (Remaining Cash)</p>")
+                       .append("<p class='alert-description'>" + totalLootValue + " (Value of Remaining Goods)</p>")
+                       .append("<p class='alert-description'>" + turns + " (Turns Taken)</p>")
+                       .append("<p class='alert-title'>&nbsp;</p>")
+                       .append("<p class='alert-decsription'>" + finalScore + " (Final Score)</p>")
+                       .append("<div id='close' class='button alert-action game-over'><p>AWESOME!</p></div>");
+    $('#close').on('click', function() {
+        $('.alert').fadeOut(500);
+    });
+}
+
 // onLoad
 //////////
 $(function() {
