@@ -4,9 +4,17 @@ body {
     color:#f2f2f2;
     font-family: 'Ubuntu', sans-serif;
     font-weight:normal;
-    position:absolute;
-    top:0;
-    left:0;
+    margin:0;
+    overflow-x:hidden;
+    overflow-y:scroll;
+}
+body.portrait {
+    overflow-x:hidden;
+    overflow-y:scroll;
+}
+body.landscape {
+    overflow-x:scroll;
+    overflow-y:hidden;
 }
 div, span, p, table {
     display:inline-block;
@@ -30,8 +38,8 @@ button, .buy, .sell {
 }
 .box {
     border:#fff 3px solid;
-    border-radius:5px;
-    width:600px;
+    border-left:none;
+    border-right:none;
     z-index:1;
 }
 .header,
@@ -380,6 +388,9 @@ p.fuel-alert {
     left:8px;
     top:-8px;
     opacity:.6;
+}
+.map, .alert, .box {
+    overflow:scroll;
 }
 
 /* responsive @media calls for nice browsers*/

@@ -32,20 +32,30 @@ var uA = navigator.userAgent,
 $(window).on("reload, resize",function(){
     if (window.innerHeight > window.innerWidth){
         console.log('portrait ' + event.type);
+        $('body').removeClass('landscape').addClass('portrait');
         console.log(window.innerHeight + " = innerHeight");
         console.log(window.innerWidth + " = innerWidth");
         $('body').css({
-            "transform" : "rotate(0deg)",
-            "width" : window.innerWidth
+            "transform" : "rotate(0deg)"
         });
+        $('#wrapper, #starfield, .box, .map, .alert').css({
+            "height" : window.innerHeight,
+            "width" : window.innerWidth
+        })
+        console.log('wrapperW = ' + $('#wrapper').width());
     } else {
         console.log('landscape ' + event.type);
+        $('body').removeClass('portrait').addClass('landscape');
         console.log(window.innerHeight + " = innerHeight");
         console.log(window.innerWidth + " = innerWidth");
         $('body').css({
-            "transform" : "rotate(90deg)",
-            "width" : window.innerHeight
+            "transform" : "rotate(90deg)"
         });
+        $('#wrapper, #starfield, .box, .map, .alert').css({
+            "height" : window.innerWidth,
+            "width" : window.innerHeight
+        })
+        console.log('wrapperW = ' + $('#wrapper').width());
     }
 });
 
