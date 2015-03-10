@@ -28,15 +28,25 @@ var uA = navigator.userAgent,
     console.log('navigator.useragent = ' + uA);
 // end browser detection
 
-// if overlay is open on rotate, disable ridiculous auto-zoom on iOS
-if (body.hasClass('mobile')) {
-    var viewportmeta = document.querySelector('meta[name="viewport"]');
-    if (viewportmeta) {
-            viewportmeta.content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
-        document.body.addEventListener('gesturestart', function () {
-            viewportmeta.content = 'width=device-width, minimum-scale=0.25, maximum-scale=1.6';
-        }, false);
+// rotate body if device rotates
+$(window).on("reload, resize",function(){
+    if (window.innerHeight > window.innerWidth){
+        console.log('portrait ' + event.type);
+        console.log(window.innerHeight + " = innerHeight");
+        console.log(window.innerWidth + " = innerWidth");
+        $('body').css({
+            "transform" : "rotate(0deg)",
+            "width" : window.innerWidth
+        });
+    } else {
+        console.log('landscape ' + event.type);
+        console.log(window.innerHeight + " = innerHeight");
+        console.log(window.innerWidth + " = innerWidth");
+        $('body').css({
+            "transform" : "rotate(90deg)",
+            "width" : window.innerHeight
+        });
     }
-}
+});
 
 //$(document).ready(function() {});
