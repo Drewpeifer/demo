@@ -99,7 +99,8 @@ function stockMarket() {
         if (saleOrHike == 1) {
             // it's a sale!
             // find randomLoots price cell
-            targetPriceCell = $('.market td:contains("' + randomStock.title + '")').siblings('.price');
+            targetItemCell = $('.market td:contains("' + randomStock.title + '")'),
+            targetPriceCell = targetItemCell.siblings('.price');
             targetPrice = targetPriceCell.children('p');
             targetPriceVal = targetPrice.children('p').text();
             // recalc value
@@ -107,11 +108,13 @@ function stockMarket() {
             //set new loot value in DOM
             targetPrice.text(newPriceVal);
             targetPrice.addClass('sale');// tag as sale price
+            targetItemCell.append('<p class="sale">&nbsp;(Sale!)</p>');
             console.log('Sale! Today, ' + randomStock.title + " only costs " +  newPriceVal);
         } else {
             // it's a hike!
             // find randomLoots price cell
-            targetPriceCell = $('.market td:contains("' + randomStock.title + '")').siblings('.price');
+            targetItemCell = $('.market td:contains("' + randomStock.title + '")'),
+            targetPriceCell = targetItemCell.siblings('.price');
             targetPrice = targetPriceCell.children('p');
             targetPriceVal = targetPrice.children('p').text();
             // recalc value
@@ -119,6 +122,7 @@ function stockMarket() {
             //set new loot value in DOM
             targetPrice.text(newPriceVal);
             targetPrice.addClass('hike');// tag as hike price
+            targetItemCell.append('<p class="hike">&nbsp;(Price Hike!)</p>');
             console.log('Hike! Today, ' + randomStock.title + " costs " +  newPriceVal);
         }
     }

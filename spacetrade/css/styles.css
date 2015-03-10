@@ -50,10 +50,10 @@ ul {
     padding:5px 0;
     width:60px;
 }
-.price p.sale {
+p.sale {
     color:#66ff66;
 }
-.price p.hike {
+p.hike {
     color:#ff5050;
 }
 /* icons */
