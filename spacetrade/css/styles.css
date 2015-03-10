@@ -431,7 +431,7 @@ p.fuel-alert {
     }
 }
 
-@media all and (max-device-width:600px) and (orientation:landscape) {
+@media (orientation:landscape) {
     #browser-alert {
         display:block;
     }
