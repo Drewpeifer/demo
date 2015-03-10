@@ -133,6 +133,10 @@ function travel() {
                 // with a 30% chance of occurring
                 rando = getRandomNumber(1,2)// returns 1 or 2
             }
+        } else {
+            // arrival event occurs (or not)
+            // with a 30% chance of occurring
+            rando = getRandomNumber(1,2)// returns 1 or 2
         }
         if (rando == 1) {// TODO: am I crazy? if you're not caching the odds, does it help to have pool bigger?
             randomIncident();
