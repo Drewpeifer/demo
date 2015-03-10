@@ -112,6 +112,7 @@ ul {
 }
 .dialog {
     display:block;
+    max-width:600px;
 }
 .dialog p {
     font-style:italic;

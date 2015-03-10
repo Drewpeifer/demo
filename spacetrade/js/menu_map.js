@@ -77,7 +77,7 @@ map[0] = {  title : "Earth",
             priceFlux : .1,
             saleMod : .9,
             peakMod : 2,
-            description : "Earth! Home sweet home, the most stable marketplace in the galaxy."
+            description : "Earth! Home sweet home, the most stable marketplace in the galaxy. You can buy fuel here, or a cheeseburger."
          };
 
 map[1] = {  title : "Rilos",
@@ -91,7 +91,7 @@ map[1] = {  title : "Rilos",
             priceFlux : .2,
             saleMod : .5,
             peakMod : 6,
-            description : "Rilos, HQ for the Star League, which defends the Frontier from Xur and the Kodan Armada."
+            description : "Rilos, HQ for the Star League, which defends the Frontier from Xur and the Kodan Armada. We have a free pass for the Frontier, in case you were wondering."
          };
 
 map[2] = {  title : "Arrakis",
@@ -105,7 +105,7 @@ map[2] = {  title : "Arrakis",
             priceFlux : .4,
             saleMod : .7,
             peakMod : 9,
-            description : "Arrakis, also known as Dune, home to the spice Melange and also giant worms."
+            description : "Arrakis, also known as Dune, home to the spice Melange and also giant worms. Their engineers are awesome at upgrading cargo holds."
          };
 
 map[3] = {  title : "Risa",
@@ -119,5 +119,5 @@ map[3] = {  title : "Risa",
             priceFlux : .3,
             saleMod : .4,
             peakMod : 8,
-            description : "Risa, known throughout the Alpha Quadrant for its recreational attractions and open-minded populace."
+            description : "Risa, known throughout the Alpha Quadrant for its recreational attractions and open-minded populace. Seriously. Open-minded. Oh, they sell fuel, too."
          };
