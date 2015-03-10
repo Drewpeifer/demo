@@ -74,7 +74,7 @@ p.hike {
     height:46px;
 }
 .wallet .icon {
-    background:url(../img/ingot_silver_41x37.png) 0 0 no-repeat;
+    background:url(../img/money_symbol_41x37.png) 0 0 no-repeat;
     width:41px;
     height:46px;
 }
@@ -205,7 +205,7 @@ td.stock {
     margin:0;
     font-size:2em;
     vertical-align:top;
-    padding-top:5%;
+    padding-top:2%;
 }
 .cargo {
     text-align:right;

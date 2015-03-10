@@ -123,7 +123,7 @@ function stockMarket() {
             //set new loot value in DOM
             targetPrice.text(newPriceVal);
             targetPrice.addClass('hike');// tag as hike price
-            targetItemCell.append('<p class="hike">&nbsp;(Price Hike!)</p>');
+            targetItemCell.append('<p class="hike">&nbsp;(Hike!)</p>');
             console.log('Hike! Today, ' + randomStock.title + " costs " +  newPriceVal);
         }
     }
