@@ -28,10 +28,7 @@ button, .buy, .sell {
     height:100%;
     width:100%;
 }
-.box {
-    border:#fff 3px solid;
-    border-left:none;
-    border-right:none;
+.box div {
     z-index:1;
 }
 .header,
@@ -425,7 +422,6 @@ p.fuel-alert {
     display:block;
     max-width:600px;
     min-height:100%;
-    z-index:3;
 }
 .map, .alert {
     position:absolute;
