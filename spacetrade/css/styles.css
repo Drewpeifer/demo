@@ -416,23 +416,34 @@ p.fuel-alert {
     top:-8px;
     opacity:.6;
 }
+
+
 .map, .alert, .box {
     overflow:scroll;
+    position:relative;
+    margin:auto;
+    display:block;
+    max-width:600px;
+    min-height:100%;
+    z-index:3;
 }
-
+.map, .alert {
+    position:absolute;
+    z-index:4;
+}
+#wrapper 
+}
 /* responsive @media calls for nice browsers*/
-@media all and (max-width: 600px) {
-    .map, .alert, .box {
+@media (max-width: 600px) {
+    .map,
+    .alert,
+    .box {
         width:100%;
+        margin:0;
     }
-    td.item, td.item.drawer-open,
+    td.item,
+    td.item.drawer-open,
     td.item .drawer {
         max-width:210px;
-    }
-}
-
-@media (max-width:600px) and (orientation:landscape) {
-    #browser-alert {
-        display:block;
     }
 }
