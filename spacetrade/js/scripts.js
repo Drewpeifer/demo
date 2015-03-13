@@ -114,10 +114,7 @@ function gameOverAlert() {
                        .append("<p class='alert-description game-over'>Value of Remaining Loot : &nbsp;" + totalLootValue + "</p>")
                        .append("<p class='alert-description game-over'>Turns Taken : &nbsp;" + turns + "</p>")
                        .append("<p class='alert-title'>Final Score : &nbsp;" + finalScore + "</p>")
-                       .append("<div id='close' class='button alert-action game-over'><p>LEMME PLAY AGAIN!</p></div>");
-    $('#close').on('click', function() {
-        location.reload();// refresh page, start game over
-    });
+                       .append("<div id='close' class='button alert-action game-over' onclick='location.reload();'><p>LEMME PLAY AGAIN!</p></div>");
 }
 
 // onLoad
