@@ -133,12 +133,12 @@ incidents[1] = {
             fuel = parseInt($('.fuel p').text());
             if (fuel == 0) {
                 newFuel = 5;
-                $('.fuel p').text(newfuel);     
-                showOutcome(index);     
+                $('.fuel p').text(newFuel);
+                showOutcome(index);
                 showEffect("<b class='incident-outcome good'>Effect: Well, we didn't have any fuel, so they gave us 5 units. Man, they were nice.</b>");
             } else {
-                newfuel = fuel * 2;
-                $('.fuel p').text(newfuel);
+                newFuel = fuel * 2;
+                $('.fuel p').text(newFuel);
                 currentFuel = parseInt($('.fuel p').text());
                 showOutcome(index);
                 showEffect("<b class='incident-outcome good'>Effect: Current fuel stores doubled from " + fuel + " to " + currentFuel + "!</b>");
