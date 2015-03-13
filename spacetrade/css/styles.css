@@ -173,8 +173,7 @@ td.sell {
 }
 td.buy.invalid,
 td.sell.invalid {
-    background:red;
-    color:black;
+    color:#444;
 }
 td.buy,
 td.sell,

@@ -86,6 +86,8 @@ function buySell() {
         cargoCap = $('.cargo p.cap'),
         cargoCapVal = parseInt(cargoCap.text());// user current cargo limit
 
+    event.stopPropagation();
+
     if ($this.hasClass('buy')) {
         // making a purchase
         newStock = parseInt(stockVal) - 1,// subtract from merchant's stock
@@ -114,14 +116,6 @@ function buySell() {
             wallet.text(newWallet);// set new wallet
             evalLootStockCargo();// check if merchant is out of stock after purchase
 
-            if (newLoot == 1) {
-                // if user loot was previously empty, re-enable the Sell button
-                $(this).siblings('.sell').removeClass('invalid').click(buySell);
-            }
-            if (newStock == 0) {// if store's out of loot, disable the Buy button
-                $(this).addClass('invalid').unbind();
-            } else {}
-
         }
 
     } else if ($this.hasClass('sell')) {
@@ -143,14 +137,6 @@ function buySell() {
             item[0].loot = newLoot;//set new loot on object
             cargo.text(newCargo);// set new cargo
             wallet.text(newWallet);// set new wallet
-
-            if (newStock == 1) {
-                // if store was previously empty, re-enable the Buy button
-                $(this).siblings('.buy').removeClass('invalid').click(buySell);
-            }
-            if (newLoot == 0) {// if you're out of loot, disable the Sell button
-                $(this).addClass('invalid').unbind();
-            } else {}
 
             evalLootStockCargo();// check if loot is empty
         }

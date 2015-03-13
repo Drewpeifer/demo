@@ -142,18 +142,18 @@ function evalLootStockCargo() {
         lootQ = $(this).text();
 
         if (lootQ == 0) {
-            $(this).addClass('empty');
+            $(this).siblings('.sell').addClass('invalid');
         } else {
-            $(this).removeClass('empty');
+            $(this).siblings('.sell').removeClass('invalid');
         }
     });
     $('.stock').each(function() {
         stockQ = $(this).text();
 
         if (stockQ == 0) {
-            $(this).addClass('empty');
+            $(this).siblings('.buy').addClass('invalid');
         } else {
-            $(this).removeClass('empty');
+            $(this).siblings('.buy').removeClass('invalid');
         }
 
     });
