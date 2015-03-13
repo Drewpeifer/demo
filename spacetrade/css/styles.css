@@ -171,6 +171,11 @@ td.sell {
     width:25px;
     min-width:25px;
 }
+td.buy.invalid,
+td.sell.invalid {
+    background:red;
+    color:black;
+}
 td.buy,
 td.sell,
 td.loot,

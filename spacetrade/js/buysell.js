@@ -22,10 +22,7 @@ function buyFuel() {
         });
     } else if (fuelVal == 0) {
         showAlert('no fuel to buy')
-        $('.alert-content').append("<div id='okay' class='button alert-action'><p>Okay</p></div>");
-        $('#okay').on('click', function() {
-            $('.alert').fadeOut(500);
-        });
+        $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
     } else {
         // successful purchase
         newWallet = walletVal - priceVal;// subtract unit price from wallet
@@ -99,24 +96,15 @@ function buySell() {
         if (stockVal == 0) {
             // purchase denied, no stock to buy
             showAlert('No stock to buy!', 'Zero means none. Dummy.');
-            $('.alert-content').append("<div id='okay' class='button alert-action'><p>Okay</p></div>");
-            $('#okay').on('click', function() {
-                $('.alert').fadeOut(500);
-            });
+            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
         } else if (newWallet < 0) {
             //purchase  denied, not enough money
             showAlert('Ain\'t got no moneys!', 'Get outta here, deadbeat.');
-            $('.alert-content').append("<div id='okay' class='button alert-action'><p>Okay</p></div>");
-            $('#okay').on('click', function() {
-                $('.alert').fadeOut(500);
-            });
+            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
         } else if (newCargo > cargoCapVal) {
             //purchase  denied, not enough cargo room
             showAlert('No more cargo space!', 'Sell loot to make room. Or not. It\'s up to you.');
-            $('.alert-content').append("<div id='okay' class='button alert-action'><p>Okay</p></div>");
-            $('#okay').on('click', function() {
-                $('.alert').fadeOut(500);
-            });
+            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
         } else {
             // purchase approved
             stock.text(newStock);// set new stock
@@ -125,6 +113,15 @@ function buySell() {
             cargo.text(newCargo);// set new cargo
             wallet.text(newWallet);// set new wallet
             evalLootStockCargo();// check if merchant is out of stock after purchase
+
+            if (newLoot == 1) {
+                // if user loot was previously empty, re-enable the Sell button
+                $(this).siblings('.sell').removeClass('invalid').click(buySell);
+            }
+            if (newStock == 0) {// if store's out of loot, disable the Buy button
+                $(this).addClass('invalid').unbind();
+            } else {}
+
         }
 
     } else if ($this.hasClass('sell')) {
@@ -132,12 +129,10 @@ function buySell() {
         if (lootVal == 0) {
             // sale denied
             showAlert('No loot to sell!', 'Zero means none. Dummy.');
-            $('.alert-content').append("<div id='okay' class='button alert-action'><p>Okay</p></div>");
-            $('#okay').on('click', function() {
-                $('.alert').fadeOut(500);
-            });
+            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
         } else {
             // sale approved
+
             newStock = parseInt(stockVal) + 1;// add to stock 
             newLoot = parseInt(lootVal) - 1;// subtract from loot
             newCargo = parseInt(cargoVal) - 1
@@ -148,6 +143,14 @@ function buySell() {
             item[0].loot = newLoot;//set new loot on object
             cargo.text(newCargo);// set new cargo
             wallet.text(newWallet);// set new wallet
+
+            if (newStock == 1) {
+                // if store was previously empty, re-enable the Buy button
+                $(this).siblings('.buy').removeClass('invalid').click(buySell);
+            }
+            if (newLoot == 0) {// if you're out of loot, disable the Sell button
+                $(this).addClass('invalid').unbind();
+            } else {}
 
             evalLootStockCargo();// check if loot is empty
         }
