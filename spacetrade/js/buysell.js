@@ -32,6 +32,10 @@ function buyFuel() {
         port[0].fuelAvailable = fuelVal - 1;
         fuelStock.text(port[0].fuelAvailable);// set new store stock
 
+        if (newFuel == 1) {
+            fuelTank.removeClass('invalid');// if fuel was empty, make it non-red text now
+        } else {}
+
         evalLootStockCargo();// check if loot/stock is empty
     }
 }
