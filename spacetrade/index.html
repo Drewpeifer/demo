@@ -18,15 +18,9 @@
     <div id="starfield"></div>
     <div class="box">
         <!-- peripherals -->
-        <div class="map" style="display:none;">
-            <ul>
-                <li><b>Map locations:</b></li>
-            </ul>
-            <div id='close-map' class='button alert-action' onclick="$(this).parent().slideUp()">
-                <p>Close Map</p>
-            </div>
+        <div class="map peripheral" style="display:none;">
         </div>
-        <div id="browser-alert" style="display:none;">
+        <div id="browser-alert" class="peripheral" style="display:none;">
             <div class="alert-content">
                 <span>
                     <p class="alert-title">Please orient your device to portrait mode</p>
@@ -34,8 +28,9 @@
                 </span>
             </div>
         </div>
-        <div class="alert" style="display:none;">
-            <div class="alert-content"></div>
+        <div class="alert peripheral" style="display:none;">
+            <div class="alert-content">
+            </div>
         </div>
         <div class="header">
             <span class="location has-drawer">

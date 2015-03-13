@@ -12,20 +12,6 @@ var config = {
 function getRandomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
 }
-
-// populate map, will be dynamically chosen later
-function buildMap() {
-    // build map
-    map.forEach( function (location) {
-        $('.map ul').append(
-            '<li><a href="#" id="' +
-            location.title +
-            '">' +
-            location.title.toUpperCase() +
-            '</a></li>');
-    });
-}
-
 // custom alert message
 function showAlert(title, description) {
     alert = $('.alert'),
@@ -42,8 +28,40 @@ function showAlert(title, description) {
 
     alertTitle.text(title);
     alertDescrip.text(description);
+
+    $('.header, .market, .stats').css({
+        "opacity":.3
+    });
     alert.show();
 
+}
+function closeAlert() {
+    $('.peripheral').fadeOut(500);
+    $('.header, .market, .stats').css({
+        "opacity":1
+    });
+    console.log('closeAlert wtf');
+}
+function showMap() {
+    $('.map').slideDown();
+    $('.header, .market, .stats').css({
+        "opacity":.3
+    });
+}
+
+// populate map, will be dynamically chosen later
+function buildMap() {
+    // build map
+    $('.map').append('<ul><li><b>Map locations:</b></li></ul>');
+    map.forEach( function (location) {
+        $('.map ul').append('<li><a href="#" id="' +
+                location.title +
+                '">' +
+                location.title.toUpperCase() +
+                '</a></li>');
+    });
+    $('.map').append('<div id="close-map" class="button alert-action" onclick="closeAlert()">' +
+            '<p>Close Map</p></div>');
 }
 
 function welcomeAlert() {
@@ -58,10 +76,7 @@ function welcomeAlert() {
     showAlert(welcomeTitle, welcomeDescrip);
     $('.alert .alert-content span').append("<p class='alert-description'>You're still on Earth but you're ready to blast off. Feel free to peruse the marketplace on Earth, or just hit the Big Red Button to pick your next destination.</p>")
                        .append("<p class='alert-description'>The objective is to buy low, sell high, and never stop flying. If we run out of cash, gas, or both, we're cooked. Also, if we hit a star, we're cooked. Or if someone hits us with a microwave gun... you get the idea. It's dangerous out here.</p>")
-                       .append("<div id='close' class='button alert-action'><p>AWESOME!</p></div>");
-    $('#close').on('click', function() {
-        $('.alert').fadeOut(500);
-    });
+                       .append("<div id='close' class='button alert-action' onclick='closeAlert()'><p>AWESOME!</p></div>");
 }
 
 function gameOverAlert() {
@@ -112,16 +127,9 @@ $(function() {
 
     buildMap();
     // bindings
-    $('.map-control').click(function() {
-        $('.map').slideDown();
-    });
-    $('.map .close').click(function() {
-        $('.map').slideUp();
-    });
+    $('.map-control').click(showMap);
     $('.map ul li a').click(travel);
-    $('.alert .close').click(function() {
-        $('.alert').fadeOut(500);
-    });
+    $('.alert .close').click(closeAlert);
 
     // Set initial variables (port, fuel, etc)
     portTitle = $('.location p'),// port label container

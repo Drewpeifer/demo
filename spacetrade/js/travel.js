@@ -51,9 +51,7 @@ function showOutcome(index) {
                  .addClass('unclicked')
                  .unbind();
     $('.alert-content').append("<div id='awesome' class='button alert-action'><p>AWESOME!</p></div>");
-    $('#awesome').on('click', function() {
-        $('.alert').fadeOut(500);
-    });
+    $('#awesome').click(closeAlert);
 }
 function showEffect(effect) {
     $('.alert-outcome').append(effect);
@@ -67,7 +65,7 @@ function fuelAlert(text) {
 
 
 // travelling between locations
-function travel() {
+function travel(closeMap) {
     fuelTank = $('.fuel p'),// fuel label container
     fuel = parseInt(fuelTank.text()),// current fuel value
     portTitle = $('.location p'),// port label container
@@ -119,7 +117,7 @@ function travel() {
         $('.cargo-upgrade .buy').unbind()
                                .click(upgradeCargo);
         // hide map
-        $('.map').slideUp();
+        closeMap();
 
         rando = 2;// by default, there's no event, unless it's a non-game-over scenario
         config.turn = config.turn += 1;
