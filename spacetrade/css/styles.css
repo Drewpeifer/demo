@@ -263,7 +263,7 @@ td.stock {
     left:0;
     height:100%;
     max-width:600px;
-    padding:5px;
+    padding:2%;
 }
 .alert p, #browser-alert p {
     display:block;
@@ -272,7 +272,9 @@ td.stock {
 #browser-alert {
     display:none;
 }
-.alert-content,
+.alert-content {
+    width:96%;
+}
 .alert-content div,
 .alert-content span,
 .alert-content p {
