@@ -55,7 +55,7 @@ function buildMap() {
     map.forEach( function (location) {
         $('.map ul').append('<li><a href="#" id="' +
                 location.title +
-                '">' +
+                '"><span class="icon"></span>' +
                 location.title.toUpperCase() +
                 '</a></li>');
     });

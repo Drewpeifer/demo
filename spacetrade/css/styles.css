@@ -229,7 +229,7 @@ td.stock {
     margin:0px;
 }
 .map ul li {
-    padding:10px 0;
+    padding:15px 0;
 }
 .map ul li a {
     font-size:2em;
@@ -237,6 +237,13 @@ td.stock {
 }
 .map ul li a:visited {
     color:green;
+}
+.map ul li a .icon {
+    height:40px;
+    width:40px;
+    background:url(../img/planet_40x40.png) 0 0 no-repeat;
+    vertical-align:middle;
+    margin-right:10px;
 }
 .map ul li b {
     text-decoration:underline;
