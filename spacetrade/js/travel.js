@@ -1,6 +1,14 @@
 // Arrival Events
 //////////////////
-function randomIncident() {
+function randomIncident(odds) {
+    if (odds == 1 || odds == 3) {// 30% odds of an incident occurring
+        console.log('odds = ' + odds);
+        return false;// no event
+    } else {
+        // do nothing
+        console.log('odds = ' + odds);
+    }
+
     // DEBUG
     // incident props:
     // title, description, alternatives, choices, outcomes, rewards, hasHappened
@@ -51,6 +59,7 @@ function showOutcome(index) {
                  .addClass('unclicked')
                  .unbind();
     $('.alert-content').append("<div id='awesome' onclick='closeAlert();' class='button alert-action'><p>AWESOME!</p></div>");
+    evalLootStockCargo();// check new location's stock levels
 }
 function showEffect(effect) {
     $('.alert-outcome').append(effect);
@@ -62,6 +71,47 @@ function fuelAlert(text) {
 // END ARRIVAL EVENTS
 ////////////////////////
 
+// GAME PROGRESSION LOGIC
+///////////////////////////////
+// this function increases the games depth and difficulty
+// depending on the amount of turns/travels the user has taken
+function advanceProgress() {
+
+    thisTurn = config.turn,// number of turns the user has taken
+    odds = getRandomNumber(1,3);// 30% chance by default
+
+    if (thisTurn <= 9) {
+
+    } else if (thisTurn == 10) {
+        console.log('turn 10 reached');
+    } else if (thisTurn <= 19) {
+
+    } else if (thisTurn == 20) {
+        console.log('turn 20 reached');
+    } else if (thisTurn <= 29) {
+
+    } else if (thisTurn == 30) {
+        console.log('turn 30 reached');
+    } else if (thisTurn <= 39) {
+
+    } else if (thisTurn == 40) {
+            console.log('turn 40 reached');
+    } else if (thisTurn <= 49) {
+
+    } else if (thisTurn == 50) {
+            console.log('turn 50 reached');
+    } else if (thisTurn <= 59) {
+
+    } else if (thisTurn == 60) {
+            console.log('turn 60 reached');
+    } else {
+        console.log('over 60 turns reached!');
+    }
+
+    randomIncident(odds);// roll for chance of an incident occurring
+}
+// END GAME PROGRESSION LOGIC
+///////////////////////////////
 
 // travelling between locations
 function travel() {
@@ -75,9 +125,8 @@ function travel() {
         return location.title == nextPort;
     });
 
-    console.log('port fuelStation = ' + port[0].fuelStation);
-
     if (fuel == 0) {
+        // no travel
         showAlert('Out of fuel!', 'You\'re stuck, unless your current port has fuel to sell. And you have some money, right?');
         $('.map').slideUp();
         $('.alert-content').append("<div id='uh-oh' class='button alert-action'><p>Uh-oh</p></div>");
@@ -85,12 +134,14 @@ function travel() {
             $('.alert').fadeOut(500);
         });
     } else if (portTitle.text() === nextPort) {
+        // no travel
         showAlert('Ah, you\'re already at that location', 'Captain, have you been drinking?');
         $('.alert-content').append("<div id='sorry' class='button alert-action' onclick='closeAlert();'><p>Sorry</p></div>");
         $('#sorry').on('click', function() {
             $('.alert').fadeOut(500);
         });
     } else {
+        // travel successful
         newFuel = fuel -= 1;// subtract fuel
         fuelTank.text(newFuel);// set new fuel
         $('.fuel-alert').remove();// remove any fuel alerts that exist already
@@ -100,13 +151,12 @@ function travel() {
             fuelAlert("We're out of fuel, Captain! Hope this port has some for sale.");
         } else if (newFuel == 1) {
             fuelAlert("Almost out of fuel, Captain. Better find a port that has some for sale.");
-        } else {
-            fuelTank.removeClass('invalid').addClass('valid');
-        }
+        } else {}
 
         portTitle.text(port[0].title);// set new currentPort
         portDescription.text(port[0].description);// set new descrip
         stockMarket();// build/rebuild
+        evalLootStockCargo();// check new location's stock levels
 
         $('.buy, .sell').click(buySell);// rebind after market build
         // fuel stations
@@ -118,29 +168,13 @@ function travel() {
         // hide map
         closeAlert();
 
-        rando = 2;// by default, there's no event, unless it's a non-game-over scenario
         config.turn = config.turn += 1;
         console.log("turn number " + config.turn);
-        if (newFuel == 0) {
-            if (!port[0].fuelStation) {
-                // game over man!
-                gameOverAlert();
-            } else {
-                // arrival event occurs (or not)
-                // with a 30% chance of occurring
-                rando = getRandomNumber(1,2)// returns 1 or 2
-            }
+        if (newFuel == 0 && !port[0].fuelStation) {
+            // game over man!
+            gameOverAlert();
         } else {
-            // arrival event occurs (or not)
-            // with a 30% chance of occurring
-            rando = getRandomNumber(1,2)// returns 1 or 2
+            advanceProgress();// push the game forward
         }
-        if (rando == 1) {// TODO: am I crazy? if you're not caching the odds, does it help to have pool bigger?
-            randomIncident();
-        } else {
-            // no incident occurs
-        };
-
-        evalLootStockCargo();// check new location's stock levels
     }
 }
