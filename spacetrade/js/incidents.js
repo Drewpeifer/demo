@@ -310,6 +310,7 @@ incidents[4] = {
                 currentCap = parseInt($('.cargo p.cap').text()),
                 availableSpace = currentCap - currentCargo,
                 randomLootAmount = getRandomNumber(1, availableSpace),
+                //randomLoot = menu[4], set to unobtanium for debug
                 randomLoot = menu[Math.floor(Math.random()*menu.length)],
                 currentStock = randomLoot.loot,
                 newStock = currentStock + randomLootAmount;
