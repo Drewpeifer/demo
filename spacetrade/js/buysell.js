@@ -22,7 +22,7 @@ function buyFuel() {
         });
     } else if (fuelVal == 0) {
         showAlert('Station is out of fuel', 'No more gas at this pump.');
-        $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
+        $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert();'><p>Whoops!</p></div>");
     } else {
         // successful purchase
         newWallet = walletVal - priceVal;// subtract unit price from wallet
@@ -49,10 +49,10 @@ function upgradeCargo() {
 
     if (remainingUpgrades == 0) {
         showAlert('No Upgrades Remaining', 'Your cargo hold can\'t be upgraded any more at this port.');
-        $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
+        $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert();'><p>Whoops!</p></div>");
     } else if (walletVal < upgradePrice) {
         showAlert('No money, Captain!', 'We don\'t have enough money to upgrade our cargo');
-        $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
+        $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert();'><p>Whoops!</p></div>");
     } else {
         cargoCap = parseInt($('.cargo p.cap').text());
         newCap = cargoCap + 20;// raise cargo cap
@@ -99,15 +99,15 @@ function buySell() {
         if (stockVal == 0) {
             // purchase denied, no stock to buy
             showAlert('No stock to buy!', 'Zero means none. Dummy.');
-            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
+            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert();'><p>Whoops!</p></div>");
         } else if (newWallet < 0) {
             //purchase  denied, not enough money
             showAlert('Ain\'t got no moneys!', 'Get outta here, deadbeat.');
-            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
+            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert();'><p>Whoops!</p></div>");
         } else if (newCargo > cargoCapVal) {
             //purchase  denied, not enough cargo room
             showAlert('No more cargo space!', 'Sell loot to make room. Or not. It\'s up to you.');
-            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
+            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert();'><p>Whoops!</p></div>");
         } else {
             // purchase approved
             stock.text(newStock);// set new stock
@@ -124,7 +124,7 @@ function buySell() {
         if (lootVal == 0) {
             // sale denied
             showAlert('No loot to sell!', 'Zero means none. Dummy.');
-            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
+            $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert();'><p>Whoops!</p></div>");
         } else {
             // sale approved
 

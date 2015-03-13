@@ -59,7 +59,7 @@ function buildMap() {
                 location.title.toUpperCase() +
                 '</a></li>');
     });
-    $('.map').append('<div id="close-map" class="button alert-action" onclick="closeAlert()">' +
+    $('.map').append('<div id="close-map" class="button alert-action" onclick="closeAlert();">' +
             '<p>Close Map</p></div>');
 }
 
@@ -75,7 +75,7 @@ function welcomeAlert() {
     showAlert(welcomeTitle, welcomeDescrip);
     $('.alert .alert-content span').append("<p class='alert-description'>You're still on Earth but you're ready to blast off. Feel free to peruse the marketplace on Earth, or just hit the Big Red Button to pick your next destination.</p>")
                        .append("<p class='alert-description'>The objective is to buy low, sell high, and never stop flying. If we run out of cash, gas, or both, we're cooked. Also, if we hit a star, we're cooked. Or if someone hits us with a microwave gun... you get the idea. It's dangerous out here.</p>")
-                       .append("<div id='close' class='button alert-action' onclick='closeAlert()'><p>AWESOME!</p></div>");
+                       .append("<div id='close' class='button alert-action' onclick='closeAlert();'><p>AWESOME!</p></div>");
 }
 
 function gameOverAlert() {

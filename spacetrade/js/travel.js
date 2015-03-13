@@ -50,7 +50,7 @@ function showOutcome(index) {
                  .siblings()
                  .addClass('unclicked')
                  .unbind();
-    $('.alert-content').append("<div id='awesome' onclick='closeAlert()' class='button alert-action'><p>AWESOME!</p></div>");
+    $('.alert-content').append("<div id='awesome' onclick='closeAlert();' class='button alert-action'><p>AWESOME!</p></div>");
 }
 function showEffect(effect) {
     $('.alert-outcome').append(effect);
@@ -86,7 +86,7 @@ function travel() {
         });
     } else if (portTitle.text() === nextPort) {
         showAlert('Ah, you\'re already at that location', 'Captain, have you been drinking?');
-        $('.alert-content').append("<div id='sorry' class='button alert-action'><p>Sorry</p></div>");
+        $('.alert-content').append("<div id='sorry' class='button alert-action' onclick='closeAlert();'><p>Sorry</p></div>");
         $('#sorry').on('click', function() {
             $('.alert').fadeOut(500);
         });
