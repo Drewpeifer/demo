@@ -40,7 +40,6 @@ function closeAlert() {
     $('.header, .market, .stats').css({
         "opacity":1
     });
-    console.log('closeAlert wtf');
 }
 function showMap() {
     $('.map').slideDown();
