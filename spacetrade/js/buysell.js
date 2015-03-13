@@ -21,7 +21,7 @@ function buyFuel() {
             $('.alert').fadeOut(500);
         });
     } else if (fuelVal == 0) {
-        showAlert('no fuel to buy')
+        showAlert('Station is out of fuel', 'No more gas at this pump.');
         $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
     } else {
         // successful purchase
@@ -31,6 +31,8 @@ function buyFuel() {
         fuelTank.text(newFuel);// set new user fuel
         port[0].fuelAvailable = fuelVal - 1;
         fuelStock.text(port[0].fuelAvailable);// set new store stock
+
+        evalLootStockCargo();// check if loot/stock is empty
     }
 }
 
@@ -47,12 +49,10 @@ function upgradeCargo() {
 
     if (remainingUpgrades == 0) {
         showAlert('No Upgrades Remaining', 'Your cargo hold can\'t be upgraded any more at this port.');
-        $('.alert-content').append("<div id='okay' class='button alert-action'><p>Okay</p></div>");
-        $('#okay').on('click', function() {
-            $('.alert').fadeOut(500);
-        });
+        $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
     } else if (walletVal < upgradePrice) {
-        showAlert('No money, Captain!', "We don't have enough money to upgrade out cargo");
+        showAlert('No money, Captain!', 'We don\'t have enough money to upgrade our cargo');
+        $('.alert-content').append("<div id='whoops' class='button alert-action' onclick='closeAlert()'><p>Whoops!</p></div>");
     } else {
         cargoCap = parseInt($('.cargo p.cap').text());
         newCap = cargoCap + 20;// raise cargo cap
@@ -63,6 +63,7 @@ function upgradeCargo() {
         upgrades.text(remainingUpgrades);// set new upgrade stock
         $('.cargo p.cap').text(newCap);// set new cap
 
+        evalLootStockCargo();// check if loot is empty
     }
 }
 
