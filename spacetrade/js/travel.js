@@ -1,14 +1,6 @@
 // Arrival Events
 //////////////////
 function randomIncident(odds) {
-    if (odds == 1 || odds == 3) {// 30% odds of an incident occurring
-        console.log('odds = ' + odds);
-        return false;// no event
-    } else {
-        // do nothing
-        console.log('odds = ' + odds);
-    }
-
     // DEBUG
     // incident props:
     // title, description, alternatives, choices, outcomes, rewards, hasHappened
@@ -77,44 +69,54 @@ function fuelAlert(text) {
 // depending on the amount of turns/travels the user has taken
 function advanceProgress() {
 
-    thisTurn = config.turn,// number of turns the user has taken
-    odds = getRandomNumber(1,3);// 30% chance by default
+    thisTurn = config.turn;// number of turns the user has taken
+    rando = getRandomNumber(1,100);// pick a random number from 1-100
+
+    function didItHappen(rando, odds) {
+        console.log('running didItHappen with odds @ ' + odds + '% and rando = ' + rando);
+        if (rando <= odds) {
+            return false;
+        } else {
+            randomIncident();
+        }
+    }
 
     if (thisTurn <= 9) {
-
+        odds = 30;
     } else if (thisTurn == 10) {
         console.log('turn 10 reached');
         odds = 0;// no event
     } else if (thisTurn <= 19) {
-
+        odds = 40;
     } else if (thisTurn == 20) {
         console.log('turn 20 reached');
         odds = 0;// no event
     } else if (thisTurn <= 29) {
-
+        odds = 50;
     } else if (thisTurn == 30) {
         console.log('turn 30 reached');
         odds = 0;// no event
     } else if (thisTurn <= 39) {
-
+        odds = 60;
     } else if (thisTurn == 40) {
         console.log('turn 40 reached');
         odds = 0;// no event
     } else if (thisTurn <= 49) {
-
+        odds = 70;
     } else if (thisTurn == 50) {
         console.log('turn 50 reached');
         odds = 0;// no event
     } else if (thisTurn <= 59) {
-
+        odds = 70;
     } else if (thisTurn == 60) {
         console.log('turn 60 reached');
         odds = 0;// no event
     } else {
         console.log('over 60 turns reached!');
+        odds = 70;
     }
 
-    randomIncident(odds);// roll for chance of an incident occurring
+    didItHappen(rando,odds);// did an event happen?
 }
 // END GAME PROGRESSION LOGIC
 ///////////////////////////////
