@@ -2,7 +2,7 @@ var config = {
     turn : 0,
     startingWallet : 3000,
     startingFuel : 10,
-    startingPort : map[0],
+    startingPort : mapA[0],
     startingLoot : 0,
     startingCap : 20,
     cargoUpgrades : 3
@@ -52,7 +52,7 @@ function showMap() {
 function buildMap() {
     // build map
     $('.map').append('<ul><li><b>Map locations:</b></li></ul>');
-    map.forEach( function (location) {
+    mapA.forEach( function (location) {
         $('.map ul').append('<li><a href="#" id="' +
                 location.title +
                 '"><span class="icon"></span>' +

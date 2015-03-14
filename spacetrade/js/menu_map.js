@@ -1,5 +1,5 @@
 // stock base prices and props
-var menu = [];
+var menuA = [];
 
 // sample menu item
 ////////////////////
@@ -11,7 +11,7 @@ var menu = [];
 //            stockFlux : the amount that the item stock fluctuates at each port, on average
 //}
 
-menu[0] = { title : "Meteorite Ore",
+menuA[0] = { title : "Meteorite Ore",
             description : "Cheap, and everywhere, but always handy to have around.",
             loot : 0,
             unit : "ton",
@@ -19,7 +19,7 @@ menu[0] = { title : "Meteorite Ore",
             basePrice : 20,
             stockFlux : .1 };
 
-menu[1] = { title : "Dilithium Crystals",
+menuA[1] = { title : "Dilithium Crystals",
             description : "Super important for warp reactors. That's about it though.",
             loot : 0,
             unit : "kilo",
@@ -27,7 +27,7 @@ menu[1] = { title : "Dilithium Crystals",
             basePrice : 50,
             stockFlux : .2 };
 
-menu[2] = { title : "Gravitonium",
+menuA[2] = { title : "Gravitonium",
             description : "An unstable element used in reactors and some scary kinds of weapons.",
             loot : 0,
             unit : "kilo",
@@ -35,7 +35,7 @@ menu[2] = { title : "Gravitonium",
             basePrice : 100,
             stockFlux : .3 };
 
-menu[3] = { title : "Laudinum",
+menuA[3] = { title : "Laudinum",
             description : "Used for currency in some places, also as an alloy for electronics.",
             loot : 0,
             unit : "bar",
@@ -43,7 +43,7 @@ menu[3] = { title : "Laudinum",
             basePrice : 250,
             stockFlux : .4 };
 
-menu[4] = { title : "Unobtainium",
+menuA[4] = { title : "Unobtainium",
             description : "Something no one sells, but can sometimes be found randomly in your travels.",
             loot : 0,
             unit : "item",
@@ -52,11 +52,11 @@ menu[4] = { title : "Unobtainium",
             stockFlux : 0 };
 
 // locations
-var map = [];
+var mapA = [];
 
 // sample map location
 ///////////////////////
-//map[i] = {  title : location name,
+//mapA[i] = {  title : location name,
 //            fuelStation : do they sell fuel true/falsem
 //            fuelPrice : price of fuel (0 if they don't sell it),
 //            fuelAvailable : starting stock of fuel,
@@ -71,7 +71,7 @@ var map = [];
 //         };
 
 
-map[0] = {  title : "Earth",
+mapA[0] = {  title : "Earth",
             fuelStation : true,
             fuelPrice : 400,
             fuelAvailable : 4,
@@ -85,7 +85,7 @@ map[0] = {  title : "Earth",
             description : "Earth! Home sweet home, the most stable marketplace in the galaxy. You can buy fuel here, or a cheeseburger."
          };
 
-map[1] = {  title : "Rilos",
+mapA[1] = {  title : "Rilos",
             fuelStation : false,
             fuelPrice : 0,
             fuelAvailable : 0,
@@ -99,7 +99,7 @@ map[1] = {  title : "Rilos",
             description : "Rilos, HQ for the Star League, which defends the Frontier from Xur and the Kodan Armada. We have a free pass for the Frontier, in case you were wondering."
          };
 
-map[2] = {  title : "Arrakis",
+mapA[2] = {  title : "Arrakis",
             fuelStation : false,
             fuelPrice : 0,
             fuelAvailable : 0,
@@ -113,7 +113,7 @@ map[2] = {  title : "Arrakis",
             description : "Arrakis, also known as Dune, home to the spice Melange and also giant worms. Their engineers are awesome at upgrading cargo holds."
          };
 
-map[3] = {  title : "Risa",
+mapA[3] = {  title : "Risa",
             fuelStation : true,
             fuelPrice : 600,
             fuelAvailable : 10,

@@ -1,5 +1,5 @@
 function buyFuel() {
-    port = map.filter(function (item) {
+    port = mapA.filter(function (item) {
                 // find the current port's JS object
                 return item.title == $('.location p').text();
            }),
@@ -42,7 +42,7 @@ function buyFuel() {
 
 // upgrading cargo
 function upgradeCargo() {
-    port = map.filter(function (item) {
+    port = mapA.filter(function (item) {
                 // find the current port's JS object
                 return item.title == $('.location p').text();
            }),

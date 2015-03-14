@@ -8,14 +8,13 @@ function getRandomStock(min, max) {
 
 // build marketplace for initial port
 function stockMarket() {
-    port = map.filter(function (location) {
+    port = mapA.filter(function (location) {
                 // find the current port's JS object
                 return location.title == $('.location p').text();
            }),
     marketTable = $('.market table');
 
     marketTable.empty();// clear out old location data
-    console.log(map);
 
     if (port[0].fuelStation) {
         // build fuel station row in market table

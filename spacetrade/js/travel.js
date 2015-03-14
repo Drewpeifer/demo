@@ -128,7 +128,8 @@ function travel() {
     portTitle = $('.location p'),// port label container
     portDescription = $('.header .dialog p'),// port description container
     nextPort = $(this).attr('id'),// clicked location
-    port = map.filter(function (location) {
+    //TODO: collate maps[] as mapX on turn change
+    port = mapA.filter(function (location) {
         // find the corresponding JS map location obj
         return location.title == nextPort;
     });
