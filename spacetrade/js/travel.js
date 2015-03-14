@@ -84,26 +84,32 @@ function advanceProgress() {
 
     } else if (thisTurn == 10) {
         console.log('turn 10 reached');
+        odds = 0;// no event
     } else if (thisTurn <= 19) {
 
     } else if (thisTurn == 20) {
         console.log('turn 20 reached');
+        odds = 0;// no event
     } else if (thisTurn <= 29) {
 
     } else if (thisTurn == 30) {
         console.log('turn 30 reached');
+        odds = 0;// no event
     } else if (thisTurn <= 39) {
 
     } else if (thisTurn == 40) {
-            console.log('turn 40 reached');
+        console.log('turn 40 reached');
+        odds = 0;// no event
     } else if (thisTurn <= 49) {
 
     } else if (thisTurn == 50) {
-            console.log('turn 50 reached');
+        console.log('turn 50 reached');
+        odds = 0;// no event
     } else if (thisTurn <= 59) {
 
     } else if (thisTurn == 60) {
-            console.log('turn 60 reached');
+        console.log('turn 60 reached');
+        odds = 0;// no event
     } else {
         console.log('over 60 turns reached!');
     }
