@@ -1,3 +1,11 @@
+rewardFuncs = {
+    nothingHappened : function() {// nothing happened
+        index = $(this).attr('data-index');
+        showOutcome(index);
+        showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
+    }
+}
+
 // Events that occur randomly when arriving at a new destination
 // as part of the travel() function in travel.js
 var incidents = [];
@@ -52,11 +60,7 @@ incidents[0] = {
     rewards : [
         // TODO: collect reward functions into separate file, just call them here
         // Event functions
-        function nothingHappened() {// nothing happened
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
-        },
+        rewardFuncs.nothingHappened,
         function lostTwoFuel() {// lost 2 fuel
             fuel = parseInt($('.fuel p').text());
             if (fuel <= 2) {
