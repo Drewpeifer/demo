@@ -40,7 +40,7 @@ function stockMarket() {
             '</tr>');
     } else {}
 
-    menu.forEach( function (stock) {
+    menuA.forEach( function (stock) {
 
         minStock = stock.baseStock + (stock.baseStock * -stock.stockFlux),
         maxStock = stock.baseStock + (stock.baseStock * stock.stockFlux),
@@ -90,7 +90,7 @@ function stockMarket() {
         // sale/hike today!
         saleOrHike = getRandomNumber(1,3),// returns 1 or 2
         flux = getRandomNumber(2,6),// returns 2 thru 5
-        randomStock = menu[Math.floor(Math.random()*menu.length)];// pick random stock
+        randomStock = menuA[Math.floor(Math.random()*menuA.length)];// pick random stock
         console.log('saleOrHike = ' + saleOrHike);
         console.log('flux = ' + flux);
         console.log('randomStock = ' + randomStock.title + ' @ ' + randomStock.basePrice);
