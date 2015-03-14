@@ -29,6 +29,7 @@ var incidents = [];
 // Black Hole encounter
 incidents[0] = {
     title : "Captain, we've warped right to a black hole!",
+    difficulty : 1,
     description : "It's been a while since you've seen any debris around, " +
                   "turns out there's a nearby singularity pulling everything in. " +
                   "A lot of spacers liken black holes to quicksand, some rely on " +
@@ -109,6 +110,7 @@ incidents[0] = {
 // Strange ship 1 (new civilization encounter)
 incidents[1] = {
     title : "Captain, a strange ship is on approach, hailing in an unknown language.",
+    difficulty : 1,
     description : "Our sensors can't seem to penetrate their hull to analyze their systems, " +
                   "but we can see they have an unknown shield configuration. They seem to be using " +
                   "their engine exhaust to envelope their ship in a plasma shield. Pretty clever,captain.",
@@ -166,6 +168,7 @@ incidents[1] = {
 // Strange ship 2 (allies in distress)
 incidents[2] = {
     title : "Captain, there's an unknown vessel approaching, broadcasting a distress signal on all frequencies.",
+    difficulty : 1,
     description : "They say their engines are malfunctioning, and exhaust plasma has leaked into the ship's engineering section. " +
                   "Scanners show their engines are indeed operating at 10 percent efficiency, and their life support systems are overloading " +
                   "one by one, radiating out from the engineering section. Their weapons are offline and their shields are down, they " +
@@ -217,6 +220,7 @@ incidents[2] = {
 // Strange ship 3 (pirates in disguise)
 incidents[3] = {
     title : "Captain, a small ship is approaching with no interplanetary registration markings.",
+    difficulty : 1,
     description : "Their engines are offline and they're only moving due to their existing momentum. Comms are unresponsive. " +
                   "Sensors detect eight faint life signs, they could be injured, sick, or in stasis but there's no " +
                   "way to tell without boarding or beaming them over directly. The ship itself doesn't seem to be damaged, " +
@@ -280,6 +284,7 @@ incidents[3] = {
 // Derelict ship 1 (supply ship)
 incidents[4] = {
     title : "Captain, derelict ship ahead. Freighter class, no life signs detected.",
+    difficulty : 1,
     description : "Sensors detect damage to the starboard engine and surrounding hull. Engineering says it looks like a mid-flight collision, they're not sure with what though. " +
         "However, they can tell she's been adrift for a while by the nacell deterioration and " +
         "complete lack of heat signature. One thing's for sure: there's cargo in that hold.",
@@ -345,6 +350,7 @@ incidents[4] = {
 // Derelict ship 2 (evil science ship)
 incidents[5] = {
     title : "Captain, derelict sighted in the distance.",
+    difficulty : 1,
     description : "Scanners show no humanoid lifesigns, though we do see readings that " +
                   "might indicate plant-based lifeforms, or vegetation we're unfamiliar with. " +
                   "From the large dome structures on either side of the ship, I'd say it was " +
@@ -397,6 +403,7 @@ incidents[5] = {
 // Asteroid field
 incidents[6] = {
     title : "Asteroid field ahead, Captain.",
+    difficulty : 1,
     description : "There's a gaseous nebula above the field, and a belt of radiation below it. " +
                   "Our hull is tough enough to take a few minor impacts, if you want to try " +
                   "going straight through. The repair cost may be lower than the fuel cost if " +
@@ -469,6 +476,7 @@ incidents[6] = {
 // Nebula ahead
 incidents[7] = {
     title : "Captain, there's a gaseous nebula directly in our path.",
+    difficulty : 1,
     description : "It's a few aU's in length captain, there's no way we can go around. " +
                   "We can try going through with our shields up, but electrical and " +
                   "plasma-based systems are known to react chaotically with radiation " +
@@ -540,6 +548,7 @@ incidents[7] = {
 // Wormhole spotted
 incidents[8] = {
     title : "Wormhole sighted, Captain!",
+    difficulty : 1,
     description : "We detected an energy fluctuation dead ahead, and just as " +
                   "our ship decelerated this crazy wormhole opened up! What should " +
                   "we do, Captain? We can go through it and end up who knows where, " +
@@ -610,6 +619,7 @@ incidents[8] = {
 // Future self encounter
 incidents[9] = {
     title : "Ah, Captain? We seem to be receiving hails from... ourselves.",
+    difficulty : 1,
     description : "I'm really not sure what's going on, Captain. That looks like " +
                   "our ship, heavily damaged, and they're using our communication encryptions, but " +
                   "they just came out of nowhere! They're broadcasting a message on " +
