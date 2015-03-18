@@ -78,7 +78,7 @@ incidents[0] = {
         function lostRandomGoods() {// lost some random goods
             ownedLoot = [];
             // build list of loot that you own
-            menu.forEach(function(stock){ 
+            menuA.forEach(function(stock){
                 if(stock.loot != 0) {
                     ownedLoot.push(stock);
                 }
@@ -319,8 +319,8 @@ incidents[4] = {
                 currentCap = parseInt($('.cargo p.cap').text()),
                 availableSpace = currentCap - currentCargo,
                 randomLootAmount = getRandomNumber(1, availableSpace),
-                //randomLoot = menu[4], set to unobtanium for debug
-                randomLoot = menu[Math.floor(Math.random()*menu.length)],
+                //randomLoot = menuA[4], set to unobtanium for debug
+                randomLoot = menuA[Math.floor(Math.random()*menuA.length)],
                 currentStock = randomLoot.loot,
                 newStock = currentStock + randomLootAmount;
                 // find accompanying DOM row
@@ -582,7 +582,7 @@ incidents[8] = {
         function lostRandomLoot() {// lost some random goods
             ownedLoot = [];
             // build list of loot that you own
-            menu.forEach(function(stock){ 
+            menuA.forEach(function(stock){
                 if(stock.loot != 0) {
                     ownedLoot.push(stock);
                 }
