@@ -91,6 +91,7 @@ Cash is universal, so there are no currency conversion or alternate payment
 options anywhere in the Universe (it's universal, I just said that).
 
 ![Cargo](img/screenshots/cargo.png "Cargo")
+![Cargo Full](img/screenshots/cargo_full.png "Cargo Full")
 
 Your cargo (the number on the left) obviously fluctuates whenever you buy or
 sell goods. The number on the right is your cargo capacity, the total number of items
