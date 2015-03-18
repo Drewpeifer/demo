@@ -74,7 +74,7 @@ function upgradeCargo() {
 // buying and selling
 function buySell() {
     var $this = $(this),// buy/sell button
-        item = menu.filter(function (item) {
+        item = menuA.filter(function (item) {
                 // find the current item's JS object
                 return item.title == $this.siblings('.item').children('p.title').text();
            }),
