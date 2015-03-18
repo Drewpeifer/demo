@@ -108,7 +108,7 @@ function stockMarket() {
             //set new loot value in DOM
             targetPrice.text(newPriceVal);
             targetPrice.addClass('sale');// tag as sale price
-            targetItemCell.append('<p class="sale">&nbsp;(Sale!)</p>');
+            targetItemCell.children('.title').append('<p class="sale">&nbsp;(Sale!)</p>');
             console.log('Sale! Today, ' + randomStock.title + " only costs " +  newPriceVal);
         } else {
             // it's a hike!
@@ -122,7 +122,7 @@ function stockMarket() {
             //set new loot value in DOM
             targetPrice.text(newPriceVal);
             targetPrice.addClass('hike');// tag as hike price
-            targetItemCell.append('<p class="hike">&nbsp;(Hike!)</p>');
+            targetItemCell.children('.title').append('<p class="hike">&nbsp;(Hike!)</p>');
             console.log('Hike! Today, ' + randomStock.title + " costs " +  newPriceVal);
         }
     }
