@@ -358,6 +358,7 @@ p.fuel-alert {
     padding:10px 5px;
     text-align:center;
     margin:0;
+    width:99%;
 }
 .alert-description.game-over {
     text-align:left;
