@@ -1,10 +1,36 @@
-rewardFuncs = {
-    nothingHappened : function() {// nothing happened
-        index = $(this).attr('data-index');
-        showOutcome(index);
-        showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
-    }
+// Reward Functions //
+// referenced in incidents.rewards
+// and bound to choice buttons
+////////////////////////////////////
+function nothingHappened() {// nothing happened
+    index = $(this).attr('data-index');
+    showOutcome(index);
+    showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
 }
+function fuelChange(amount) {// gain/lose X fuel, pass neg amount for loss
+    oldFuel = parseInt($('.fuel p').text());
+
+    if (amount < 0) {// fuel loss
+        type = "bad";// class that will be added to effect text
+        if (oldFuel <= Math.abs(amount)) {
+            $('.fuel p').text("0");
+        } else {
+            newfuel = oldFuel + amount;// add, b/c loss is a neg amount
+            $('.fuel p').text(newfuel);
+        }
+    } else {// fuel gain
+        type = "good";
+        newfuel = oldFuel + amount;// add, b/c loss is a neg amount
+        $('.fuel p').text(newfuel);
+    }
+
+    currentFuel = parseInt($('.fuel p').text());
+    // print outcome
+    console.dir(this);
+    index = $(this).attr('data-index');
+    showOutcome(index);
+    showEffect("<b class='incident-outcome " + type + "'>Effect: " + amount + " fuel, you currently have " + currentFuel + " left.</b>");
+ }
 
 // Events that occur randomly when arriving at a new destination
 // as part of the travel() function in travel.js
@@ -60,21 +86,8 @@ incidents[0] = {
     rewards : [
         // TODO: collect reward functions into separate file, just call them here
         // Event functions
-        rewardFuncs.nothingHappened,
-        function lostTwoFuel() {// lost 2 fuel
-            fuel = parseInt($('.fuel p').text());
-            if (fuel <= 2) {
-                $('.fuel p').text("0");
-            } else {
-                newfuel = fuel - 2;
-                $('.fuel p').text(newfuel);
-            }
-            currentFuel = parseInt($('.fuel p').text());
-            // print outcome
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome bad'>Effect: We lost 2 fuel, we currently have " + currentFuel + " left.</b>");
-         },
+        nothingHappened,
+        fuelChange.bind(this, -2),
         function lostRandomGoods() {// lost some random goods
             ownedLoot = [];
             // build list of loot that you own

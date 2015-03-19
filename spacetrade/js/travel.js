@@ -15,8 +15,8 @@ function randomIncident(odds) {
     })
 
     // pick a random incident from newIncidents
-    //incident = newIncidents[0];// DEBUG: uncomment to always return first random incident from list
-    incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
+    incident = newIncidents[0];// DEBUG: uncomment to always return first random incident from list
+    //incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
     // pick random alternative text
     alternative = incident.alternatives[Math.floor(Math.random()*incident.alternatives.length)];
     choices = incident.choices;
@@ -37,13 +37,16 @@ function randomIncident(odds) {
     });
     // bind each button to corresponding reward function
     $.each(rewards, function(index, value) {
-        $('.button.alert-action[data-index="' + index + '"]').bind('click', incident.rewards[index]
-        );
+        $('.button.alert-action[data-index="' +
+            index +
+            '"]').bind('click', incident.rewards[index])
+                 .bind('click', showOutcome[index]);
     });
 }
 // called after choice button is clicked, before alert is closed by user
 function showOutcome(index) {
     clickedButton = $('.alert-action.button[data-index=' + index + ']');
+    console.dir(clickedButton);
     $('.alert-content').append('<p class="alert-outcome">' + incident.outcomes[index] + '</p>');
     clickedButton.addClass('clicked')
                  .unbind()
