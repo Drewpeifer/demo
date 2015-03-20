@@ -35,29 +35,41 @@ function randomIncident(odds) {
                 value + '</p></div>'
             );
     });
+
     // bind each button to corresponding reward function
-    $.each(rewards, function(index, value) {
-        $('.button.alert-action[data-index="' +
-            index +
-            '"]').bind('click', incident.rewards[index])
-                 .bind('click', showOutcome[index]);
+    // here, rewards is the dictionary of key/val pairs,
+    // where "keys" are a num matching the index of the choice made,
+    // and "value" returns the properties of that reward, i.e. func, type, effect
+    // so .button[data-index=i] binds to incident.rewards.i.func
+    // and showOutcome displays incident.rewards.i.outcome,
+    // showEffect displaysincident.rewards.i.type
+    $.each(rewards, function(key, value) {
+        func = value.func;
+        console.log(key);
+        console.log(value);
+        console.log(func);
+        $('.button.alert-action[data-index="' + key + '"]')
+                .on('click', func.bind(this))
+                .on('click', showOutcome.bind(this, key));
     });
 }
 // called after choice button is clicked, before alert is closed by user
 function showOutcome(index) {
+    console.log("index = " + index);
+    outcomeReward = $(this);
     clickedButton = $('.alert-action.button[data-index=' + index + ']');
-    console.dir(clickedButton);
-    $('.alert-content').append('<p class="alert-outcome">' + incident.outcomes[index] + '</p>');
+    $('.alert-content').append('<p class="alert-outcome">' + outcomeReward[0].outcome + '</p>');
     clickedButton.addClass('clicked')
                  .unbind()
                  .siblings()
                  .addClass('unclicked')
                  .unbind();
+    effect = "<b class='incident-outcome " +
+                                outcomeReward[0].type + "'>Effect: " +
+                                outcomeReward[0].effect + "</b>"
+    $('.alert-outcome').append(effect);
     $('.alert-content').append("<div id='awesome' onclick='closeAlert();' class='button alert-action'><p>AWESOME!</p></div>");
     evalLootStockCargo();// check new location's stock levels
-}
-function showEffect(effect) {
-    $('.alert-outcome').append(effect);
 }
 function fuelAlert(text) {
     $('.header .dialog').append('<p class="fuel-alert">' + text + '</p>');

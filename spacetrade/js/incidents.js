@@ -4,8 +4,6 @@
 ////////////////////////////////////
 function nothingHappened() {// nothing happened
     index = $(this).attr('data-index');
-    showOutcome(index);
-    showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
 }
 function fuelChange(amount) {// gain/lose X fuel, pass neg amount for loss
     oldFuel = parseInt($('.fuel p').text());
@@ -25,12 +23,40 @@ function fuelChange(amount) {// gain/lose X fuel, pass neg amount for loss
     }
 
     currentFuel = parseInt($('.fuel p').text());
-    // print outcome
-    console.dir(this);
-    index = $(this).attr('data-index');
-    showOutcome(index);
-    showEffect("<b class='incident-outcome " + type + "'>Effect: " + amount + " fuel, you currently have " + currentFuel + " left.</b>");
- }
+}
+function lostRandomGoods() {// lost some random goods
+    ownedLoot = [],
+    incident = $(this);
+    console.dir(incident);
+    // build list of loot that you own
+    menuA.forEach(function(stock){
+        if(stock.loot != 0) {
+            ownedLoot.push(stock);
+        }
+    });
+
+    if (ownedLoot.length < 1) {
+        // modify effect text
+        incident[0].type = "neutral";
+        incident[0].effect = "No goods to lose, nothing changes."
+    } else {
+        // pick a random item from the list
+        randomOwnedLoot = ownedLoot[Math.floor(Math.random()*ownedLoot.length)];
+        randomLossVal = Math.floor(Math.random()*parseInt(randomOwnedLoot.loot));
+        // find accompanying DOM row
+        targetLoot = $('.market td:contains("' + randomOwnedLoot.title + '")').siblings('.loot');
+        targetLootVal = targetLoot.text();
+        // recalc value
+        newLootVal = parseInt(randomOwnedLoot.loot) - randomLossVal;
+        // set new loot value on obj
+        randomOwnedLoot.loot = newLootVal;
+        //set new loot value in DOM
+        targetLoot.text(newLootVal);
+        // modify effect text
+        incident[0].type = "bad";
+        incident[0].effect = "We lost " + randomLossVal + " of our " + randomOwnedLoot.title;
+    }
+}
 
 // Events that occur randomly when arriving at a new destination
 // as part of the travel() function in travel.js
@@ -78,49 +104,25 @@ incidents[0] = {
         "Easy, take it slow and give her a wide berth. The less energy we expend, the better.",
         "Let's stay a few minutes and take in the sights. It's probably not that dangerous."
     ],
-    outcomes : [
-        "Whew. Coasted by without incident. Luckily our approach was far enough from the epicenter to give us time to steer away.",
-        "Our plasma exhaust has been ignited by an unknown source, we're safely away from the black hole but fuel reserves briefly leaked into space.",
-        "Our cargo module was struck by a peice of incoming debris attracted by the singularity. We lost some goods, but we escaped with our lives. Well, Dobson died."
-    ],
-    rewards : [
+    rewards : {
         // TODO: collect reward functions into separate file, just call them here
         // Event functions
-        nothingHappened,
-        fuelChange.bind(this, -2),
-        function lostRandomGoods() {// lost some random goods
-            ownedLoot = [];
-            // build list of loot that you own
-            menuA.forEach(function(stock){
-                if(stock.loot != 0) {
-                    ownedLoot.push(stock);
-                }
-            });
-
-            if (ownedLoot.length < 1) {
-                // print outcome
-                index = $(this).attr('data-index');
-                showOutcome(index);
-                showEffect("<b class='incident-outcome neutral'>Effect: Dobson's gone (no big loss), and we didn't have any cargo in storage, so we just patched the hull and ejected ol' Dobbie's personal effects into space. That's procedure, right?</b>");
-            } else {
-                // pick a random item from the list
-                randomOwnedLoot = ownedLoot[Math.floor(Math.random()*ownedLoot.length)];
-                // find accompanying DOM row
-                targetLoot = $('.market td:contains("' + randomOwnedLoot.title + '")').siblings('.loot');
-                targetLootVal = targetLoot.text();
-                // recalc value
-                newLootVal = parseInt(randomOwnedLoot.loot) / 2;
-                // set new loot value on obj
-                randomOwnedLoot.loot = newLootVal;
-                //set new loot value in DOM
-                targetLoot.text(newLootVal);
-                // print outcome
-                index = $(this).attr('data-index');
-                showOutcome(index);
-                showEffect("<b class='incident-outcome bad'>Effect: Dobson's gone (no big loss), and we lost " + parseInt(targetLootVal - newLootVal)  + " of our " + randomOwnedLoot.title + ". It was probably Dobson's fault anyway, so I personally shot all his personal crap out the airlock. He didn't have anything good anyway.</b>");
-            }
+        0 : {  func : nothingHappened,
+               outcome : "Whew. Coasted by without incident. Luckily our approach was far enough from the epicenter to give us time to steer away.",
+               type : "neutral",
+               effect : "None"
+        },
+        1 : {  func : fuelChange.bind(null, -2),
+               outcome : "Our plasma exhaust has been ignited by an unknown source, we're safely away from the black hole but fuel reserves briefly leaked into space.",
+               type : "bad",
+               effect : "-2 fuel"
+        },
+        2 : {  func : lostRandomGoods,
+               outcome : "Our cargo module was struck by a peice of incoming debris attracted by the singularity. We lost some goods, but we escaped with our lives. Well, Dobson died.",
+               type : "bad",
+               effect : "Lost some stuff"
         }
-    ],
+    },
     hasHappened : false
 };
 
