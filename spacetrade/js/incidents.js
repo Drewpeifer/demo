@@ -64,6 +64,7 @@ function walletChange(amount) {
         rando = getRandomNumber(1000, 10000);
         newWallet = currentWallet + rando;
         incident[0].effect = "Cash increased by " + rando + " to " + newWallet;
+        console.log("effect = " + incident[0].effect);
     } else if (amount == "double") {// double money
         if (currentWallet == 0) {// no moneys to begin with
             newWallet = currentWallet + 1000;
@@ -320,8 +321,8 @@ incidents[3] = {
         },
         2 : {  func : walletChange.bind(null, "rando"),
                outcome : "We did just what you said, and after the air vented from the ship we sent an away team to investigate. Turns out they were escaped inmates from a penal colony on a nearby moon. Looks like they ran out of supplies a few days into their escape and went into stasis to wait for a ship to rescue them, presumably planning to hijack it and continue their escape. Good thing we shot first and asked questions much, much later, Captain. We got a good haul from that one.",
-               type : "neutral",
-               effect : "None"
+               type : "good",
+               effect : "Gained random amount of cash"
         }
     },
     hasHappened : false

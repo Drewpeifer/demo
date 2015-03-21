@@ -15,7 +15,7 @@ function randomIncident(odds) {
     })
 
     // pick a random incident from newIncidents
-    incident = newIncidents[0];// DEBUG: uncomment to always return first random incident from list
+    incident = newIncidents[3];// DEBUG: uncomment to always return first random incident from list
     //incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
     // pick random alternative text
     alternative = incident.alternatives[Math.floor(Math.random()*incident.alternatives.length)];
@@ -48,31 +48,35 @@ function randomIncident(odds) {
         console.log(key);
         console.log(value);
         console.log(func);
-        $('.button.alert-action[data-index="' + key + '"]')
-                .on('click', func.bind(this))
-                .on('click', showOutcome.bind(this, key));
+        $('.button.alert-action[data-index="' + key + '"]').click(function(incident) {
+            $.when(func.bind(this)).then(showOutcome.bind(this, incident));
+        });
     });
 }
 // called after choice button is clicked, before alert is closed by user
-function showOutcome(index) {
-    console.log("index = " + index);
-    outcomeReward = $(this);
+function showOutcome() {
+    button = $(this);
+    console.dir(incident);
+    index = $('.alert-content .alert-action').index(button);
+    outcome = incident.rewards[index].outcome;
+    type = incident.rewards[index].type;
+    effect = incident.rewards[index].effect;
     clickedButton = $('.alert-action.button[data-index=' + index + ']');
-    $('.alert-content').append('<p class="alert-outcome">' + outcomeReward[0].outcome + '</p>');
+    $('.alert-content').append('<p class="alert-outcome">' + outcome + '</p>');
     clickedButton.addClass('clicked')
                  .unbind()
                  .siblings()
                  .addClass('unclicked')
                  .unbind();
     effect = "<b class='incident-outcome " +
-                                outcomeReward[0].type + "'>Effect: " +
-                                outcomeReward[0].effect + "</b>"
+                                type + "'>Effect: " +
+                                effect + "</b>"
     $('.alert-outcome').append(effect);
-    if (outcomeReward[0].type == "bad") {
+    if (type == "bad") {
         $('.alert-content').append("<div id='closeAlert' onclick='closeAlert();' class='button alert-action'><p>Crap</p></div>");
-    } else if (outcomeReward[0].type == "neutral") {
+    } else if (type == "neutral") {
         $('.alert-content').append("<div id='closeAlert' onclick='closeAlert();' class='button alert-action'><p>Meh</p></div>");
-    } else if (outcomeReward[0].type == "good") {
+    } else if (type == "good") {
         $('.alert-content').append("<div id='closeAlert' onclick='closeAlert();' class='button alert-action'><p>AWESOME!</p></div>");
     } else {
         $('.alert-content').append("<div id='closeAlert' onclick='closeAlert();' class='button alert-action'><p>No type!</p></div>");
