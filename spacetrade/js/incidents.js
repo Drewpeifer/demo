@@ -42,12 +42,12 @@ function fuelChange(amount) {// gain/lose X fuel
             incident[0].effect = "Fuel reduced to " + 0 + "!";
         } else {
             newFuel = oldFuel + amount;// add, b/c loss is a neg amount
-            incident[0].effect = "" + amount + " fuel, we now have " + newfuel;
+            incident[0].effect = "" + amount + " fuel, we now have " + newFuel;
         }
     } else {// fuel gain
         type = "good";
         newFuel = oldFuel + amount;// add, b/c loss is a neg amount
-        incident[0].effect = "" + amount + " fuel, we now have " + newfuel;
+        incident[0].effect = "" + amount + " fuel, we now have " + newFuel;
     }
 
     $('.fuel p').text(newFuel);
@@ -261,37 +261,23 @@ incidents[2] = {
         "Maintain a safe distance. Try to assist remotely, either by advising over comms or transporting supplies aboard. We can't afford to get close enough to dock or evacuate.",
         "Something's fishy here. Let's wait a few minutes and continue scanning their systems. If they're not lying, their engine core should overheat shortly, and we can move in and evacuate. If they are lying or turn hostile, denotate their core with a phaser blast."
     ],
-    outcomes : [
-        "Ridiculous. They had their manifolds set to minimum and their ionization compensator set to 80 percent, what a bunch of dummies! Our engineers pushed a few buttons and sent them on their way. They paid us well for our time though, probably out of embarassment.",
-        "We were able to identify the trouble and Engineering beamed over some parts, but when they powered up their teleporter to receive the parts, their electrical systems shorted out. Life support started failing so we beamed the crew of twelve aboard immediately, and their ship exploded shortly thereafter. They didn't seem too upset, apparently it was a rental, and they plan to leave at the next port. At least we salvaged one unit of fuel from their wreckage.",
-        "Sensors indicate they're low on fuel and oxygen. There's minor radiation all over the ship but levels increase closer to the engineering section, peaking at levels of WHOA they just exploded. I think we waited too long to help, Captain. We should probably just move along now..."
-    ],
-    rewards : [
-        function gotThousandCash() {// add 1000 to wallet
-            index = $(this).attr('data-index'),
-            wallet = parseInt($('.wallet p').text()),// get current money
-            newWallet = wallet + 1000;// add 1000 to initial money
-
-            $('.wallet p').text(newWallet);// set new wallet
-            showOutcome(index);
-            showEffect("<b class='incident-outcome good'>Effect: Gained 1000 cash.</b>");
+    rewards : {
+        0 : {  func : walletChange.bind(null, 1000),
+               outcome : "Ridiculous. They had their manifolds set to minimum and their ionization compensator set to 80 percent, what a bunch of dummies! Our engineers pushed a few buttons and sent them on their way. They paid us well for our time though, probably out of embarassment.",
+               type : "good",
+               effect : "Gained 1000 cash"
         },
-        function gotOneFuel() {// add 1 to fuel
-            index = $(this).attr('data-index');
-            fuel = parseInt($('.fuel p').text());
-            newfuel = fuel + 1;
-            $('.fuel p').text(newfuel);
-            currentFuel = parseInt($('.fuel p').text());
-            // print outcome
-            showOutcome(index);
-            showEffect("<b class='incident-outcome good'>Effect: Gained 1 unit of fuel.</b>");
+        1 : {  func : fuelChange.bind(null, 1),
+               outcome : "We were able to identify the trouble and Engineering beamed over some parts, but when they powered up their teleporter to receive the parts, their electrical systems shorted out. Life support started failing so we beamed the crew of twelve aboard immediately, and their ship exploded shortly thereafter. They didn't seem too upset, apparently it was a rental, and they plan to leave at the next port. At least we salvaged one unit of fuel from their wreckage.",
+               type : "good",
+               effect : "Gained 1 fuel"
         },
-        function nothingHappened() {// nothing happened
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
-        },
-    ],
+        2 : {  func : nothingHappened,
+               outcome : "Sensors indicate they're low on fuel and oxygen. There's minor radiation all over the ship but levels increase closer to the engineering section, peaking at levels of WHOA they just exploded. I think we waited too long to help, Captain. We should probably just move along now...",
+               type : "neutral",
+               effect : "None"
+        }
+    },
     hasHappened : false
 };
 
@@ -453,8 +439,8 @@ incidents[5] = {
         function gotFiveFuel() {
             index = $(this).attr('data-index');
             fuel = parseInt($('.fuel p').text());
-            newfuel = fuel + 5;
-            $('.fuel p').text(newfuel);
+            newFuel = fuel + 5;
+            $('.fuel p').text(newFuel);
             currentFuel = parseInt($('.fuel p').text());
             // print outcome
             showOutcome(index);
@@ -510,8 +496,8 @@ incidents[6] = {
             if (fuel <= 2) {
                 $('.fuel p').text("0");
             } else {
-                newfuel = fuel - 2;
-                $('.fuel p').text(newfuel);
+                newFuel = fuel - 2;
+                $('.fuel p').text(newFuel);
             }
             currentFuel = parseInt($('.fuel p').text());
             // print outcome
@@ -583,10 +569,10 @@ incidents[7] = {
             if (fuel == 0) {
                 newFuel = 0;
             } else {
-                newfuel = fuel - 1;
+                newFuel = fuel - 1;
             }
 
-            $('.fuel p').text(newfuel);
+            $('.fuel p').text(newFuel);
             currentFuel = parseInt($('.fuel p').text());
             // print outcome
             showOutcome(index);
