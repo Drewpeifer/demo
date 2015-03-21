@@ -56,9 +56,15 @@ function fuelChange(amount) {// gain/lose X fuel
 function walletChange(amount) {
     currentWallet = parseInt($('.wallet p').text());// get current money
 
-    incident = $(this);
+    incident = $(this);// incident[0] is actually incident Reward obj
 
-    if (amount == "double") {// double money
+    if (amount == "bankrupt") {
+        newWallet = 0;
+    } else if (amount == "rando") {
+        rando = getRandomNumber(1000, 10000);
+        newWallet = currentWallet + rando;
+        incident[0].effect = "Cash increased by " + rando + " to " + newWallet;
+    } else if (amount == "double") {// double money
         if (currentWallet == 0) {// no moneys to begin with
             newWallet = currentWallet + 1000;
             incident[0].type = "good";
@@ -301,47 +307,23 @@ incidents[3] = {
         "Tractor them in and begin docking procedures. Send a salvage team and a medic team over with a small security compliment. If they're healable, heal away. If we can't help, we take what we can carry and get back on board.",
         "Time is money, and that ship looks interesting. They shouldn't even be out here anyway, nobody probably knows they're here. Put a hole in the hull, wait for the oxygen to evacuate, and then see what we can salvage."
     ],
-    outcomes : [
-        "Captain, please don't be mad. The ship didn't reply to our hails, so we sent an away team like you ordered, with security and everything. So, they got on board, went to the cargo hold, and then they found some bodies in stasis. That's kind of where everything went wrong. When they woke up, the ship's crew activated security protocols, which deactivated our security team's weapons, and took our team hostage with a bunch of improvised weapons. Turns out they're escaped prisoners, and they want all our cash for the return of our away team.",
-        "Oh boy, that didn't go well. Ah, Captain, the crew of the ship wasn't in stasis, or injured, they were masking their life signs with portable biorhythmic dampeners. They tried to take the medical crew hostage, but the salvage crew fought back, and then security joined in, and well, basically everyone got shot. Also, the airlock control got shot, and their ship forcably ejected away from ours. We lost the medics, the salvage team, and the security force, but worst of all, the airlock door cost 1000 cash to repair.",
-        "We did just what you said, and after the air vented from the ship we sent an away team to investigate. Turns out they were escaped inmates from a penal colony on a nearby moon. Looks like they ran out of supplies a few days into their escape and went into stasis to wait for a ship to rescue them, presumably planning to hijack it and continue their escape. Good thing we shot first and asked questions much, much later, Captain. We got a good haul from that one."
-    ],
-    rewards : [
-        function lostAllCash() {// set wallet to zero
-            index = $(this).attr('data-index'),
-            wallet = parseInt($('.wallet p').text()),// get current money
-            newWallet = 0;// set money to 0 (boo hoo)
-
-            $('.wallet p').text(newWallet);// set new wallet
-            showOutcome(index);
-            showEffect("<b class='incident-outcome bad'>Effect: Lost all cash.</b>");
+    rewards : {
+        0 : {  func : walletChange.bind(null, "bankrupt"),
+               outcome : "Captain, please don't be mad. The ship didn't reply to our hails, so we sent an away team like you ordered, with security and everything. So, they got on board, went to the cargo hold, and then they found some bodies in stasis. That's kind of where everything went wrong. When they woke up, the ship's crew activated security protocols, which deactivated our security team's weapons, and took our team hostage with a bunch of improvised weapons. Turns out they're escaped prisoners, and they want all our cash for the return of our away team.",
+               type : "bad",
+               effect : "Lost all cash"
         },
-        function lostThousandCash() {// subtract 1000 from wallet
-            index = $(this).attr('data-index'),
-            wallet = parseInt($('.wallet p').text()),// get current money
-            newWallet = wallet - 1000;// subtract 1000 from initial money
-
-            if (wallet < 1000) {
-                newWallet = 0;
-            } else {
-                // do nothing
-            }
-
-            $('.wallet p').text(newWallet);// set new wallet
-            showOutcome(index);
-            showEffect("<b class='incident-outcome bad'>Effect: Lost 1000 cash.</b>");
+        1 : {  func : walletChange.bind(null, -1000),
+               outcome : "Oh boy, that didn't go well. Ah, Captain, the crew of the ship wasn't in stasis, or injured, they were masking their life signs with portable biorhythmic dampeners. They tried to take the medical crew hostage, but the salvage crew fought back, and then security joined in, and well, basically everyone got shot. Also, the airlock control got shot, and their ship forcably ejected away from ours. We lost the medics, the salvage team, and the security force, but worst of all, the airlock door cost 1000 cash to repair.",
+               type : "bad",
+               effect : "Lost 1000 cash"
         },
-        function gotRandomCash() {// add random amount of cash from 400 to 1000
-            index = $(this).attr('data-index'),
-            rando = getRandomNumber(400, 1000),// get random amount of cash
-            wallet = parseInt($('.wallet p').text()),// get current money
-            newWallet = wallet + rando;// add random amount to wallet
-
-            $('.wallet p').text(newWallet);// set new wallet
-            showOutcome(index);
-            showEffect("<b class='incident-outcome good'>Effect: Gained " + rando + " cash.</b>");
+        2 : {  func : walletChange.bind(null, "rando"),
+               outcome : "We did just what you said, and after the air vented from the ship we sent an away team to investigate. Turns out they were escaped inmates from a penal colony on a nearby moon. Looks like they ran out of supplies a few days into their escape and went into stasis to wait for a ship to rescue them, presumably planning to hijack it and continue their escape. Good thing we shot first and asked questions much, much later, Captain. We got a good haul from that one.",
+               type : "neutral",
+               effect : "None"
         }
-    ],
+    },
     hasHappened : false
 };
 
