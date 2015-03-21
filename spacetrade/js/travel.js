@@ -68,7 +68,15 @@ function showOutcome(index) {
                                 outcomeReward[0].type + "'>Effect: " +
                                 outcomeReward[0].effect + "</b>"
     $('.alert-outcome').append(effect);
-    $('.alert-content').append("<div id='awesome' onclick='closeAlert();' class='button alert-action'><p>AWESOME!</p></div>");
+    if (outcomeReward[0].type == "bad") {
+        $('.alert-content').append("<div id='closeAlert' onclick='closeAlert();' class='button alert-action'><p>Crap</p></div>");
+    } else if (outcomeReward[0].type == "neutral") {
+        $('.alert-content').append("<div id='closeAlert' onclick='closeAlert();' class='button alert-action'><p>Meh</p></div>");
+    } else if (outcomeReward[0].type == "good") {
+        $('.alert-content').append("<div id='closeAlert' onclick='closeAlert();' class='button alert-action'><p>AWESOME!</p></div>");
+    } else {
+        $('.alert-content').append("<div id='closeAlert' onclick='closeAlert();' class='button alert-action'><p>No type!</p></div>");
+    }
     evalLootStockCargo();// check new location's stock levels
 }
 function fuelAlert(text) {

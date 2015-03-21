@@ -5,24 +5,106 @@
 function nothingHappened() {// nothing happened
     index = $(this).attr('data-index');
 }
-function fuelChange(amount) {// gain/lose X fuel, pass neg amount for loss
-    oldFuel = parseInt($('.fuel p').text());
+function fuelChange(amount) {// gain/lose X fuel
+    // pass pos amount for gain,
+    // neg amount for loss,
+    // pass str "double" for 2X fuel, "half" for .5X fuel
+    oldFuel = parseInt($('.fuel p').text()),
+    incident = $(this);
 
-    if (amount < 0) {// fuel loss
-        type = "bad";// class that will be added to effect text
-        if (oldFuel <= Math.abs(amount)) {
-            $('.fuel p').text("0");
+    if (amount == "double") {// double fuel
+        if (oldFuel == 0) {// hmmm
+            newFuel = oldFuel + 2;
+            incident[0].type = "good";
+            incident[0].effect = "We were out of fuel, so we got 2 units out of pity! Yay pity!";
         } else {
-            newfuel = oldFuel + amount;// add, b/c loss is a neg amount
-            $('.fuel p').text(newfuel);
+            newFuel = oldFuel * 2;
+            incident[0].type = "good";
+            incident[0].effect = "Fuel doubled to " + newFuel + "!";
+        }
+    } else if (amount == "half") {
+        // lose half fuel
+        if (oldFuel == 1 || oldFuel == 0 ) {
+            // not enough fuel to subtract
+            newFuel = 0;
+            incident[0].type = "bad";
+            incident[0].effect = "Fuel reduced to 0!";
+        } else {
+            // enough fuel to subtract
+            newFuel = oldFuel / 2;
+            incident[0].type = "bad";
+            incident[0].effect = "Fuel reduced to " + newFuel + "!";
+        }
+    } else if (amount < 0) {// fuel loss
+        incident[0].type = "bad";
+        if (oldFuel <= Math.abs(amount)) {
+            newFuel = 0;// no fuel!
+            incident[0].effect = "Fuel reduced to " + 0 + "!";
+        } else {
+            newFuel = oldFuel + amount;// add, b/c loss is a neg amount
+            incident[0].effect = "" + amount + " fuel, we now have " + newfuel;
         }
     } else {// fuel gain
         type = "good";
-        newfuel = oldFuel + amount;// add, b/c loss is a neg amount
-        $('.fuel p').text(newfuel);
+        newFuel = oldFuel + amount;// add, b/c loss is a neg amount
+        incident[0].effect = "" + amount + " fuel, we now have " + newfuel;
     }
 
+    $('.fuel p').text(newFuel);
     currentFuel = parseInt($('.fuel p').text());
+}
+function walletChange(amount) {
+    currentWallet = parseInt($('.wallet p').text());// get current money
+
+    incident = $(this);
+
+    if (amount == "double") {// double money
+        if (currentWallet == 0) {// no moneys to begin with
+            newWallet = currentWallet + 1000;
+            incident[0].type = "good";
+            incident[0].effect = "We were out of cash, so they gave us $1000 out of pity! Yay pity!";
+        } else {
+            newWallet = currentWallet * 2;
+            incident[0].type = "good";
+            incident[0].effect = "Cash doubled to " + newWallet + "!";
+        }
+    } else if (amount < 0 && amount > -1) {
+        // neg percentage passed (.X), translates to "minus .X * currentWallet"
+        console.dir(incident[0]);
+        if (currentWallet == 1 || currentWallet == 0 ) {
+            // not enough money to subtract
+            newWallet = 0;
+            incident[0].type = "bad";
+            incident[0].effect = "Cash reduced to 0";
+        } else {
+            // enough money to subtract
+            newAmount = Math.floor(amount * currentWallet);
+            newWallet = currentWallet + newAmount;// add, b/c its neg
+            incident[0].type = "bad";
+            incident[0].effect = "Cash reduced by " + newAmount + " to " + newWallet + "!";
+        }
+    } else if (amount < 1 && amount > 0) {
+        // pos percentage passed (.X), translates to "add .X * currentWallet"
+        newAmount = Math.floor(amount * currentWallet);
+        newWallet = currentWallet + newAmount;
+        incident[0].type = "good";
+        incident[0].effect = "Cash increased by " + newAmount + " to " + newWallet + "!";
+    } else if (amount < 0) {// money integer loss
+        incident[0].type = "bad";
+        if (currentWallet <= Math.abs(amount)) {
+            newWallet = 0;// no money!
+            incident[0].effect = "Cash reduced to 0";
+        } else {
+            newWallet = currentWallet + amount;// add, b/c loss is a neg amount
+            incident[0].effect = "Cash reduced to " + newWallet + "!";
+        }
+    } else {// cash gain
+        newWallet = currentWallet + amount;// add, b/c loss is a neg amount
+        incident[0].type = "good";
+        incident[0].effect = "Gained " + amount + " cash, we now have $" + newWallet;
+    }
+
+    $('.wallet p').text(newWallet);// set new wallet
 }
 function lostRandomGoods() {// lost some random goods
     ownedLoot = [],
@@ -42,7 +124,7 @@ function lostRandomGoods() {// lost some random goods
     } else {
         // pick a random item from the list
         randomOwnedLoot = ownedLoot[Math.floor(Math.random()*ownedLoot.length)];
-        randomLossVal = Math.floor(Math.random()*parseInt(randomOwnedLoot.loot));
+        randomLossVal = Math.floor(Math.random()*parseInt(randomOwnedLoot.loot) + 1);
         // find accompanying DOM row
         targetLoot = $('.market td:contains("' + randomOwnedLoot.title + '")').siblings('.loot');
         targetLootVal = targetLoot.text();
@@ -75,14 +157,13 @@ var incidents = [];
 //              "that captain can take to solve",
 //              "the problem. Text is the button text."
 //  ],
-//  outcomes : [ "Three outcomes that correspond to the choice buttons.",
-//               "The first choice results in the first outcome, etc.",
-//               "These will be the resulting white text after choice is made."
-//  ],
-//  rewards  : [ "Three functions that are triggered  by the corresponding",
-//               "choice buttons onclick. These use the index of the button clicked to trigger",
-//               "showOutcome()/showEffect(). showEffect() displays custom Effect text."
-//  ],
+//    rewards : [
+//        0-2 : { func : funcRef,
+//                outcome : "Long text description of event outcome (white text)",
+//                type : "bad/neutral/good, can be overriden within funcRef",
+//                effect : "Short text descrip, can be overriden within funcRef (colored text)"
+//        }
+//    ]
 //  hasHappened : this is always set to false. It will be changed to true after the event occurs.
 //}
 
@@ -105,7 +186,6 @@ incidents[0] = {
         "Let's stay a few minutes and take in the sights. It's probably not that dangerous."
     ],
     rewards : {
-        // TODO: collect reward functions into separate file, just call them here
         // Event functions
         0 : {  func : nothingHappened,
                outcome : "Whew. Coasted by without incident. Luckily our approach was far enough from the epicenter to give us time to steer away.",
@@ -143,44 +223,23 @@ incidents[1] = {
         "Raise shields and ask them to identify their planet of origin. We don't lower shields or move from this spot until we know who they are and what they're about.",
         "I don't like the looks of this! Raise shields, charge weapons, and fire a warning shot across their bow. If they don't retreat, hit them with a torpedo and make a run for it!"
     ],
-    outcomes : [
-        "They've responded to our musical intonation array! It seems they communicate by singing complex songs that can last up to ten hours. The computer is currently building a dictionary or their language but so far we know they are peaceful, advanced, and happy to meet us. They say our ship can't be fitted with a shield like theirs, but they've graciously refined our current fuel (somehow) to burn twice as efficiently!",
-        "They broadcasted for a few minutes longer, Captain, but they seem to be resuming their original course at speeds we cannot match. I'm not sure if our posture was taken as overly offensive or overly defensive, or maybe they just got bored waiting for a reply, but I guess we'll never know who they were.",
-        "Captain, our warning shot accidentally hit their shields! They've returned fire and melted our phasers right through our shields! I think they even teleported our torpedos out of their tubes and into space. We can make repairs but it'll take time and cost money; luckily, they seem to be resuming their course at high speed. We've received a message as well, Captain. The computer's translation approximates it to be 'LATER, JERKS'."
-    ],
-    rewards : [
-        function fuelDoubled() {// fuel amount is doubled
-            index = $(this).attr('data-index');
-            fuel = parseInt($('.fuel p').text());
-            if (fuel == 0) {
-                newFuel = 5;
-                $('.fuel p').text(newFuel);
-                showOutcome(index);
-                showEffect("<b class='incident-outcome good'>Effect: Well, we didn't have any fuel, so they gave us 5 units. Man, they were nice.</b>");
-            } else {
-                newFuel = fuel * 2;
-                $('.fuel p').text(newFuel);
-                currentFuel = parseInt($('.fuel p').text());
-                showOutcome(index);
-                showEffect("<b class='incident-outcome good'>Effect: Current fuel stores doubled from " + fuel + " to " + currentFuel + "!</b>");
-            }
+    rewards : {
+        0 : {  func : fuelChange.bind(null, "double"),
+               outcome : "They've responded to our musical intonation array! It seems they communicate by singing complex songs that can last up to ten hours. The computer is currently building a dictionary or their language but so far we know they are peaceful, advanced, and happy to meet us. They say our ship can't be fitted with a shield like theirs, but they've graciously refined our current fuel (somehow) to burn twice as efficiently!",
+               type : "good",
+               effect : "Fuel doubled!"
         },
-        function nothingHappened() {// nothing happened
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
+        1 : {  func : nothingHappened,
+               outcome : "They broadcasted for a few minutes longer, Captain, but they seem to be resuming their original course at speeds we cannot match. I'm not sure if our posture was taken as overly offensive or overly defensive, or maybe they just got bored waiting for a reply, but I guess we'll never know who they were.",
+               type : "neutral",
+               effect : "None"
         },
-        function lostTenthMoney() {// lose a tenth of current wallet
-            index = $(this).attr('data-index'),
-            wallet = parseInt($('.wallet p').text()),// get current money
-            lostAmount = Math.floor(wallet / 10),// divide by ten
-            newWallet = wallet - lostAmount;// subtract a tenth from initial money
-
-            $('.wallet p').text(newWallet);// set new wallet
-            showOutcome(index);
-            showEffect("<b class='incident-outcome bad'>Effect: Repairs have been completed but they were expensive, our funds dropped from " + wallet + " to " + newWallet + ".</b>");
+        2 : {  func : walletChange.bind(null, -.1),
+               outcome : "Captain, our warning shot accidentally hit their shields! They've returned fire and melted our phasers right through our shields! I think they even teleported our torpedos out of their tubes and into space. We can make repairs but it'll take time and cost money; luckily, they seem to be resuming their course at high speed. We've received a message as well, Captain. The computer's translation approximates it to be 'LATER, JERKS'.",
+               type : "bad",
+               effect : "Lost 10% cash"
         }
-    ],
+    },
     hasHappened : false
 };
 
