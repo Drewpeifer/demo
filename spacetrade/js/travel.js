@@ -15,7 +15,7 @@ function randomIncident(odds) {
     })
 
     // pick a random incident from newIncidents
-    incident = newIncidents[3];// DEBUG: uncomment to always return first random incident from list
+    incident = newIncidents[4];// DEBUG: uncomment to always return first random incident from list
     //incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
     // pick random alternative text
     alternative = incident.alternatives[Math.floor(Math.random()*incident.alternatives.length)];

@@ -161,6 +161,30 @@ function lostRandomGoods() {// lost some random goods
         incident[0].effect = "We lost " + randomLossVal + " of our " + randomOwnedLoot.title;
     }
 }
+function gotRandomGoods() {
+    incident = $(this);
+
+    if ($('.cargo').hasClass('invalid')) {
+        incident[0].type = 'bad';
+        incident[0].effect = "Our cargo's full, otherwise we would have gotten stuff";
+    } else {
+        currentCargo = parseInt($('.cargo p.loot').text()),
+        currentCap = parseInt($('.cargo p.cap').text()),
+        availableSpace = currentCap - currentCargo,
+        randomLootAmount = getRandomNumber(1, availableSpace),
+        //randomLoot = menuA[4], set to unobtanium for debug
+        randomLoot = menuA[Math.floor(Math.random()*menuA.length)],
+        currentStock = randomLoot.loot,
+        newStock = currentStock + randomLootAmount;
+        // find accompanying DOM row
+        targetLoot = $('.market td:contains("' + randomLoot.title + '")').siblings('.loot');
+        targetLoot.text(newStock);
+
+        $('.cargo p.loot').text(newStock);
+        incident[0].type = 'good';
+        incident[0].effect = "Gained " + randomLootAmount + " " + randomLoot.title;
+    }
+}
 
 // Events that occur randomly when arriving at a new destination
 // as part of the travel() function in travel.js
@@ -360,52 +384,23 @@ incidents[4] = {
         "Cut the cargo bay doors open with the phasers. We'll grab what we can with the tractor beam but we're not boarding that deathtrap.",
         "Meh. It's a freighter but not heavily armed, I bet the cargo's not very valuable. Let's keep moving."
     ],
-    outcomes : [
-        "Loot secured, Captain! We found some good stuff, we even brought back some movies and books from their library. Dobson found some logs about an experimental asteroid mining procedure, but it was boring stuff so we grabbed some old episodes of Matlock instead.",
-        "Most of the stuff sucked out into space was miscellaneous mining equipment, just parts really. Engineering said they could sell some of it next time a peddler probe comes by.",
-        "Probably a good call, Captain. Never hurts to play it safe. Kind of boring though, right?"
-    ],
-    rewards : [
-        function gotRandomLoot() {
-            index = $(this).attr('data-index');
-            
-            if ($('.cargo').hasClass('invalid')) {
-                showOutcome(index);
-                showEffect("<b class='incident-outcome neutral'>Effect: We can't hold any more cargo, unfortunately. We'll just continue on our current heading.</b>");
-            } else {
-                currentCargo = parseInt($('.cargo p.loot').text()),
-                currentCap = parseInt($('.cargo p.cap').text()),
-                availableSpace = currentCap - currentCargo,
-                randomLootAmount = getRandomNumber(1, availableSpace),
-                //randomLoot = menuA[4], set to unobtanium for debug
-                randomLoot = menuA[Math.floor(Math.random()*menuA.length)],
-                currentStock = randomLoot.loot,
-                newStock = currentStock + randomLootAmount;
-                // find accompanying DOM row
-                targetLoot = $('.market td:contains("' + randomLoot.title + '")').siblings('.loot');
-                targetLoot.text(newStock);
-
-                $('.cargo p.loot').text(newStock);
-                showOutcome(index);
-                showEffect("<b class='incident-outcome good'>Effect: Gained " + randomLootAmount + " " + randomLoot.title + ".</b>");   
-            }
+    rewards : {
+        0 : {  func : gotRandomGoods,
+               outcome : "Loot secured, Captain! We found some good stuff, we even brought back some movies and books from their library. Dobson found some logs about an experimental asteroid mining procedure, but it was boring stuff so we grabbed some old episodes of Matlock instead.",
+               type : "good",
+               effect : "Got random loot"
         },
-        function gotRandomCash() {// add random amount of cash from 
-            index = $(this).attr('data-index'),
-            rando = getRandomNumber(200, 500),// get random amount of cash
-            wallet = parseInt($('.wallet p').text()),// get current money
-            newWallet = wallet + rando;// add random amount to wallet
-
-            $('.wallet p').text(newWallet);// set new wallet
-            showOutcome(index);
-            showEffect("<b class='incident-outcome good'>Effect: Gained " + rando + " cash.</b>");
+        1 : {  func : walletChange.bind(this, "rando"),
+               outcome : "Most of the stuff sucked out into space was miscellaneous mining equipment, just parts really. Engineering said they could sell some of it next time a peddler probe comes by. Oh, here's one now! Aaaaand.... Sold.",
+               type : "good",
+               effect : "Gained random amount of cash"
         },
-        function nothingHappened() {// nothing happened
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
-        },
-    ],
+        2 : {  func : nothingHappened,
+               outcome : "Probably a good call, Captain. Never hurts to play it safe. Kind of boring though, right?",
+               type : "neutral",
+               effect : "None"
+        }
+    },
     hasHappened : false
 };
 
