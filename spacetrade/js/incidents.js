@@ -55,61 +55,76 @@ function fuelChange(amount) {// gain/lose X fuel
 }
 function walletChange(amount) {
     currentWallet = parseInt($('.wallet p').text());// get current money
+    // incident IS ACTUALLY THE WHOLE INCIDENT! now we need index, SHIT
 
-    incident = $(this);// incident[0] is actually incident Reward obj
+    console.dir(incident);
+    console.log("this");
+    console.log($(this));
+    button = $('.button.clicked');
+    console.dir(button);
+
+    key = button.attr('data-index');
+    console.log("key = " + key);
+    reward = incident.rewards[key];
+    console.log("reward = ");
+    console.dir(reward);
+    console.log('walletchange start');
 
     if (amount == "bankrupt") {
         newWallet = 0;
     } else if (amount == "rando") {
         rando = getRandomNumber(1000, 10000);
         newWallet = currentWallet + rando;
-        incident[0].effect = "Cash increased by " + rando + " to " + newWallet;
-        console.log("effect = " + incident[0].effect);
+        reward.effect = "Cash increased by " + rando + " to " + newWallet;
+        console.log("effect = " + reward.effect);
     } else if (amount == "double") {// double money
         if (currentWallet == 0) {// no moneys to begin with
             newWallet = currentWallet + 1000;
-            incident[0].type = "good";
-            incident[0].effect = "We were out of cash, so they gave us $1000 out of pity! Yay pity!";
+            reward.type = "good";
+            reward.effect = "We were out of cash, so they gave us $1000 out of pity! Yay pity!";
         } else {
             newWallet = currentWallet * 2;
-            incident[0].type = "good";
-            incident[0].effect = "Cash doubled to " + newWallet + "!";
+            reward.type = "good";
+            reward.effect = "Cash doubled to " + newWallet + "!";
         }
     } else if (amount < 0 && amount > -1) {
         // neg percentage passed (.X), translates to "minus .X * currentWallet"
-        console.dir(incident[0]);
+        console.dir(reward);
         if (currentWallet == 1 || currentWallet == 0 ) {
             // not enough money to subtract
             newWallet = 0;
-            incident[0].type = "bad";
-            incident[0].effect = "Cash reduced to 0";
+            reward.type = "bad";
+            reward.effect = "Cash reduced to 0";
         } else {
             // enough money to subtract
             newAmount = Math.floor(amount * currentWallet);
             newWallet = currentWallet + newAmount;// add, b/c its neg
-            incident[0].type = "bad";
-            incident[0].effect = "Cash reduced by " + newAmount + " to " + newWallet + "!";
+            reward.type = "bad";
+            reward.effect = "Cash reduced by " + newAmount + " to " + newWallet + "!";
         }
     } else if (amount < 1 && amount > 0) {
         // pos percentage passed (.X), translates to "add .X * currentWallet"
         newAmount = Math.floor(amount * currentWallet);
         newWallet = currentWallet + newAmount;
-        incident[0].type = "good";
-        incident[0].effect = "Cash increased by " + newAmount + " to " + newWallet + "!";
+        reward.type = "good";
+        reward.effect = "Cash increased by " + newAmount + " to " + newWallet + "!";
     } else if (amount < 0) {// money integer loss
-        incident[0].type = "bad";
+        reward.type = "bad";
         if (currentWallet <= Math.abs(amount)) {
             newWallet = 0;// no money!
-            incident[0].effect = "Cash reduced to 0";
+            reward.effect = "Cash reduced to 0";
         } else {
             newWallet = currentWallet + amount;// add, b/c loss is a neg amount
-            incident[0].effect = "Cash reduced to " + newWallet + "!";
+            reward.effect = "Cash reduced to " + newWallet + "!";
         }
     } else {// cash gain
         newWallet = currentWallet + amount;// add, b/c loss is a neg amount
-        incident[0].type = "good";
-        incident[0].effect = "Gained " + amount + " cash, we now have $" + newWallet;
+        reward.type = "good";
+        reward.effect = "Gained " + amount + " cash, we now have $" + newWallet;
     }
+
+    console.dir(reward);
+    console.log('walletchange stop');
 
     $('.wallet p').text(newWallet);// set new wallet
 }
@@ -266,7 +281,7 @@ incidents[2] = {
     choices : [
         "Tractor beam them as close as possible without endangering our ship. Beam aboard an away team in hazard suits to investigate the engine room trouble. If we can fix it before we all explode, perfect. If not, beam their entire crew aboard and we warp out of here like we stole something.",
         "Maintain a safe distance. Try to assist remotely, either by advising over comms or transporting supplies aboard. We can't afford to get close enough to dock or evacuate.",
-        "Something's fishy here. Let's wait a few minutes and continue scanning their systems. If they're not lying, their engine core should overheat shortly, and we can move in and evacuate. If they are lying or turn hostile, denotate their core with a phaser blast."
+        "Something's fishy here. Let's wait a few minutes and continue scanning their systems. If they're not lying, their engine core should overheat shortly, and we can move in and evacuate. If they are lying or turn hostile, detonate their core with a phaser blast."
     ],
     rewards : {
         0 : {  func : walletChange.bind(null, 1000),
@@ -309,17 +324,17 @@ incidents[3] = {
         "Time is money, and that ship looks interesting. They shouldn't even be out here anyway, nobody probably knows they're here. Put a hole in the hull, wait for the oxygen to evacuate, and then see what we can salvage."
     ],
     rewards : {
-        0 : {  func : walletChange.bind(null, "bankrupt"),
+        0 : {  func : walletChange.bind(this, "bankrupt"),
                outcome : "Captain, please don't be mad. The ship didn't reply to our hails, so we sent an away team like you ordered, with security and everything. So, they got on board, went to the cargo hold, and then they found some bodies in stasis. That's kind of where everything went wrong. When they woke up, the ship's crew activated security protocols, which deactivated our security team's weapons, and took our team hostage with a bunch of improvised weapons. Turns out they're escaped prisoners, and they want all our cash for the return of our away team.",
                type : "bad",
                effect : "Lost all cash"
         },
-        1 : {  func : walletChange.bind(null, -1000),
+        1 : {  func : walletChange.bind(this, -1000),
                outcome : "Oh boy, that didn't go well. Ah, Captain, the crew of the ship wasn't in stasis, or injured, they were masking their life signs with portable biorhythmic dampeners. They tried to take the medical crew hostage, but the salvage crew fought back, and then security joined in, and well, basically everyone got shot. Also, the airlock control got shot, and their ship forcably ejected away from ours. We lost the medics, the salvage team, and the security force, but worst of all, the airlock door cost 1000 cash to repair.",
                type : "bad",
                effect : "Lost 1000 cash"
         },
-        2 : {  func : walletChange.bind(null, "rando"),
+        2 : {  func : walletChange.bind(this, "rando"),
                outcome : "We did just what you said, and after the air vented from the ship we sent an away team to investigate. Turns out they were escaped inmates from a penal colony on a nearby moon. Looks like they ran out of supplies a few days into their escape and went into stasis to wait for a ship to rescue them, presumably planning to hijack it and continue their escape. Good thing we shot first and asked questions much, much later, Captain. We got a good haul from that one.",
                type : "good",
                effect : "Gained random amount of cash"

@@ -42,29 +42,36 @@ function randomIncident(odds) {
     // and "value" returns the properties of that reward, i.e. func, type, effect
     // so .button[data-index=i] binds to incident.rewards.i.func
     // and showOutcome displays incident.rewards.i.outcome,
-    // showEffect displaysincident.rewards.i.type
+    // showEffect displays incident.rewards.i.type
     $.each(rewards, function(key, value) {
-        func = value.func;
-        console.log(key);
+        console.log('rewards loop');
+        console.dir($(this));
+        console.log("key = " + key);
+        console.log("value = " + value);
         console.log(value);
-        console.log(func);
-        $('.button.alert-action[data-index="' + key + '"]').click(function(incident) {
-            $.when(func.bind(this)).then(showOutcome.bind(this, incident));
-        });
+        console.log('value.func');
+        console.log(value.func);
+        console.log('value.effect');
+        console.log(value.effect);
+        func = value.func;
+        $('.button.alert-action[data-index="' + key + '"]').bind('mouseup', func.bind(this))
+            .bind('mouseup', showOutcome.bind(this, key, value));
+    });
+    $('.button.alert-action').on('mousedown', function() {
+        $(this).addClass('clicked');
     });
 }
 // called after choice button is clicked, before alert is closed by user
-function showOutcome() {
-    button = $(this);
+function showOutcome(index, incident) {
+    console.log("SO index = " + index);
     console.dir(incident);
-    index = $('.alert-content .alert-action').index(button);
-    outcome = incident.rewards[index].outcome;
-    type = incident.rewards[index].type;
-    effect = incident.rewards[index].effect;
+    outcome = incident.outcome;
+    type = incident.type;
+    effect = incident.effect;
+    console.log("showOutcome start, effect " + effect);
     clickedButton = $('.alert-action.button[data-index=' + index + ']');
     $('.alert-content').append('<p class="alert-outcome">' + outcome + '</p>');
-    clickedButton.addClass('clicked')
-                 .unbind()
+    clickedButton.unbind()
                  .siblings()
                  .addClass('unclicked')
                  .unbind();
@@ -82,6 +89,7 @@ function showOutcome() {
         $('.alert-content').append("<div id='closeAlert' onclick='closeAlert();' class='button alert-action'><p>No type!</p></div>");
     }
     evalLootStockCargo();// check new location's stock levels
+    console.log('showOutcome end');
 }
 function fuelAlert(text) {
     $('.header .dialog').append('<p class="fuel-alert">' + text + '</p>');
@@ -143,7 +151,7 @@ function advanceProgress() {
         odds = 70;
     }
 
-    didItHappen(rando,odds);// did an event happen?
+    didItHappen(100,odds);// did an event happen?
 }
 // END GAME PROGRESSION LOGIC
 ///////////////////////////////
