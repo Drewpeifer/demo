@@ -483,11 +483,6 @@ incidents[6] = {
         "Raise shields and go right through the field! Do some barrel rolls, too.",
         "Go under the field, and keep an eye on radiation levels. Let's all get tans."
     ],
-    outcomes : [
-        
-        
-        
-    ],
     rewards : {
         0 : {  func : fuelChange.bind(null, -2),
                outcome : "The nebula didn't cause any damage but we got turned around a little. We spent some extra fuel and time fixing our course, but we're no worse for wear.",
