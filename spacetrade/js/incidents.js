@@ -87,6 +87,16 @@ function walletChange(amount) {
             reward.type = "good";
             reward.effect = "Cash doubled to " + newWallet + "!";
         }
+    } else if (amount == "half") {// lose half money
+        if (currentWallet == 0 || currentWallet == 1) {// no moneys to begin with
+            newWallet = 0;
+            reward.type = "bad";
+            reward.effect = "Lost all cash";
+        } else {
+            newWallet = currentWallet / 2;
+            reward.type = "bad";
+            reward.effect = "Cash halved to " + newWallet;
+        }
     } else if (amount < 0 && amount > -1) {
         // neg percentage passed (.X), translates to "minus .X * currentWallet"
         console.dir(reward);
@@ -115,7 +125,7 @@ function walletChange(amount) {
             reward.effect = "Cash reduced to 0";
         } else {
             newWallet = currentWallet + amount;// add, b/c loss is a neg amount
-            reward.effect = "Cash reduced to " + newWallet + "!";
+            reward.effect = "Cash reduced by " + amount + " to " + newWallet + "!";
         }
     } else {// cash gain
         newWallet = currentWallet + amount;// add, b/c loss is a neg amount
@@ -185,6 +195,15 @@ function gotRandomGoods() {
         incident[0].effect = "Gained " + randomLootAmount + " " + randomLoot.title;
     }
 }
+function cargoCapDoubled() {
+    incident = $(this);
+    cargoCap = parseInt($('.cargo p.cap').text());
+    newCap = cargoCap * 2;
+    $('.cargo p.cap').text(newCap);
+    incident[0].type = "good";
+    incident[0].effect = "Cargo capacity doubled from " + cargoCap + " to " + newCap;
+}
+
 
 // Events that occur randomly when arriving at a new destination
 // as part of the travel() function in travel.js
@@ -423,37 +442,23 @@ incidents[5] = {
         "Send a Security team and an Engineering team. I want to know what those domes are preserving, and what tech we can salvage.",
         "Approach and scan the vessel. Get more readings from the domes and the Engineering section. Something's odd here."
     ],
-    outcomes : [
-        "Our Science team recovered some logs from the ship's databanks. Seems it was a Research vessel trying to breed sentient plants that could grow in any conditions. The plants decided to take over the ship, and the interior of the ship is now covered in vegetation. It doesn't seem hostile, but without hazard suits, the oxygen levels would be poisonous. That's probably what killed the crew. The Science team was able to salvage some extra fuel, though!",
-        "The entire vessel was lined with vegetation, but the Security team was able to activate flame turrets around the ship, incinerating all the plants. After they shot all the ashes out into space, the Engineering team was able to cut one of the domes off the ship and attach it to our stern! Now our cargo hold is HUGE!",
-        "You were right captain, we read 125 corpses in the entire ship, oxygen levels at 500% the lethal limit for humans. Looks like some kind of vegetation escaped the domes and took over the ship, overloading the oxygen scrubbers and asphyxiating the crew. Yikes."
-    ],
-    rewards : [
-        function gotFiveFuel() {
-            index = $(this).attr('data-index');
-            fuel = parseInt($('.fuel p').text());
-            newFuel = fuel + 5;
-            $('.fuel p').text(newFuel);
-            currentFuel = parseInt($('.fuel p').text());
-            // print outcome
-            showOutcome(index);
-            showEffect("<b class='incident-outcome good'>Effect: Gained 5 units of fuel.</b>");
+    rewards : {
+        0 : {  func : fuelChange.bind(null, 5),
+               outcome : "Our Science team recovered some logs from the ship's databanks. Seems it was a Research vessel trying to breed sentient plants that could grow in any conditions. The plants decided to take over the ship, and the interior of the ship is now covered in vegetation. It doesn't seem hostile, but without hazard suits, the oxygen levels would be poisonous. That's probably what killed the crew. The Science team was able to salvage some extra fuel, though!",
+               type : "good",
+               effect : "Got 5 fuel"
         },
-        function cargoCapDoubled() {
-            index = $(this).attr('data-index');
-            cargoCap = parseInt($('.cargo p.cap').text());
-            newCap = cargoCap * 2;
-            $('.cargo p.cap').text(newCap);
-            // print outcome
-            showOutcome(index);
-            showEffect("<b class='incident-outcome good'>Effect: Cargo capacity doubled!</b>");
+        1 : {  func : cargoCapDoubled,
+               outcome : "The entire vessel was lined with vegetation, but the Security team was able to activate flame turrets around the ship, incinerating all the plants. After they shot all the ashes out into space, the Engineering team was able to cut one of the domes off the ship and attach it to our stern! Now our cargo hold is HUGE!",
+               type : "good",
+               effect : "Cargo capactiy doubled!"
         },
-        function nothingHappened() {// nothing happened
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome neutral'>Effect: None.</b>");
+        2 : {  func : nothingHappened,
+               outcome : "You were right captain, we read 125 corpses in the entire ship, oxygen levels at 500% the lethal limit for humans. Looks like some kind of vegetation escaped the domes and took over the ship, overloading the oxygen scrubbers and asphyxiating the crew. Yikes.",
+               type : "neutral",
+               effect : "None"
         }
-    ],
+    },
     hasHappened : false
 };
 
@@ -479,54 +484,27 @@ incidents[6] = {
         "Go under the field, and keep an eye on radiation levels. Let's all get tans."
     ],
     outcomes : [
-        "The nebula didn't cause any damage but we got turned around a little. We spent some extra fuel and time fixing our course, but we're no worse for wear.",
-        "That was AWESOME-- uh, sorry Captain, sir. We took a few bumps but repairs will be cheap, and our Pilot got to do some sweet barrel rolls. You're the best, Captain.",
-        "Ugh, Captain, that radiation was a type we've never experienced before. The effects were more severe than we anticipated. Dobson is still sick but we've mostly recovered, med supplies weren't cheap though."
+        
+        
+        
     ],
-    rewards : [
-        function lostTwoFuel() {// lost 2 fuel
-            fuel = parseInt($('.fuel p').text());
-            if (fuel <= 2) {
-                $('.fuel p').text("0");
-            } else {
-                newFuel = fuel - 2;
-                $('.fuel p').text(newFuel);
-            }
-            currentFuel = parseInt($('.fuel p').text());
-            // print outcome
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome bad'>Effect: We lost 2 fuel, we currently have " + currentFuel + " left.</b>");
-         },
-        function lostTwoHundCash() {
-            index = $(this).attr('data-index'),
-            wallet = parseInt($('.wallet p').text());// get current money
-            
-            if (wallet < 200) {
-                    newWallet = 0;// avoids confusion
-                } else {
-                    newWallet = wallet - 200;// cut wallet in half              
-                }
-
-            $('.wallet p').text(newWallet);// set new wallet
-            showOutcome(index);
-            showEffect("<b class='incident-outcome bad'>Effect: Spent 200 cash on repairs.</b>");
+    rewards : {
+        0 : {  func : fuelChange.bind(null, -2),
+               outcome : "The nebula didn't cause any damage but we got turned around a little. We spent some extra fuel and time fixing our course, but we're no worse for wear.",
+               type : "bad",
+               effect : "Lost 2 fuel"
         },
-        function lostHalfMoney() {
-            index = $(this).attr('data-index'),
-            wallet = parseInt($('.wallet p').text());// get current money
-
-            if (wallet < 2) {
-                    newWallet = 0;// avoids confusion
-                } else {
-                    newWallet = Math.floor(wallet / 2);// cut wallet in half                
-                }
-
-            $('.wallet p').text(newWallet);// set new wallet
-            showOutcome(index);
-            showEffect("<b class='incident-outcome bad'>Effect: Lost half your cash.</b>");
+        1 : {  func : walletChange.bind(this, -200),
+               outcome : "That was AWESOME-- uh, sorry Captain, sir. We took a few bumps but repairs will be cheap, and our Pilot got to do some sweet barrel rolls. You're the best, Captain.",
+               type : "bad",
+               effect : "Lost 200 cash"
+        },
+        2 : {  func : walletChange.bind(this, "half"),
+               outcome : "Ugh, Captain, that radiation was a type we've never experienced before. The effects were more severe than we anticipated. Dobson is still sick but we've mostly recovered, med supplies weren't cheap though.",
+               type : "bad",
+               effect : "Lost half our cash"
         }
-    ],
+    },
     hasHappened : false
 };
 
