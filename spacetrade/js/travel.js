@@ -15,8 +15,8 @@ function randomIncident(odds) {
     })
 
     // pick a random incident from newIncidents
-    incident = newIncidents[7];// DEBUG: uncomment to always return first random incident from list
-    //incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
+    //incident = newIncidents[0];// DEBUG: uncomment to always return first random incident from list
+    incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
     // pick random alternative text
     alternative = incident.alternatives[Math.floor(Math.random()*incident.alternatives.length)];
     choices = incident.choices;
@@ -112,6 +112,12 @@ function fuelAlert(text) {
 // this function increases the games depth and difficulty
 // depending on the amount of turns/travels the user has taken
 function advanceProgress() {
+// This is pretty clever! Generates a random number between 1-100 (rando)
+// and based upon current turn, odds are declared
+// by converting the desired odds of occurring (e.g. 30%) into an
+// integer from 1-100 (e.g. 30) and checking if rando falls below
+// odds. So, rando(1-100) has 30% of being less than 30.
+// If true, event occurs.
 
     thisTurn = config.turn;// number of turns the user has taken
     rando = getRandomNumber(1,100);// pick a random number from 1-100
@@ -125,6 +131,7 @@ function advanceProgress() {
         }
     }
 
+    // what turn is it? (block events at multiples of 10)
     if (thisTurn <= 9) {
         odds = 30;
     } else if (thisTurn == 10) {
@@ -160,7 +167,7 @@ function advanceProgress() {
         odds = 70;
     }
 
-    didItHappen(100,odds);// did an event happen?
+    didItHappen(rando, odds);// did an event happen?
 }
 // END GAME PROGRESSION LOGIC
 ///////////////////////////////

@@ -1,11 +1,17 @@
 var config = {
-    turn : 0,
-    startingWallet : 3000,
-    startingFuel : 10,
-    startingPort : mapA[0],
-    startingLoot : 0,
-    startingCap : 20,
-    cargoUpgrades : 3
+    turn : 0,// starts game progression at turn 0
+    startingWallet : 3000,// starting cash
+    startingFuel : 10,//starting fuel amount
+    startingPort : mapA[0],// starting location
+    startingLoot : 0,// set loot to 0
+    startingCap : 20,// starting cargo capactiy
+    cargoUpgrades : 3,// available upgrades (total)
+    currentEvent : function() {// returns current incident, if one is firing
+            incident = incidents.filter(function( obj ) {
+              return obj.isHappening == true;
+            });
+            return incident[0];
+    }
 }
 
 // return random number from min (inclusive) to max (inclusive, because we round)
