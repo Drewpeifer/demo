@@ -571,54 +571,27 @@ incidents[8] = {
         "Nope! I've seen enough movies to know that wormholes never take you somewhere good. Steady as she goes, let's float right on by."
     ],
     outcomes : [
-        "Um, we seem to be exactly where we were when we entered the wormhole, Captain, just facing the opposite direction. Also, our clothes are on backwards. Interesting.",
-        "Captain, you're not going to believe this. We launched the probe like you ordered, and ten minutes later it came flying out of the wormhole WAY faster than we programmed it to, and it crashed right through the docking bay doors. We fixed everything, but Dobson is dead, and the probe's completely destroyed so we don't even know where it went. Also, we lost some cargo. I blame Dobson.",
-        "Captain! We tried to coast by but something came out of the wormhole right in our path! It ripped through the hull and grabbed Dobson! The security cameras only caught a few frames, but it looked like a giant tentacle! That's CRAZY! And sad, about Dobson."
+        
+        
+        
     ],
-    rewards : [
-        function nothingHappened() {// nothing happened
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome neutral'>Effect: Backwards clothes.</b>");
+    rewards : {
+        0 : {  func : nothingHappened,
+               outcome : "Um, we seem to be exactly where we were when we entered the wormhole, Captain, just facing the opposite direction. Also, our clothes are on backwards. Interesting.",
+               type : "neutral",
+               effect : "Backwards clothes"
         },
-        function lostRandomLoot() {// lost some random goods
-            ownedLoot = [];
-            // build list of loot that you own
-            menuA.forEach(function(stock){
-                if(stock.loot != 0) {
-                    ownedLoot.push(stock);
-                }
-            });
-            console.log(ownedLoot.length);
-            if (ownedLoot.length < 1) {
-                // print outcome
-                index = $(this).attr('data-index');
-                showOutcome(index);
-                showEffect("<b class='incident-outcome neutral'>Effect: Dobson's gone (no big loss), and we didn't have any cargo in storage, so we just patched the hull and ejected ol' Dobbie's personal effects into space. That's procedure, right?</b>");
-            } else {
-                // pick a random item from the list
-                randomOwnedLoot = ownedLoot[Math.floor(Math.random()*ownedLoot.length)];
-                // find accompanying DOM row
-                targetLoot = $('.market td:contains("' + randomOwnedLoot.title + '")').siblings('.loot');
-                targetLootVal = targetLoot.text();
-                // recalc value
-                newLootVal = parseInt(randomOwnedLoot.loot) / 2;
-                // set new loot value on obj
-                randomOwnedLoot.loot = newLootVal;
-                //set new loot value in DOM
-                targetLoot.text(newLootVal);
-                // print outcome
-                index = $(this).attr('data-index');
-                showOutcome(index);
-                showEffect("<b class='incident-outcome bad'>Effect: Dobson's gone (no big loss), and we lost " + parseInt(targetLootVal - newLootVal)  + " of our " + randomOwnedLoot.title + ". It was probably Dobson's fault anyway, so I personally shot all his personal crap out the airlock. He didn't have anything good anyway.</b>");
-            }
+        1 : {  func : lostRandomGoods,
+               outcome : "Captain, you're not going to believe this. We launched the probe like you ordered, and ten minutes later it came flying out of the wormhole WAY faster than we programmed it to, and it crashed right through the docking bay doors. We fixed everything, but Dobson is dead, and the probe's completely destroyed so we don't even know where it went. Also, we lost some cargo. I blame Dobson.",
+               type : "good",
+               effect : "Got random amount of cash"
         },
-        function nothingHappened() {// nothing happened
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome neutral'>Effect: Dobson died. Meh.</b>");
+        2 : {  func : nothingHappened,
+               outcome : "Captain! We tried to coast by but something came out of the wormhole right in our path! It ripped through the hull and grabbed Dobson! The security cameras only caught a few frames, but it looked like a giant tentacle! That's CRAZY! And sad, about Dobson.",
+               type : "neutral",
+               effect : "Dobson died. Meh."
         }
-    ],
+    },
     isHappening : false,
     hasHappened : false
 };
@@ -641,28 +614,23 @@ incidents[9] = {
         "Whoever that is in front of us, they may not be lying about whoever's behind us. Full speed ahead, evasive maneuvers if anyone is sighted along our route. Go!",
         "I don't know who that is, or who might be following us, but I'm not playing games here. Raise shields, power up weapons, and hold position. We'll see soon enough what's going on here."
     ],
-    outcomes : [
-        "Captain, that was the craziest idea ever. I'm not sure who that ship was, or if anyone was really following us, but we've lost them both. Also, everyone on board threw up except for you.",
-        "Whoa, Captain, that ship that looked like us flew away as we powered up our engines. We climbed up to warp speed and suddenly hit an energy rift of some kind, causing mild damage to our ship. We're close to our last coordinates, and we're only able to activate the Morse transmitter, I suggest we travel there and warn ourselves immediately. Hopefully we do better next time.",
-        "Captain, we were being followed by freaky space pirates! They attacked as soon as they caught up with us, but with the combined firepower of our ship and the other mirror universe bizarro version of our ship, we totally kicked the crap out of them! That was so crazy! The other us flew off after the battle, and even though it'd be awesome, I don't think we should follow them."
-    ],
-    rewards : [
-        function nothingHappened() {// nothing happened
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome bad'>Effect: Everyone threw up. Except for you.</b>");
+    rewards : {
+        0 : {  func : nothingHappened,
+               outcome : "Captain, that was the craziest idea ever. I'm not sure who that ship was, or if anyone was really following us, but we've lost them both. Also, everyone on board threw up except for you.",
+               type : "bad",
+               effect : "Everyone threw up (except for you)"
         },
-        function nothingHappened() {// nothing happened
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome neutral'>Effect: Deja vu.</b>");
+        1 : {  func : lostRandomGoods,
+               outcome : "Whoa, Captain, that ship that looked like us flew away as we powered up our engines. We climbed up to warp speed and suddenly hit an energy rift of some kind, causing mild damage to our ship. We're close to our last coordinates, and we're only able to activate the Morse transmitter, I suggest we travel there and warn ourselves immediately. Hopefully we do better next time.",
+               type : "neutral",
+               effect : "Deja vu"
         },
-        function nothingHappened() {// nothing happened
-            index = $(this).attr('data-index');
-            showOutcome(index);
-            showEffect("<b class='incident-outcome good'>Effect: Confidence boost.</b>");
+        2 : {  func : nothingHappened,
+               outcome : "Captain, we were being followed by freaky space pirates! They attacked as soon as they caught up with us, but with the combined firepower of our ship and the other mirror universe bizarro version of our ship, we totally kicked the crap out of them! That was so crazy! The other us flew off after the battle, and even though it'd be awesome, I don't think we should follow them.",
+               type : "good",
+               effect : "Confidence boost. And Dobson's here! I thought he was dead! Weird, right?"
         }
-    ],
+    },
     isHappening : false,
     hasHappened : false
 };
