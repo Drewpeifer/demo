@@ -56,10 +56,10 @@ function fuelChange(amount) {// gain/lose X fuel
 function walletChange(amount) {
     currentWallet = parseInt($('.wallet p').text());// get current money
     // incident IS ACTUALLY THE WHOLE INCIDENT! now we need index, SHIT
-
-    console.dir(incident);
     console.log("this");
     console.log($(this));
+    console.log("incident = ");
+    console.dir(incident);
     button = $('.button.clicked');
     console.dir(button);
 
@@ -75,7 +75,7 @@ function walletChange(amount) {
     } else if (amount == "rando") {
         rando = getRandomNumber(1000, 10000);
         newWallet = currentWallet + rando;
-        reward.effect = "Cash increased by " + rando + " to " + newWallet;
+        reward.effect = "Cash increased by " + rando + " to $" + newWallet;
         console.log("effect = " + reward.effect);
     } else if (amount == "double") {// double money
         if (currentWallet == 0) {// no moneys to begin with
@@ -85,7 +85,7 @@ function walletChange(amount) {
         } else {
             newWallet = currentWallet * 2;
             reward.type = "good";
-            reward.effect = "Cash doubled to " + newWallet + "!";
+            reward.effect = "Cash doubled to $" + newWallet + "!";
         }
     } else if (amount == "half") {// lose half money
         if (currentWallet == 0 || currentWallet == 1) {// no moneys to begin with
@@ -95,7 +95,7 @@ function walletChange(amount) {
         } else {
             newWallet = currentWallet / 2;
             reward.type = "bad";
-            reward.effect = "Cash halved to " + newWallet;
+            reward.effect = "Cash halved to $" + newWallet;
         }
     } else if (amount < 0 && amount > -1) {
         // neg percentage passed (.X), translates to "minus .X * currentWallet"
@@ -110,14 +110,14 @@ function walletChange(amount) {
             newAmount = Math.floor(amount * currentWallet);
             newWallet = currentWallet + newAmount;// add, b/c its neg
             reward.type = "bad";
-            reward.effect = "Cash reduced by " + newAmount + " to " + newWallet + "!";
+            reward.effect = "Cash reduced by " + newAmount + " to $" + newWallet + "!";
         }
     } else if (amount < 1 && amount > 0) {
         // pos percentage passed (.X), translates to "add .X * currentWallet"
         newAmount = Math.floor(amount * currentWallet);
         newWallet = currentWallet + newAmount;
         reward.type = "good";
-        reward.effect = "Cash increased by " + newAmount + " to " + newWallet + "!";
+        reward.effect = "Cash increased by " + newAmount + " to $" + newWallet + "!";
     } else if (amount < 0) {// money integer loss
         reward.type = "bad";
         if (currentWallet <= Math.abs(amount)) {
@@ -125,7 +125,7 @@ function walletChange(amount) {
             reward.effect = "Cash reduced to 0";
         } else {
             newWallet = currentWallet + amount;// add, b/c loss is a neg amount
-            reward.effect = "Cash reduced by " + amount + " to " + newWallet + "!";
+            reward.effect = "Cash reduced by " + amount + " to $" + newWallet + "!";
         }
     } else {// cash gain
         newWallet = currentWallet + amount;// add, b/c loss is a neg amount
@@ -268,6 +268,7 @@ incidents[0] = {
                effect : "Lost some stuff"
         }
     },
+    isHappening : false,
     hasHappened : false
 };
 
@@ -305,6 +306,7 @@ incidents[1] = {
                effect : "Lost 10% cash"
         }
     },
+    isHappening : false,
     hasHappened : false
 };
 
@@ -343,6 +345,7 @@ incidents[2] = {
                effect : "None"
         }
     },
+    isHappening : false,
     hasHappened : false
 };
 
@@ -383,6 +386,7 @@ incidents[3] = {
                effect : "Gained random amount of cash"
         }
     },
+    isHappening : false,
     hasHappened : false
 };
 
@@ -420,6 +424,7 @@ incidents[4] = {
                effect : "None"
         }
     },
+    isHappening : false,
     hasHappened : false
 };
 
@@ -459,6 +464,7 @@ incidents[5] = {
                effect : "None"
         }
     },
+    isHappening : false,
     hasHappened : false
 };
 
@@ -500,6 +506,7 @@ incidents[6] = {
                effect : "Lost half our cash"
         }
     },
+    isHappening : false,
     hasHappened : false
 };
 
@@ -523,55 +530,24 @@ incidents[7] = {
         "Keep the shields down and shut down all non-necessary systems. Let's slip through at full impulse power, quiet and steady.",
         "Let's try acting like a rock. Give us a quick warp boost and then shut down all systems except life support. We'll drift through like an asteroid slowly, but safely."
     ],
-    outcomes : [
-        "Captain, we did get through quickly, but we had to use twice as much fuel as projected. But the engine intakes couldn't handle the rapid influx of dust and gasses, they got pretty clogged up, and the shields overloaded a little in the aft sections but we recovered quickly. Repairs were minor, but we had to buy parts from a nearby outpost moon.",
-        "Whew, that was tense. Sensors malfunctioned in just about every possible way but we maintained course and got through unscathed. We also found some wreckage within the nebula, and retrieved it with the tractor beam. Looks valuable to me, but what do I know.",
-        "We coasted through without incident, Captain. Our ship needs all the dust and crap washed off of it, but we can handle that in the next port. We even saved a unit of fuel by travelling completely under momentum instead of propulsion! But, we were a little late to port, and we needed to get our ship registration renewed a few days ago. There is, shall we say, a late fee."
-    ],
-    rewards : [
-        function lostOneFuel() {
-            index = $(this).attr('data-index');
-            fuel = parseInt($('.fuel p').text());
-            if (fuel == 0) {
-                newFuel = 0;
-            } else {
-                newFuel = fuel - 1;
-            }
-
-            $('.fuel p').text(newFuel);
-            currentFuel = parseInt($('.fuel p').text());
-            // print outcome
-            showOutcome(index);
-            showEffect("<b class='incident-outcome bad'>Effect: Lost 1 unit of fuel.</b>");
+    rewards : {
+        0 : {  func : fuelChange.bind(null, -1),
+               outcome : "Captain, we did get through quickly, but we had to use twice as much fuel as projected. But the engine intakes couldn't handle the rapid influx of dust and gasses, they got pretty clogged up, and the shields overloaded a little in the aft sections but we recovered quickly. Repairs were minor, but we had to buy parts from a nearby outpost moon.",
+               type : "bad",
+               effect : "Lost 1 fuel"
         },
-        function gotRandomCash() {// add random amount of cash from 
-            index = $(this).attr('data-index'),
-            rando = getRandomNumber(200, 500),// get random amount of cash
-            wallet = parseInt($('.wallet p').text()),// get current money
-            newWallet = wallet + rando;// add random amount to wallet
-
-            $('.wallet p').text(newWallet);// set new wallet
-            showOutcome(index);
-            showEffect("<b class='incident-outcome good'>Effect: Gained " + rando + " cash.</b>");
+        1 : {  func : walletChange.bind(this, "rando"),
+               outcome : "Whew, that was tense. Sensors malfunctioned in just about every possible way but we maintained course and got through unscathed. We also found some wreckage within the nebula, and retrieved it with the tractor beam. Looks valuable to me, but what do I know.",
+               type : "good",
+               effect : "Got random amount of cash"
         },
-        function gotFuelLostCash() {
-            index = $(this).attr('data-index'),
-            wallet = parseInt($('.wallet p').text()),// get current money
-            fuel = parseInt($('.fuel p').text()),// get current fuel
-            newFuel = fuel + 1;
-            
-            if (wallet <= 1000) {
-                newWallet = 0;
-            } else {
-                newWallet = wallet - 1000;
-            } 
-
-            $('.fuel p').text(newWallet);// set new wallet
-            $('.fuel p').text(newFuel);// set new fuel
-            showOutcome(index);
-            showEffect("<b class='incident-outcome neutral'>Effect: Gained 1 fuel, lost 1000 cash.</b>");
+        2 : {  func : walletChange.bind(this, -1000),
+               outcome : "We coasted through without incident, Captain. Our ship needs all the dust and crap washed off of it, but we can handle that in the next port. We lost some time by travelling under momentum instead of propulsion though, so we were a little late to port, and we needed to get our ship registration renewed a few days ago. There was, shall we say, a late fee.",
+               type : "bad",
+               effect : "Lost 1000 cash"
         }
-    ],
+    },
+    isHappening : false,
     hasHappened : false
 };
 
@@ -643,6 +619,7 @@ incidents[8] = {
             showEffect("<b class='incident-outcome neutral'>Effect: Dobson died. Meh.</b>");
         }
     ],
+    isHappening : false,
     hasHappened : false
 };
 
@@ -686,5 +663,6 @@ incidents[9] = {
             showEffect("<b class='incident-outcome good'>Effect: Confidence boost.</b>");
         }
     ],
+    isHappening : false,
     hasHappened : false
 };

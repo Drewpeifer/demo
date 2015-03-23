@@ -15,7 +15,7 @@ function randomIncident(odds) {
     })
 
     // pick a random incident from newIncidents
-    incident = newIncidents[6];// DEBUG: uncomment to always return first random incident from list
+    incident = newIncidents[7];// DEBUG: uncomment to always return first random incident from list
     //incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
     // pick random alternative text
     alternative = incident.alternatives[Math.floor(Math.random()*incident.alternatives.length)];
@@ -23,8 +23,8 @@ function randomIncident(odds) {
     rewards = incident.rewards;
     // concatenate description text
     incidentDescrip = incident.description + " " + alternative;
-    // flag this incident as having happened
-    incident.hasHappened = true;
+    // flag this incident as happening right now
+    incident.isHappening = true;
 
     showAlert(incident.title, incidentDescrip);
     // build choice buttons
@@ -62,12 +62,12 @@ function randomIncident(odds) {
     });
 }
 // called after choice button is clicked, before alert is closed by user
-function showOutcome(index, incident) {
+function showOutcome(index, reward) {
     console.log("SO index = " + index);
-    console.dir(incident);
-    outcome = incident.outcome;
-    type = incident.type;
-    effect = incident.effect;
+    console.dir(reward);
+    outcome = reward.outcome;
+    type = reward.type;
+    effect = reward.effect;
     console.log("showOutcome start, effect " + effect);
     clickedButton = $('.alert-action.button[data-index=' + index + ']');
     $('.alert-content').append('<p class="alert-outcome">' + outcome + '</p>');
@@ -88,7 +88,16 @@ function showOutcome(index, incident) {
     } else {
         $('.alert-content').append("<div id='closeAlert' onclick='closeAlert();' class='button alert-action'><p>No type!</p></div>");
     }
-    evalLootStockCargo();// check new location's stock levels
+
+    // find currently executing incident
+    incident = incidents.filter(function( obj ) {
+      return obj.isHappening == true;
+    });
+    // flag incident as in the past
+    incident[0].isHappening = false;
+    incident[0].hasHappened = true;
+    // check new location's stock levels
+    evalLootStockCargo();
     console.log('showOutcome end');
 }
 function fuelAlert(text) {
