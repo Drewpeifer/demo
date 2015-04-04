@@ -125,23 +125,32 @@ function advanceProgress() {
 
     function didItHappen(rando, odds) {
         console.log('running didItHappen with odds @ ' + odds + '% and rando = ' + rando);
-        if (rando <= odds) {
+        if (rando <= odds || odds == 0) {
             return false;
         } else {
             randomIncident();
         }
+    }
+    function showTierEvent(thisTurn) {
+        // special positive events that occur at intervals
+        console.log('turn ' + thisTurn + ' reached');
+        index = (thisTurn / 10) - 1;
+        showAlert(tierEvents[index].title, tierEvents[index].description);
+        $('.alert-content').append("<div id='sweet' class='button alert-action' onclick='closeAlert();'><p>Sweet!</p></div>");
+        $('#sweet').on('click', closeAlert);
+        tierEvents[index].func();
     }
 
     // what turn is it? (block events at multiples of 10)
     if (thisTurn <= 9) {
         odds = 30;
     } else if (thisTurn == 10) {
-        console.log('turn 10 reached');
+        showTierEvent(thisTurn);
         odds = 0;// no event
     } else if (thisTurn <= 19) {
         odds = 40;
     } else if (thisTurn == 20) {
-        console.log('turn 20 reached');
+        showTierEvent(thisTurn);
         odds = 0;// no event
     } else if (thisTurn <= 29) {
         odds = 50;
@@ -190,16 +199,12 @@ function travel() {
         showAlert('Out of fuel!', 'You\'re stuck, unless your current port has fuel to sell. And you have some money, right?');
         $('.map').slideUp();
         $('.alert-content').append("<div id='uh-oh' class='button alert-action'><p>Uh-oh</p></div>");
-        $('#uh-oh').on('click', function() {
-            $('.alert').fadeOut(500);
-        });
+        $('#uh-oh').on('click', closeAlert);
     } else if (portTitle.text() === nextPort) {
         // no travel
         showAlert('Ah, you\'re already at that location', 'Captain, have you been drinking?');
         $('.alert-content').append("<div id='sorry' class='button alert-action' onclick='closeAlert();'><p>Sorry</p></div>");
-        $('#sorry').on('click', function() {
-            $('.alert').fadeOut(500);
-        });
+        $('#sorry').on('click', closeAlert);
     } else {
         // travel successful
         newFuel = fuel -= 1;// subtract fuel

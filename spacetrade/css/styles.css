@@ -379,6 +379,7 @@ p.fuel-alert {
 /* stars */
 .controls {
     display:block;
+    float:right;
 }
 #starfield {
     position:absolute;

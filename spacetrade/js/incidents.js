@@ -93,7 +93,7 @@ function walletChange(amount) {
             reward.type = "bad";
             reward.effect = "Lost all cash";
         } else {
-            newWallet = currentWallet / 2;
+            newWallet = Math.round(currentWallet / 2);
             reward.type = "bad";
             reward.effect = "Cash halved to $" + newWallet;
         }
@@ -716,3 +716,40 @@ incidents[10] = {
     isHappening : false,
     hasHappened : false
 };
+
+// Tier events //
+// These events occur at specific intervals,
+// 10/20/30 etc. and always have positive results
+//////////////////////////////////////////////////
+tierEvents = [];
+
+tierEvents[0] = {
+    title : "Ten travels reached!",
+    description : "Congratulations, you've taken ten turns and you're still alive. Here's 5000 cash!",
+    func : function() {
+        wallet = $('.wallet p');
+        cash = parseInt(wallet.text());
+        newCash = cash + 5000;
+        wallet.text(newCash);
+    }
+}
+tierEvents[1] = {
+    title : "Twenty travels reached!",
+    description : "Congratulations, you've taken twenty turns and you're still alive. Here's 5000 cash!",
+    func : function() {
+        wallet = $('.wallet p');
+        cash = parseInt(wallet.text());
+        newCash = cash + 5000;
+        wallet.text(newCash);
+    }
+}
+tierEvents[2] = {
+    title : "Thirty travels reached!",
+    description : "Congratulations, you've taken thirty turns and you're still alive. Here's 5000 cash!",
+    func : function() {
+        wallet = $('.wallet p');
+        cash = parseInt(wallet.text());
+        newCash = cash + 5000;
+        wallet.text(newCash);
+    }
+}
