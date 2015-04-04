@@ -634,3 +634,85 @@ incidents[9] = {
     isHappening : false,
     hasHappened : false
 };
+
+// tardis encounter
+incidents[9] = {
+    title : "Um. Captain? There's a blue box outside.",
+    difficulty : 1,
+    description : "We've heard about this guy before, he's some kind of travelling " +
+                "physician or something. I know, right? House calls in space. He seems " +
+                "harmless, but we don't have much information on him other than an array " +
+                "of mugshots (and they're all different). Records also indicate he has a " +
+                "\"thing\" for what he calls Jelly Babies. We're pretty sure he means " +
+                "Gummy Bears, Captain, and I think we have some in storage...?",
+    alternatives : [
+        "Maybe he'd be willing to trade candy for something valuable? It's not our fault if he's dumb.",
+        "We've also documented a series of companions he travels with, not much in common except they're all young and, uh, female. Interesting.",
+        "Maybe he can help Dobson with his night terrors? LOL Cap'n, let's beam Dobson over there without telling either of them."
+    ],
+    choices : [
+        "I ate all the Gummy Bears. Those were the Captain's Gummy Bears. Send this joker some Gummy Worms instead and see what he does.",
+        "I don't trust people in wooden space ships. Hail the box and see what it's doing out here. Go to yellow alert, shields up.",
+        "Beam Dobson over, he needs some professional help. Tell him to ask about flu shots too. Space Flu, specifically."
+    ],
+    rewards : {
+        0 : {  func : fuelChange.bind(null, 4),
+               outcome : "Ha! We beamed over some Gummy Worms, and apparently he's never had them before. Seems like we made a friend. Not sure why he sent us this crate of bow ties, suspenders, scarves, and fez's, but they're cool. I guess. We'll sell the freaky clothing to the next hipster merchant we see.",
+               type : "good",
+               effect : "Gained 4 fuel from hipster merchant"
+        },
+        1 : {  func : nothingHappened,
+               outcome : "He said he's glad to meet us, Captain. Then he said it again. And again. And again. It's like he's stuck in some sort of loop. We should just move on.",
+               type : "neutral",
+               effect : "Nothing happened. Nothing happened. Nothing happened. Nothing happened. Nothing happened."
+        },
+        2 : {  func : cargoCapDoubled,
+               outcome : "Dobson is back, he says the pilot of the other ship didnt know anything about Space Flu or night terrors, but he did modify our cargo hold. Somehow it's bigger on the inside now! All he asked for in return was Dobson's mustache. Weird, right?",
+               type : "good",
+               effect : "Cargo cap doubled!"
+        }
+    },
+    isHappening : false,
+    hasHappened : false
+};
+
+// space police encounter
+incidents[10] = {
+    title : "Aww man.. It's the Space Fuzz.",
+    difficulty : 1,
+    description : "Captain, we're being pulled over by the Galactic Police. The strange " +
+                  "thing is there's no speed limit in this stretch of space, no real " +
+                  "hazards to speak of, and all our registrations are in order. We're not " +
+                  "carrying any illegal goods or anything, so I guess it wouldn't really be " +
+                  "a problem if we stop, right? On the other hand, why are they " +
+                  "signalling us at all?",
+    alternatives : [
+        "Like I said Captain, we haven't done anything wrong, what's the harm in stopping?",
+        "Maybe we should just hail them before we stop and see what the deal is.",
+        "I've seen space horror movies that start like this, let's run for it!"
+    ],
+    choices : [
+        "Let's try not to act suspicious. Cut the engines and open the docking bay doors.",
+        "Ask them what they want. Time is money, we don't stop for no reason.",
+        "Ah, the Captain has some cargo you don't know about in the glovebox. Do whatever it takes, just lose these space pigs!"
+    ],
+    rewards : {
+        0 : {  func : walletChange.bind(null, "half"),
+               outcome : "Well, Sheriff \"Gimmedat\" and Deputy \"Nofunnystuff\" were definitely not real Space Cops. They said we didn't have anything cool in our cargo hold so they just took half our money. Good thing they didn't know about the glovebox inside the glovebox, eh Cap'n? Ha.",
+               type : "bad",
+               effect : "Lost half your cash."
+        },
+        1 : {  func : fuelChange.bind(null, 2),
+               outcome : "They were just trying to let us know we had some space leeches clinging to the aft hull. What a nice bunch of fellas, right Captain? That's why we've been going so slow lately, we recalculated our current course and managed to save 2 units of fuel!",
+               type : "good",
+               effect : "Gained 2 units of fuel"
+        },
+        2 : {  func : fuelChange.bind(null, -1),
+               outcome : "HoooEEE that was a good chase! I think we lost them when we slingshotted around that moon, did you see that Captain? Our pilot is awesome. No clue where they ended up but we're still on course and we're moving FAST. We used a little extra fuel, though. Just a little.",
+               type : "bad",
+               effect : "Lost 1 unit of fuel"
+        }
+    },
+    isHappening : false,
+    hasHappened : false
+};
