@@ -34,7 +34,7 @@ button, .buy, .sell {
 .header,
 .stats {
     display:block;
-    padding:5px;
+    padding:5px 0;
 }
 .market {
     width:100%;
