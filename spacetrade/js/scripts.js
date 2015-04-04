@@ -24,16 +24,10 @@ function showAlert(title, description) {
     alertContent = $('.alert .alert-content');
 
     alertContent.empty();
-    alertContent.append('<span><p class="alert-title"></p>' +
-                 '<p class="alert-description">' +
+    alertContent.append('<span><p class="alert-title">' + title + '</p>' +
+                 '<p class="alert-description">' + description +
                  '</p>' +
                  '</span>');
-
-    alertTitle = $('.alert span .alert-title'),
-    alertDescrip = $('.alert span .alert-description');
-
-    alertTitle.text(title);
-    alertDescrip.text(description);
 
     $('.header, .market, .stats').css({
         "opacity":.3

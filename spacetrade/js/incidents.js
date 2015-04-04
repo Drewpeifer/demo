@@ -735,7 +735,17 @@ tierEvents[0] = {
 }
 tierEvents[1] = {
     title : "Twenty travels reached!",
-    description : "Congratulations, you've taken twenty turns and you're still alive. Here's 5000 cash!",
+    description : "Congratulations, you've taken twenty turns and you're still alive. Here's 5 fuel!",
+    func : function() {
+        fuelTank = $('.fuel p');
+        fuel = parseInt(fuelTank.text());
+        newFuel = fuel + 5;
+        fuelTank.text(newFuel);
+    }
+}
+tierEvents[2] = {
+    title : "Thirty travels reached!",
+    description : "Congratulations, you've taken thirty turns and you're still alive. Here's 5000 cash again!",
     func : function() {
         wallet = $('.wallet p');
         cash = parseInt(wallet.text());
@@ -743,13 +753,38 @@ tierEvents[1] = {
         wallet.text(newCash);
     }
 }
-tierEvents[2] = {
-    title : "Thirty travels reached!",
-    description : "Congratulations, you've taken thirty turns and you're still alive. Here's 5000 cash!",
+tierEvents[3] = {
+    title : "Forty travels reached!",
+    description : "Congratulations, you've taken forty turns and you're still alive. Here's 5 more fuel!",
+    func : function() {
+        fuelTank = $('.fuel p');
+        fuel = parseInt(fuelTank.text());
+        newFuel = fuel + 5;
+        fuelTank.text(newFuel);
+    }
+}
+tierEvents[4] = {
+    title : "Fifty travels reached!",
+    description : "Congratulations, you've taken fifty turns and you're still alive. Here's another 5000 cash!",
     func : function() {
         wallet = $('.wallet p');
         cash = parseInt(wallet.text());
         newCash = cash + 5000;
+        wallet.text(newCash);
+    }
+}
+tierEvents[5] = {
+    title : "Sixty travels reached!",
+    description : "Holy crap! You've taken sixty turns and you're still alive. Here's 10 fuel, 10000 cash, a big high five because there's no more freebies from here on out! Good luck!",
+    func : function() {
+        fuelTank = $('.fuel p');
+        fuel = parseInt(fuelTank.text());
+        newFuel = fuel + 10;
+        fuelTank.text(newFuel);
+
+        wallet = $('.wallet p');
+        cash = parseInt(wallet.text());
+        newCash = cash + 10000;
         wallet.text(newCash);
     }
 }

@@ -141,7 +141,9 @@ function advanceProgress() {
         tierEvents[index].func();
     }
 
-    // what turn is it? (block events at multiples of 10)
+    // what turn is it?
+    // block randomIncidents at tiers of ten
+    // in favor of tierEvents
     if (thisTurn <= 9) {
         odds = 30;
     } else if (thisTurn == 10) {
@@ -155,29 +157,31 @@ function advanceProgress() {
     } else if (thisTurn <= 29) {
         odds = 50;
     } else if (thisTurn == 30) {
-        console.log('turn 30 reached');
+        showTierEvent(thisTurn);
         odds = 0;// no event
     } else if (thisTurn <= 39) {
         odds = 60;
     } else if (thisTurn == 40) {
-        console.log('turn 40 reached');
+        showTierEvent(thisTurn);
         odds = 0;// no event
     } else if (thisTurn <= 49) {
         odds = 70;
     } else if (thisTurn == 50) {
-        console.log('turn 50 reached');
+        showTierEvent(thisTurn);
         odds = 0;// no event
     } else if (thisTurn <= 59) {
         odds = 70;
     } else if (thisTurn == 60) {
-        console.log('turn 60 reached');
+        showTierEvent(thisTurn);
         odds = 0;// no event
     } else {
-        console.log('over 60 turns reached!');
         odds = 70;
+        // after 60 turns, odds stay at 70% chance
+        // until you're out of events
     }
 
-    didItHappen(rando, odds);// did an event happen?
+    // did an event happen? if rando <= odds, it did
+    didItHappen(rando, odds);
 }
 // END GAME PROGRESSION LOGIC
 ///////////////////////////////
