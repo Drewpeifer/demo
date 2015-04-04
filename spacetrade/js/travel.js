@@ -18,6 +18,7 @@ function randomIncident(odds) {
     //incident = newIncidents[0];// DEBUG: uncomment to always return first random incident from list
     incident = newIncidents[Math.floor(Math.random()*newIncidents.length)];
     // pick random alternative text
+    console.log("incident = " + incident.title);
     alternative = incident.alternatives[Math.floor(Math.random()*incident.alternatives.length)];
     choices = incident.choices;
     rewards = incident.rewards;
@@ -177,7 +178,6 @@ function travel() {
     fuelTank = $('.fuel p'),// fuel label container
     fuel = parseInt(fuelTank.text()),// current fuel value
     portTitle = $('.location p'),// port label container
-    portDescription = $('.header .dialog p'),// port description container
     nextPort = $(this).attr('id'),// clicked location
     //TODO: collate maps[] as mapX on turn change
     port = mapA.filter(function (location) {
@@ -214,7 +214,6 @@ function travel() {
         } else {}
 
         portTitle.text(port[0].title);// set new currentPort
-        portDescription.text(port[0].description);// set new descrip
         stockMarket();// build/rebuild
         evalLootStockCargo();// check new location's stock levels
 

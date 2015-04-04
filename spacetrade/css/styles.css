@@ -253,6 +253,12 @@ td.stock {
 .map ul li b {
     text-decoration:underline;
 }
+.map .description {
+    display:block;
+    font-size:.8em;
+    padding:5px 2px;
+    border-bottom:#777 1px solid;
+}
 /* map close button */
 #close-map {
     width:30%;

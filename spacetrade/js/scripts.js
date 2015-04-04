@@ -56,6 +56,7 @@ function showMap() {
 
 // populate map, will be dynamically chosen later
 function buildMap() {
+    currentPort = $('.location p').text();
     // build map
     $('.map').append('<ul><li><b>Map locations:</b></li></ul>');
     mapA.forEach( function (location) {
@@ -63,7 +64,8 @@ function buildMap() {
                 location.title +
                 '"><span class="icon"></span>' +
                 location.title.toUpperCase() +
-                '</a></li>');
+                '</a><span class="description">' + location.description +
+                '</span></li>');
     });
     $('.map').append('<div id="close-map" class="button alert-action" onclick="closeAlert();">' +
             '<p>Close Map</p></div>');
