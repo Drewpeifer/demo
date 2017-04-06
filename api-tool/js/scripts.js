@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  
+  $('#term').datepicker({ dateFormat: 'yy-mm-dd', maxDate: "+0d" });
 
    });
 
@@ -8,24 +8,23 @@ $(document).ready(function(){
 
         var date = $('#term').val(),
             key = 'up0wVqmYq3dlP8SAGdRVWljjiELKm44P38DRGuNC',
-            todaysUrl = 'https://api.nasa.gov/planetary/apod?api_key=up0wVqmYq3dlP8SAGdRVWljjiELKm44P38DRGuNC';
+            todaysUrl = 'https://api.nasa.gov/planetary/apod?api_key=' + key;
 
          if(date == ''){
 
-            $('#message').html("<h2 class='loading'>No date entered!</h2>");
+            $('#title').html("<h2>No date entered!</h2>");
 
          } else {
 
-            $('#message').html("<h2 class='loading'>Loading...</h2>");
+            $('#title').html("<h2>Loading...</h2>");
 
-            $.getJSON("https://api.nasa.gov/planetary/apod?date=" + term + "&api_key=up0wVqmYq3dlP8SAGdRVWljjiELKm44P38DRGuNC", function(json) {
-               if (json != "Nothing found."){
-                     $('#message').html('<h2 class="loading">Photo found!</h2><img id="thePoster" src=' + json[0].url + ' />');
+            $.getJSON("https://api.nasa.gov/planetary/apod?date=" + date + "&api_key=" + key + "", function(json) {
+               if (json != ""){
+                     $('#title').html('<h2>Astronomy Photo of the Day for:</h2><h3>' + '');
+                     $('#photo').html('<img src=' + json.hdurl + ' />');
+                     $('#description').html('<p>' + json.explanation + '</p>')
                   } else {
-                     $.getJSON(todaysUrl, function(json) {
-                        console.log(json);
-                        $('#message').html('<h2 class="loading">We\'re afraid nothing was found for that search. Here\'s the picture for today instead!</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
-                     });
+                    $('#title').html('<h2>Nothing found</h2>');
                   }
              });
 
