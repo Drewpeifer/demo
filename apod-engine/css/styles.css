@@ -12,9 +12,9 @@ body {
 }
 #result {
 	width:90%;
-	margin:5%;	
+	margin:10px 5%;	
 }
-#title {
+#banner, #title {
 	text-align:center;
 }
 #photo {
