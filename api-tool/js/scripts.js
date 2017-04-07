@@ -1,12 +1,14 @@
 $(document).ready(function(){
 
-  $('#term').datepicker({ dateFormat: 'yy-mm-dd', maxDate: "+0d" });
+  $('#term').datepicker({ dateFormat: 'mm-dd-yy', maxDate: "+0d" });
 
    });
 
    var getQuery = function(){
 
         var date = $('#term').val(),
+            dateArray = date.split('-');
+            uglyDate = dateArray[2] + '-' + dateArray[1] + '-' + dateArray[0];
             key = 'up0wVqmYq3dlP8SAGdRVWljjiELKm44P38DRGuNC',
             todaysUrl = 'https://api.nasa.gov/planetary/apod?api_key=' + key;
 
