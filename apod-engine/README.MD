@@ -1,1 +1,1 @@
-This is a JSON API demo that pulls from [the NASA Astonomy Picture of the Day API](https://api.nasa.gov/api.html#apod).
+This is a JSON API demo that pulls from [the NASA Astronomy Picture of the Day API](https://api.nasa.gov/api.html#apod).
