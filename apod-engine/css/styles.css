@@ -49,16 +49,20 @@ body {
 #footer {
 	width:100%;
 	text-align:center;
+	font-size:12px;
 }
 
 /* text */
 h1 {
-	margin:10px 5px;
+	margin:10px 5px 0 5px;
 }
 h2 {
 	margin:5px;
 	font-size:1.1em;
 	line-height:1.2em;
+}
+h3 {
+	margin:5px;
 }
 p {
 	margin:5px;
