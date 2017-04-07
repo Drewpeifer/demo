@@ -4,6 +4,7 @@ body {
 	margin:0;
 	background:#111;
 	color:#f2f2f2;
+	font-family: 'Titillium Web', sans-serif;
 }
 #fetch {
 	margin-top:10px;
@@ -13,13 +14,22 @@ body {
 	width:90%;
 	margin:5%;	
 }
-#title {}
 #photo {
 	height:30%;
 }
 #photo img {
 	width:100%;
 }
-#description {
-	height:30%;
+#footer {
+	width:100%;
+	text-align:center;
+}
+
+/* text */
+h1 {
+	margin:10px 5px;
+}
+h2 {
+	margin:5px;
+	font-size:1.2em;
 }

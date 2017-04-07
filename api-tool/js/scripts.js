@@ -18,11 +18,14 @@ $(document).ready(function(){
 
             $('#title').html("<h2>Loading...</h2>");
 
-            $.getJSON("https://api.nasa.gov/planetary/apod?date=" + date + "&api_key=" + key + "", function(json) {
+            $.getJSON("https://api.nasa.gov/planetary/apod?date=" + uglyDate + "&api_key=" + key + "", function(json) {
                if (json != ""){
-                     $('#title').html('<h2>Astronomy Photo of the Day for:</h2><h3>' + '');
+                     $('#title').html('<h2>Astronomy Photo of the Day for: ' + date + '</h2>');
                      $('#photo').html('<img src=' + json.hdurl + ' />');
-                     $('#description').html('<p>' + json.explanation + '</p>')
+                     $('#description').html('<p>' + json.explanation + '</p>');
+                     $('#result').append('<div id="footer"><p>Images and text courtesy of ' +
+                                         '<a  target="_blank" href="https://apod.nasa.gov/apod/astropix.html">' +
+                                         'NASA</a></p></div>');
                   } else {
                     $('#title').html('<h2>Nothing found</h2>');
                   }
