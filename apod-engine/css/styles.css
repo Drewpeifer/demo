@@ -2,9 +2,13 @@ body {
 	height:100%;
 	width:100%;
 	margin:0;
-	background:#111;
+	background:#000;
 	color:#f2f2f2;
 	font-family: 'Titillium Web', sans-serif;
+}
+#fetch, #result {
+	position:relative;
+	z-index:3;
 }
 #fetch {
 	margin-top:10px;
