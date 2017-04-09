@@ -8,10 +8,10 @@ var getQuery = function(){
 
     } else {
 
-        $('#banner').html("<h2>Loading...</h2>");// when waiting
+        $(statusMessage).html("<h2>Loading...</h2>");// when waiting
 
         // call NASA
-        $.getJSON("https://api.nasa.gov/planetary/apod?date=" + uglyDate + "&api_key=" + key + "", function(json) {
+        $.getJSON(url, function(json) {
             if (json != ""){// show APOD entry for selected date
                 
             } else {// shouldn't ever happen
