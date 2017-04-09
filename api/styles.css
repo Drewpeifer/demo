@@ -10,3 +10,17 @@ body {
     width:80%;
     margin:0 auto;
 }
+/* form */
+.form {
+    width:80%;
+    margin:0 auto;
+}
+.form label,
+.form input,
+.form fieldset {
+    width:49%;
+    margin:0;
+    padding:0;
+    display:inline-block;
+    border:none;
+}
