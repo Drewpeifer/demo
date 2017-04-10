@@ -26,9 +26,9 @@ var getQuery = function(){
 
 }
 
-$('#search').click(getQuery);// bind
-$('#term').keyup(function(event){// cover return keypress
-    if(event.keyCode == 13){
-        getQuery();
-    }
-});
+//$('#search').click(getQuery);// bind
+//$('#term').keyup(function(event){// cover return keypress
+//    if(event.keyCode == 13){
+//        getQuery();
+//    }
+//});

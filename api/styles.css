@@ -5,10 +5,22 @@ body {
 }
 .banner {
     text-align:center;
+    background:#1D2556;
+    color:#72768F;
+    font-weight:bold;
 }
 .intro {
     width:80%;
     margin:0 auto;
+    font-weight:normal;
+}
+.footer {
+    font-size:12px;
+    text-align:center;
+}
+/* text */
+h1 {
+    margin:0;
 }
 /* form */
 .form {
@@ -22,5 +34,7 @@ body {
     margin:0;
     padding:0;
     display:inline-block;
+}
+.form fieldset {
     border:none;
 }
