@@ -1,0 +1,79 @@
+body {
+    padding:0;
+    margin:0;
+    font-family: 'Architects Daughter', cursive;
+}
+div {
+    width:100%;
+    text-align:center;
+    font-weight:bold;
+    margin:0;
+    padding:10px 0;
+}
+#wrapper {
+    padding:0;
+    margin:0;
+}
+.banner {
+    background:#1D2556;
+    color:#728F79;
+}
+.intro {
+    background:#728F79;
+    color:#1D2556;
+    padding:5px 0;
+    font-size:1.1em;
+}
+.main {
+    background:#1D2556;
+    color:#728F79;
+}
+.footer {
+    height:15px;
+    padding:10px 0;
+    background:#728F79;
+    color:#1D2556;
+    font-size:12px;
+    text-align:center;
+}
+/* text */
+h1, b {
+    font-family: 'Permanent Marker', cursive;
+}
+h2, p {
+    font-family: 'Architects Daughter', cursive;
+}
+h1 {
+    font-size:3em;
+}
+h2 {
+    margin:5px 0;
+    font-size:1.3em;
+}
+p {
+    margin:5px auto;
+    line-height:1.3em;
+    width:70%;
+    font-weight:bold;
+    font-size:1.1em;
+}
+.intro p b {
+    font-size:1.2em;
+}
+/* form */
+.form {
+    height:100%;
+    width:80%;
+    margin:0 auto;
+}
+.form label,
+.form input,
+.form fieldset {
+    width:49%;
+    margin:0;
+    padding:0;
+    display:inline-block;
+}
+.form fieldset {
+    border:none;
+}
