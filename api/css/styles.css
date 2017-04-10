@@ -65,7 +65,6 @@ p {
 }
 .form p {
     width:100%;
-    font-height:1.1em;
     margin:0 0 20px 0;
 }
 /* form */
@@ -74,6 +73,7 @@ p {
     width:80%;
     margin:0 auto;
     padding:0;
+    font-size:1.1em;
 }
 label,
 input,
@@ -88,7 +88,13 @@ fieldset {
     width:100%;
     border:none;
 }
-fieldset label,
-fieldset input {
-    width:24%;
+.form fieldset label,
+.form fieldset input {
+    border:1px #fff solid;
+    width:19%;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:.9em;
+    box-shadow:none;/* nukes the gross jQueryUI blue glow */
+    font-family: 'Architects Daughter', cursive;
 }

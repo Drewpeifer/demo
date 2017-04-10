@@ -1,5 +1,7 @@
 $(document).ready(function(){
-
+    $( "fieldset input[type=checkbox]" ).checkboxradio({
+        icon: false
+    });
 });
 
 var getQuery = function(){
