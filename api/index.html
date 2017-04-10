@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link href="https://fonts.googleapis.com/css?family=Architects+Daughter|BioRhyme|Permanent+Marker" rel="stylesheet">
 	<link rel="stylesheet" media="screen" href="css/reset.css">
-	<link rel="stylesheet" media="screen" href="css/jquery-ui.theme.css">
 	<link rel="stylesheet" media="screen" href="css/styles.css">
 </head>
 <div id="wrapper">
@@ -22,7 +21,7 @@
 	</div>
 	<div class="intro">
 		<p>
-			For single men living alone, dinnertime is a <b>necessity</b>,
+			For the modern bachelor, dinnertime is a <b>necessity</b>,
 			not an <b>occasion</b>. We don't have <b>pantries</b> full of
 			<b>sundries</b> or a <b>crisper</b> full of green things;
 			we have <b>objects</b> in our possession that are either
@@ -32,7 +31,7 @@
 			Doesn't matter if it's dinosaur-shaped pasta,
 			tiny onions in a jar, or half a pack of hot dogs,
 			we're going to <b>eat as fast as possible</b>
-			and <b>get on with our lives</b>. Such as they are.
+			and <b>get on with our lives</b>, such as they are.
 		</p>
 	</div>
 	<div class="main">
@@ -41,35 +40,46 @@
 				Search below for normal-people recipes containing the
 				sad items found in your food room
 			</p>
-			<label for="search">Search a Specific Ingredient:</label>
-			<input type="text" name="search" id="search" />
-			<label for="mangredients">Select Common Mangredients:</label>
+			<label for="mangredients">Select Common Mangredients</label>
 			<fieldset>
-				<label for="water">Water</label>
-				<input type="checkbox" name="water" id="water" />
-				<label for="salt">Salt</label>
-				<input type="checkbox" name="salt" id="salt" />
-				<label for="pepper">Pepper</label>
-				<input type="checkbox" name="pepper" id="pepper" />
-				<label for="oil">Vegetable / Olive Oil</label>
-				<input type="checkbox" name="oil" id="oil" />
-				<label for="barbecue">Barbecue Sauce</label>
-				<input type="checkbox" name="barbecue" id="barbecue" />
-				<label for="butter">Butter</label>
-				<input type="checkbox" name="butter" id="butter" />
-				<label for="pickles">Pickles</label>
-				<input type="checkbox" name="pickles" id="pickles" />
-				<label for="milk">Milk</label>
-				<input type="checkbox" name="milk" id="milk" />
-				<label for="eggs">Eggs</label>
-				<input type="checkbox" name="eggs" id="eggs" />
-				<label for="bread ">Bread </label>
-				<input type="checkbox" name="bread " id="bread " />
+				<label for="water">Water
+				    <input type="checkbox" name="water" id="water" />
+				</label>
+				<label for="salt">Salt
+				    <input type="checkbox" name="salt" id="salt" />
+				</label>
+				<label for="pepper">Pepper
+				    <input type="checkbox" name="pepper" id="pepper" />
+				</label>
+				<label for="oil">Olive Oil
+				    <input type="checkbox" name="oil" id="oil" />
+				</label>
+				<label for="barbecue">BBQ Sauce
+				    <input type="checkbox" name="barbecue" id="barbecue" />
+				</label>
+				<label for="butter">Butter
+				    <input type="checkbox" name="butter" id="butter" />
+				</label>
+				<label for="pickles">Pickles
+				    <input type="checkbox" name="pickles" id="pickles" />
+				</label>
+				<label for="milk">Milk
+				    <input type="checkbox" name="milk" id="milk" />
+				</label>
+				<label for="eggs">Eggs
+				    <input type="checkbox" name="eggs" id="eggs" />
+				</label>
+				<label for="bread ">Bread
+				    <input type="checkbox" name="bread " id="bread " />
+				</label>
 			</fieldset>
+			<label for="term">Custom Ingredient(s) :</label>
+			<input type="text" name="term" id="term" placeholder="E.g. corn, bread, cornbread..." />
+			<button id="search" class="ui-button">Search Recipes</button>
 		</div>
 	</div>
 	<div class="footer">
-		<p>Powered by <a href="http://www.recipepuppy.com" target="_blank">Recipe Puppy</a>, because real men love puppies too.</p>
+		<p>Powered by <a href="http://www.recipepuppy.com" target="_blank">Recipe Puppy</a></p>
 	</div>
 </div>
 <body>
