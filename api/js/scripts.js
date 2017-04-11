@@ -51,7 +51,7 @@ sampleJSON = {
 
     data = sampleJSON.results; 
 
-var getQuery = function(sampleJSON){
+var getQuery = function(){
 
     var term = $('#term').val().split(' ').join(''),// sanitize text input value
         tags = $.map($('fieldset input[type=checkbox]:checked'), function(n, i){
@@ -62,8 +62,15 @@ var getQuery = function(sampleJSON){
         results = $('.results'),
         search = $('#search');// search button
 
-    if ($('fieldset input[type=checkbox]:checked').length < 2) {// if there's no tags selected
+    if ($('fieldset input[type=checkbox]:checked').length == 0) {// if there's no tags selected
         query = term;
+        console.log('no tags!');
+        console.log('term is ' + term);
+        console.log('tags are ' + tags);
+        console.log('query is ' + query);
+    } else if (term == "") {
+        query = tags;
+        console.log('no term!');
         console.log('term is ' + term);
         console.log('tags are ' + tags);
         console.log('query is ' + query);
@@ -75,6 +82,8 @@ var getQuery = function(sampleJSON){
     }
 
     requestUrl = baseUrl + '?i=' + query + '&p=5';
+
+    console.log('API request made to ' + requestUrl);
 
    if (query == '') {
         // nothing typed or selected, do nothing
