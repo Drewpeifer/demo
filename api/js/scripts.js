@@ -4,60 +4,14 @@ $(document).ready(function(){
     });
 });
 
-// API Request
-
-sampleJSON = {
-    title: "Recipe Puppy",
-    version: 0.1,
-    href: "http://www.recipepuppy.com/",
-    results: [
-        {
-            title: "Vegetable-Pasta Oven Omelet",
-            href: "http://find.myrecipes.com/recipes/recipefinder.dyn?action=displayRecipe&recipe_id=520763",
-            ingredients: "tomato, onions, red pepper, garlic, olive oil, zucchini, cream cheese, vermicelli, eggs, parmesan cheese, milk, italian seasoning, salt, black pepper",
-            thumbnail: "http://img.recipepuppy.com/560556.jpg"
-        },
-        {
-            title: "Roasted Pepper and Bacon Omelet",
-            href: "http://www.bigoven.com/43919-Roasted-Pepper-and-Bacon-Omelet-recipe.html",
-            ingredients: "eggs, salt, black pepper, butter, black pepper, bacon, onions, garlic, roasted red peppers, oregano, black pepper",
-            thumbnail: ""
-        },
-        {
-            title: "Vegetable-Pasta Oven Omelet",
-            href: "http://find.myrecipes.com/recipes/recipefinder.dyn?action=displayRecipe&recipe_id=520763",
-            ingredients: "tomato, onions, red pepper, garlic, olive oil, zucchini, cream cheese, vermicelli, eggs, parmesan cheese, milk, italian seasoning, salt, black pepper",
-            thumbnail: "http://img.recipepuppy.com/560556.jpg"
-        },
-        {
-            title: "Roasted Pepper and Bacon Omelet",
-            href: "http://www.bigoven.com/43919-Roasted-Pepper-and-Bacon-Omelet-recipe.html",
-            ingredients: "eggs, salt, black pepper, butter, black pepper, bacon, onions, garlic, roasted red peppers, oregano, black pepper",
-            thumbnail: ""
-        },
-        {
-            title: "Vegetable-Pasta Oven Omelet",
-            href: "http://find.myrecipes.com/recipes/recipefinder.dyn?action=displayRecipe&recipe_id=520763",
-            ingredients: "tomato, onions, red pepper, garlic, olive oil, zucchini, cream cheese, vermicelli, eggs, parmesan cheese, milk, italian seasoning, salt, black pepper",
-            thumbnail: "http://img.recipepuppy.com/560556.jpg"
-        },
-        {
-            title: "Roasted Pepper and Bacon Omelet",
-            href: "http://www.bigoven.com/43919-Roasted-Pepper-and-Bacon-Omelet-recipe.html",
-            ingredients: "eggs, salt, black pepper, butter, black pepper, bacon, onions, garlic, roasted red peppers, oregano, black pepper",
-            thumbnail: ""
-        }
-    ]};
-
-    data = sampleJSON.results; 
-
+// Query function
 var getQuery = function(){
 
     var term = $('#term').val().split(' ').join(''),// sanitize text input value
         tags = $.map($('fieldset input[type=checkbox]:checked'), function(n, i){
                     return n.name;
                 }).join(','),// create concatenated list of radiocheckboxes
-        baseUrl = "http://www.recipepuppy.com/api/",// base API url
+        baseUrl = "https://crossorigin.me/http://www.recipepuppy.com/api/",// base API url
         statusMessage = $('div.status'),
         results = $('.results'),
         search = $('#search');// search button
@@ -81,11 +35,12 @@ var getQuery = function(){
         console.log('query is ' + query);
     }
 
-    requestUrl = baseUrl + '?i=' + query + '&p=5?callback=?';
+    requestUrl = baseUrl + '?i=' + query + '&p=5';
 
     console.log('API request made to ' + requestUrl);
 
-   if (query == '') {
+    // API Call
+    if (query == '') {
         // nothing typed or selected, do nothing
     } else {
 
