@@ -4,12 +4,11 @@ html {
 body {
     padding:0;
     margin:0;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Roboto slab', serif;
 }
 div {
     width:100%;
     text-align:center;
-    font-weight:bold;
     margin:0;
     padding:10px 0;
 }
@@ -27,6 +26,17 @@ div {
     padding:5px 0;
     font-size:1.1em;
 }
+hr {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(56, 43, 25, 1), rgba(0, 0, 0, 0));
+    margin-top:0;
+}
+hr.light {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(165, 148, 127, 1), rgba(0, 0, 0, 0));
+}
 .main {
     background:#382B19;
     color:#A5947F;
@@ -41,19 +51,21 @@ div {
 }
 /* text */
 h1, b, label, #search {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Biorhyme', serif;
+    font-weight:bold;
 }
 h2, h3, p,
 .form fieldset label,
 .form fieldset input {
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Roboto slab', serif;
 }
 h1 {
     font-size:3em;
 }
 h2 {
     margin:5px 0;
-    font-size:1.3em;
+    font-size:1.2em;
+    line-height:1.3em;
 }
 h3 {
     margin:0 0 10px 0;
@@ -62,11 +74,10 @@ p {
     margin:5px auto;
     line-height:1.3em;
     width:70%;
-    font-weight:bold;
     font-size:1em;
 }
 .intro p b {
-    font-size:1.1em;
+    font-size:1.2em;
 }
 /* form */
 .form {
@@ -106,19 +117,30 @@ fieldset {
     margin:5px 0;
 }
 label[for=term] {
-    text-align:left;
-    padding-top:8px;
-    width:30%;
+    text-align:center;
+    width:80%;
 }
 #term {
     height:30px;
-    width:65%;
+    width:80%;
     font-size:14px;
+    margin-top:5px;
 }
 #search {
     width:30%;
     height:40px;
-    font-size:24px;
+    font-size:1.3em;
     padding:0;
     margin:10px auto;
-    border-radius:3px;}
+    border-radius:3px;
+}
+/* mobile styles for nice browsers */
+@media (max-width: 600px) {
+    #search {
+        width:80%;
+    }
+    fieldset label {
+        height:42px;
+        padding:.5em .5em;
+    }
+}

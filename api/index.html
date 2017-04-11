@@ -10,13 +10,14 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<link href="https://fonts.googleapis.com/css?family=Architects+Daughter|BioRhyme|Permanent+Marker" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=BioRhyme:400,700|Roboto+Slab:400,700" rel="stylesheet">
 	<link rel="stylesheet" media="screen" href="css/reset.css">
 	<link rel="stylesheet" media="screen" href="css/styles.css">
 </head>
 <div id="wrapper">
 	<div class="banner">
 		<h1>The Bachelor Cookbook</h1>
+		<hr class="light" />
 		<h2>Resource-based recipes for the ill-prepared chef</h2>
 	</div>
 	<div class="intro">
@@ -25,21 +26,18 @@
 			not an <b>occasion</b>. We don't have <b>pantries</b> full of
 			<b>sundries</b> or a <b>crisper</b> full of green things;
 			we have <b>objects</b> in our possession that are either
-			<b>edible</b>, <b>spoiled</b>, or <b>unknown</b>.
-		</p>
-		<p>
-			Doesn't matter if it's dinosaur-shaped pasta,
-			tiny onions in a jar, or half a pack of hot dogs,
-			we're going to <b>eat as fast as possible</b>
-			and <b>get on with our lives</b>, such as they are.
+			<b>edible</b>, <b>spoiled</b>, or <b>unknown</b>. Somehow, they
+			must become <b>sustenance</b>.
 		</p>
 	</div>
 	<div class="main">
+		<p>
+			Search below for <b>recipes</b> containing whatever pathetic
+			<b>ingredients</b> you currently possess, and marvel at the
+			<b>edible wonders</b> you can create.
+		</p>
+		<hr class="light" />
 		<div class="form">
-			<p>
-				Search below for normal-people recipes containing the
-				sad items found in your food room
-			</p>
 			<label for="mangredients">Select Common Mangredients</label>
 			<fieldset>
 				<label for="water">Water
@@ -73,7 +71,7 @@
 				    <input type="checkbox" name="bread " id="bread " />
 				</label>
 			</fieldset>
-			<label for="term">Custom Ingredient(s) :</label>
+			<label for="term">Custom Ingredient(s):</label>
 			<input type="text" name="term" id="term" placeholder="E.g. corn, bread, cornbread..." />
 			<button id="search" class="ui-button">Search Recipes</button>
 		</div>
