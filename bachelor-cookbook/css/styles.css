@@ -76,7 +76,7 @@ hr.light {
     margin:5px 0;
 }
 .footer {
-    height:15px;
+    min-height:15px;
     padding:10px 0;
     background:#A5947F;
     color:#382B19;
