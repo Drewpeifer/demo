@@ -49,31 +49,7 @@ sampleJSON = {
         }
     ]};
 
-    data = sampleJSON.results;
-
-    $.each(data, function(i){
-
-        if (this.thumbnail) {
-            imageUrl = this.thumbnail;
-        } else {
-            imageUrl = 'img/no-image.png';
-        }
-
-        recipeBlurb = '<div class="recipe">' +
-                        '<div class="thumb">' +
-                            '<a href="' + this.href + '"><img src="' + imageUrl + '" /></a>' +
-                        '</div>' +
-                        '<div class="details">' +
-                            '<a href="' + this.href + '"><h2>' + this.title + '</h2></a>' +
-                            '<h3>Basic Ingredients: ' + this.ingredients + '</h3>' +
-                            '<p>Courtesy of <a href="' + this.href + '">' + this.href +
-                            '</a></p>' +
-                        '</div>' +
-                     '</div>';
-
-        $('.results').append(recipeBlurb);
-    }) 
-
+    data = sampleJSON.results; 
 
 var getQuery = function(sampleJSON){
 
@@ -108,15 +84,40 @@ var getQuery = function(sampleJSON){
 
         // call RecipePuppy
         $.getJSON(requestUrl, function(json) {
+
+            results.html('');
+
             if (json != ""){// show recipe results
                 statusMessage.html("<h2>Recipe(s) found!</h2>");
-                results.html()
-                console.log(json);
+
+                $.each(json.results, function(i) {
+
+                    if (this.thumbnail == "") {
+                        imageUrl = 'img/no-image.png';
+                    } else {
+                        imageUrl = this.thumbnail;
+                    }
+
+                    recipeBlurb = '<div class="recipe">' +
+                                    '<div class="thumb">' +
+                                        '<a href="' + this.href + '"><img src="' + imageUrl + '" /></a>' +
+                                    '</div>' +
+                                    '<div class="details">' +
+                                        '<a href="' + this.href + '"><h2>' + this.title + '</h2></a>' +
+                                        '<h3>Basic Ingredients: ' + this.ingredients + '</h3>' +
+                                        '<p>Courtesy of <a href="' + this.href + '">' + this.href +
+                                        '</a></p>' +
+                                    '</div>' +
+                                 '</div>';
+
+                    $('.results').append(recipeBlurb);
+                });
+
             } else {// shouldn't ever happen
 
             }
         }).error(function() {// 400 BAD REQUEST case (broken date, before APOD started, etc)
-            statusMessage.html("<h2>Error! Error! Error!</h2>");
+            statusMessage.html("<h2>Sorry! No recipes found, try another search!</h2>");
         });
     }
 
