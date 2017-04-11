@@ -64,12 +64,12 @@ var getQuery = function(){
 
                     recipeBlurb = '<div class="recipe">' +
                                     '<div class="thumb">' +
-                                        '<a href="' + this.href + '"><img src="' + imageUrl + '" /></a>' +
+                                        '<a target="_blank" href="' + this.href + '"><img src="' + imageUrl + '" /></a>' +
                                     '</div>' +
                                     '<div class="details">' +
-                                        '<a href="' + this.href + '"><h2>' + this.title + '</h2></a>' +
+                                        '<a target="_blank" href="' + this.href + '"><h2>' + this.title + '</h2></a>' +
                                         '<h3>Basic Ingredients: ' + this.ingredients + '</h3>' +
-                                        '<p>Courtesy of <a href="' + this.href + '">' + this.href +
+                                        '<p>Courtesy of <a target="_blank" href="' + this.href + '">' + this.href +
                                         '</a></p>' +
                                     '</div>' +
                                  '</div>';
