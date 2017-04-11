@@ -69,8 +69,6 @@ var getQuery = function(){
                                     '<div class="details">' +
                                         '<a target="_blank" href="' + this.href + '"><h2>' + this.title + '</h2></a>' +
                                         '<h3>Basic Ingredients: ' + this.ingredients + '</h3>' +
-                                        '<p>Courtesy of <a target="_blank" href="' + this.href + '">' + this.href +
-                                        '</a></p>' +
                                     '</div>' +
                                  '</div>';
 

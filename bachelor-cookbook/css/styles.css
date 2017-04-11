@@ -194,8 +194,4 @@ label[for=term] {
         height:42px;
         padding:.5em .5em;
     }
-    .recipe .thumb {
-        position:relative;
-        top:-15px;
-    }
 }
