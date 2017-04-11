@@ -24,7 +24,7 @@
 		<p>
 			For the modern bachelor, dinnertime is a <b>necessity</b>,
 			not an <b>occasion</b>. We don't have <b>pantries</b> full of
-			<b>sundries</b> or a <b>crisper</b> full of green things;
+			<b>sundries</b> or a <b>crisper</b> full of <b>greens</b>;
 			we have <b>objects</b> in our possession that are either
 			<b>edible</b>, <b>spoiled</b>, or <b>unknown</b>. Somehow, they
 			must become <b>sustenance</b>.
@@ -32,9 +32,9 @@
 	</div>
 	<div class="main">
 		<p>
-			Search below for <b>recipes</b> containing whatever pathetic
-			<b>ingredients</b> you currently possess, and marvel at the
-			<b>edible wonders</b> you can create.
+			Search below for recipes containing whatever pathetic
+			ingredients you currently possess, and marvel at the
+			edible wonders you can create.
 		</p>
 		<hr class="light" />
 		<div class="form">
@@ -68,12 +68,28 @@
 				    <input type="checkbox" name="eggs" id="eggs" />
 				</label>
 				<label for="bread ">Bread
-				    <input type="checkbox" name="bread " id="bread " />
+				    <input type="checkbox" name="bread " id="bread" />
 				</label>
 			</fieldset>
-			<label for="term">Custom Ingredient(s):</label>
+			<p>and / or</p>
+			<label for="term">Search Custom Mangredient(s)</label>
 			<input type="text" name="term" id="term" placeholder="E.g. corn, bread, cornbread..." />
 			<button id="search" class="ui-button">Search Recipes</button>
+		</div>
+		<div class="status"></div>
+		<div class="results">
+			<div class="recipe">
+				<div class="thumb">
+					<a href=""><img src="img/thumb1.jpg" /></a>
+				</div>
+				<div class="details">
+					<a href="">
+						<h2>Tuna Casserole</h2>
+					</a>
+					<h3>Basic Ingredients: corn, eggs, flour, milk</h3>
+					<p>Courtesy of <a href="">url</a></p>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="footer">
