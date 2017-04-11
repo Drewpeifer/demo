@@ -81,7 +81,7 @@ var getQuery = function(){
         console.log('query is ' + query);
     }
 
-    requestUrl = baseUrl + '?i=' + query + '&p=5';
+    requestUrl = baseUrl + '?i=' + query + '&callback=?&p=5';
 
     console.log('API request made to ' + requestUrl);
 
