@@ -25,6 +25,17 @@ ul {
 	margin:0;
 	padding:0;
 }
+/* controls */
+#controls ul li {
+	display:flex;
+}
+#controls ul li span {
+	flex-grow:1;
+}
+#controls ul li span.map {
+	flex-grow:0;
+	flex-basis:0;
+}
 
 /* market */
 #market {
