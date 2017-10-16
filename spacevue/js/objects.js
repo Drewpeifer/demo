@@ -1,19 +1,3 @@
-var config = {
-    turn : 0,// starts game progression at turn 0
-    startingWallet : 3000,// starting cash
-    startingFuel : 10,//starting fuel amount
-    startingPort : mapA[0],// starting location
-    startingLoot : 0,// set loot to 0
-    startingCap : 20,// starting cargo capactiy
-    cargoUpgrades : 3,// available upgrades (total)
-    currentEvent : function() {// returns current incident, if one is firing
-            incident = incidents.filter(function( obj ) {
-              return obj.isHappening == true;
-            });
-            return incident[0];
-    }
-}
-
 // stock base prices and props
 var menuA = [];
 
@@ -142,3 +126,31 @@ mapA[3] = {  title : "Risa",
             peakMod : 8,
             description : "Risa, known throughout the Alpha Quadrant for its recreational attractions and open-minded populace. Seriously. Open-minded. Oh, they sell fuel, too."
          };
+
+// global config variables for easy debugging
+var config = {
+    startingTurn : 0,// starts game progression at turn 0
+    startingWallet : 3000,// starting cash
+    startingFuel : 10,// starting fuel amount
+    startingPort : mapA[0],// starting location
+    startingLoot : 0,// starting cargoLoot (loot in cargo hold)
+    startingCap : 20,// starting cargoCap (max capacity)
+    cargoUpgrades : 3// available upgrades (total)
+}
+
+// actual player stat, at default
+var stats = {
+    turn : 0,// always start on turn 0
+    wallet : 0,
+    fuel : 0,
+    port : mapA[0],// always start at Earth
+    cargoLoot : 0,
+    cargoCap : 0
+}
+
+// set often-debugged values
+// TODO: remove config
+stats.wallet = config.startingWallet;
+stats.fuel = config.startingFuel;
+stats.cargoLoot = config.startingLoot;
+stats.cargoCap = config.startingCap;

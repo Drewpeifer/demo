@@ -31,6 +31,7 @@ ul {
 }
 #controls ul li span {
 	flex-grow:1;
+	padding:2px 5px;
 }
 #controls ul li span.map {
 	flex-grow:0;

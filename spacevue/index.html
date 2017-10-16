@@ -16,22 +16,21 @@
 	<div id="app">
 		<!-- peripherals -->
 		<div id="alert" class="peripheral" style="display:none;">
-			<div class="alert-content">
-			</div>
+			<div class="alert-content"></div>
 		</div>
 		<!-- end peripherals -->
 		<!-- controls (top HUD) -->
 		<div id="controls">
 			<ul>
 				<li>
-					<span class="location">Location</span>
+					<span class="location">Location: {{ port.title }}</span>
 					<span class="map">Map</span>
-					<span>Location Description</span>
+					<span>{{ port.description }}</span>
 				</li>
 				<li>
-					<span class="money">Money</span>
-					<span>Cargo</span>
-					<span>Fuel</span>
+					<span class="money">&#36;{{ wallet }}</span>
+					<span>Cargo: {{ cargoLoot }}</span>
+					<span>Fuel: {{ fuel }}</span>
 				</li>
 			</ul>
 		</div>
@@ -57,12 +56,12 @@
 	<script src="js/vue.js" type="text/javascript"></script><!-- data binding -->
 	<script src="js/transit.js" type="text/javascript"></script><!-- animations -->
 	<script src="js/space.js" type="text/javascript"></script><!-- starfield background -->
+	<script src="js/objects.js" type="text/javascript"></script><!-- map, menu, config -->
 	<script src="js/alerts.js" type="text/javascript"></script><!-- modals -->
 	<script src="js/market.js" type="text/javascript"></script><!-- market builder -->
 	<script src="js/trade.js" type="text/javascript"></script><!-- commerce functions -->
 	<script src="js/travel.js" type="text/javascript"></script><!-- travel functions -->
 	<script src="js/incidents.js" type="text/javascript"></script><!-- arrival events -->
-	<script src="js/objects.js" type="text/javascript"></script><!-- map, menu, config -->
 	<script src="js/scripts.js" type="text/javascript"></script><!-- onload and misc -->
 </body>
 </html>
