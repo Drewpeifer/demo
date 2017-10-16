@@ -1,11 +1,8 @@
-$(document).ready(function(){
-//    
+//$(document).ready(function(){
+//	makeManyStars();
 //});
-//var app = new Vue({
-//  el: '#app',
-//  data: {
-//    message: 'Hello Vue!'
-//  }
 
-//makeManyStars();
+var app = new Vue({
+		el: '#app',
+		data: stats
 });
