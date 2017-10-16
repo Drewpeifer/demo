@@ -85,3 +85,7 @@ ul li {
     opacity:.6;
 }
 /* ---- end starfield background ---- */
+/* debug */
+span {
+	border:1px solid red;
+}
