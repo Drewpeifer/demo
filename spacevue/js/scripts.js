@@ -7,5 +7,5 @@ $(document).ready(function(){
 //    message: 'Hello Vue!'
 //  }
 
-makeManyStars();
+//makeManyStars();
 });
