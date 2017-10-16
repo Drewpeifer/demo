@@ -13,25 +13,20 @@ div {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+#wrapper {
+	border:none;
+}
 
 /* text */
 h1 {
 	margin:10px 0;
 }
+ul li {
+	list-style-type:none;
+}
 
 /* ---------------------- */
 /* starfield background */
-.starfield {
-    height:100%;
-    width:100%;
-    z-index:-1;
-}
-
-/* stars */
-.controls {
-    display:block;
-    float:right;
-}
 #starfield {
     position:absolute;
     top:0;
@@ -40,6 +35,7 @@ h1 {
     background:transparent;
     z-index:-1;
     overflow:hidden;
+    border:none;
 }
 .star {
     height:1px;
