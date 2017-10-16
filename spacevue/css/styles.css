@@ -6,6 +6,14 @@ body {
 	color:#f2f2f2;
 	font-family: 'Titillium Web', sans-serif;
 }
+#wrapper {
+	border:none;
+}
+#app {
+	width:60%;
+	margin:0 auto;
+	overflow:hidden;
+}
 div {
 	border:#fff 1px solid;
 	/* inner borders */
@@ -13,9 +21,27 @@ div {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
-#wrapper {
-	border:none;
+ul {
+	margin:0;
+	padding:0;
 }
+
+/* market */
+#market {
+	overflow-x:hidden;
+	overflow-y:scroll;
+}
+#market ul,
+#market ul li {
+	width:100%;
+}
+#market ul li {
+	display:flex;
+}
+#market ul li span {
+	flex-grow:1;
+}
+
 
 /* text */
 h1 {
