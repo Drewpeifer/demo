@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>CYOA</title>
+	<title>SpaceVue</title>
 	<meta name="description" content="Description">
 	<meta name="author" content="drewpeifer">
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
@@ -11,14 +11,29 @@
 	<link rel="stylesheet" media="screen" href="css/styles.css">
 </head>
 <div id="wrapper">
-	<div id="main">
-		<h1>CYOA Engine</h1>
-		<h2 id="app">{{ message }}</h2>
-	</div>
+    <div id="starfield"></div>
+    <div id="app">
+        <!-- peripherals -->
+        <div class="map peripheral" style="display:none;">
+        </div>
+        <div class="alert peripheral" style="display:none;">
+            <div class="alert-content">
+            </div>
+        </div>
+    </div>
 </div>
 <body>
 <!-- scripts -->
-	<script src="js/vue.js" type="text/javascript"></script>
-	<script src="js/scripts.js" type="text/javascript"></script>
+	<script src="js/browser.js" type="text/javascript"></script><!-- QAD uA detection -->
+	<script src="js/vue.js" type="text/javascript"></script><!-- data binding -->
+	<script src="js/transit.js" type="text/javascript"></script><!-- animations -->
+	<script src="js/space.js" type="text/javascript"></script><!-- starfield background -->
+	<script src="js/alerts.js" type="text/javascript"></script><!-- modals -->
+	<script src="js/market.js" type="text/javascript"></script><!-- market builder -->
+	<script src="js/trade.js" type="text/javascript"></script><!-- commerce functions -->
+	<script src="js/travel.js" type="text/javascript"></script><!-- travel functions -->
+	<script src="js/incidents.js" type="text/javascript"></script><!-- arrival events -->
+	<script src="js/objects.js" type="text/javascript"></script><!-- map, menu, config -->
+	<script src="js/scripts.js" type="text/javascript"></script><!-- onload and misc -->
 </body>
 </html>
