@@ -1,4 +1,4 @@
-//$(document).ready(function(){
+$(document).ready(function(){
 //    
 //});
 //var app = new Vue({
@@ -6,4 +6,6 @@
 //  data: {
 //    message: 'Hello Vue!'
 //  }
-//});
+
+makeManyStars();
+});

@@ -8,9 +8,84 @@ body {
 }
 div {
 	border:#fff 1px solid;
+	/* inner borders */
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 /* text */
 h1 {
 	margin:10px 0;
 }
+
+/* ---------------------- */
+/* starfield background */
+.starfield {
+    height:100%;
+    width:100%;
+    z-index:-1;
+}
+
+/* stars */
+.controls {
+    display:block;
+    float:right;
+}
+#starfield {
+    position:absolute;
+    top:0;
+    height:100%;
+    width:100%;
+    background:transparent;
+    z-index:-1;
+    overflow:hidden;
+}
+.star {
+    height:1px;
+    width:1px;
+    border-radius:2px;
+    background:#f2f2f2;
+    margin:20px;
+    -moz-box-shadow:    0 0 10px 3px #f2f2f2;
+    -webkit-box-shadow: 0 0 10px 3px #f2f2f2;
+    box-shadow:         0 0 10px 3px #f2f2f2;
+    position:absolute;
+}
+.star.flare {
+    height:3px;
+    width:3px;
+}
+
+/* ufo */
+.star.ufo {
+    height:10px;
+    width:30px;
+    background:#333;
+    -moz-border-radius: 10px / 5px;
+    -webkit-border-radius: 10px / 5px;
+    border-radius: 10px / 5px;
+    border-bottom:#666 2px solid;
+    overflow:visible;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    opacity:1;
+}
+.dome {
+    height:2px;
+    width:13px;
+    background:#999;
+    border:none;
+    border-top:#999 5px solid;
+    border-bottom:#999 1px solid;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 2px 2px;
+    border-radius: 5px 5px 2px 2px;
+    position:relative;
+    left:8px;
+    top:-8px;
+    opacity:.6;
+}
+/* ---- end starfield background ---- */
