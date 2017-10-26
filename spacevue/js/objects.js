@@ -16,45 +16,56 @@ menuA[0] = { title : "Meteorite Ore",
             loot : 0,
             unit : "ton",
             baseStock : 15,
+			currentStock : 0,
+			currentLoot : 0,
             basePrice : 20,
 			currentPrice : 0,
-            stockFlux : .1 };
-
+            stockFlux : .1
+};
 menuA[1] = { title : "Dilithium Crystals",
             description : "Super important for warp reactors. That's about it though.",
             loot : 0,
             unit : "kilo",
             baseStock : 20,
+			currentStock : 0,
+			currentLoot : 0,
             basePrice : 50,
 			currentPrice : 0,
-            stockFlux : .2 };
-
+            stockFlux : .2
+};
 menuA[2] = { title : "Gravitonium",
             description : "An unstable element used in reactors and some scary kinds of weapons.",
             loot : 0,
             unit : "kilo",
             baseStock : 20,
+			currentStock : 0,
+			currentLoot : 0,
             basePrice : 100,
 			currentPrice : 0,
-            stockFlux : .3 };
-
+            stockFlux : .3
+};
 menuA[3] = { title : "Laudinum",
             description : "Used for currency in some places, also as an alloy for electronics.",
             loot : 0,
             unit : "bar",
             baseStock : 10,
+			currentStock : 0,
+			currentLoot : 0,
             basePrice : 250,
 			currentPrice : 0,
-            stockFlux : .4 };
-
+            stockFlux : .4
+};
 menuA[4] = { title : "Unobtainium",
             description : "Something no one sells, but can sometimes be found randomly in your travels.",
             loot : 0,
             unit : "item",
             baseStock : 0,
+			currentStock : 0,
+			currentLoot : 0,
             basePrice : 8000,
 			currentPrice : 0,
-            stockFlux : 0 };
+            stockFlux : 0
+};
 
 // locations
 var mapA = [];
@@ -151,7 +162,8 @@ var stats = {
     port : mapA[0],// always start at Earth
     cargoLoot : 0,
     cargoCap : 0,
-    remainingCargoUpgrades : 3// hardcoding for now
+    remainingCargoUpgrades : 3,// hardcoding for now
+    menu : menuA
 }
 
 // set often-debugged values
