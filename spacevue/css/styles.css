@@ -49,9 +49,23 @@ ul {
 }
 #market ul li {
 	display:flex;
+	align-items:stretch;
+}
+#market ul li.market-header {
+	border-bottom:#fff 2px solid;
 }
 #market ul li span {
 	flex-grow:1;
+	display:inline-block;
+	vertical-align:center;
+}
+#market ul li span.title {
+	width:30%;
+	flex-grow:0;
+}
+#market ul li span.num {
+	width:10%;
+	flex-grow:0;
 }
 
 
