@@ -11,12 +11,33 @@ for (var i = 0; i < menuA.length; ++i) {
 // marketplace Vue app, watches menu objects for changes
 // and fires events to the main app / stats objects
 Vue.component('marketplace', {
-    template: '<ul class="dynamic"><li class="wee" v-for="item in mainStats.menu"><span class="title">{{ item.title }}' +
-                    ' (Sale!)</span>' +
-                    '<span class="action">SLIDER + ACTION</span>' +
-                    '<span class="num">{{ item.currentPrice }}</span>' +
-                    '<span class="num">{{ item.currentStock }}</span>' +
-                    '<span class="num">{{ item.currentLoot }}</span></li></ul>',
+    template: '<ul class="dynamic">' +
+                    '<li class="market-header"><span class="title">Commodity' +
+                        ' (Sale/Hike)</span>' +
+                        '<span class="action">SLIDER + ACTION</span>' +
+                        '<span class="num">Price</span>' +
+                        '<span class="num">Stock</span>' +
+                        '<span class="num">Loot</span>' +
+                    '</li>' +
+                    '<li v-if="mainStats.port.fuelStation"><span class="title">Fuel</span>' +
+                        '<span class="action">SLIDER + ACTION</span>' +
+                        '<span class="num">{{ mainStats.port.fuelPrice }}</span>' +
+                        '<span class="num">{{ mainStats.port.fuelAvailable }}</span>' +
+                        '<span class="num">{{ mainStats.fuel }}</span>' +
+                    '</li>' +
+                    '<li v-if="mainStats.port.cargoUpgrade"><span class="title">Cargo Hold Upgrade</span>' +
+                        '<span class="action">SLIDER + ACTION</span>' +
+                        '<span class="num">{{ mainStats.port.cargoUpgradePrice }}</span>' +
+                        '<span class="num">{{ mainStats.remainingCargoUpgrades }}</span>' +
+                        '<span class="num">{{ (config.cargoUpgrades - stats.remainingCargoUpgrades) }}</span></li>' +
+                    '<li v-for="item in mainStats.menu">' +
+                        '<span class="title">{{ item.title }} (Sale!)</span>' +
+                        '<span class="action">SLIDER + ACTION</span>' +
+                        '<span class="num">{{ item.currentPrice }}</span>' +
+                        '<span class="num">{{ item.currentStock }}</span>' +
+                        '<span class="num">{{ item.currentLoot }}</span>' +
+                    '</li>' +
+                '</ul>',
     props: ['stats'],
     data() {
         return {
@@ -57,29 +78,8 @@ function buildMarket() {
 
 	// clear out old menu data
 	//marketTable.empty();
-    // check for fuel / upgrade availability, build rows if true
-    if (currentPort.fuelStation) {
-    marketTable.prepend('<li><span class="title">Fuel</span>' +
-					'<span class="action">SLIDER + ACTION</span>' +
-					'<span class="num">' + currentPort.fuelPrice + '</span>' +
-					'<span class="num">' + currentPort.fuelAvailable + '</span>' +
-					'<span class="num">' + stats.fuel + '</span></li>');
-    } else if (port.cargoUpgrade) {
-		marketTable.prepend('<li><span class="title">Cargo Hold Upgrade</span>' +
-			'<span class="action">SLIDER + ACTION</span>' +
-			'<span class="num">' + currentPort.cargoUpgradePrice + '</span>' +
-			'<span class="num">' + stats.remainingCargoUpgrades + '</span>' +
-			'<span class="num">' + (config.cargoUpgrades - stats.remainingCargoUpgrades) + '</span></li>');
-    } else {
-		// do nothing
-	}
-    // add column headers
-    marketTable.prepend('<li class="market-header"><span class="title">Commodity' +
-                ' (Sale/Hike)</span>' +
-                '<span class="action">SLIDER + ACTION</span>' +
-                '<span class="num">Price</span>' +
-                '<span class="num">Stock</span>' +
-                '<span class="num">Loot</span></li>');
+
+
 	// calculate stock-specific variables and apply to 'currentX'
 	menuA.forEach( function (stock) {
 
