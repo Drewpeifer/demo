@@ -3,6 +3,31 @@ $(document).ready(function(){
 	buildMarket();
 });
 
+var menuObj = {};
+for (var i = 0; i < menuA.length; ++i) {
+    menuObj[i] = menuA[i];
+}
+
+// marketplace Vue app, watches menu objects for changes
+// and fires events to the main app / stats objects
+Vue.component('marketplace', {
+    template: '<ul class="dynamic"><li class="wee" v-for="item in mainStats.menu"><span class="title">{{ item.title }}' +
+                    ' (Sale!)</span>' +
+                    '<span class="action">SLIDER + ACTION</span>' +
+                    '<span class="num">{{ item.currentPrice }}</span>' +
+                    '<span class="num">{{ item.currentStock }}</span>' +
+                    '<span class="num">{{ item.currentLoot }}</span></li></ul>',
+    props: ['stats'],
+    data() {
+        return {
+            mainStats: stats
+        }
+    }
+});
+console.dir(menuA);
+
+
+// main Vue app, wraps market component
 var app = new Vue({
 		el: '#app',
 		data: stats
@@ -31,23 +56,16 @@ function buildMarket() {
 	marketTable = $('#market ul');
 
 	// clear out old menu data
-	marketTable.empty();
-	// add column headers
-    marketTable.append('<li class="market-header"><span class="title">Commodity' +
-				' (Sale/Hike)</span>' +
-				'<span class="action">SLIDER + ACTION</span>' +
-				'<span class="num">Price</span>' +
-				'<span class="num">Stock</span>' +
-				'<span class="num">Loot</span></li>');
+	//marketTable.empty();
     // check for fuel / upgrade availability, build rows if true
     if (currentPort.fuelStation) {
-marketTable.append('<li><span class="title">Fuel</span>' +
+    marketTable.prepend('<li><span class="title">Fuel</span>' +
 					'<span class="action">SLIDER + ACTION</span>' +
 					'<span class="num">' + currentPort.fuelPrice + '</span>' +
 					'<span class="num">' + currentPort.fuelAvailable + '</span>' +
 					'<span class="num">' + stats.fuel + '</span></li>');
     } else if (port.cargoUpgrade) {
-		marketTable.append('<li><span class="title">Cargo Hold Upgrade</span>' +
+		marketTable.prepend('<li><span class="title">Cargo Hold Upgrade</span>' +
 			'<span class="action">SLIDER + ACTION</span>' +
 			'<span class="num">' + currentPort.cargoUpgradePrice + '</span>' +
 			'<span class="num">' + stats.remainingCargoUpgrades + '</span>' +
@@ -55,23 +73,26 @@ marketTable.append('<li><span class="title">Fuel</span>' +
     } else {
 		// do nothing
 	}
-	// populate the marketTable
+    // add column headers
+    marketTable.prepend('<li class="market-header"><span class="title">Commodity' +
+                ' (Sale/Hike)</span>' +
+                '<span class="action">SLIDER + ACTION</span>' +
+                '<span class="num">Price</span>' +
+                '<span class="num">Stock</span>' +
+                '<span class="num">Loot</span></li>');
+	// calculate stock-specific variables and apply to 'currentX'
 	menuA.forEach( function (stock) {
 
 		// calculate port-specific variables
         minStock = stock.baseStock + (stock.baseStock * -stock.stockFlux),
         maxStock = stock.baseStock + (stock.baseStock * stock.stockFlux),
         newStock = getRandomStock(minStock, maxStock),// set random stock amount within min/max range
+        stock.currentStock = newStock;// set currentStock to newStock
         minPrice = stock.basePrice + (stock.basePrice * -currentPort.priceFlux),
         maxPrice = stock.basePrice + (stock.basePrice * currentPort.priceFlux),
         newPrice = getRandomStock(minPrice, maxPrice);// set random price value within min/max range
+        stock.currentPrice = newPrice;// set currentPrice to newPrice
         // append commodity row to UI
-        marketTable.append('<li><span class="title">' + stock.title +
-					' (Sale!)</span>' +
-					'<span class="action">SLIDER + ACTION</span>' +
-					'<span class="num">' + newPrice + '</span>' +
-					'<span class="num">' + newStock + '</span>' +
-					'<span class="num">' + stock.loot + '</span></li>');
     });
 
     // figure out of there's a sale or hike, and apply it to a random commodity
@@ -95,10 +116,9 @@ marketTable.append('<li><span class="title">Fuel</span>' +
             // recalc commodity price value
             newPriceVal = Math.floor(parseInt(randomStock.basePrice) / flux);
             //set new loot price
-            randomStock.currentPrice(newPriceVal);
-            targetPrice.addClass('sale');// tag as sale price
-            targetItemCell.children('.title').after('<p class="sale"> (Sale!)</p>');
-            console.log('Sale! Today, ' + randomStock.title + " only costs " +  newPriceVal);
+            randomStock.currentPrice = newPriceVal;
+
+            console.log('Sale! Today, ' + randomStock.title + " only costs " +  randomStock.currentPrice);
         } else {
             // it's a hike!
             // find randomLoots price cell

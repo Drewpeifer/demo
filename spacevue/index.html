@@ -36,17 +36,8 @@
 		</div>
 		<!-- end controls -->
 		<!-- marketplace -->
-		<div id="market">
-			<ul>
-				<li>
-					<span>Item Name</span>
-					<span>Sale/Hike</span>
-					<span>SLIDER + ACTION</span>
-					<span>Price</span>
-					<span>Stock</span>
-					<span>Loot</span>
-				</li>
-			</ul>
+		<div id="market" v-bind:class="port.title">
+			<marketplace></marketplace>
 		</div>
 		<!-- end marketplace -->
 	</div>
