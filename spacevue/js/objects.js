@@ -17,6 +17,7 @@ menuA[0] = { title : "Meteorite Ore",
             unit : "ton",
             baseStock : 15,
             basePrice : 20,
+			currentPrice : 0,
             stockFlux : .1 };
 
 menuA[1] = { title : "Dilithium Crystals",
@@ -25,6 +26,7 @@ menuA[1] = { title : "Dilithium Crystals",
             unit : "kilo",
             baseStock : 20,
             basePrice : 50,
+			currentPrice : 0,
             stockFlux : .2 };
 
 menuA[2] = { title : "Gravitonium",
@@ -33,6 +35,7 @@ menuA[2] = { title : "Gravitonium",
             unit : "kilo",
             baseStock : 20,
             basePrice : 100,
+			currentPrice : 0,
             stockFlux : .3 };
 
 menuA[3] = { title : "Laudinum",
@@ -41,6 +44,7 @@ menuA[3] = { title : "Laudinum",
             unit : "bar",
             baseStock : 10,
             basePrice : 250,
+			currentPrice : 0,
             stockFlux : .4 };
 
 menuA[4] = { title : "Unobtainium",
@@ -49,6 +53,7 @@ menuA[4] = { title : "Unobtainium",
             unit : "item",
             baseStock : 0,
             basePrice : 8000,
+			currentPrice : 0,
             stockFlux : 0 };
 
 // locations
