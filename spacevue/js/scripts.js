@@ -80,10 +80,9 @@ function buildMarket() {
 	//marketTable.empty();
 
 
-	// calculate stock-specific variables and apply to 'currentX'
+	// calculate flux-based prices and stock amounts, and apply to 'currentX' props
 	menuA.forEach( function (stock) {
 
-		// calculate port-specific variables
         minStock = stock.baseStock + (stock.baseStock * -stock.stockFlux),
         maxStock = stock.baseStock + (stock.baseStock * stock.stockFlux),
         newStock = getRandomStock(minStock, maxStock),// set random stock amount within min/max range
@@ -92,7 +91,7 @@ function buildMarket() {
         maxPrice = stock.basePrice + (stock.basePrice * currentPort.priceFlux),
         newPrice = getRandomStock(minPrice, maxPrice);// set random price value within min/max range
         stock.currentPrice = newPrice;// set currentPrice to newPrice
-        // append commodity row to UI
+
     });
 
     // figure out of there's a sale or hike, and apply it to a random commodity
@@ -110,28 +109,20 @@ function buildMarket() {
         console.log('flux = ' + flux);
         console.log('randomStock = ' + randomStock.title + ' @ ' + randomStock.basePrice);
 
-
         if (saleOrHike == 1) {
             // it's a sale!
             // recalc commodity price value
             newPriceVal = Math.floor(parseInt(randomStock.basePrice) / flux);
             //set new loot price
             randomStock.currentPrice = newPriceVal;
-
             console.log('Sale! Today, ' + randomStock.title + " only costs " +  randomStock.currentPrice);
+
         } else {
             // it's a hike!
-            // find randomLoots price cell
-            targetItemCell = $('.market td:contains("' + randomStock.title + '")'),
-            targetPriceCell = targetItemCell.siblings('.price');
-            targetPrice = targetPriceCell.children('p');
-            targetPriceVal = targetPrice.children('p').text();
-            // recalc value
+            // recalc commodity price value
             newPriceVal = Math.floor(parseInt(randomStock.basePrice) * flux);
             //set new loot value in DOM
-            targetPrice.text(newPriceVal);
-            targetPrice.addClass('hike');// tag as hike price
-            targetItemCell.children('.title').after('<p class="hike">&nbsp;(Hike!)</p>');
+            randomStock.currentPrice = newPriceVal;
             console.log('Hike! Today, ' + randomStock.title + " costs " +  newPriceVal);
         }
     }
