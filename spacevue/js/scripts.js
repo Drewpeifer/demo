@@ -43,14 +43,32 @@ Vue.component('marketplace', {
         return "..."
       },
       buySell(item, mainStats) {
-        if ((parseFloat(item.delta) * parseFloat(item.currentPrice)) > parseFloat(mainStats.wallet)) {// check wallet first
-            // too poor
-            alert("you're too poor");
-        } else if ((parseFloat(item.delta) + parseFloat(mainStats.cargoLoot)) > parseFloat(mainStats.cargoCap)) {// then check cargo
-            // cargo full
-            alert("your cargo is full");
-        } else {// purchase goods
-            console.log('purchase');
+        // test for purchase VS sale
+        if (parseFloat(item.delta) > 0){// purchase
+            if ((parseFloat(item.delta) * parseFloat(item.currentPrice)) > parseFloat(mainStats.wallet)) {// check wallet first
+                // too poor
+                alert("you're too poor");
+            } else if ((parseFloat(item.delta) + parseFloat(mainStats.cargoLoot)) > parseFloat(mainStats.cargoCap)) {// then check cargo
+                // cargo full
+                alert("your cargo is full");
+            } else {// purchase goods
+                console.log('purchase');
+                // subtract cost from wallet
+                mainStats.wallet = parseFloat(mainStats.wallet) - (parseFloat(item.delta) * parseFloat(item.currentPrice));
+                // increment currentLoot value for that item
+                item.currentLoot = parseFloat(item.delta) + parseFloat(item.currentLoot);
+                // subtract loot from merchant stock
+                item.currentStock = parseFloat(item.currentStock) - parseFloat(item.delta);
+                // add loot to cargo hold
+                mainStats.cargoLoot = parseFloat(item.delta) + parseFloat(mainStats.cargoLoot);
+            }
+        } else if (parseFloat(item.delta) < 0) {// sale
+            // add cash to wallet
+            // remove loot from item's currentLoot
+            // remove loot from cargo hold
+            // add loot to item's currentStock
+        } else {// item.delta is 0
+            // do nothing
         }
       }
     },
