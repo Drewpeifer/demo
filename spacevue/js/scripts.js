@@ -1,6 +1,6 @@
 $(document).ready(function(){
-//	makeManyStars();
-buildMarket(stats.port);
+	makeManyStars();
+    buildMarket(stats.port);// builds initial marketplace
 });
 
 // marketplace Vue app, watches menu objects for changes
@@ -8,7 +8,7 @@ buildMarket(stats.port);
 Vue.component('marketplace', {
     template: '<ul>' +
                 '<li class="market-header"><span class="title">Commodity</span>' +
-                    '<span class="action">SLIDER + ACTION</span>' +
+                    '<span class="action"></span>' +
                     '<span class="num">Price</span>' +
                     '<span class="num">Stock</span>' +
                     '<span class="num">Loot</span>' +
@@ -38,8 +38,6 @@ Vue.component('marketplace', {
         }
     }
 });
-console.dir(menuA);
-
 
 // main Vue app, wraps market component
 var app = new Vue({
