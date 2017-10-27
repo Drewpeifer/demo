@@ -67,8 +67,12 @@ ul {
 	width:10%;
 	flex-grow:0;
 }
-
-
+#market ul li.sale span.title span {
+	color:#9fe59e;
+}
+#market ul li.hike span.title span {
+	color:#ea8481;
+}
 /* text */
 h1 {
 	margin:10px 0;
