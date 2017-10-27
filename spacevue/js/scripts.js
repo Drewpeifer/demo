@@ -111,7 +111,15 @@ var app = new Vue({
 		data: stats,
         methods: {
             toggleMap: function() {
-                $('#map').toggle();
-            }
+                        $('#map').toggle();
+                    },
+            cargoSum: function(menu) {
+                        var total = 0;
+                        for (var i = 0; i < menu.length; i++) {
+                            v = parseFloat(menu[i].currentLoot);
+                            total += v;
+                        }
+                        return total;
+                    }
         }
 });
