@@ -86,12 +86,25 @@ ul {
 #market ul li span.counter button {
 	width:45px;
 	background:#f2f2f2;
+	border-radius:50%;
 }
 #market ul li span.action {
 	border-left:none;
 }
-#market ul li span.exchange button {
+#market ul li span.exchange button,
+#market ul li span.exchange button.Buy,
+#market ul li span.exchange button.Sell {
 	width:35px;
+	border-radius:50%;
+}
+#market ul li span.exchange button:focus {
+	outline:none;
+}
+#market ul li span.exchange button.Buy {
+	background:#9fe59e;
+}
+#market ul li span.exchange button.Sell {
+	background:#ea8481;
 }
 /* text */
 h1 {
