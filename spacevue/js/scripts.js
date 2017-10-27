@@ -23,7 +23,7 @@ Vue.component('marketplace', {
                     '<span class="action">SLIDER + ACTION</span>' +
                     '<span class="num">{{ mainStats.port.cargoUpgradePrice }}</span>' +
                     '<span class="num">{{ mainStats.remainingCargoUpgrades }}</span>' +
-                    '<span class="num">{{ (config.cargoUpgrades - stats.remainingCargoUpgrades) }}</span></li>' +
+                    '<span class="num">{{ (mainStats.config.cargoUpgrades - mainStats.remainingCargoUpgrades) }}</span></li>' +
                 '<li v-for="item in mainStats.menu" v-bind:class="item.safeTitle">' +
                     '<span class="title">{{ item.title }}</span>' +
                     '<span class="action">SLIDER + ACTION</span>' +
@@ -39,8 +39,39 @@ Vue.component('marketplace', {
     }
 });
 
+// map Vue component, builds travel interface from map[X] object
+Vue.component('map-list', {
+    template: '<ul>' +
+                    '<li v-on:click="toggleMap" class="close">[X] Close Map</li>' +
+                    '<li v-for="item in mainStats.map">' +
+                    '<span v-on:click="travel(item)" class="title">{{ item.title }}</span>' +
+                    '<span class="description">{{ item.description }}</span>' +
+                '</li></ul>',
+    methods: {
+        toggleMap: function() {
+            $('#map').toggle();
+        },
+        travel: function(port) {
+            console.log('traveling to ' + port);
+            stats.port = port;
+            buildMarket(port);
+            $('#map').toggle();
+        }
+    },
+    data() {
+        return {
+            mainStats: stats
+        }
+    }
+});
+
 // main Vue app, wraps market component
 var app = new Vue({
 		el: '#app',
-		data: stats
+		data: stats,
+        methods: {
+            toggleMap: function() {
+                $('#map').toggle();
+            }
+        }
 });

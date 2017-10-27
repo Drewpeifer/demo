@@ -168,7 +168,9 @@ var stats = {
     cargoLoot : 0,
     cargoCap : 0,
     remainingCargoUpgrades : 3,// hardcoding for now
-    menu : menuA
+    menu : menuA,
+    map : mapA,
+    config : config
 }
 
 // set often-debugged values

@@ -18,9 +18,8 @@ function getRandomStock(min, max) {
 function buildMarket(currentPort) {
 	marketTable = $('#market ul');
 
-	// clear out old menu data
-	//marketTable.empty();
-
+    // clear sale/hike tags
+    $('.sale, .hike').remove();
 
 	// calculate flux-based prices and stock amounts, and apply to 'currentX' props
 	menuA.forEach( function (stock) {

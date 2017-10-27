@@ -9,7 +9,7 @@ body {
 #wrapper {
 	border:none;
 }
-#app {
+#app, #map {
 	width:60%;
 	margin:0 auto;
 	overflow:hidden;
@@ -33,6 +33,13 @@ ul {
 	flex-grow:1;
 	padding:2px 5px;
 	line-height:16px;
+	margin:auto 0;
+}
+#controls .stats span:nth-child(2) {
+	text-align:center;
+}
+#controls .stats span:nth-child(3) {
+	text-align:right;
 }
 /* market */
 #market {
@@ -72,11 +79,13 @@ ul {
 	padding-left:0;
 	text-align:center;
 }
-span.sale {
+#market ul li span.sale {
 	color:#9fe59e;
+	border-left:none;
 }
-span.hike {
+#market ul li span.hike {
 	color:#ea8481;
+	border-left:none;
 }
 /* text */
 h1 {
@@ -85,7 +94,26 @@ h1 {
 ul li {
 	list-style-type:none;
 }
+/* peripherals */
+/** map **/
+#map {
+	background:#000;
+	border:#fff 2px solid;
+	border-radius:5px;
+	position:absolute;
+}
+#map ul li {
+	border-bottom:#fff 1px solid;
+	display:flex;
+	align-items:stretch;
+}
+#map ul li span.title {
+	min-width:25%;
+	max-width:25%;
+	font-size:2em;
+	margin-right:5px;
 
+}
 /* ---------------------- */
 /* starfield background */
 #starfield {
