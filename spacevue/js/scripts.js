@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	makeManyStars();
+//	makeManyStars();
     buildMarket(stats.port);// builds initial marketplace
 });
 
@@ -24,9 +24,12 @@ Vue.component('marketplace', {
                     '<span class="num">{{ mainStats.port.cargoUpgradePrice }}</span>' +
                     '<span class="num">{{ mainStats.remainingCargoUpgrades }}</span>' +
                     '<span class="num">{{ (mainStats.config.cargoUpgrades - mainStats.remainingCargoUpgrades) }}</span></li>' +
-                '<li v-for="item in mainStats.menu" v-bind:class="item.safeTitle">' +
+                '<li v-for="(item, index) in mainStats.menu" v-bind:class="item.safeTitle">' +
                     '<span class="title">{{ item.title }}</span>' +
-                    '<span class="action">SLIDER + ACTION</span>' +
+                    '<span class="counter"><button disabled="true">{{ item.delta }}</button></span>' +
+                    '<span class="action">' +
+                    '<input type="range" v-model="item.delta" value="0" v-bind:max="item.currentStock" v-bind:min="0 - item.currentLoot">' +
+                    '</span>' +
                     '<span class="num">{{ item.currentPrice }}</span>' +
                     '<span class="num">{{ item.currentStock }}</span>' +
                     '<span class="num">{{ item.currentLoot }}</span>' +
