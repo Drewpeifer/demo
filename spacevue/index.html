@@ -15,18 +15,18 @@
 	<div id="starfield"></div>
 	<div id="app">
 		<!-- peripherals -->
-		<div id="alert" class="peripheral" style="display:none;">
-			<div class="alert-content"></div>
+		<div id="map" class="peripheral" style="display:none;">
+			<map-list></map-list>
 		</div>
 		<!-- end peripherals -->
 		<!-- controls (top HUD) -->
 		<div id="controls">
 			<ul>
-				<li>
-					<span>Location:</span>
+				<li class="location">
+					<span v-on:click="toggleMap">Location:</span>
 					<span>{{ port.description }}</span>
 				</li>
-				<li>
+				<li class="stats">
 					<span>&#36;{{ wallet }}</span>
 					<span>Cargo: {{ cargoLoot }}</span>
 					<span>Fuel: {{ fuel }}</span>
