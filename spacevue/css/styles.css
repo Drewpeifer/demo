@@ -90,6 +90,9 @@ ul {
 #market ul li span.action {
 	border-left:none;
 }
+#market ul li span.exchange button {
+	width:35px;
+}
 /* text */
 h1 {
 	margin:10px 0;
