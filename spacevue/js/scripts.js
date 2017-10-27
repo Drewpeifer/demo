@@ -26,10 +26,10 @@ Vue.component('marketplace', {
                     '<span class="num">{{ (mainStats.config.cargoUpgrades - mainStats.remainingCargoUpgrades) }}</span></li>' +
                 '<li v-for="(item, index) in mainStats.menu" v-bind:class="item.safeTitle">' +
                     '<span class="title">{{ item.title }}</span>' +
-                    '<span class="counter"><button disabled="true">{{ item.delta }}</button></span>' +
                     '<span class="action">' +
                     '<input type="range" v-model="item.delta" value="0" v-bind:max="item.currentStock" v-bind:min="0 - item.currentLoot">' +
                     '</span>' +
+                    '<span class="counter"><button disabled="true">{{ item.delta }}</button></span>' +
                     '<span class="exchange"><button v-on:click="buySell(item, mainStats)" v-bind:class="exchangeText(item.delta)">{{ exchangeText(item.delta) }}</button></span>' +
                     '<span class="num">{{ item.currentPrice }}</span>' +
                     '<span class="num">{{ item.currentStock }}</span>' +
@@ -59,11 +59,11 @@ Vue.component('marketplace', {
                 item.currentLoot = parseFloat(item.delta) + parseFloat(item.currentLoot);
                 // subtract loot from merchant stock
                 item.currentStock = parseFloat(item.currentStock) - parseFloat(item.delta);
-                // add loot to cargo hold
-                mainStats.cargoLoot = parseFloat(item.delta) + parseFloat(mainStats.cargoLoot);
             }
         } else if (parseFloat(item.delta) < 0) {// sale
             // add cash to wallet
+                mainStats.wallet = parseFloat(mainStats.wallet) - (parseFloat(item.delta) * parseFloat(item.currentPrice));
+
             // remove loot from item's currentLoot
             // remove loot from cargo hold
             // add loot to item's currentStock
