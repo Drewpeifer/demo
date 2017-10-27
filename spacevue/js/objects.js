@@ -170,7 +170,13 @@ var stats = {
     wallet : 0,
     fuel : 0,
     port : mapA[0],// always start at Earth
-    cargoLoot : 0,
+    cargoLoot : function() {
+        mapA.each(function(item, i) {
+            loot = parseFloat(item.currentLoot);
+            i = loot + i;
+            return i;
+        })
+    },
     cargoCap : 0,
     remainingCargoUpgrades : 3,// hardcoding for now
     menu : menuA,
