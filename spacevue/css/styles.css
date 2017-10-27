@@ -58,14 +58,19 @@ ul {
 	flex-grow:1;
 	display:inline-block;
 	vertical-align:center;
+	border-left:#fff 1px solid;
+	padding-left:5px;
 }
 #market ul li span.title {
 	width:30%;
 	flex-grow:0;
+	border-left:none;
 }
 #market ul li span.num {
 	width:10%;
 	flex-grow:0;
+	padding-left:0;
+	text-align:center;
 }
 span.sale {
 	color:#9fe59e;
