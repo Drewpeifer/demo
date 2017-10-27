@@ -67,10 +67,10 @@ ul {
 	width:10%;
 	flex-grow:0;
 }
-#market ul li.sale span.title span {
+span.sale {
 	color:#9fe59e;
 }
-#market ul li.hike span.title span {
+span.hike {
 	color:#ea8481;
 }
 /* text */
