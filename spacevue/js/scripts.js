@@ -30,12 +30,20 @@ Vue.component('marketplace', {
                     '<span class="action">' +
                     '<input type="range" v-model="item.delta" value="0" v-bind:max="item.currentStock" v-bind:min="0 - item.currentLoot">' +
                     '</span>' +
-                    '<span class="exchange"><button>{{ (item.delta > 0) ? "Buy" : "Sell" }}</button></span>' +
+                    '<span class="exchange"><button>{{ exchangeText(item.delta) }}</button></span>' +
                     '<span class="num">{{ item.currentPrice }}</span>' +
                     '<span class="num">{{ item.currentStock }}</span>' +
                     '<span class="num">{{ item.currentLoot }}</span>' +
                 '</li>' +
             '</ul>',
+    methods: {
+       exchangeText(item){
+        console.dir(item);
+        if (item > 0) return "Buy"
+        if (item < 0) return "Sell"
+        return "..."
+      }
+    },
     data() {
         return {
             mainStats: stats
