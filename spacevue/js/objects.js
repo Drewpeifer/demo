@@ -12,6 +12,7 @@ var menuA = [];
 //}
 
 menuA[0] = { title : "Meteorite Ore",
+			safeTitle: "meteorite-ore",
             description : "Cheap, and everywhere, but always handy to have around.",
             loot : 0,
             unit : "ton",
@@ -23,6 +24,7 @@ menuA[0] = { title : "Meteorite Ore",
             stockFlux : .1
 };
 menuA[1] = { title : "Dilithium Crystals",
+			safeTitle: "dilithium-crystals",
             description : "Super important for warp reactors. That's about it though.",
             loot : 0,
             unit : "kilo",
@@ -34,6 +36,7 @@ menuA[1] = { title : "Dilithium Crystals",
             stockFlux : .2
 };
 menuA[2] = { title : "Gravitonium",
+			safeTitle: "gravitonium",
             description : "An unstable element used in reactors and some scary kinds of weapons.",
             loot : 0,
             unit : "kilo",
@@ -45,6 +48,7 @@ menuA[2] = { title : "Gravitonium",
             stockFlux : .3
 };
 menuA[3] = { title : "Laudinum",
+			safeTitle: "laudinum",
             description : "Used for currency in some places, also as an alloy for electronics.",
             loot : 0,
             unit : "bar",
@@ -56,6 +60,7 @@ menuA[3] = { title : "Laudinum",
             stockFlux : .4
 };
 menuA[4] = { title : "Unobtainium",
+			safeTitle: "unobtainium",
             description : "Something no one sells, but can sometimes be found randomly in your travels.",
             loot : 0,
             unit : "item",

@@ -11,34 +11,33 @@ for (var i = 0; i < menuA.length; ++i) {
 // marketplace Vue app, watches menu objects for changes
 // and fires events to the main app / stats objects
 Vue.component('marketplace', {
-    template: '<ul class="dynamic">' +
-                    '<li class="market-header"><span class="title">Commodity' +
-                        ' (Sale/Hike)</span>' +
-                        '<span class="action">SLIDER + ACTION</span>' +
-                        '<span class="num">Price</span>' +
-                        '<span class="num">Stock</span>' +
-                        '<span class="num">Loot</span>' +
-                    '</li>' +
-                    '<li v-if="mainStats.port.fuelStation"><span class="title">Fuel</span>' +
-                        '<span class="action">SLIDER + ACTION</span>' +
-                        '<span class="num">{{ mainStats.port.fuelPrice }}</span>' +
-                        '<span class="num">{{ mainStats.port.fuelAvailable }}</span>' +
-                        '<span class="num">{{ mainStats.fuel }}</span>' +
-                    '</li>' +
-                    '<li v-if="mainStats.port.cargoUpgrade"><span class="title">Cargo Hold Upgrade</span>' +
-                        '<span class="action">SLIDER + ACTION</span>' +
-                        '<span class="num">{{ mainStats.port.cargoUpgradePrice }}</span>' +
-                        '<span class="num">{{ mainStats.remainingCargoUpgrades }}</span>' +
-                        '<span class="num">{{ (config.cargoUpgrades - stats.remainingCargoUpgrades) }}</span></li>' +
-                    '<li v-for="item in mainStats.menu">' +
-                        '<span class="title">{{ item.title }} (Sale!)</span>' +
-                        '<span class="action">SLIDER + ACTION</span>' +
-                        '<span class="num">{{ item.currentPrice }}</span>' +
-                        '<span class="num">{{ item.currentStock }}</span>' +
-                        '<span class="num">{{ item.currentLoot }}</span>' +
-                    '</li>' +
-                '</ul>',
-    props: ['stats'],
+    template: '<ul>' +
+                '<li class="market-header"><span class="title">Commodity' +
+                    ' (Sale/Hike)</span>' +
+                    '<span class="action">SLIDER + ACTION</span>' +
+                    '<span class="num">Price</span>' +
+                    '<span class="num">Stock</span>' +
+                    '<span class="num">Loot</span>' +
+                '</li>' +
+                '<li v-if="mainStats.port.fuelStation"><span class="title">Fuel</span>' +
+                    '<span class="action">SLIDER + ACTION</span>' +
+                    '<span class="num">{{ mainStats.port.fuelPrice }}</span>' +
+                    '<span class="num">{{ mainStats.port.fuelAvailable }}</span>' +
+                    '<span class="num">{{ mainStats.fuel }}</span>' +
+                '</li>' +
+                '<li v-if="mainStats.port.cargoUpgrade"><span class="title">Cargo Hold Upgrade</span>' +
+                    '<span class="action">SLIDER + ACTION</span>' +
+                    '<span class="num">{{ mainStats.port.cargoUpgradePrice }}</span>' +
+                    '<span class="num">{{ mainStats.remainingCargoUpgrades }}</span>' +
+                    '<span class="num">{{ (config.cargoUpgrades - stats.remainingCargoUpgrades) }}</span></li>' +
+                '<li v-for="item in mainStats.menu" v-bind:class="item.safeTitle">' +
+                    '<span class="title">{{ item.title }}</span>' +
+                    '<span class="action">SLIDER + ACTION</span>' +
+                    '<span class="num">{{ item.currentPrice }}</span>' +
+                    '<span class="num">{{ item.currentStock }}</span>' +
+                    '<span class="num">{{ item.currentLoot }}</span>' +
+                '</li>' +
+            '</ul>',
     data() {
         return {
             mainStats: stats
@@ -115,6 +114,11 @@ function buildMarket() {
             newPriceVal = Math.floor(parseInt(randomStock.basePrice) / flux);
             //set new loot price
             randomStock.currentPrice = newPriceVal;
+            // add class to appropriate commodity row
+            targetRow = $('#market li.' + randomStock.safeTitle);
+            targetStock = $('#market li.' + randomStock.safeTitle + ' span.title');
+            targetRow.addClass('sale');
+            targetStock.append('<span>&nbsp;(Sale)</span>');
             console.log('Sale! Today, ' + randomStock.title + " only costs " +  randomStock.currentPrice);
 
         } else {
@@ -123,6 +127,11 @@ function buildMarket() {
             newPriceVal = Math.floor(parseInt(randomStock.basePrice) * flux);
             //set new loot value in DOM
             randomStock.currentPrice = newPriceVal;
+            // add class to appropriate commodity row
+            targetRow = $('#market li.' + randomStock.safeTitle);
+            targetStock = $('#market li.' + randomStock.safeTitle + ' span.title');
+            targetRow.addClass('hike');
+            targetStock.append('<span>&nbsp;(Hike)</span>');
             console.log('Hike! Today, ' + randomStock.title + " costs " +  newPriceVal);
         }
     }
