@@ -59,14 +59,19 @@ Vue.component('marketplace', {
                 item.currentLoot = parseFloat(item.delta) + parseFloat(item.currentLoot);
                 // subtract loot from merchant stock
                 item.currentStock = parseFloat(item.currentStock) - parseFloat(item.delta);
+                // reset delta value
+                item.delta = 0;
             }
         } else if (parseFloat(item.delta) < 0) {// sale
+            // keep in mind delta is negative in this case
             // add cash to wallet
-                mainStats.wallet = parseFloat(mainStats.wallet) - (parseFloat(item.delta) * parseFloat(item.currentPrice));
-
+            mainStats.wallet = parseFloat(mainStats.wallet) - (parseFloat(item.delta) * parseFloat(item.currentPrice));
             // remove loot from item's currentLoot
-            // remove loot from cargo hold
+            item.currentLoot = (parseFloat(item.currentLoot) + parseFloat(item.delta));
             // add loot to item's currentStock
+            item.currentStock = (parseFloat(item.currentStock) - parseFloat(item.delta));
+            // reset delta value
+            item.delta = 0;
         } else {// item.delta is 0
             // do nothing
         }
