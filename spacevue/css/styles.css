@@ -32,12 +32,8 @@ ul {
 #controls ul li span {
 	flex-grow:1;
 	padding:2px 5px;
+	line-height:16px;
 }
-#controls ul li span.map {
-	flex-grow:0;
-	flex-basis:0;
-}
-
 /* market */
 #market {
 	overflow-x:hidden;
@@ -51,7 +47,11 @@ ul {
 	display:flex;
 	align-items:stretch;
 }
+#market ul li:nth-child(even) {
+	background:rgba(255, 255, 255, .2);
+}
 #market ul li.market-header {
+	font-weight:bold;
 	border-bottom:#fff 2px solid;
 }
 #market ul li span {
@@ -142,6 +142,3 @@ ul li {
 }
 /* ---- end starfield background ---- */
 /* debug */
-span {
-	border:1px solid red;
-}
