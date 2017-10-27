@@ -30,17 +30,34 @@ Vue.component('marketplace', {
                     '<span class="action">' +
                     '<input type="range" v-model="item.delta" value="0" v-bind:max="item.currentStock" v-bind:min="0 - item.currentLoot">' +
                     '</span>' +
-                    '<span class="exchange"><button v-bind:class="exchangeText(item.delta)">{{ exchangeText(item.delta) }}</button></span>' +
+                    '<span class="exchange"><button v-on:click="buySell(item, mainStats)" v-bind:class="exchangeText(item.delta)">{{ exchangeText(item.delta) }}</button></span>' +
                     '<span class="num">{{ item.currentPrice }}</span>' +
                     '<span class="num">{{ item.currentStock }}</span>' +
                     '<span class="num">{{ item.currentLoot }}</span>' +
                 '</li>' +
             '</ul>',
     methods: {
-       exchangeText(item){
-        if (item > 0) return "Buy"
-        if (item < 0) return "Sell"
+       exchangeText(delta) {
+        if (delta > 0) return "Buy"
+        if (delta < 0) return "Sell"
         return "..."
+      },
+      buySell(item, mainStats) {
+        if ((item.delta * item.price) > mainStats.wallet) {// check wallet first
+            // too poor
+            console.log('item.delta = ' + item.delta);
+            console.log('item.price = ' + item.price);
+            console.log('mainStats.wallet = ' + mainStats.wallet);
+            alert("you're too poor");
+        } else if ((item.delta + mainStats.cargoLoot) > mainStats.cargoCap) {// then check cargo
+            // cargo full
+            console.log('item.delta = ' + item.delta);
+            console.log('mainStats.cargoLoot = ' + mainStats.cargoLoot);
+            console.log('mainStats.cargoCap = ' + mainStats.cargoCap);
+            alert("your cargo is full");
+        } else {// purchase goods
+            console.log('purchase');
+        }
       }
     },
     data() {
