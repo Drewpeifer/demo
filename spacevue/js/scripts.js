@@ -43,17 +43,11 @@ Vue.component('marketplace', {
         return "..."
       },
       buySell(item, mainStats) {
-        if ((item.delta * item.price) > mainStats.wallet) {// check wallet first
+        if ((parseFloat(item.delta) * parseFloat(item.currentPrice)) > parseFloat(mainStats.wallet)) {// check wallet first
             // too poor
-            console.log('item.delta = ' + item.delta);
-            console.log('item.price = ' + item.price);
-            console.log('mainStats.wallet = ' + mainStats.wallet);
             alert("you're too poor");
-        } else if ((item.delta + mainStats.cargoLoot) > mainStats.cargoCap) {// then check cargo
+        } else if ((parseFloat(item.delta) + parseFloat(mainStats.cargoLoot)) > parseFloat(mainStats.cargoCap)) {// then check cargo
             // cargo full
-            console.log('item.delta = ' + item.delta);
-            console.log('mainStats.cargoLoot = ' + mainStats.cargoLoot);
-            console.log('mainStats.cargoCap = ' + mainStats.cargoCap);
             alert("your cargo is full");
         } else {// purchase goods
             console.log('purchase');
