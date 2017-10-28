@@ -83,6 +83,18 @@ Vue.component('marketplace', {
         } else {// item.delta is 0
             // do nothing
         }
+    },
+    buyFuel(delta, mainStats) {
+        // check wallet first
+        if ((parseFloat(delta) * parseFloat(mainStats.port.fuelPrice)) > parseFloat(mainStats.wallet)) {// check wallet first
+            // too poor
+            alert("you're too poor");
+        } else {
+            // buy fuel
+            //remove cash from wallet
+            // add fuel to tank
+            // remove fuel from station
+        }
       }
     },
     data() {
@@ -108,6 +120,7 @@ Vue.component('map-list', {
             console.log('traveling to ' + port);
             stats.port = port;
             buildMarket(port);
+            stats.fuel -= 1;
             $('#map').toggle();
         }
     },
