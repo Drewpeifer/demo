@@ -180,7 +180,7 @@ var stats = {
     port : mapA[0],// always start at Earth
     cargoLoot : 0,
     cargoCap : 0,
-    remainingCargoUpgrades : 3,// hardcoding for now
+    cargoUpgrades : 0,
     menu : menuA,
     map : mapA,
     config : config
