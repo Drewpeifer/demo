@@ -1,4 +1,6 @@
 // Market stuff
+// Takes base prices, applies port price and stock randomly via flux
+// Also randomly generates sale/hike conditions on a random commodity
 
 // return random number from min (inclusive) to max (inclusive)
 // only returns WHOLE numbers
