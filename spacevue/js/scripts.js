@@ -14,13 +14,21 @@ Vue.component('marketplace', {
                     '<span class="num">Loot</span>' +
                 '</li>' +
                 '<li v-if="mainStats.port.fuelStation"><span class="title">Fuel</span>' +
-                    '<span class="action">SLIDER + ACTION</span>' +
+                    '<span class="action">' +
+                    '<input type="range" v-model="mainStats.port.fuelDelta" value="0" v-bind:max="mainStats.port.fuelAvailable" v-bind:min="0">' +
+                    '</span>' +
+                    '<span class="counter"><button disabled="true">{{ mainStats.port.fuelDelta }}</button></span>' +
+                    '<span class="exchange"><button v-bind:class="exchangeText(mainStats.port.fuelDelta)">{{ exchangeText(mainStats.port.fuelDelta) }}</button></span>' +
                     '<span class="num">{{ mainStats.port.fuelPrice }}</span>' +
                     '<span class="num">{{ mainStats.port.fuelAvailable }}</span>' +
                     '<span class="num">{{ mainStats.fuel }}</span>' +
                 '</li>' +
                 '<li v-if="mainStats.port.cargoUpgrade"><span class="title">Cargo Hold Upgrade</span>' +
-                    '<span class="action">SLIDER + ACTION</span>' +
+                    '<span class="action">' +
+                    '<input type="range" v-model="mainStats.port.cargoUpgradeDelta" value="0" v-bind:max="mainStats.port.cargoUpgrades" v-bind:min="0">' +
+                    '</span>' +
+                    '<span class="counter"><button disabled="true">{{ mainStats.port.cargoUpgradeDelta }}</button></span>' +
+                    '<span class="exchange"><button v-bind:class="exchangeText(mainStats.port.cargoUpgradeDelta)">{{ exchangeText(mainStats.port.cargoUpgradeDelta) }}</button></span>' +
                     '<span class="num">{{ mainStats.port.cargoUpgradePrice }}</span>' +
                     '<span class="num">{{ mainStats.remainingCargoUpgrades }}</span>' +
                     '<span class="num">{{ (mainStats.config.cargoUpgrades - mainStats.remainingCargoUpgrades) }}</span></li>' +
