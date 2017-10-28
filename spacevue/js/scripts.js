@@ -18,7 +18,7 @@ Vue.component('marketplace', {
                     '<input type="range" v-model="mainStats.port.fuelDelta" value="0" v-bind:max="mainStats.port.fuelAvailable" v-bind:min="0">' +
                     '</span>' +
                     '<span class="counter"><button disabled="true">{{ mainStats.port.fuelDelta }}</button></span>' +
-                    '<span class="exchange"><button v-bind:class="exchangeText(mainStats.port.fuelDelta)">{{ exchangeText(mainStats.port.fuelDelta) }}</button></span>' +
+                    '<span class="exchange"><button v-on:click="buyFuel(mainStats.port.fuelDelta, mainStats)" v-bind:class="exchangeText(mainStats.port.fuelDelta)">{{ exchangeText(mainStats.port.fuelDelta) }}</button></span>' +
                     '<span class="num">{{ mainStats.port.fuelPrice }}</span>' +
                     '<span class="num">{{ mainStats.port.fuelAvailable }}</span>' +
                     '<span class="num">{{ mainStats.fuel }}</span>' +
@@ -92,8 +92,13 @@ Vue.component('marketplace', {
         } else {
             // buy fuel
             //remove cash from wallet
+            mainStats.wallet = mainStats.wallet - (parseFloat(delta) * parseFloat(mainStats.port.fuelPrice));
             // add fuel to tank
+            mainStats.fuel = mainStats.fuel + parseFloat(delta);
             // remove fuel from station
+            mainStats.port.fuelAvailable = parseFloat(mainStats.port.fuelAvailable) - parseFloat(delta);
+            // reset delta
+            mainStats.port.fuelDelta = 0;
         }
       }
     },
