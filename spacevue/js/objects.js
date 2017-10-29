@@ -184,6 +184,7 @@ var stats = {
     menu : menuA,
     map : mapA,
     config : config
+  //availableIncidents : incidents
 }
 
 // set often-debugged values
