@@ -128,6 +128,30 @@ Vue.component('marketplace', {
     }
 });
 
+// incident Vue component, shows current incident if one is occurring
+Vue.component('incident-list', {
+    template: '<ul>' +
+        '<li class="header"><p>INCOMING ALERT</p></li>' +
+        '<li class="type"><p>{{ mainStats.currentIncident.type }}</p></li>' +
+        '<li class="description"><p>{{ mainStats.currentIncident.description }}</p></li>' +
+        '<li class="alternative"><p>{{ mainStats.currentIncident.alternative }}</p></li>' +
+        '<li class="choices">' +
+            '<button>{{ mainStats.currentIncident.choices[0] }}</button>' +
+            '<button>{{ mainStats.currentIncident.choices[1] }}</button>' +
+            '<button>{{ mainStats.currentIncident.choices[2] }}</button>' +
+        '</li>' +
+        '<li class="outcome-description"><p>{{ mainStats.currentIncident.outcomes[0].description }}</p></li>' +
+        '<li class="outcome-effect"><p v-bind:class="mainStats.currentIncident.outcomes[0].type">{{ mainStats.currentIncident.outcomes[0].effect }}</p></li>' +
+        '<li class="outcome-confirm"><button>Cool</button></li>' +
+        '</ul>',
+    data() {
+        return {
+            mainStats: stats
+        }
+    }
+
+});
+
 // map Vue component, builds travel interface from map[X] object
 Vue.component('map-list', {
     template: '<ul>' +
