@@ -1,5 +1,5 @@
 // random incidents that occur during travel phase
-// incidents [X] : {
+// incidents [X] = {
 // 	type : "recurring event subtitle",
 // 	description : "long text describing event pre-conditions",
 // 	alternatives : [
@@ -26,7 +26,7 @@
 
 incidents = [];
 
-incidents[0] : {
+incidents[0] = {
 	type : "Unknown Ship Approaching",
 	description : "Captain, an unknown ship is on approach, sensors are reading " +
 		"heavy weaponry and dense shields. Vessel is not responding to hails. " +
@@ -49,7 +49,7 @@ incidents[0] : {
 				"just needed some directions to the nearest starport. We sent some " +
 				"star charts over, and they sent us back some fuel.",
 			effect : "Gained 2 fuel!",
-			func : fuelChange(delta, stats) {
+			func : function fuelChange(delta, stats) {
 						if (delta > 0) {
 							stats.fuel += delta;
 						} else {
@@ -65,7 +65,7 @@ incidents[0] : {
 				"is working on the repairs now. Then they just coasted by us without " +
 				"attacking. I guess we weren't on the menu today.",
 			effect : "Repairs cost 400 credits",
-			func : walletChange(delta, stats) {
+			func : function walletChange(delta, stats) {
 						if (delta > 0) {
 							stats.wallet += delta;
 						} else {
@@ -80,7 +80,7 @@ incidents[0] : {
 				"could even react. I'm not sure what that was all about, but no harm, no " +
 				"foul, right Captain?",
 			effect : "No consequence.",
-			func : nothingHappened();
+			func : function nothingHappened() {}
 		}
 	},
 	isHappening : false,

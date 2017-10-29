@@ -183,8 +183,9 @@ var stats = {
     cargoUpgrades : 0,
     menu : menuA,
     map : mapA,
-    config : config
-  //availableIncidents : incidents
+    config : config,
+    availableIncidents : incidents,
+    currentIncident : incidents[0]
 }
 
 // set often-debugged values
