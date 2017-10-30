@@ -9,7 +9,7 @@ body {
 #wrapper {
 	border:none;
 }
-#app, #map {
+#app, .peripheral {
 	width:60%;
 	margin:0 auto;
 	overflow:hidden;
@@ -114,17 +114,19 @@ ul li {
 	list-style-type:none;
 }
 /* peripherals */
-/** map **/
-#map {
+.peripheral {
+	position:absolute;
 	background:#000;
 	border:#fff 2px solid;
 	border-radius:5px;
-	position:absolute;
 }
-#map ul li {
-	border-bottom:#fff 1px solid;
+.peripheral ul li {
 	display:flex;
 	align-items:stretch;
+}
+/** map **/
+#map ul li {
+	border-bottom:#fff 1px solid;
 }
 #map ul li span.title {
 	min-width:25%;
@@ -133,6 +135,26 @@ ul li {
 	margin-right:5px;
 
 }
+/* indicent peripheral */
+#incident ul li {
+	border:red 1px solid;
+	display:block;
+	text-align:center;
+}
+#incident ul li p {
+	width:100%;
+}
+#incident ul li.header {
+	font-size:1.3em;
+	line-height:1em;
+}
+#incident ul li button {
+	width:60%;
+	margin:auto 0;
+	display:inline-block;
+	font-size:1.1em;
+}
+
 /* ---------------------- */
 /* starfield background */
 #starfield {
