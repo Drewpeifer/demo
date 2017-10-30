@@ -131,10 +131,10 @@ Vue.component('marketplace', {
 // incident Vue component, shows current incident if one is occurring
 Vue.component('incident-list', {
     template: '<ul>' +
-        '<li class="header"><p>INCOMING ALERT</p></li>' +
-        '<li class="type"><p>{{ mainStats.currentIncident.type }}</p></li>' +
-        '<li class="description"><p>{{ mainStats.currentIncident.description }}</p></li>' +
-        '<li class="alternative"><p>{{ mainStats.currentIncident.alternative }}</p></li>' +
+        '<li class="header"><p>INCOMING ALERT:</p>' +
+        '<p>{{ mainStats.currentIncident.type }}</p></li>' +
+        '<li class="description"><p>{{ mainStats.currentIncident.description }}</p>' +
+        '<p>{{ mainStats.currentIncident.alternatives[0] }}</p></li>' +
         '<li class="choices">' +
             '<button>{{ mainStats.currentIncident.choices[0] }}</button>' +
             '<button>{{ mainStats.currentIncident.choices[1] }}</button>' +
