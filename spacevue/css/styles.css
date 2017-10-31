@@ -113,6 +113,15 @@ h1 {
 ul li {
 	list-style-type:none;
 }
+.good {
+	color:lightGreen;
+}
+.neutral {
+	color:yellow;
+}
+.bad {
+	color:pink;
+}
 /* peripherals */
 .peripheral {
 	position:absolute;
@@ -133,7 +142,6 @@ ul li {
 	max-width:25%;
 	font-size:2em;
 	margin-right:5px;
-
 }
 /* indicent peripheral */
 #incident ul li {
@@ -143,14 +151,22 @@ ul li {
 }
 #incident ul li p {
 	width:100%;
+	margin:10px auto;
+	line-height:18px
 }
 #incident ul li.header {
 	font-size:1.3em;
 	line-height:1em;
 }
+#incident ul li.header p {
+	line-height:20px;
+}
+#incident ul li.header p:first-child {
+	font-size:1.5em;
+}
 #incident ul li button {
 	width:60%;
-	margin:auto 0;
+	margin:0 auto 5px auto;
 	display:inline-block;
 	font-size:1.1em;
 }

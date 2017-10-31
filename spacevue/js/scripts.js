@@ -3,6 +3,10 @@ $(document).ready(function(){
     buildMarket(stats.port);// builds initial marketplace
 });
 
+function closeIncident() {
+    $('li.outcome-description').html('');
+    $('#incident').hide();
+}
 // marketplace Vue app, watches menu objects for changes
 // and fires events to the main app / stats objects
 Vue.component('marketplace', {
@@ -133,23 +137,51 @@ Vue.component('incident-list', {
     template: '<ul>' +
         '<li class="header"><p>INCOMING ALERT:</p>' +
         '<p>{{ mainStats.currentIncident.type }}</p></li>' +
-        '<li class="description"><p>{{ mainStats.currentIncident.description }}</p>' +
-        '<p>{{ mainStats.currentIncident.alternatives[0] }}</p></li>' +
+        '<li class="description"><p>{{ mainStats.currentIncident.description }} ' +
+        '{{ mainStats.currentIncident.alternatives[0] }}</p></li>' +
         '<li class="choices">' +
-            '<button>{{ mainStats.currentIncident.choices[0] }}</button>' +
-            '<button>{{ mainStats.currentIncident.choices[1] }}</button>' +
-            '<button>{{ mainStats.currentIncident.choices[2] }}</button>' +
+            '<button v-on:click="makeChoice(0, mainStats)">{{ mainStats.currentIncident.choices[0] }}</button>' +
+            '<button v-on:click="makeChoice(1, mainStats)">{{ mainStats.currentIncident.choices[1] }}</button>' +
+            '<button v-on:click="makeChoice(2, mainStats)">{{ mainStats.currentIncident.choices[2] }}</button>' +
         '</li>' +
-        '<li class="outcome-description"><p>{{ mainStats.currentIncident.outcomes[0].description }}</p></li>' +
-        '<li class="outcome-effect"><p v-bind:class="mainStats.currentIncident.outcomes[0].type">{{ mainStats.currentIncident.outcomes[0].effect }}</p></li>' +
-        '<li class="outcome-confirm"><button>Cool</button></li>' +
-        '</ul>',
+        '<li class="outcome-description" style="display:none;">' +
+        '</li></ul>',
     data() {
         return {
             mainStats: stats
         }
-    }
+    },
+    methods : {
+        makeChoice(index, mainStats) {
+            // dynamically building outcome
+            chosenDescription = mainStats.currentIncident.outcomes[index].description;
+            chosenType = mainStats.currentIncident.outcomes[index].type;
+            chosenEffect = mainStats.currentIncident.outcomes[index].effect;
+            chosenFunc = mainStats.currentIncident.outcomes[index].func;
 
+            switch(chosenType) {
+                case 'good':
+                    chosenConfirm ="Cool";
+                    break;
+                case 'neutral':
+                    chosenConfirm = "Meh";
+                    break;
+                case 'bad':
+                    chosenConfirm = "Crap";
+                    break;
+                default:
+                    chosenConfirm = "OK";
+            }
+            // append outcome to incident peripheral
+            $('li.outcome-description').append('<p>' + chosenDescription + '</p>' +
+                '<p class="' + chosenType + '">' + chosenEffect + '</p>' +
+                '<button onclick="chosenFunc()">' + chosenConfirm + '</button>').show();
+
+            // disable the current event
+            stats.currentIncident.isHappening = false;
+
+        }
+    }
 });
 
 // map Vue component, builds travel interface from map[X] object
@@ -170,6 +202,39 @@ Vue.component('map-list', {
             buildMarket(port);
             stats.fuel -= 1;
             $('#map').toggle();
+
+            // did an incident occur?
+            incidentOccurred = getRandomNumber(1, 2);// 1 = yes, 2 = no
+            console.log('random incident = ' + incidentOccurred);
+
+            if (incidentOccurred == 1) {
+                // incident occurred!
+                // create new list of incidents that haven't occurred yet
+                unknownIncidents = $.map(stats.availableIncidents, function(incident) {
+                    if (incident.hasHappened) {
+                        // do nothing
+                    } else {
+                        return incident;
+                    }
+                });
+
+                if (unknownIncidents.length == 0) {
+                    // do nothing, no more incidents
+                    console.log('no more incidents!');
+                } else {
+                    eventIndex = getRandomNumber(0, (unknownIncidents.length - 1));// pick an unknown event
+                    stats.currentIncident = unknownIncidents[eventIndex];// set it to current
+                    stats.currentIncident.isHappening = true;// make it happen, cap'n
+                    stats.currentIncident.hasHappened = true;// exclude it from happening again
+                    $('#incident').show();// show the incident peripheral
+                    console.log('incident list length = ' + stats.availableIncidents.length);
+                    console.log('unknown list length = ' + unknownIncidents.length);
+                }
+
+            } else {
+                // nothing happened
+                console.log('no incident');
+            }
         }
     },
     data() {
