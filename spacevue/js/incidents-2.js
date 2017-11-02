@@ -178,7 +178,6 @@ incidents[2] = {
 							stats.fuel -= delta;
 						}
 					}
-
 		},
 		1 : {
 			type : "bad",
@@ -194,7 +193,6 @@ incidents[2] = {
 							stats.wallet -= delta;
 						}
 					}
-
 		},
 		2 : {
 			type : "neutral",
