@@ -49,10 +49,13 @@ incidents[0] = {
 				"just needed some directions to the nearest starport. We sent some " +
 				"star charts over, and they sent us back some fuel.",
 			effect : "Gained 2 fuel!",
-			func : function fuelChange(delta, stats) {
+			func : function fuelChange(stats) {
+					delta = 2;
 						if (delta > 0) {
+							console.log('delta = ' + delta);
 							stats.fuel += delta;
 						} else {
+							console.log('delta = ' + delta);
 							stats.fuel -= delta;
 						}
 					}

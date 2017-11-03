@@ -157,7 +157,7 @@ Vue.component('incident-list', {
             chosenDescription = mainStats.currentIncident.outcomes[index].description;
             chosenType = mainStats.currentIncident.outcomes[index].type;
             chosenEffect = mainStats.currentIncident.outcomes[index].effect;
-            chosenFunc = mainStats.currentIncident.outcomes[index].func;
+            chosenFunc = mainStats.currentIncident.outcomes[index].func(stats);
 
             switch(chosenType) {
                 case 'good':
@@ -175,7 +175,7 @@ Vue.component('incident-list', {
             // append outcome to incident peripheral
             $('li.outcome-description').append('<p>' + chosenDescription + '</p>' +
                 '<p class="' + chosenType + '">' + chosenEffect + '</p>' +
-                '<button onclick="chosenFunc()">' + chosenConfirm + '</button>').show();
+                '<button onclick="' + chosenFunc + '">' + chosenConfirm + '</button>').show();
 
             // disable the current event
             stats.currentIncident.isHappening = false;
