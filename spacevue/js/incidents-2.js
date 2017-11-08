@@ -121,7 +121,7 @@ incidents[2] = {
                   "but we can see they have an unknown shield configuration. They seem to be using " +
                   "their engine exhaust to envelope their ship in a plasma shield. Pretty clever,captain.",
 	alternatives : [
-"Maybe we could learn something from them. Science Officer recommends we try to initiate communication via mathematical and visual signals.",
+		"Maybe we could learn something from them. Science Officer recommends we try to initiate communication via mathematical and visual signals.",
         "Could mean they're more clever than we are. Tactical Officer recommends raising shields and waiting to see how this plays out.",
         "But, if they have shields we haven't seen before, they probably have weapons we haven't seen before, too. I recommend we raise shields and hightail it out of here."
 	],
@@ -524,6 +524,48 @@ incidents[11] = {
 			description : "Dobson is back, he says the pilot of the other ship didnt know anything about Space Flu or night terrors, but he did modify our cargo hold. Somehow it's bigger on the inside now! All he asked for in return was Dobson's mustache. Weird, right?",
 			effect : "Cargo capacity doubled!",
 			func : function() { return cargoCapIncrease(stats.cargoCap); }
+		},
+	},
+	isHappening : false,
+	hasHappened : false
+}
+
+incidents[12] = {
+	type : "Incoming Signal",
+	description : "Uh-oh. Captain, we're being pulled over by the Galactic Police. The strange " +
+                  "thing is there's no speed limit in this stretch of space, no real " +
+                  "hazards to speak of, and all our registrations are in order. We're not " +
+                  "carrying any illegal goods or anything, so I guess it wouldn't really be " +
+                  "a problem if we stop, right? On the other hand, why are they " +
+                  "signalling us at all?",
+	alternatives : [
+        "Like I said Captain, we haven't done anything wrong, what's the harm in stopping?",
+        "Maybe we should just hail them before we stop and see what the deal is.",
+        "I've seen space horror movies that start like this, let's run for it!"
+	],
+	choices : [
+        "Let's try not to act suspicious. Cut the engines and open the docking bay doors.",
+        "Ask them what they want. Time is money, we don't stop for no reason.",
+        "Ah, the Captain has some cargo you don't know about in the glovebox. Do whatever it takes, just lose these space pigs!"
+	],
+	outcomes : {
+		0 : {
+			type : "bad",
+			description : "Well, Sheriff \"Gimmedat\" and Deputy \"Nofunnystuff\" were definitely not real Space Cops. They said we didn't have anything cool in our cargo hold so they just took half our money. Good thing they didn't know about the glovebox inside the glovebox, eh Cap'n? Ha.",
+			effect : "Lost half your credits",
+			func : function() { return walletChange(-stats.wallet * .5); }
+		},
+		1 : {
+			type : "good",
+			description : "They were just trying to let us know we had some space leeches clinging to the aft hull. What a nice bunch of fellas, right Captain? That's why we've been going so slow lately, we recalculated our current course and managed to save 2 units of fuel!",
+			effect : "+2 Fuel",
+			func : function() { return fuelChange(2); }
+		},
+		2 : {
+			type : "bad",
+			description : "HoooEEE that was a good chase! I think we lost them when we slingshotted around that moon, did you see that Captain? Our pilot is awesome. No clue where they ended up but we're still on course and we're moving FAST. We used a little extra fuel, though. Just a little.",
+			effect : "-1 Fuel",
+			func : function() { return fuelChange(-1); }
 		},
 	},
 	isHappening : false,
