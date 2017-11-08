@@ -289,28 +289,54 @@ function nothingHappened() {
 function fuelChange(delta) {
     console.log('fuel change! delta = ' + delta);
 
-    console.log('fuel was ' + stats.fuel);
-    stats.fuel += delta;
-    console.log('fuel is ' + stats.fuel);
-
     if (delta > 0) {
+        console.log('fuel was ' + stats.fuel);
+        stats.fuel += delta;
+        console.log('fuel is ' + stats.fuel);
         chosenEffect = '+' + delta + ' fuel';
     } else {
-        chosenEffect = '' + delta + ' fuel';
+        currentFuel = stats.fuel;
+        newFuel = stats.fuel += delta;
+        if (currentFuel == 0) {
+            chosenEffect = "You were out of fuel already! No change.";
+        } else if (newFuel <= 0) {
+            stats.fuel = 0;
+            chosenEffect = "You don't even have " + -delta + " fuel to lose, now your tank is empty!";
+        } else {
+            console.log('fuel was ' + stats.fuel);
+            stats.fuel += delta;
+            console.log('fuel is ' + stats.fuel);
+            chosenEffect = '' + delta + ' fuel';
+        }
     }
 }
 
 function walletChange(delta) {
     console.log('wallet change! delta = ' + delta);
 
-    console.log('wallet was ' + stats.wallet);
-    stats.wallet += delta;
-    console.log('wallet is ' + stats.wallet);
-
     if (delta > 0) {
+        console.log('wallet was ' + stats.wallet);
+        stats.wallet += delta;
+        console.log('wallet is ' + stats.wallet);
         chosenEffect = '+' + delta + ' credits';
     } else {
-        chosenEffect = '' + delta + ' credits';
+        // validation
+        currentWallet = stats.wallet;
+        newWallet = stats.wallet + delta;
+
+        if (currentWallet == 0) {
+            // broke, can't lose more money
+            chosenEffect = "You would have lost credits but you're already broke!";
+        } else if (newWallet <= 0) {
+            // now you're broke
+            stats.wallet = 0;
+            chosenEffect =  "You don't even have " + -delta + " credits, now you're broke!";
+        } else {
+            console.log('wallet was ' + stats.wallet);
+            stats.wallet += delta;
+            console.log('wallet is ' + stats.wallet);
+            chosenEffect = '' + delta + ' credits';
+        }
     }
 }
 
