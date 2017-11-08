@@ -45,21 +45,11 @@ incidents[0] = {
 		0 : {
 			type : "good",
 			description : "Captain, it seems their communications array was down. They " +
-				"established contact via flashing lights on their hull, and apparently" +
+				"established contact via flashing lights on their hull, and apparently " +
 				"just needed some directions to the nearest starport. We sent some " +
 				"star charts over, and they sent us back some fuel.",
 			effect : "Gained 2 fuel!",
-			func : function fuelChange(stats) {
-					delta = 2;
-						if (delta > 0) {
-							console.log('delta = ' + delta);
-							stats.fuel += delta;
-						} else {
-							console.log('delta = ' + delta);
-							stats.fuel -= delta;
-						}
-					}
-
+			func : function() { return fuelChange(2); }
 		},
 		1 : {
 			type : "bad",
@@ -68,13 +58,7 @@ incidents[0] = {
 				"is working on the repairs now. Then they just coasted by us without " +
 				"attacking. I guess we weren't on the menu today.",
 			effect : "Repairs cost 400 credits",
-			func : function walletChange(delta, stats) {
-						if (delta > 0) {
-							stats.wallet += delta;
-						} else {
-							stats.wallet -= delta;
-						}
-					}
+			func : function() { return walletChange(-400); }
 
 		},
 		2 : {
@@ -83,7 +67,7 @@ incidents[0] = {
 				"could even react. I'm not sure what that was all about, but no harm, no " +
 				"foul, right Captain?",
 			effect : "No consequence.",
-			func : function nothingHappened() {}
+			func : function() { return nothingHappened(); }
 		}
 	},
 	isHappening : false,

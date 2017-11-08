@@ -154,10 +154,11 @@ Vue.component('incident-list', {
     methods : {
         makeChoice(index, mainStats) {
             // dynamically building outcome
-            chosenDescription = mainStats.currentIncident.outcomes[index].description;
-            chosenType = mainStats.currentIncident.outcomes[index].type;
-            chosenEffect = mainStats.currentIncident.outcomes[index].effect;
-            chosenFunc = mainStats.currentIncident.outcomes[index].func(stats);
+            outcome = mainStats.currentIncident.outcomes[index];
+            chosenDescription = outcome.description;
+            chosenType = outcome.type;
+            chosenEffect = outcome.effect;
+            chosenFunc = outcome.func;
 
             switch(chosenType) {
                 case 'good':
@@ -175,11 +176,23 @@ Vue.component('incident-list', {
             // append outcome to incident peripheral
             $('li.outcome-description').append('<p>' + chosenDescription + '</p>' +
                 '<p class="' + chosenType + '">' + chosenEffect + '</p>' +
-                '<button onclick="' + chosenFunc + '">' + chosenConfirm + '</button>').show();
+                '<button id="chosen-outcome">' + chosenConfirm + '</button>').show();
+
+            // bind close button to outcome function
+            $('#chosen-outcome').bind('click change', chosenFunc);
 
             // disable the current event
             stats.currentIncident.isHappening = false;
 
+        },
+        fuelChange(delta) {
+
+            if (delta > 0) {
+                stats.fuel += delta;
+            } else {
+                console.log('delta = ' + delta);
+                stats.fuel -= delta;
+            }
         }
     }
 });
@@ -262,3 +275,29 @@ var app = new Vue({
                     }
         }
 });
+
+function nothingHappened() {
+    console.log('nothing happened!');
+    $('#incident').hide();
+}
+
+function fuelChange(delta) {
+    console.log('fuel change! delta = ' + delta);
+
+    console.log('fuel was ' + stats.fuel);
+    stats.fuel += delta;
+    console.log('fuel is ' + stats.fuel);
+
+
+    $('#incident').hide();
+}
+
+function walletChange(delta) {
+    console.log('wallet change! delta = ' + delta);
+
+    console.log('wallet was ' + stats.wallet);
+    stats.wallet += delta;
+    console.log('wallet is ' + stats.wallet);
+
+    $('#incident').hide();
+}
