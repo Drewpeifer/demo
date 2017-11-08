@@ -160,6 +160,9 @@ Vue.component('incident-list', {
             chosenEffect = outcome.effect;
             chosenFunc = outcome.func;
 
+            // call outcome func here so it can modify chosenVars if it wants to
+            chosenFunc();
+
             switch(chosenType) {
                 case 'good':
                     chosenConfirm ="Cool";
@@ -178,8 +181,10 @@ Vue.component('incident-list', {
                 '<p class="' + chosenType + '">' + chosenEffect + '</p>' +
                 '<button id="chosen-outcome">' + chosenConfirm + '</button>').show();
 
-            // bind close button to outcome function
-            $('#chosen-outcome').bind('click change', chosenFunc);
+            // bind close button to hide incident peripheral
+            $('#chosen-outcome').bind('click change', function() {
+                $('#incident').hide();
+            });
 
             // disable the current event
             stats.currentIncident.isHappening = false;
@@ -276,9 +281,9 @@ var app = new Vue({
         }
 });
 
+// incident functions (called by outcomes of incidents)
 function nothingHappened() {
     console.log('nothing happened!');
-    $('#incident').hide();
 }
 
 function fuelChange(delta) {
@@ -287,9 +292,6 @@ function fuelChange(delta) {
     console.log('fuel was ' + stats.fuel);
     stats.fuel += delta;
     console.log('fuel is ' + stats.fuel);
-
-
-    $('#incident').hide();
 }
 
 function walletChange(delta) {
@@ -298,6 +300,28 @@ function walletChange(delta) {
     console.log('wallet was ' + stats.wallet);
     stats.wallet += delta;
     console.log('wallet is ' + stats.wallet);
+}
 
-    $('#incident').hide();
+function lostRandomGoods() {
+    currentGoods = $.grep(stats.menu, function(item) {
+        if (item.currentLoot > 0) {
+            return true;
+        } else { return false; }
+    });
+
+    console.log('currently have ' + currentGoods.length + ' goods');
+    console.dir(currentGoods);
+    // get the index of a random item from the list of owned items
+    randomIndex = getRandomNumber(0, currentGoods.length - 1);
+    console.log(randomIndex);
+    // pick a random amount of that item, within current owned amount
+    randomAmount = getRandomNumber(1, currentGoods[randomIndex].currentLoot);
+    console.log(randomAmount);
+    // subtract random amount from currentLoot
+    currentAmount = currentGoods[randomIndex].currentLoot;
+    console.log('you have ' + currentAmount + ' ' + currentGoods[randomIndex].title + ' and you are losing ' + randomAmount);
+    chosenEffect = 'Lost ' + randomAmount + ' ' + currentGoods[randomIndex].title;
+    console.log('currentAmount was ' + currentAmount);
+    currentGoods[randomIndex].currentLoot -= randomAmount;
+    console.log('currentAmount is now ' + currentGoods[randomIndex].currentLoot);
 }
