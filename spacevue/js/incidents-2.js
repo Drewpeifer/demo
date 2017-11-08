@@ -362,6 +362,48 @@ incidents[7] = {
 	hasHappened : false
 }
 
+incidents[8] = {
+	type : "Stellar Anomaly Detected",
+	description : "Gaseous nebula dead ahead, and it's a few aU's in length captain, there's no way we can go around. " +
+                  "We can try going through with our shields up, but electrical and " +
+                  "plasma-based systems are known to react chaotically with radiation " +
+                  "that forms within nebula. The gas is too thick for our scanners to " +
+                  "penetrate, but we do know the distance directly through the nebula " +
+                  "is much shorter than any route we can safely navigate.",
+	alternatives : [
+        "Perhaps our shields will provide enough protection from radiation that we can pass through unharmed.",
+        "The dense dust may prove problematic for our engine intake modulators, so high speeds are not recommended within the nebula, Captain. They're certainly possible though.",
+        "We do know asteroids and other particulates pass through to the other side virtually unchanged, at least according to our sensors."
+	],
+	choices : [
+        "Shields up, maximum speed. The less time we spend in there, the better.",
+        "Keep the shields down and shut down all non-necessary systems. Let's slip through at full impulse power, quiet and steady.",
+        "Let's try acting like a rock. Give us a quick warp boost and then shut down all systems except life support. We'll drift through like an asteroid slowly, but safely."
+	],
+	outcomes : {
+		0 : {
+			type : "bad",
+			description : "Captain, we did get through quickly, but we had to use twice as much fuel as projected. But the engine intakes couldn't handle the rapid influx of dust and gasses, they got pretty clogged up, and the shields overloaded a little in the aft sections but we recovered quickly. Repairs were minor, but we had to buy parts from a nearby outpost moon.",
+			effect : "-1 Fuel",
+			func : function() { return fuelChange(-1); }
+		},
+		1 : {
+			type : "good",
+			description : "Whew, that was tense. Sensors malfunctioned in just about every possible way but we maintained course and got through unscathed. We also found some wreckage within the nebula, and retrieved it with the tractor beam. Looks valuable to me, but what do I know.",
+			effect : "Gained random amount of credits",
+			func : function() { return walletChange(getRandomNumber(1000, 5000)); }
+		},
+		2 : {
+			type : "bad",
+			description : "We coasted through without incident, Captain. Our ship needs all the dust and crap washed off of it, but we can handle that in the next port. We lost some time by travelling under momentum instead of propulsion though, so we were a little late to port, and we needed to get our ship registration renewed a few days ago. There was, shall we say, a late fee.",
+			effect : "-1000 credits",
+			func : function() { return walletChange(-1000); }
+		},
+	},
+	isHappening : false,
+	hasHappened : false
+}
+
 // incidents[X] = {
 // 	type :
 // 	description :
