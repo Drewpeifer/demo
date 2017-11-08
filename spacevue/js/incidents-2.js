@@ -404,6 +404,132 @@ incidents[8] = {
 	hasHappened : false
 }
 
+incidents[9] = {
+	type : "Stellar Anomaly Detected",
+	description : "Wormhole sighted, Captain! " +
+				  "We detected an energy fluctuation dead ahead, and just as " +
+                  "our ship decelerated this crazy wormhole opened up! What should " +
+                  "we do, Captain? We can go through it and end up who knows where, " +
+                  "or stay here and take some readings before we move on. Or, we can just " +
+                  "drop a beacon and log it on our charts before resuming course.",
+	alternatives : [
+        "It's kind of intriguing though, right? A door to anywhere, and we can just fly right in.",
+        "Without knowing where we're going to end up though, I'd suggest we steer clear of it, whatever you decide.",
+        "Most wormholes are unstable though, we may never get another chance to see one again. I say we cowboy up and head on in!"
+	],
+	choices : [
+        "Stow your gear and hang on tight, we're going to find out where this leads. Full speed ahead!",
+        "Let's send in a Class 1 probe, set it for automatic return in ten minutes, then we're on our way. I'm not risking this ship and its crew for some nerdy research joyride.",
+        "Nope! I've seen enough movies to know that wormholes never take you somewhere good. Steady as she goes, let's float right on by."
+	],
+	outcomes : {
+		0 : {
+			type : "neutral",
+			description : "Um, we seem to be exactly where we were when we entered the wormhole, Captain, just facing the opposite direction. Also, our clothes are on backwards. Interesting.",
+			effect : "Backwards clothes",
+			func : function() { return nothingHappened(); }
+		},
+		1 : {
+			type : "bad",
+			description : "Captain, you're not going to believe this. We launched the probe like you ordered, and ten minutes later it came flying out of the wormhole WAY faster than we programmed it to, and it crashed right through the docking bay doors. We fixed everything, but Dobson is dead, and the probe's completely destroyed so we don't even know where it went. Also, we lost some cargo. I blame Dobson.",
+			effect : "Lost random goods",
+			func : function() { return loseRandomGoods(); }
+		},
+		2 : {
+			type : "bad",
+			description : "Captain! We tried to coast by but something came out of the wormhole right in our path! It ripped through the hull and grabbed Dobson! The security cameras only caught a few frames, but it looked like a giant tentacle! Repairing the hull was cheap, but that's CRAZY! And sad, about Dobson.",
+			effect : "-500 Credits",
+			func : function() { return walletChange(-500); }
+		},
+	},
+	isHappening : false,
+	hasHappened : false
+}
+
+incidents[10] = {
+	type : "Incoming Signal",
+	description : "Uh, Captain? We seem to be receiving hails from... ourselves." +
+				  "I'm really not sure what's going on, Captain. That looks like " +
+                  "our ship, heavily damaged, and they're using our communication encryptions, but " +
+                  "they just came out of nowhere! They're broadcasting a message on " +
+                  "an endless loop in old Morse code: YOURE BEING FOLLOWED!",
+	alternatives : [
+        "HOPE YOU DO BETTER THAN WE DID!",
+        "WE OUTRAN THEM AND HIT A TIME VORTEX! AVOID THE VORTEX!",
+        "DONT TRY TO FIGHT THEM! YOU WILL BE WARPED INTO THE PAST!"
+	],
+	choices : [
+        "That was us, I know it! I have to do something unpredictable! Pilot, fly randomly! Engineering, vary speed randomly! Communications, broadcast all music files on all frequencies! Everybody HANG ON!",
+        "Whoever that is in front of us, they may not be lying about whoever's behind us. Full speed ahead, evasive maneuvers if anyone is sighted along our route. Go!",
+        "I don't know who that is, or who might be following us, but I'm not playing games here. Raise shields, power up weapons, and hold position. We'll see soon enough what's going on here."
+	],
+	outcomes : {
+		0 : {
+			type : "bad",
+			description : "Captain, that was the craziest idea ever. I'm not sure who that ship was, or if anyone was really following us, but we've lost them both. Also, everyone on board threw up except for you.",
+			effect : "Everone threw up (except you)",
+			func : function() { return nothingHappened(); }
+		},
+		1 : {
+			type : "neutral",
+			description : "Whoa, Captain, that ship that looked like us flew away as we powered up our engines. We climbed up to warp speed and suddenly hit an energy rift of some kind, causing mild damage to our ship. We're close to our last coordinates, and we're only able to activate the Morse transmitter, I suggest we travel there and warn ourselves immediately. Hopefully we do better next time.",
+			effect : "Deja vu",
+			func : function() { return nothingHappened(); }
+		},
+		2 : {
+			type : "good",
+			description : "Captain, we were being followed by freaky space pirates! They attacked as soon as they caught up with us, but with the combined firepower of our ship and the other mirror universe bizarro version of our ship, we totally kicked the crap out of them! That was so crazy! The other us flew off after the battle, and even though it'd be awesome, I don't think we should follow them.",
+			effect : "Confidence boost. And Dobson's here! I thought he was dead! Weird, right?",
+			func : function() { return nothingHappened(); }
+		},
+	},
+	isHappening : false,
+	hasHappened : false
+}
+
+incidents[11] = {
+	type : "Unkown Vessel Approaching",
+	description : "Captain, the guy in the blue phonebooth is here again. " +
+				  "We've heard about this guy before, he's some kind of travelling " +
+                  "physician or something. I know, right? House calls in space. He seems " +
+                  "harmless, but we don't have much information on him other than an array " +
+                  "of mugshots (and they're all different). Records also indicate he has a " +
+                  "\"thing\" for what he calls Jelly Babies. We're pretty sure he means " +
+                  "Gummy Bears, Captain, and I think we have some in storage...?",
+	alternatives : [
+        "Maybe he'd be willing to trade candy for something valuable? It's not our fault if he's dumb.",
+        "We've also documented a series of companions he travels with, not much in common except they're all young and, uh, female. Interesting.",
+        "Maybe he can help Dobson with his night terrors? LOL Cap'n, let's beam Dobson over there without telling either of them."
+	],
+	choices : [
+        "I ate all the Gummy Bears. Those were the Captain's Gummy Bears. Send this joker some Gummy Worms instead and see what he does.",
+        "I don't trust people in wooden space ships. Hail the box and see what it's doing out here. Go to yellow alert, shields up.",
+        "Beam Dobson over, he needs some professional help. Tell him to ask about flu shots too. Space Flu, specifically."
+	],
+	outcomes : {
+		0 : {
+			type : "good",
+			description : "Ha! We beamed over some Gummy Worms, and apparently he's never had them before. Seems like we made a friend. Not sure why he sent us this crate of bow ties, suspenders, scarves, and fez's, but they're cool. I guess. We'll sell the freaky clothing to the next hipster merchant we see, maybe get some fuel in return.",
+			effect : "+4 Fuel",
+			func : function() { return fuelChange(4); }
+		},
+		1 : {
+			type : "neutral",
+			description : "He said he's glad to meet us, Captain. Then he said it again. And again. And again. It's like he's stuck in some sort of loop. We should just move on.",
+			effect : "Nothing happened. Nothing happened. Nothing happened. Nothing happened. Nothing happened.",
+			func : function() { return nothingHappened(); }
+		},
+		2 : {
+			type : "good",
+			description : "Dobson is back, he says the pilot of the other ship didnt know anything about Space Flu or night terrors, but he did modify our cargo hold. Somehow it's bigger on the inside now! All he asked for in return was Dobson's mustache. Weird, right?",
+			effect : "Cargo capacity doubled!",
+			func : function() { return cargoCapIncrease(stats.cargoCap); }
+		},
+	},
+	isHappening : false,
+	hasHappened : false
+}
+
 // incidents[X] = {
 // 	type :
 // 	description :
