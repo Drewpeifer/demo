@@ -287,7 +287,7 @@ function nothingHappened() {
 }
 
 function fuelChange(delta) {
-    console.log('fuel change! delta = ' + delta);
+    console.log('fuel change! fuel = ' + stats.fuel + ' and delta = ' + delta);
 
     if (delta > 0) {
         console.log('fuel was ' + stats.fuel);
@@ -296,10 +296,10 @@ function fuelChange(delta) {
         chosenEffect = '+' + delta + ' fuel';
     } else {
         currentFuel = stats.fuel;
-        newFuel = stats.fuel += delta;
+
         if (currentFuel == 0) {
             chosenEffect = "You were out of fuel already! No change.";
-        } else if (newFuel <= 0) {
+        } else if ((currentFuel += delta) <= 0) {
             stats.fuel = 0;
             chosenEffect = "Oh no, your tank is empty!";
         } else {
@@ -383,4 +383,9 @@ function gainRandomGoods() {
         availableGoods[randomIndex].currentLoot += randomAmount;
 
     }
+}
+
+function cargoCapIncrease(delta) {
+    stats.cargoCap += delta;
+    console.log('cargoCap increased from ' + stats.cargoCap + ' to ' + (stats.cargoCap + delta));
 }
