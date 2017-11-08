@@ -335,7 +335,7 @@ function walletChange(delta) {
             console.log('wallet was ' + stats.wallet);
             stats.wallet += delta;
             console.log('wallet is ' + stats.wallet);
-            chosenEffect = '' + delta + ' credits';
+            chosenEffect = '' + delta + ' Credits';
         }
     }
 }
