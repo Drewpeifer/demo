@@ -240,7 +240,7 @@ Vue.component('map-list', {
                     // do nothing, no more incidents
                     console.log('no more incidents!');
                 } else {
-                    eventIndex = 1;// DEBUGgetRandomNumber(0, (unknownIncidents.length - 1));// pick an unknown event
+                    eventIndex = 2;// DEBUGgetRandomNumber(0, (unknownIncidents.length - 1));// pick an unknown event
                     stats.currentIncident = unknownIncidents[eventIndex];// set it to current
                     stats.currentIncident.isHappening = true;// make it happen, cap'n
                     stats.currentIncident.hasHappened = true;// exclude it from happening again
@@ -292,6 +292,12 @@ function fuelChange(delta) {
     console.log('fuel was ' + stats.fuel);
     stats.fuel += delta;
     console.log('fuel is ' + stats.fuel);
+
+    if (delta > 0) {
+        chosenEffect = '+' + delta + ' fuel';
+    } else {
+        chosenEffect = '' + delta + ' fuel';
+    }
 }
 
 function walletChange(delta) {
@@ -300,6 +306,12 @@ function walletChange(delta) {
     console.log('wallet was ' + stats.wallet);
     stats.wallet += delta;
     console.log('wallet is ' + stats.wallet);
+
+    if (delta > 0) {
+        chosenEffect = '+' + delta + ' credits';
+    } else {
+        chosenEffect = '' + delta + ' credits';
+    }
 }
 
 function lostRandomGoods() {
@@ -311,17 +323,22 @@ function lostRandomGoods() {
 
     console.log('currently have ' + currentGoods.length + ' goods');
     console.dir(currentGoods);
-    // get the index of a random item from the list of owned items
-    randomIndex = getRandomNumber(0, currentGoods.length - 1);
-    console.log(randomIndex);
-    // pick a random amount of that item, within current owned amount
-    randomAmount = getRandomNumber(1, currentGoods[randomIndex].currentLoot);
-    console.log(randomAmount);
-    // subtract random amount from currentLoot
-    currentAmount = currentGoods[randomIndex].currentLoot;
-    console.log('you have ' + currentAmount + ' ' + currentGoods[randomIndex].title + ' and you are losing ' + randomAmount);
-    chosenEffect = 'Lost ' + randomAmount + ' ' + currentGoods[randomIndex].title;
-    console.log('currentAmount was ' + currentAmount);
-    currentGoods[randomIndex].currentLoot -= randomAmount;
-    console.log('currentAmount is now ' + currentGoods[randomIndex].currentLoot);
+    if (currentGoods.length == 0) {
+        chosenEffect = 'Luckily our cargo hold was empty, so no loss!';
+    } else {
+        // get the index of a random item from the list of owned items
+        randomIndex = getRandomNumber(0, currentGoods.length - 1);
+        console.log(randomIndex);
+        // pick a random amount of that item, within current owned amount
+        randomAmount = getRandomNumber(1, currentGoods[randomIndex].currentLoot);
+        console.log(randomAmount);
+        // subtract random amount from currentLoot
+        currentAmount = currentGoods[randomIndex].currentLoot;
+        console.log('you have ' + currentAmount + ' ' + currentGoods[randomIndex].title + ' and you are losing ' + randomAmount);
+        chosenEffect = 'Lost ' + randomAmount + ' ' + currentGoods[randomIndex].title;
+        console.log('currentAmount was ' + currentAmount);
+        currentGoods[randomIndex].currentLoot -= randomAmount;
+        console.log('currentAmount is now ' + currentGoods[randomIndex].currentLoot);
+    }
+
 }
