@@ -301,7 +301,7 @@ function fuelChange(delta) {
             chosenEffect = "You were out of fuel already! No change.";
         } else if (newFuel <= 0) {
             stats.fuel = 0;
-            chosenEffect = "You don't even have " + -delta + " fuel to lose, now your tank is empty!";
+            chosenEffect = "Oh no, your tank is empty!";
         } else {
             console.log('fuel was ' + stats.fuel);
             stats.fuel += delta;
@@ -330,7 +330,7 @@ function walletChange(delta) {
         } else if (newWallet <= 0) {
             // now you're broke
             stats.wallet = 0;
-            chosenEffect =  "You don't even have " + -delta + " credits, now you're broke!";
+            chosenEffect =  "Oh no, now you're broke!";
         } else {
             console.log('wallet was ' + stats.wallet);
             stats.wallet += delta;

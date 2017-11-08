@@ -27,7 +27,7 @@
 incidents = [];
 
 incidents[0] = {
-	type : "Unknown Ship Approaching",
+	type : "Unknown Vessel Approaching",
 	description : "Captain, an unknown ship is on approach, sensors are reading " +
 		"heavy weaponry and dense shields. Vessel is not responding to hails. " +
 		"What should we do?",
@@ -115,7 +115,7 @@ incidents[1] = {
 }
 
 incidents[2] = {
-	type : "Unknown Ship Approching",
+	type : "Unknown Vessel Approaching",
 	description : "Captain, a strange ship is on approach, hailing in an unknown language. " +
 				  "Our sensors can't seem to penetrate their hull to analyze their systems, " +
                   "but we can see they have an unknown shield configuration. They seem to be using " +
@@ -189,6 +189,49 @@ incidents[3] = {
 			description : "Sensors indicate they're low on fuel and oxygen. There's minor radiation all over the ship but levels increase closer to the engineering section, peaking at levels of WHOA they just exploded. I think we waited too long to help, Captain. We should probably just move along now...",
 			effect : "No consequence",
 			func : function() { return nothingHappened(); }
+		},
+	},
+	isHappening : false,
+	hasHappened : false
+}
+
+incidents[4] = {
+	type : "Unknown Vessel Approaching",
+	description : "Captain, a small ship is approaching with no interplanetary registration markings. " +
+				  "Their engines are offline and they're only moving due to their existing momentum. Comms are unresponsive. " +
+                  "Sensors detect eight faint life signs, they could be injured, sick, or in stasis but there's no " +
+                  "way to tell without boarding or beaming them over directly. The ship itself doesn't seem to be damaged, " +
+                  "but it is over twelve years old, and the starboard docking panel looks like it's seen heavy use. " +
+                  "It's definitely too small to be a cargo or transport ship, it looks more like an orbital craft " +
+                  "used to shuttle crews from space station to space station.",
+	alternatives : [
+        "They may have lost control and drifted out of orbit, there are a few inhabited planets in this system with that level of technology. If they're in stasis, they may not even know they're adrift.",
+        "If they need assistance, they may pay us for our help. Or we could speed their situation along with a phaser blast or two, and salvage what's left...? Just thinking out loud, Captain.",
+        "Three words, Captain: Not. Our. Problem. I suggest we keep moving, we have cargo to buy and sell and we're almost to our destination."
+	],
+	choices : [
+        "Let's see if they need help. See if you can get them on the Comm again and get a sit-rep. If not, send an away team to see what's what.",
+        "Tractor them in and begin docking procedures. Send a salvage team and a medic team over with a small security compliment. If they're healable, heal away. If we can't help, we take what we can carry and get back on board.",
+        "Time is money, and that ship looks interesting. They shouldn't even be out here anyway, nobody probably knows they're here. Put a hole in the hull, wait for the oxygen to evacuate, and then see what we can salvage."
+	],
+	outcomes : {
+		0 : {
+			type : "bad",
+			description : "Captain, please don't be mad. The ship didn't reply to our hails, so we sent an away team like you ordered, with security and everything. So, they got on board, went to the cargo hold, and then they found some bodies in stasis. That's kind of where everything went wrong. When they woke up, the ship's crew activated security protocols, which deactivated our security team's weapons, and took our team hostage with a bunch of improvised weapons. Turns out they're escaped prisoners, and they want all our cash for the return of our away team.",
+			effect : "Lost all cash",
+			func : function() { return walletChange(-stats.wallet); }
+		},
+		1 : {
+			type : "bad",
+			description : "Oh boy, that didn't go well. Ah, Captain, the crew of the ship wasn't in stasis, or injured, they were masking their life signs with portable biorhythmic dampeners. They tried to take the medical crew hostage, but the salvage crew fought back, and then security joined in, and well, basically everyone got shot. Also, the airlock control got shot, and their ship forcably ejected away from ours. We lost the medics, the salvage team, and the security force, but worst of all, the airlock door cost 1000 cash to repair.",
+			effect : "Lost 1000 cash",
+			func : function() { return walletChange(-1000); }
+		},
+		2 : {
+			type : "good",
+			description : "We did just what you said, and after the air vented from the ship we sent an away team to investigate. Turns out they were escaped inmates from a penal colony on a nearby moon. Looks like they ran out of supplies a few days into their escape and went into stasis to wait for a ship to rescue them, presumably planning to hijack it and continue their escape. Good thing we shot first and asked questions much, much later, Captain. We got a good haul from that one.",
+			effect : "Gained random amount of cash",
+			func : function() { return walletChange(getRandomNumber(10000, 20000)); }
 		},
 	},
 	isHappening : false,
