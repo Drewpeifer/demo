@@ -340,7 +340,7 @@ function walletChange(delta) {
     }
 }
 
-function lostRandomGoods() {
+function loseRandomGoods() {
     currentGoods = $.grep(stats.menu, function(item) {
         if (item.currentLoot > 0) {
             return true;
@@ -367,4 +367,20 @@ function lostRandomGoods() {
         console.log('currentAmount is now ' + currentGoods[randomIndex].currentLoot);
     }
 
+}
+
+function gainRandomGoods() {
+    currentCargo = stats.cargoLoot;
+
+    if (currentCargo == stats.cargoCap) {
+        chosenEffect = "Cargo is full! We had to leave the loot behind.";
+    } else {
+        cargoRoom = stats.cargoCap - currentCargo;// remaining cargo space
+        randomAmount = getRandomNumber(1, cargoRoom - 1);
+        availableGoods = stats.menu;
+        randomIndex = getRandomNumber(0, stats.menu.length - 1);
+        // add randomAmount to currentLoot for random item
+        availableGoods[randomIndex].currentLoot += randomAmount;
+
+    }
 }

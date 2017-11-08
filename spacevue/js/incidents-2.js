@@ -107,7 +107,7 @@ incidents[1] = {
 			type : "bad",
 			description : "Our cargo module was struck by a peice of incoming debris attracted by the singularity. We lost some goods, but we escaped with our lives. Well, Dobson died.",
 			effect : "lost some stuff",// replaced by func
-			func : function() { return lostRandomGoods(); }
+			func : function() { return loseRandomGoods(); }
 		},
 	},
 	isHappening : false,
@@ -232,6 +232,46 @@ incidents[4] = {
 			description : "We did just what you said, and after the air vented from the ship we sent an away team to investigate. Turns out they were escaped inmates from a penal colony on a nearby moon. Looks like they ran out of supplies a few days into their escape and went into stasis to wait for a ship to rescue them, presumably planning to hijack it and continue their escape. Good thing we shot first and asked questions much, much later, Captain. We got a good haul from that one.",
 			effect : "Gained random amount of cash",
 			func : function() { return walletChange(getRandomNumber(10000, 20000)); }
+		},
+	},
+	isHappening : false,
+	hasHappened : false
+}
+
+incidents[5] = {
+	type : "Derelict Vessel",
+	description : "Captain, derelict ship ahead. Freighter class, no life signs detected. " +
+		"Sensors detect damage to the starboard engine and surrounding hull. Engineering says it looks like a mid-flight collision, they're not sure with what though. " +
+        "However, they can tell she's been adrift for a while by the nacell deterioration and " +
+        "complete lack of heat signature. One thing's for sure: there's cargo in that hold.",
+	alternatives : [
+        "Their life support systems seem to have failed at some point, and the oxygen has seeped out. Everything inside should have been preserved by the vacuum pretty well.",
+        "It's always a gamble climbing aboard an unknown vessel, but it doesn't look like much could go wrong here.",
+        "Just for the record though, something killed that crew, Captain. Maybe we should tread lightly."
+	],
+	choices : [
+        "Pop the doors and loot the hold, boys. Just wear your hazard suits and don't push any buttons while you're over there.",
+        "Cut the cargo bay doors open with the phasers. We'll grab what we can with the tractor beam but we're not boarding that deathtrap.",
+        "Meh. It's a freighter but not heavily armed, I bet the cargo's not very valuable. Let's keep moving."
+	],
+	outcomes : {
+		0 : {
+			type : "good",
+			description : "Loot secured, Captain! We found some good stuff, we even brought back some movies and books from their library. Dobson found some logs about an experimental asteroid mining procedure, but it was boring stuff so we grabbed some old episodes of Matlock instead.",
+			effect : "Gained random goods",
+			func : function() { return gainRandomGoods(); }
+		},
+		1 : {
+			type : "good",
+			description : "Most of the stuff sucked out into space was miscellaneous mining equipment, just parts really. Engineering said they could sell some of it next time a peddler probe comes by. Oh, here's one now! Aaaaand.... Sold.",
+			effect : "Gained random amount of cash",
+			func : function() { return walletChange(getRandomNumber(2000, 5000)); }
+		},
+		2 : {
+			type : "neutral",
+			description : "Probably a good call, Captain. Never hurts to play it safe. Kind of boring though, right?",
+			effect : "No consequence",
+			func : function() { return nothingHappened(); }
 		},
 	},
 	isHappening : false,
