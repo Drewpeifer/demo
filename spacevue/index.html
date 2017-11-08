@@ -24,16 +24,17 @@
 		</div>
 		<!-- end peripherals -->
 		<!-- controls (top HUD) -->
+		<button id="help">Help</button>
 		<div id="controls">
 			<ul>
 				<li class="location">
-					<span v-on:click="toggleMap">Location:</span>
-					<span>{{ port.description }}</span>
+					<span id="mapToggle" v-on:click="toggleMap">Location:</span>
+					<span id="description">{{ port.description }}</span>
 				</li>
 				<li class="stats">
-					<span>&#36;{{ wallet }}</span>
-					<span>Cargo: {{ cargoSum(menu) }}/{{ cargoCap }}</span>
-					<span>Fuel: {{ fuel }}</span>
+					<span id="wallet">&#36;{{ wallet }}</span>
+					<span id="cargo">Cargo: {{ cargoSum(menu) }}/{{ cargoCap }}</span>
+					<span id="fuel">Fuel: {{ fuel }}</span>
 				</li>
 			</ul>
 		</div>
@@ -49,6 +50,8 @@
 	<script src="js/browser.js" type="text/javascript"></script><!-- QAD uA detection -->
 	<script src="js/vue.js" type="text/javascript"></script><!-- data binding -->
 	<script src="js/transit.js" type="text/javascript"></script><!-- animations -->
+	<script src="js/a-simple-tour/jquery.aSimpleTour.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.js"></script><!-- dependency of aSimpleTour -->
 	<script src="js/space.js" type="text/javascript"></script><!-- starfield background -->
 	<script src="js/incidents-2.js" type="text/javascript"></script><!-- arrival events -->
 	<script src="js/objects.js" type="text/javascript"></script><!-- map, menu, config -->
