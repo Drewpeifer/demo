@@ -278,6 +278,90 @@ incidents[5] = {
 	hasHappened : false
 }
 
+incidents[6] = {
+	type : "Derelict Vessel",
+	description : "Derelict sighted, Captain. Scanners show no humanoid lifesigns, though we do see readings that " +
+                  "might indicate plant-based lifeforms, or vegetation we're unfamiliar with. " +
+                  "From the large dome structures on either side of the ship, I'd say it was " +
+                  "most likely a science vessel, or terraforming crew. Those domes " +
+                  "seem to have minimal power, but the rest of the ship is dead in the water.",
+	alternatives : [
+        "Maybe it's a new lifeform we can make contact with, even though we don't have 'plant' language in our translation matrix.",
+        "Maybe there's edible vegetation, or stasis tech we could, uh, appropriate?",
+        "With no damage to the ship and remaining power shifted to the domes, that may be where the crew is waiting, or whatever cargo they died trying to save."
+	],
+	choices : [
+        "Send a Science team and a Security team. See what they can recover from the domes and the databanks.",
+        "Send a Security team and an Engineering team. I want to know what those domes are preserving, and what tech we can salvage.",
+        "Approach and scan the vessel. Get more readings from the domes and the Engineering section. Something's odd here."
+	],
+	outcomes : {
+		0 : {
+			type : "good",
+			description : "Our Science team recovered some logs from the ship's databanks. Seems it was a Research vessel trying to breed sentient plants that could grow in any conditions. The plants decided to take over the ship, and the interior of the ship is now covered in vegetation. It doesn't seem hostile, but without hazard suits, the oxygen levels would be poisonous. That's probably what killed the crew. The Science team was able to salvage some extra fuel, though!",
+			effect : "+5 fuel",
+			func : function() { return fuelChange(5); }
+		},
+		1 : {
+			type : "good",
+			description : "The entire vessel was lined with vegetation, but the Security team was able to activate flame turrets around the ship, incinerating all the plants. After they shot all the ashes out into space, the Engineering team was able to cut one of the domes off the ship and attach it to our stern! Now our cargo hold is HUGE!",
+			effect : "Cargo capacity doubled!",
+			func : function() { return cargoCapIncrease(stats.cargoCap); }
+		},
+		2 : {
+			type : "neutral",
+			description : "You were right captain, we read 125 corpses in the entire ship, oxygen levels at 500% the lethal limit for humans. Looks like some kind of vegetation escaped the domes and took over the ship, overloading the oxygen scrubbers and asphyxiating the crew. Yikes. Continuing on course.",
+			effect : "No consequence",
+			func : function() { return nothingHappened(); }
+		},
+	},
+	isHappening : false,
+	hasHappened : false
+}
+
+incidents[7] = {
+	type : "Asteroid Field Ahead",
+	description : "There's a gaseous nebula above the field, and a belt of radiation below it. " +
+                  "Our hull is tough enough to take a few minor impacts, if you want to try " +
+                  "going straight through. The repair cost may be lower than the fuel cost if " +
+                  "we try to go around it. We definitely need to get to the other side, though." +
+                  "The field density is low enough we can fit the ship through most of the " +
+                  "larger gaps, but we can't predict the motions of the asteroids at all." +
+                  "Basically we have 3 choices: Go over, go under, or go through. Your call, Cap'n.",
+	alternatives : [
+        "If I were a gambler, which I'm not, I'd say we could make it through the field with minimal damage from collisions.",
+        "If I were a gambler, which I am, I'd say we should try our luck going over the field, skimming through the bottom of the nebula. It may affect instruments but won't cause any damage.",
+        "If I were a gambler, which I may or may not be, I'd say go under. We can handle a little radiation. Right?"
+	],
+	choices : [
+        "Go over the field. Keep an eye on instrumentation but we can handle a short trip in the nebula.",
+        "Raise shields and go right through the field! Do some barrel rolls, too.",
+        "Go under the field, and keep an eye on radiation levels. Let's all get tans."
+	],
+	outcomes : {
+		0 : {
+			type : "bad",
+			description : "The nebula didn't cause any damage but we got turned around a little. We spent some extra fuel and time fixing our course, but we're no worse for wear.",
+			effect : "-2 Fuel",
+			func : function() { return fuelChange(-2); }
+		},
+		1 : {
+			type : "bad",
+			description : "That was AWESOME-- uh, sorry Captain, sir. We took a few bumps but repairs will be cheap, and our Pilot got to do some sweet barrel rolls. You're the best, Captain.",
+			effect : "Lost 200 cash",
+			func : function() { return walletChange(-200); }
+		},
+		2 : {
+			type : "bad",
+			description : "Ugh, Captain, that radiation was a type we've never experienced before. The effects were more severe than we anticipated. Dobson is still sick but we've mostly recovered, med supplies weren't cheap though.",
+			effect : "Lost half your credits",
+			func : function() { return walletChange(-stats.wallet * .5); }
+		},
+	},
+	isHappening : false,
+	hasHappened : false
+}
+
 // incidents[X] = {
 // 	type :
 // 	description :
