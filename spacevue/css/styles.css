@@ -144,6 +144,12 @@ ul li {
 	margin-right:5px;
 }
 /* indicent peripheral */
+#welcome h1,
+#welcome p {
+	margin-left:5px;
+	margin-right:5px;
+}
+#welcome,
 #incident ul li {
 	border:red 1px solid;
 	display:block;
@@ -164,7 +170,8 @@ ul li {
 #incident ul li.header p:first-child {
 	font-size:1.5em;
 }
-#incident ul li button {
+#incident ul li button,
+#welcome button {
 	width:60%;
 	margin:0 auto 5px auto;
 	display:inline-block;
@@ -245,4 +252,9 @@ div#tourControls {
     opacity:.6;
 }
 /* ---- end starfield background ---- */
-/* debug */
+/* responsive calls */
+@media (max-width: 600px) {
+	#app, .peripheral {
+		width:100%;
+	}
+}
