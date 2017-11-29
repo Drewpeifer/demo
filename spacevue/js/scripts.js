@@ -225,9 +225,7 @@ Vue.component('incident-list', {
                 '<button id="chosen-outcome">' + chosenConfirm + '</button>').show();
 
             // bind close button to hide incident peripheral
-            $('#chosen-outcome').bind('click change', function() {
-                $('#incident').hide();
-            });
+            $('#chosen-outcome').bind('click change', closeIncident);
 
             // disable the current event
             stats.currentIncident.isHappening = false;
