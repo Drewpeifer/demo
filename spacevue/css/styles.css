@@ -196,7 +196,20 @@ div#tourtip {
 div#tourControls {
 	top:4px !important;
 	right:75px !important;
-
+}
+/* debug panel */
+#debugPanel {
+	position:absolute;
+	left:0;
+	height:300px;
+	width:20%;
+	border:2px solid blue;
+}
+#debugPanel .increase {
+	background:green;
+}
+#debugPanel .decrease {
+	background:red;
 }
 /* ---------------------- */
 /* starfield background */
@@ -262,5 +275,16 @@ div#tourControls {
 @media (max-width: 600px) {
 	#app, .peripheral {
 		width:100%;
+	}
+	#incident ul li button,
+	#welcome button {
+		width:90%;
+		font-size:.9em;
+	}
+	#map ul li span.title {
+		font-size:1.5em;
+	}
+	#map ul li span.description {
+		line-height:1.2em;
 	}
 }
