@@ -42,7 +42,7 @@ $(document).ready(function(){
         $.aSimpleTour(tour);
     });
 
-    showWelcome();
+    //showWelcome();
 
 });
 
@@ -312,13 +312,27 @@ var app = new Vue({
                         $('#map').toggle();
                     },
             cargoSum: function(menu) {
-                        var total = 0;
+                        var totalCargo = 0;
                         for (var i = 0; i < menu.length; i++) {
                             v = parseFloat(menu[i].currentLoot);
-                            total += v;
+                            totalCargo += v;
                         }
-                        return total;
-                    }
+                        return totalCargo;
+                    },
+			cargoValue =  function(menu) {
+				        var totalValue = 0;
+				        for (var i = 0; i < menu.length; i++) {
+				            v = parseFloat(menu[i].currentLoot)
+				            p = parseFloat(menu[i].currentPrice);
+				            q = 0;
+				            if (v >= 1) {
+				            	q = (p * v);
+				            } else {}
+				
+				            totalValue += q;
+				        }
+				        return totalValue;
+				    }
         }
 });
 
@@ -430,3 +444,28 @@ function cargoCapIncrease(delta) {
     stats.cargoCap += delta;
     console.log('cargoCap increased from ' + stats.cargoCap + ' to ' + (stats.cargoCap + delta));
 }
+
+//// debug stuff ////
+// show debug panel
+$('#debug').bind('click', function() {
+	$('#debugPanel').toggle();
+});
+// bind increase/decrease buttons to stat object
+$('#debugPanel button').bind('click', function() {
+  parentRow = $(this).closest('tr');
+  parentStat = parentRow.attr('class');
+  statIncrement = parseInt(parentRow.attr('data-increment'));
+  
+  if ($(this).hasClass('increase')) {
+  	// raise
+  	stats[parentStat] += statIncrement;
+  } else {
+  	// lower
+  	if ((stats[parentStat] -= statIncrement) <= 0) {
+  		// make sure there are no negative numbers
+  		stats[parentStat] = 0;
+  	} else {
+  		stats[parentStat] -= statIncrement;
+  	}
+  }
+});
