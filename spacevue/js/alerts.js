@@ -74,7 +74,6 @@ function gameOverCheck() {
 		} else {
 			// you should sell some cargo to get some money
 		}
-	}
 // are you out of gas?
 	} else if (fuelAmount == 0) {
 		// out of gas! are you at a fuel station?

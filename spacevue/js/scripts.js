@@ -319,7 +319,7 @@ var app = new Vue({
                         }
                         return totalCargo;
                     },
-			cargoValue =  function(menu) {
+			cargoValue: function(menu) {
 				        var totalValue = 0;
 				        for (var i = 0; i < menu.length; i++) {
 				            v = parseFloat(menu[i].currentLoot)
