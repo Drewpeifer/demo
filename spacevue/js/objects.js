@@ -185,6 +185,7 @@ var stats = {
     map : mapA,
     config : config,
     availableIncidents : incidents,
+    encounteredIncidents : 0,
     currentIncident : incidents[0]
 }
 
