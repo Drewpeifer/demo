@@ -229,6 +229,8 @@ Vue.component('incident-list', {
 
             // disable the current event
             stats.currentIncident.isHappening = false;
+            // incrememt the incident counter
+            stats.encounteredIncidents += 1;
 
         },
         fuelChange(delta) {
