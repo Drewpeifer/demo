@@ -66,14 +66,11 @@ function gameOverCheck() {
 // are you out of money?
 	if (walletAmount == 0) {
 		// Do you. have any cargo to sell? If you do we will leave you alone.
-		if (currentCargo == 0) {
+	} else if (currentCargo == 0) {
 			// no cargo to sell for money, hope you have fuel and can encounter a good event
-			tipContent = 'Captain, sir: We have no money and no cargo to get any money. ' +
+			circumstance = 'Captain, sir: We have no money and no cargo to get any money. ' +
 				'This is a distressing and emabarassing situation, given our profession. ' +
 				'Our only hope is to cruise around on whatever fuel we have left.'
-		} else {
-			// you should sell some cargo to get some money
-		}
 // are you out of gas?
 	} else if (fuelAmount == 0) {
 		// out of gas! are you at a fuel station?
@@ -87,7 +84,7 @@ function gameOverCheck() {
 					// out of gas, out of cash, and not enough cargo to trade for gas!
 					// you don't even have anything worth the price
 					// of one fuel unit, you're so bad at this game
-					description = 'Well Cap, we\'re out of fuel, and even though ' +
+					circumstance = 'Well Cap, we\'re out of fuel, and even though ' +
 						'this station sells fuel, we don\'t have enough cash to buy any, ' +
 						'and we don\'t have enough cargo to trade for some fuel. Things don\'t ' +
 						'look very good for us, I guess we just aren\'t cut out for ' +
@@ -100,26 +97,29 @@ function gameOverCheck() {
 			}
 		} else {
 			// out of gas and this is not a fuel station!
-			description = 'We\'re out of gas and this isn\'t a fuel station! So, we\'re adrift and ' +
+			circumstance = 'We\'re out of gas and this isn\'t a fuel station! So, we\'re adrift and ' +
 				'our power supply will run out in a little while. This isn\'t good, Captain. ' +
 				'Systems show all the escape pods have been jettisoned, too; wow, I guess the crew ' +
 				'saw this one coming. Oh, well. Wanna go raid the cafeteria?';
 		}
+		$('#map').slideUp();// hide map if necessary
+		$('#app').prepend(panel);
+		$('#gameOver').append(header)
+					.append(setup)
+					.append(circumstance)
+					.append(stinger)
+					.append(button)
+					.show();
+
+		$('#closeGameOver').bind('click', function() {
+			$('#gameOver').slideUp();
+		});
 	} else {
 		// you're good to go, you have gas, continue playing
 	}
 	function showGameOver() {
 		// This actually builds the gameOver message UI if conditions are met
 		// using the content from the condition checks, or default content
-		$('#app').prepend(panel);
-		$('#gameOver').append(header)
-					.append(setup)
-					.append(circumstance)
-					.append(stinger)
-					.append(button);
 
-		$('#closeGameOver').bind('click', function() {
-			$('#gameOver').slideUp();
-		});
 	}
 }

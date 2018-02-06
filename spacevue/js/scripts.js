@@ -258,43 +258,48 @@ Vue.component('map-list', {
             $('#map').toggle();
         },
         travel: function(port) {
-            console.log('traveling to ' + port);
-            stats.port = port;
-            buildMarket(port);
-            stats.fuel -= 1;
-            $('#map').toggle();
+            if (stats.fuel >= 1) {
+                // you have enough fuel to travel
+                console.log('traveling to ' + port);
+                stats.port = port;
+                buildMarket(port);
+                stats.fuel -= 1;
+                $('#map').toggle();
 
-            // did an incident occur?
-            incidentOccurred = 1;// DEBUG getRandomNumber(1, 2);// 1 = yes, 2 = no
-            console.log('random incident = ' + incidentOccurred);
+                // did an incident occur?
+                incidentOccurred = 1;// DEBUG getRandomNumber(1, 2);// 1 = yes, 2 = no
+                console.log('random incident = ' + incidentOccurred);
 
-            if (incidentOccurred == 1) {
-                // incident occurred!
-                // create new list of incidents that haven't occurred yet
-                unknownIncidents = $.map(stats.availableIncidents, function(incident) {
-                    if (incident.hasHappened) {
-                        // do nothing
+                if (incidentOccurred == 1) {
+                    // incident occurred!
+                    // create new list of incidents that haven't occurred yet
+                    unknownIncidents = $.map(stats.availableIncidents, function(incident) {
+                        if (incident.hasHappened) {
+                            // do nothing
+                        } else {
+                            return incident;
+                        }
+                    });
+
+                    if (unknownIncidents.length == 0) {
+                        // do nothing, no more incidents
+                        console.log('no more incidents!');
                     } else {
-                        return incident;
+                        eventIndex = getRandomNumber(0, (unknownIncidents.length - 1));// pick an unknown event
+                        stats.currentIncident = unknownIncidents[eventIndex];// set it to current
+                        stats.currentIncident.isHappening = true;// make it happen, cap'n
+                        stats.currentIncident.hasHappened = true;// exclude it from happening again
+                        $('#incident').show();// show the incident peripheral
+                        console.log('incident list length = ' + stats.availableIncidents.length);
+                        console.log('unknown list length = ' + unknownIncidents.length);
                     }
-                });
 
-                if (unknownIncidents.length == 0) {
-                    // do nothing, no more incidents
-                    console.log('no more incidents!');
                 } else {
-                    eventIndex = getRandomNumber(0, (unknownIncidents.length - 1));// pick an unknown event
-                    stats.currentIncident = unknownIncidents[eventIndex];// set it to current
-                    stats.currentIncident.isHappening = true;// make it happen, cap'n
-                    stats.currentIncident.hasHappened = true;// exclude it from happening again
-                    $('#incident').show();// show the incident peripheral
-                    console.log('incident list length = ' + stats.availableIncidents.length);
-                    console.log('unknown list length = ' + unknownIncidents.length);
+                    // nothing happened
+                    console.log('no incident');
                 }
-
             } else {
-                // nothing happened
-                console.log('no incident');
+                gameOverCheck();
             }
         }
     },
