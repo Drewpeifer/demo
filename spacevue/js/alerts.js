@@ -42,8 +42,8 @@ function gameOverCheck() {
 	fuelAmount = stats.fuel;
 	isFuelStation = stats.port.fuelStation;
 	fuelStationPrice = stats.port.fuelPrice;
-	currentCargo = cargoSum(menu);
-	currentCargoValue = cargoValue(menu);
+	currentCargo = 2;
+	currentCargoValue = 100;
 	
 // Game Over UI / content defaults
 	panel = '<div id="gameOver" class="peripheral"></div>',
