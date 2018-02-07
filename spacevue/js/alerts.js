@@ -71,7 +71,7 @@ function gameOverCheck() {
 	fuelAmount = stats.fuel;
 	isFuelStation = stats.port.fuelStation;
 	fuelStationPrice = stats.port.fuelPrice;
-	currentCargoAmount = stats.cargoLoot;
+	currentCargoAmount = cargoSum(stats.menu);
 	currentCargoValue = cargoValueSum(stats.menu);
 	
 // Game Over UI / content defaults
@@ -90,18 +90,7 @@ function gameOverCheck() {
 
 console.log('running gameOverCheck...');
 
-// are you out of money?
-	if (walletAmount == 0) {
-		// Do you have any cargo to sell? If you do we will leave you alone.
-		console.log('your wallet is zero');
-	} else if (currentCargoAmount == 0) {
-			// no cargo to sell for money, hope you have fuel and can encounter a good event
-			circumstance = 'Captain, sir: We have no money and no cargo to get any money. ' +
-				'This is a distressing and emabarassing situation, given our profession. ' +
-				'Our only hope is to cruise around on whatever fuel we have left.';
-			console.log('your cargo is zero');
-// are you out of gas?
-	} else if (fuelAmount == 0) {
+if (fuelAmount == 0) {
 		// out of gas! are you at a fuel station?
 		console.log('your fuel is zero');
 		if (isFuelStation) {
@@ -113,19 +102,28 @@ console.log('running gameOverCheck...');
 				// but do you have enough cargo to sell for gas?
 				console.log('youre too poor to buy gas');
 				if (currentCargoValue < fuelStationPrice) {
-					// out of gas, out of cash, and not enough cargo to trade for gas!
-					// you don't even have anything worth the price
-					// of one fuel unit, you're so bad at this game
-					circumstance = 'Well Cap, we\'re out of fuel, and even though ' +
-						'this station sells fuel, we don\'t have enough cash to buy any, ' +
-						'and we don\'t have enough cargo to trade for some fuel. Things don\'t ' +
-						'look very good for us, I guess we just aren\'t cut out for ' +
-						'this line of work.';
-					console.log('you have no gas, cash, or cargo to trade');
-					showGameOver();// show gameOver message with specified text
+					// so you don't have enough cash to buy gas, and
+					// your cargo isn't worth enough to pay for gas, but
+					// if you combine cargo value and your wallet, will
+					// that be enough for gas?
+					if ((currentCargoValue + walletAmount) < fuelStationPrice) {
+						// out of gas, out of cash, and not enough cargo to trade for gas!
+						// you don't even have anything worth the price
+						// of one fuel unit, you're so bad at this game
+						circumstance = 'Well Cap, we\'re out of fuel, and even though ' +
+							'this station sells fuel, we don\'t have enough cash to buy any, ' +
+							'and we don\'t have enough cargo to trade for some fuel. Things don\'t ' +
+							'look very good for us, I guess we just aren\'t cut out for ' +
+							'this line of work.';
+						console.log('you have no gas, cash, or cargo to trade');
+						showGameOver();// show gameOver message with specified text
+					} else {
+						// you need to sell some cargo in order to buy fuel
+						console.log('you need to sell some cargo to buy gas, its worth ' + currentCargoValue);
+					}
 				} else {
 					// you need to sell some cargo in order to buy fuel
-					console.log('you need to sell some cargo to buy gas, its worth' + currentCargoValue);
+					console.log('you need to sell some cargo to buy gas. Your cargo is worth ' + currentCargoValue);
 				}
 			} else {
 				// you should have enough money to buy gas
@@ -140,8 +138,6 @@ console.log('running gameOverCheck...');
 			console.log('youre out of gas and this is not a fuel station');
 			showGameOver();// show gameOver message with specified text
 		}
-		// you're good to go, continue playing
-		console.log('gameOver conditions not met, continue playing');
 	} else {
 		// you're good to go, continue playing
 		console.log('gameOver conditions not met, continue playing');
