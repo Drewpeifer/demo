@@ -25,6 +25,23 @@ function showWelcome() {
    });
 }
 
+// general pop up alert, used to notify user of misc
+// events or upcoming conditions (such as game over soon)
+function showAlert(header, message) {
+	alertPanel = $('#alert');
+	alertContent = '<ul><li class="header">' +
+					'<p>' + header + '</p></li>' +
+					'<li class="description">' +
+					'<p>' + message + '</p></li>' +
+					'<li><button id="closeAlert">Roger That</button></li></ul>';
+
+	alertPanel.html(alertContent);
+	alertPanel.slideDown();
+	$('#closeAlert').bind('click', function() {
+		alertPanel.empty().slideUp();
+	});
+}
+
 // calculate current total cargo amount
 // in your cargo hold (used in other funcs)
 function cargoSum(menu) {
