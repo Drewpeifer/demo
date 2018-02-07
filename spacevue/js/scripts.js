@@ -319,28 +319,8 @@ var app = new Vue({
             toggleMap: function() {
                         $('#map').toggle();
                     },
-            cargoSum: function(menu) {
-                        var totalCargo = 0;
-                        for (var i = 0; i < menu.length; i++) {
-                            v = parseFloat(menu[i].currentLoot);
-                            totalCargo += v;
-                        }
-                        return totalCargo;
-                    },
-			cargoValueSum: function(menu) {
-				        var totalValue = 0;
-				        for (var i = 0; i < menu.length; i++) {
-				            v = parseFloat(menu[i].currentLoot);
-				            p = parseFloat(menu[i].currentPrice);
-
-				            if (v >= 1) {
-                                totalValue += p * v;
-				            } else {
-                                //do nothing
-                            }
-				        }
-				        return totalValue;
-				    }
+            currentCargoSum: function(menu) { return cargoSum(menu); },
+            currentCargoValueSum: function(menu) { return cargoValueSum(menu); }
         }
 });
 
