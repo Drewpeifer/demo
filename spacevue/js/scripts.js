@@ -327,17 +327,17 @@ var app = new Vue({
                         }
                         return totalCargo;
                     },
-			cargoValue: function(menu) {
+			cargoValueSum: function(menu) {
 				        var totalValue = 0;
 				        for (var i = 0; i < menu.length; i++) {
-				            v = parseFloat(menu[i].currentLoot)
+				            v = parseFloat(menu[i].currentLoot);
 				            p = parseFloat(menu[i].currentPrice);
-				            q = 0;
+
 				            if (v >= 1) {
-				            	q = (p * v);
-				            } else {}
-				
-				            totalValue += q;
+                                totalValue += p * v;
+				            } else {
+                                //do nothing
+                            }
 				        }
 				        return totalValue;
 				    }
