@@ -25,6 +25,17 @@ function showWelcome() {
    });
 }
 
+// calculate current total cargo amount
+// in your cargo hold (used in other funcs)
+function cargoSum(menu) {
+    var totalCargo = 0;
+    for (var i = 0; i < menu.length; i++) {
+        v = parseFloat(menu[i].currentLoot);
+        totalCargo += v;
+    }
+    return totalCargo;
+}
+
 // calculate value of all the goods currently
 // in your cargo hold (used in other funcs)
 function cargoValueSum(menu) {
@@ -60,8 +71,8 @@ function gameOverCheck() {
 	fuelAmount = stats.fuel;
 	isFuelStation = stats.port.fuelStation;
 	fuelStationPrice = stats.port.fuelPrice;
-	currentCargo = 2;
-	currentCargoValue = 100;
+	currentCargoAmount = stats.cargoLoot;
+	currentCargoValue = cargoValueSum(stats.menu);
 	
 // Game Over UI / content defaults
 	panel = '<div id="gameOver" class="peripheral"></div>',
@@ -83,7 +94,7 @@ console.log('running gameOverCheck...');
 	if (walletAmount == 0) {
 		// Do you have any cargo to sell? If you do we will leave you alone.
 		console.log('your wallet is zero');
-	} else if (currentCargo == 0) {
+	} else if (currentCargoAmount == 0) {
 			// no cargo to sell for money, hope you have fuel and can encounter a good event
 			circumstance = 'Captain, sir: We have no money and no cargo to get any money. ' +
 				'This is a distressing and emabarassing situation, given our profession. ' +
@@ -114,7 +125,7 @@ console.log('running gameOverCheck...');
 					showGameOver();// show gameOver message with specified text
 				} else {
 					// you need to sell some cargo in order to buy fuel
-					console.log('you need to sell some cargo to buy gas');
+					console.log('you need to sell some cargo to buy gas, its worth' + currentCargoValue);
 				}
 			} else {
 				// you should have enough money to buy gas

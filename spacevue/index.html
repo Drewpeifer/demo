@@ -51,7 +51,7 @@
 			</tr>
 			<tr>
 				<td>Cargo Value</td>
-				<td>{{ cargoValueSum(menu) }}</td>
+				<td>{{ currentCargoValueSum(menu) }}</td>
 			</tr>
 			<tr>
 				<td>Events Enc</td>
@@ -71,7 +71,7 @@
 				</li>
 				<li class="stats">
 					<span id="wallet">&#36;{{ wallet }}</span>
-					<span id="cargo">Cargo: {{ cargoSum(menu) }}/{{ cargoCap }}</span>
+					<span id="cargo">Cargo: {{ currentCargoSum(menu) }}/{{ cargoCap }}</span>
 					<span id="fuel">Fuel: {{ fuel }}</span>
 				</li>
 			</ul>
