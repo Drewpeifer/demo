@@ -62,24 +62,30 @@ function gameOverCheck() {
 ////////////// TODO!!!! /////////////
 // Make sure gameover checks make sense, and trigger, with appropriate messages
 // Then take care of edge cases with tipContent and showAlert
+console.log('running gameOverCheck...');
 
 // are you out of money?
 	if (walletAmount == 0) {
-		// Do you. have any cargo to sell? If you do we will leave you alone.
+		// Do you have any cargo to sell? If you do we will leave you alone.
+		console.log('your wallet is zero');
 	} else if (currentCargo == 0) {
 			// no cargo to sell for money, hope you have fuel and can encounter a good event
 			circumstance = 'Captain, sir: We have no money and no cargo to get any money. ' +
 				'This is a distressing and emabarassing situation, given our profession. ' +
-				'Our only hope is to cruise around on whatever fuel we have left.'
+				'Our only hope is to cruise around on whatever fuel we have left.';
+			console.log('your cargo is zero');
 // are you out of gas?
 	} else if (fuelAmount == 0) {
 		// out of gas! are you at a fuel station?
+		console.log('your fuel is zero');
 		if (isFuelStation) {
 			// okay, this is a fuel station, but
 			// do you have enough money to buy gas?
+			console.log('this is a fuel station');
 			if (walletAmount < fuelStationPrice) {
 				// you're too poor to buy gas,
 				// but do you have enough cargo to sell for gas?
+				console.log('youre too poor to buy gas');
 				if (currentCargoValue < fuelStationPrice) {
 					// out of gas, out of cash, and not enough cargo to trade for gas!
 					// you don't even have anything worth the price
@@ -89,11 +95,15 @@ function gameOverCheck() {
 						'and we don\'t have enough cargo to trade for some fuel. Things don\'t ' +
 						'look very good for us, I guess we just aren\'t cut out for ' +
 						'this line of work.';
+					console.log('you have no gas, cash, or cargo to trade');
+					showGameOver();// show gameOver message with specified text
 				} else {
 					// you need to sell some cargo in order to buy fuel
+					console.log('you need to sell some cargo to buy gas');
 				}
 			} else {
 				// you should have enough money to buy gas
+				console.log('you have gas money');
 			}
 		} else {
 			// out of gas and this is not a fuel station!
@@ -101,7 +111,19 @@ function gameOverCheck() {
 				'our power supply will run out in a little while. This isn\'t good, Captain. ' +
 				'Systems show all the escape pods have been jettisoned, too; wow, I guess the crew ' +
 				'saw this one coming. Oh, well. Wanna go raid the cafeteria?';
+			console.log('youre out of gas and this is not a fuel station');
+			showGameOver();// show gameOver message with specified text
 		}
+		// you're good to go, continue playing
+		console.log('gameOver conditions not met, continue playing');
+	} else {
+		// you're good to go, continue playing
+		console.log('gameOver conditions not met, continue playing');
+	}
+	function showGameOver() {
+		// This actually builds the gameOver message UI if conditions are met
+		// using the content from the condition checks, or default content
+		console.log('running showGameOver...')
 		$('#map').slideUp();// hide map if necessary
 		$('#app').prepend(panel);
 		$('#gameOver').append(header)
@@ -114,12 +136,5 @@ function gameOverCheck() {
 		$('#closeGameOver').bind('click', function() {
 			$('#gameOver').slideUp();
 		});
-	} else {
-		// you're good to go, you have gas, continue playing
-	}
-	function showGameOver() {
-		// This actually builds the gameOver message UI if conditions are met
-		// using the content from the condition checks, or default content
-
 	}
 }
