@@ -298,6 +298,7 @@ Vue.component('map-list', {
                 } else {
                     // nothing happened
                     console.log('no incident');
+                    gameOverCheck();
                 }
             } else {
                 gameOverCheck();
