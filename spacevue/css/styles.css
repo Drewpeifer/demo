@@ -184,19 +184,6 @@ ul li {
 	font-size:1.1em;
 }
 
-/* tour overlay */
-div#touroverlay {
-	border:none;
-}
-div#tourtip {
-	max-height:500px;
-	max-width:450px;
-	overflow:scroll;
-}
-div#tourControls {
-	top:4px !important;
-	right:75px !important;
-}
 /* debug panel */
 #debugPanel {
 	position:absolute;
