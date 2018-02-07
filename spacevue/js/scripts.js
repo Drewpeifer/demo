@@ -1,47 +1,6 @@
 $(document).ready(function(){
 //	makeManyStars();
     buildMarket(stats.port);// builds initial marketplace
-    // tour setup
-    var tour = {
-        data : [
-            { element: '#help', 'tooltip' : 'Welcome to the tour. Use the controls in the top-right corner of the screen to step back (&larr;), step forward (&rarr;), or end the tour.<br /><br />In SpaceVue, you travel from place to place (it\'s that simple).<br /><br />To travel, you need fuel.<br /><br />To get fuel, you need credits.<br /><br />To get credits, you need to buy stuff and sell it for a higher price.<br /><br /><b>Caution: Adventures are <strike>possible</strike> probable.</b>'},
-            { element: '#controls', 'tooltip' : 'This is your stats panel, displaying your location, credits, cargo, and fuel'},
-            { element: '#mapToggle', 'tooltip' : 'Click here to see the map and travel to new places. Travelling to a new location costs 1 Fuel, and there\'s always a chance something could happen on the way...' },
-            { element: '#description', 'tooltip' : 'This is a brief description of your current port. Each port has a different market with unique price fluctuations, sale / hike prices, and (sometimes) special services.'},
-            { element: '#wallet', 'tooltip' : 'This is your current stockpile of credits, for buying goods and services.'},
-            { element: '#cargo', 'tooltip' : 'This is your current cargo / cargo capacity. When your cargo is full, you can\'t buy anything or be given anything.' },
-            { element: '#fuel', 'tooltip' : 'Fuel is what gets you around the galaxy, so make sure you don\'t run out (or the game\'s over!). Each jump costs 1 fuel, and only certain ports have fuel stations.' },
-            { element: '#market', 'tooltip' : 'This is the marketplace for your current port. Some ports sell unique items, or have embargos on a certain commodity. Other ports may offer services, such as cargo upgrades.', 'position':'TL' },
-            { element: '#help', 'tooltip' : 'That\'s about it for the tour, you\'re own your own now, Captain.<br /><br />Remember: buy low, sell high, and always keep some extra fuel around.<br /><br />The game ends if you:<ul><li>A) run out of fuel without being at a gas station,</li><li>B) run out of fuel (even at a gas station) but have no money or goods to trade, or</li><li>C) you meet your untimely end at the hands of a pirate / alien / wormhole etc.<br /><br />Good luck, thanks for playing, and feel free to click this button at any time to see the tour again.' }
-        ],
-        buttons: {
-            next  : { text : '&rarr;', class : ''},
-            prev  : { text : '&larr;', class: '' },
-            start : { text : 'Start Tour', class: '' },
-            end   : { text : 'End Tour', class: '' }
-        },
-        tooltipPosition : 'BR',
-        autoStart : true,
-        useOverlay : true,
-        welcomeMessage : "",
-        controlsPosition : 'TR',
-        controlsCss : {
-            'background':'transparent',
-            'border':'none',
-            'top': '-5px',
-            'padding': '0'
-        },
-        tooltipCss : {
-            'background':'rgba(255, 255, 255, .8',
-            'border':'none !important',
-            'color':'#000'
-        }
-    }
-
-    $('#help').bind('click', function() {
-        $.aSimpleTour(tour);
-    });
-
     showWelcome();
 
 });
