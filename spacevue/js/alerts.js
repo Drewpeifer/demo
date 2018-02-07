@@ -106,8 +106,23 @@ function gameOverCheck() {
 // If conditions are good, keep on playing.
 
 console.log('running gameOverCheck...');
-
-if (fuelAmount == 0) {
+if (fuelAmount == 2) {
+	// fuel is low
+	if (!isFuelStation) {
+		// no fuel here
+		showAlert('Low Fuel Alert!', 'You have 2 units of fuel, better get to a system with a fuel station soon...');
+	}
+	// fuel for sale here
+	showAlert('Low Fuel Alert!', 'You have 2 units of fuel, maybe buy some here?');
+} else if (fuelAmount == 1) {
+	// fuel is REALLY low
+	if (!isFuelStation) {
+		// no fuel here
+		showAlert('CRITICAL Fuel Alert!', 'You have 1 unit of fuel left, hope your next destination sells some!');
+	}
+	// fuel for sale here
+	showAlert('CRITICAL Fuel Alert!', 'You have 1 unit of fuel left, better buy some before you leave!');
+} else if (fuelAmount == 0) {
 		// out of gas! are you at a fuel station?
 		console.log('your fuel is zero');
 		if (isFuelStation) {
@@ -136,14 +151,17 @@ if (fuelAmount == 0) {
 						showGameOver();// show gameOver message with specified text
 					} else {
 						// you need to sell some cargo in order to buy fuel
+						showAlert('Out Of Gas!', 'You have $' + currentCargoValue + ' worth of cargo to trade');
 						console.log('you need to sell some cargo to buy gas, its worth ' + currentCargoValue);
 					}
 				} else {
 					// you need to sell some cargo in order to buy fuel
-					console.log('you need to sell some cargo to buy gas. Your cargo is worth ' + currentCargoValue);
+					showAlert('Out Of Gas!', 'You have $' + currentCargoValue + ' worth of cargo to trade');
+					console.log('you need to sell some cargo to buy gas, its worth ' + currentCargoValue);
 				}
 			} else {
 				// you should have enough money to buy gas
+				showAlert('Out Of Gas!', 'You should have enough money to buy fuel though');
 				console.log('you have gas money');
 			}
 		} else {

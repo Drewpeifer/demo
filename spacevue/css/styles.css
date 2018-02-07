@@ -159,7 +159,7 @@ ul li {
 }
 #alert,
 #welcome,
-#incident {
+#incident ul li {
 	display:block;
 	text-align:center;
 }
