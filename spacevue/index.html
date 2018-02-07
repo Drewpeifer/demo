@@ -71,9 +71,15 @@
 					<span id="description">{{ port.description }}</span>
 				</li>
 				<li class="stats">
-					<span id="wallet">&#36;{{ wallet }}</span>
-					<span id="cargo">Cargo: {{ currentCargoSum(menu) }}/{{ cargoCap }}</span>
-					<span id="fuel">Fuel: {{ fuel }}</span>
+					<span id="wallet" v-bind:class="{ bad: wallet == 0 }">
+						&#36;{{ wallet }}
+					</span>
+					<span id="cargo" v-bind:class="{ bad: currentCargoSum(menu) == cargoCap }">
+						Cargo: {{ currentCargoSum(menu) }}/{{ cargoCap }}
+					</span>
+					<span id="fuel" v-bind:class="{ bad: fuel <= 2 }">
+						Fuel: {{ fuel }}
+					</span>
 				</li>
 			</ul>
 		</div>

@@ -120,7 +120,7 @@ ul li {
 	color:yellow;
 }
 .bad {
-	color:pink;
+	color:red;
 }
 /* peripherals */
 .peripheral {
@@ -128,6 +128,7 @@ ul li {
 	background:#000;
 	border:#fff 2px solid;
 	border-radius:5px;
+	height:100%;
 }
 .peripheral ul li {
 	display:flex;
