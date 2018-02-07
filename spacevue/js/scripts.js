@@ -42,7 +42,7 @@ $(document).ready(function(){
         $.aSimpleTour(tour);
     });
 
-    //showWelcome();
+    showWelcome();
 
 });
 
