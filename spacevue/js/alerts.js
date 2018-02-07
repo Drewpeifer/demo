@@ -27,11 +27,10 @@ function showWelcome() {
 
 // calculate value of all the goods currently
 // in your cargo hold (used in other funcs)
-function cargoValueSum() {
-	menuItems = stats.menu;
+function cargoValueSum(menu) {
 	itemValueArray = [];
 
-	$.each(menuItems, function() {
+	$.each(menu, function() {
 		if (this.currentLoot > 0) {
 			itemValue = this.currentLoot * this.currentPrice;
 			console.log('you have ' + this.currentLoot + ' ' + this.title + ' worth ' + itemValue);

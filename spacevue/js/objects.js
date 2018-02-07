@@ -83,7 +83,7 @@ var mapA = [];
 // sample map location
 ///////////////////////
 //mapA[i] = {  title : location name,
-//            fuelStation : do they sell fuel true/falsem
+//            fuelStation : do they sell fuel true/false,
 //            fuelPrice : price of fuel (0 if they don't sell it),
 //            fuelAvailable : starting stock of fuel,
 //            cargoUpgrade : can you upgrade cargo here true/false,
@@ -178,9 +178,10 @@ var stats = {
     wallet : 0,
     fuel : 0,
     port : mapA[0],// always start at Earth
-    cargoLoot : 0,
+    cargoLoot : 0,// unused
     cargoCap : 0,
     cargoUpgrades : 0,
+    cargoValue : 0,// unused
     menu : menuA,
     map : mapA,
     config : config,
