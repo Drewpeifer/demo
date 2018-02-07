@@ -25,14 +25,33 @@ function showWelcome() {
    });
 }
 
+// calculate value of all the goods currently
+// in your cargo hold (used in other funcs)
+function cargoValueSum() {
+	menuItems = stats.menu;
+	itemValueArray = [];
+
+	$.each(menuItems, function() {
+		if (this.currentLoot > 0) {
+			itemValue = this.currentLoot * this.currentPrice;
+			console.log('you have ' + this.currentLoot + ' ' + this.title + ' worth ' + itemValue);
+			itemValueArray.push(itemValue);
+		} else {
+			// do nothing
+		}
+	});
+	console.log(itemValueArray);
+	return itemValueArray.reduce(function(a, b) { return a + b; }, 0);
+}
+
 // show gameOver message when certain conditions are met:
-// After travel, perfrom several checks on user stats...
+// After travel, perform several checks on user stats...
 // If gas hits 0:
 //// does station sell fuel?
 ////// if no, game over!
 ////// if yes, do you have enough money to buy some?
 //////// if no, do you have enough goods to sell to earn gas money?
-////////// if no, game over@
+////////// if no, game over!
 // if money hits 0:
 //// do you have any goods to sell?
 ////// if no, game over!
@@ -56,12 +75,9 @@ function gameOverCheck() {
 
 //// Check Conditions ////
 // If game over, show gameOver message.
-// If game over unless player takes specific action, show ation hint
+// If game over unless player takes specific action, show action hint
 // If conditions are good, keep on playing.
 
-////////////// TODO!!!! /////////////
-// Make sure gameover checks make sense, and trigger, with appropriate messages
-// Then take care of edge cases with tipContent and showAlert
 console.log('running gameOverCheck...');
 
 // are you out of money?
