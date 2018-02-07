@@ -49,6 +49,7 @@ $(document).ready(function(){
 function closeIncident() {
     $('li.outcome-description').html('');
     $('#incident').hide();
+    gameOverCheck();
 }
 // marketplace Vue app, watches menu objects for changes
 // and fires events to the main app / stats objects
@@ -260,14 +261,14 @@ Vue.component('map-list', {
         travel: function(port) {
             if (stats.fuel >= 1) {
                 // you have enough fuel to travel
-                console.log('traveling to ' + port);
+                console.log('traveling to ' + port.title);
                 stats.port = port;
                 buildMarket(port);
                 stats.fuel -= 1;
                 $('#map').toggle();
 
                 // did an incident occur?
-                incidentOccurred = 1;// DEBUG getRandomNumber(1, 2);// 1 = yes, 2 = no
+                incidentOccurred = getRandomNumber(1, 2);// 1 = yes, 2 = no
                 console.log('random incident = ' + incidentOccurred);
 
                 if (incidentOccurred == 1) {
