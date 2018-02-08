@@ -62,10 +62,10 @@ Vue.component('marketplace', {
             if (parseFloat(item.delta) > 0){// purchase
                 if ((parseFloat(item.delta) * parseFloat(item.currentPrice)) > parseFloat(mainStats.wallet)) {// check wallet first
                     // too poor
-                    alert("you're too poor");
+                    showAlert("Oh, no!", "You're too poor");
                 } else if ((parseFloat(item.delta) + parseFloat(mainStats.cargoLoot)) > parseFloat(mainStats.cargoCap)) {// then check cargo
                     // cargo full
-                    alert("your cargo is full");
+                    showAlert("Oh, no!", "Your cargo is full");
                 } else {// purchase goods
                     console.log('purchase');
                     // subtract cost from wallet
@@ -95,7 +95,7 @@ Vue.component('marketplace', {
             // check wallet first
             if ((parseFloat(delta) * parseFloat(mainStats.port.fuelPrice)) > parseFloat(mainStats.wallet)) {// check wallet first
                 // too poor
-                alert("you're too poor");
+                showAlert("Oh, no!", "You're too poor");
             } else {// buy fuel
                 // remove cash from wallet
                 mainStats.wallet = parseFloat(mainStats.wallet) - (parseFloat(delta) * parseFloat(mainStats.port.fuelPrice));
@@ -111,9 +111,9 @@ Vue.component('marketplace', {
             // check wallet first
             if ((parseFloat(delta) * parseFloat(mainStats.port.cargoUpgradePrice)) > parseFloat(mainStats.wallet)) {// check wallet first
                 // too poor
-                alert("you're too poor");
+                showAlert("Oh, no!", "You're too poor");
             } else if (mainStats.port.cargoUpgrades == 0) {
-                alert("no more upgrades available here")
+                showAlert("Oh, no!", "No more upgrades available here")
             } else {// upgrade cargo (add 20 to cargoCap)
                 // remove cash from wallet
                 mainStats.wallet = parseFloat(mainStats.wallet) - (parseFloat(delta) * parseFloat(mainStats.port.cargoUpgradePrice));
