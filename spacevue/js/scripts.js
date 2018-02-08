@@ -224,6 +224,7 @@ Vue.component('map-list', {
                 stats.port = port;
                 buildMarket(port);
                 stats.fuel -= 1;
+                stats.turn += 1;
                 $('#map').toggle();
 
                 // did an incident occur?
