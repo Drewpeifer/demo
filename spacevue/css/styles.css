@@ -201,10 +201,6 @@ ul li {
 
 /* debug panel */
 #debugPanel {
-	position:absolute;
-	left:0;
-	height:300px;
-	width:20%;
 	border:2px solid blue;
 }
 #debugPanel .increase {
