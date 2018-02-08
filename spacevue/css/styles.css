@@ -18,7 +18,9 @@ body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
-div#wrapper, div#starfield, div#app {
+div#wrapper,
+div#starfield,
+div#app {
 	border:none;
 }
 ul {
@@ -154,11 +156,16 @@ ul li {
 	margin-left:5px;
 	margin-right:5px;
 }
-#alert ul, #alert ul li button {
-	margin-top:15px;
-	margin-bottom:15px;
+#alert {
+	display:flex;
+	text-align:center;
+	align-items:center;
+	justify-content:center;
 }
-#alert,
+#alert ul,
+#alert ul li button {
+	width:90%;
+}
 #welcome,
 #incident ul li {
 	display:block;
