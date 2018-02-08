@@ -26,44 +26,6 @@
 		<!-- end peripherals -->
 		<!-- controls (top HUD) -->
 		<button id="help">Help</button><button id="debug">Debug</button>
-		<div id="debugPanel" style="display:none;">
-			<table>
-			<tr class="turn" data-increment="1">
-				<td>Turn</td>
-				<td>{{ turn }}</td>
-				<td><button class="decrease">-</button></td>
-				<td><button class="increase">+</button></td>
-			</tr>
-			<tr class="wallet" data-increment="1000">
-				<td>Wallet</td>
-				<td>{{ wallet }}</td>
-				<td><button class="decrease">-</button></td>
-				<td><button class="increase">+</button></td>
-			</tr>
-			<tr class="fuel" data-increment="1">
-				<td>Fuel</td>
-				<td>{{ fuel }}</td>
-				<td><button class="decrease">-</button></td>
-				<td><button class="increase">+</button></td>
-			</tr>
-			<tr class="port">
-				<td>Port</td>
-				<td>{{ port.title }}</td>
-			</tr>
-			<tr>
-				<td>Cargo Value</td>
-				<td>{{ currentCargoValueSum(menu) }}</td>
-			</tr>
-			<tr>
-				<td>Events Enc</td>
-				<td>{{ encounteredIncidents }}</td>
-			</tr>
-			<tr>
-				<td>Events Rem</td>
-				<td>{{ availableIncidents.length - encounteredIncidents }}</td>
-			</tr>
-			</table>
-		</div>
 		<div id="controls">
 			<ul>
 				<li class="location">
@@ -89,6 +51,44 @@
 			<marketplace></marketplace>
 		</div>
 		<!-- end marketplace -->
+		<div id="debugPanel" style="display:none;">
+			<table>
+				<tr class="turn" data-increment="1">
+					<td>Turn</td>
+					<td>{{ turn }}</td>
+					<td><button class="decrease">-</button></td>
+					<td><button class="increase">+</button></td>
+				</tr>
+				<tr class="wallet" data-increment="1000">
+					<td>Wallet</td>
+					<td>{{ wallet }}</td>
+					<td><button class="decrease">-</button></td>
+					<td><button class="increase">+</button></td>
+				</tr>
+				<tr class="fuel" data-increment="1">
+					<td>Fuel</td>
+					<td>{{ fuel }}</td>
+					<td><button class="decrease">-</button></td>
+					<td><button class="increase">+</button></td>
+				</tr>
+				<tr class="port">
+					<td>Port</td>
+					<td>{{ port.title }}</td>
+				</tr>
+				<tr>
+					<td>Cargo Value</td>
+					<td>{{ currentCargoValueSum(menu) }}</td>
+				</tr>
+				<tr>
+					<td>Events Enc</td>
+					<td>{{ encounteredIncidents }}</td>
+				</tr>
+				<tr>
+					<td>Events Rem</td>
+					<td>{{ availableIncidents.length - encounteredIncidents }}</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>
 <!-- scripts -->
