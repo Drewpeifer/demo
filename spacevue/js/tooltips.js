@@ -28,6 +28,10 @@ function buildTooltips() {
 $(function() {
     buildTooltips();
 	$('.tooltip').tooltipster({
-        theme: 'tooltipster-noir'
+        theme: 'tooltipster-light',
+        animation: 'fade',
+        arrow: true,
+        maxWidth: 400,
+        timer: 6000
     });
 });
