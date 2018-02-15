@@ -47,6 +47,12 @@ ul {
 #controls .stats span:nth-child(3) {
 	text-align:right;
 }
+#mapToggle, button {
+	cursor:pointer;
+}
+.counter button {
+	cursor:default;
+}
 /* market */
 #market ul,
 #market ul li {

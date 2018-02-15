@@ -397,7 +397,7 @@ function cargoCapIncrease(delta) {
 //// debug / help stuff ////
 // show debug panel
 $('#help').bind('click', function() {
-    showAlert('SpaceTrade - Help', 'Hover over elements to learn more about them.');
+    showAlert('SpaceTrade - Help', 'Hover over elements to learn more about them. On mobile devices, tap and hold (long press).');
 });
 $('#debug').bind('click', function() {
 	$('#debugPanel').toggle();
