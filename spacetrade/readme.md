@@ -53,7 +53,9 @@ the marketplaces, or modify config variables.
 
 You can also un-comment the debug script in `scripts.js`, which will enable
 a debug panel in the UI where a few variables can be manipulated,
-such as fuel and money.
+such as fuel and money. If you open the inspector in your browser, many
+actions have log statements that help explain what's happening behind the
+scenes.
 
 ### Project Update [Feb 2018]
 I started this project a few years ago, and originally, I wrote everything
