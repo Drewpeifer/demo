@@ -68,22 +68,22 @@ function makeOneStar() {
 	} else if (starCount % 15 == 0) {
 
 	} else if (starCount % 10 == 0) {
-		// convert newest star to UFO
-		$('.new.star')
-			.addClass('ufo')
-			.html('<div class="dome"></div>')
-			.css({
-				'background':'#444',
-				'-moz-box-shadow':'none',
-				'-webkit-box-shadow':'none',
-				'box-shadow':'none'
-				}) // needs set dynamically or else star prop wins
-			.animate({
-			y: +100
-		}, {
-			queue:false,
-			duration:randoSpeed
-		})
+		// // convert newest star to UFO
+		// $('.new.star')
+		// 	.addClass('ufo')
+		// 	.html('<div class="dome"></div>')
+		// 	.css({
+		// 		'background':'#444',
+		// 		'-moz-box-shadow':'none',
+		// 		'-webkit-box-shadow':'none',
+		// 		'box-shadow':'none'
+		// 		}) // needs set dynamically or else star prop wins
+		// 	.animate({
+		// 	y: +100
+		// }, {
+		// 	queue:false,
+		// 	duration:randoSpeed
+		// })
 	} else if (starCount % 4 == 0) {
 		$('.new.star').addClass('flare')
 	}
