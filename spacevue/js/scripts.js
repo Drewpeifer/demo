@@ -394,8 +394,11 @@ function cargoCapIncrease(delta) {
     console.log('cargoCap increased from ' + stats.cargoCap + ' to ' + (stats.cargoCap + delta));
 }
 
-//// debug stuff ////
+//// debug / help stuff ////
 // show debug panel
+$('#help').bind('click', function() {
+    showAlert('SpaceTrade - Help', 'Hover over elements to learn more about them.');
+});
 $('#debug').bind('click', function() {
 	$('#debugPanel').toggle();
 });
