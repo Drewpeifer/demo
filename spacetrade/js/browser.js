@@ -23,7 +23,7 @@ var uA = navigator.userAgent,
     } else if (uA.match(/MSIE 7\.0.*/)) {
         body.addClass('ie7');
     } else {
-        body.addclass('unknown-useragent');
+        body.addClass('unknown-useragent');
     }
     console.log('navigator.useragent = ' + uA);
 // end browser detection

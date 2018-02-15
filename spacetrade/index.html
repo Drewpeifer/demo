@@ -1,75 +1,113 @@
 <!doctype html>
-
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>SpaceTrade</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <meta name="description" content="Dope Wars in space">
-  <meta name="author" content="drew peifer">
-  <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/styles.css">
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+	<meta charset="utf-8">
+	<title>SpaceVue</title>
+	<meta name="description" content="Description">
+	<meta name="author" content="drewpeifer">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+	<!-- tooltipster -->
+	<link rel="stylesheet" media="screen" href="tooltipster/css/tooltipster.bundle.min.css">
+	<link rel="stylesheet" media="screen" href="tooltipster/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css">
+	<!-- end tooltipster -->
+	<link rel="stylesheet" media="screen" href="css/range.css">
+	<link rel="stylesheet" media="screen" href="css/styles.css">
 </head>
 <body>
 <div id="wrapper">
-    <div id="starfield"></div>
-    <div class="box">
-        <!-- peripherals -->
-        <div class="map peripheral" style="display:none;">
-        </div>
-        <div class="alert peripheral" style="display:none;">
-            <div class="alert-content">
-            </div>
-        </div>
-        <div class="header">
-            <span class="location has-drawer">
-                <p></p>
-                <span class="drawer" style="display:none;">Your current location</span>
-            </span>
-            <span class="map-control icon" title="Map"></span>
-            <span class="fuel has-drawer">
-                <span class="icon" title="Fuel"></span>
-                <p></p>
-                <span class="drawer" style="display:none;">Your current fuel</span>
-            </span>
-            <div class="controls">
-              <button id="engage">Engage!</button>
-              <button id="impulse" style="display:none;">Return to Impulse</button>
-            </div>
-        </div>
-        <div class="market">
-            <table>
-            </table>
-        </div>
-        <div class="stats">
-            <span class="wallet has-drawer">
-                <span class="icon" title="Wallet"></span>
-                <p></p>
-                <span class="drawer" style="display:none;">Your current funds</span>
-            </span>
-            <span class="cargo valid has-drawer">
-                <span class="icon" title="Cargo"></span>
-                <p class="loot"></p>
-                <p>/</p>
-                <p class="cap"></p>
-                <span class="drawer" style="display:none;">Cargo Capacity</span>
-            </span>
-        </div>
-    </div>
+	<div id="starfield"></div>
+	<div id="app">
+		<!-- peripherals -->
+		<div id="map" class="peripheral" style="display:none;">
+			<map-list></map-list>
+		</div>
+		<div id="incident" class="peripheral" style="display:none;">
+			<incident-list></incident-list>
+		</div>
+		<div id="alert" class="peripheral" style="display:none;"></div>
+		<!-- end peripherals -->
+		<!-- controls (top HUD) -->
+		<div id="controls">
+			<ul>
+				<li class="location">
+					<span id="mapToggle" v-on:click="toggleMap"></span>
+					<span id="description">{{ port.description }}</span>
+				</li>
+				<li class="stats">
+					<span id="wallet" v-bind:class="{ bad: wallet == 0 }">
+						&#36;{{ wallet }}
+					</span>
+					<span id="cargo" v-bind:class="{ bad: currentCargoSum(menu) == cargoCap }">
+						Cargo: {{ currentCargoSum(menu) }}/{{ cargoCap }}
+					</span>
+					<span id="fuel" v-bind:class="{ bad: fuel <= 2 }">
+						Fuel: {{ fuel }}
+					</span>
+				</li>
+			</ul>
+		</div>
+		<!-- end controls -->
+		<!-- marketplace -->
+		<div id="market" v-bind:class="port.title">
+			<marketplace></marketplace>
+		</div>
+		<!-- end marketplace -->
+		<button id="help">Help</button><button id="debug">Debug</button>
+		<div id="debugPanel" style="display:none;">
+			<table>
+				<tr class="turn" data-increment="1">
+					<td>Turn</td>
+					<td>{{ turn }}</td>
+					<td><button class="decrease">-</button></td>
+					<td><button class="increase">+</button></td>
+				</tr>
+				<tr class="wallet" data-increment="1000">
+					<td>Wallet</td>
+					<td>{{ wallet }}</td>
+					<td><button class="decrease">-</button></td>
+					<td><button class="increase">+</button></td>
+				</tr>
+				<tr class="fuel" data-increment="1">
+					<td>Fuel</td>
+					<td>{{ fuel }}</td>
+					<td><button class="decrease">-</button></td>
+					<td><button class="increase">+</button></td>
+				</tr>
+				<tr class="port">
+					<td>Port</td>
+					<td>{{ port.title }}</td>
+				</tr>
+				<tr>
+					<td>Cargo Value</td>
+					<td>{{ currentCargoValueSum(menu) }}</td>
+				</tr>
+				<tr>
+					<td>Events Enc</td>
+					<td>{{ encounteredIncidents }}</td>
+				</tr>
+				<tr>
+					<td>Events Rem</td>
+					<td>{{ availableIncidents.length - encounteredIncidents }}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </div>
-<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
-<script src="js/transit.js" type="text/javascript"></script>
-<script src="js/space.js" type="text/javascript"></script><!-- starfield -->
-<script src="js/browser.js" type="text/javascript"></script><!-- browser detection -->
-<script src="js/menu_map.js" type="text/javascript"></script><!-- market item & location objects -->
-<script src="js/incidents.js" type="text/javascript"></script><!-- arrival events -->
-<script src="js/market.js" type="text/javascript"></script><!-- stocking and manipulating the market -->
-<script src="js/buysell.js" type="text/javascript"></script><!-- buy/sell interactions -->
-<script src="js/travel.js" type="text/javascript"></script><!-- travel/map functionality -->
-<script src="js/market.js" type="text/javascript"></script><!-- stocking and manipulating the market -->
-<script src="js/scripts.js" type="text/javascript"></script><!-- onload and misc funcs -->
+<!-- scripts -->
+	<script src="js/browser.js" type="text/javascript"></script><!-- QAD uA detection -->
+	<script src="js/vue.js" type="text/javascript"></script><!-- data binding -->
+	<script src="js/transit.js" type="text/javascript"></script><!-- animations -->
+	<script src="js/space.js" type="text/javascript"></script><!-- starfield background -->
+	<script src="js/incidents-2.js" type="text/javascript"></script><!-- arrival events -->
+	<script src="js/objects.js" type="text/javascript"></script><!-- map, menu, config -->
+	<script src="js/alerts.js" type="text/javascript"></script><!-- modals -->
+	<script src="js/market.js" type="text/javascript"></script><!-- market builder -->
+	<script src="js/trade.js" type="text/javascript"></script><!-- commerce functions -->
+	<script src="js/travel.js" type="text/javascript"></script><!-- travel functions -->
+	<script src="js/scripts.js" type="text/javascript"></script><!-- onload and misc -->
+	<script type="text/javascript" src="tooltipster/js/tooltipster.bundle.min.js"></script><!-- tooltipster -->
+	<script src="js/tooltips.js" type="text/javascript"></script><!-- tooltip content -->
 </body>
 </html>
