@@ -1,5 +1,5 @@
 $(document).ready(function(){
-//	makeManyStars();
+	makeManyStars();
     buildMarket(stats.port);// builds initial marketplace
     showWelcome();
 
