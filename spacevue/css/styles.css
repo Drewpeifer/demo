@@ -5,6 +5,10 @@ body {
 	background:#000;
 	color:#f2f2f2;
 	font-family: 'Titillium Web', sans-serif;
+	overflow-y:hidden;
+}
+::-webkit-scrollbar {
+display: none;
 }
 #app, .peripheral {
 	width:60%;
