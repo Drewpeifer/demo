@@ -2,6 +2,7 @@
 
 function buildTooltips() {
 	var location = $('.location #description'),
+		map = $('#mapToggle'),
 		wallet = $('#wallet'),
 		cargo = $('#cargo'),
 		fuel = $('#fuel'),
@@ -9,13 +10,14 @@ function buildTooltips() {
 		price = $('.market-header span:nth-child(3)'),
 		stock = $('.market-header span:nth-child(4)'),
 		loot = $('.market-header span:last-child'),
-		allElements = [location, wallet, cargo, fuel, commodity, price, stock, loot];
+		allElements = [location, map, wallet, cargo, fuel, commodity, price, stock, loot];
 
 	$.each(allElements, function() {
 		this.addClass('tooltip');// tag element for tooltipster
 	});
 	// set tooltip content for each element
 	location.attr('title', 'This is your current location. Click the planet icon to open the Map and select a destination to travel to.');
+	map.attr('title', 'Click here to open the map and travel to to a new destination.');
 	wallet.attr('title', 'This is how much money you have. Use it to buy more fuel, or cargo. It\'s a good idea to keep a little extra around, you never know what expenses you might incur during your travels.');
 	cargo.attr('title', 'This is your current cargo amount / your total cargo capacity. Certain stations (and helpful strangers) can upgrade your cargo hold more than once.');
 	fuel.attr('title', 'This is your current fuel amount. Every time you travel, one unit of fuel is used. Only certain locations sell fuel, so remember to stock up before you go somewhere without a fuel station.');
