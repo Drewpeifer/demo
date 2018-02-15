@@ -4,12 +4,12 @@ var star = '<div class="new star"></div>', // generic baby star
 	starCount = 1, // for debugging
 	starCap = 5, // limits the number of stars on the screen
 	colors = [
-				'#FFF',// white
-				'#C6C3AB',// yellow
-				'#7F7EBA',// blue
-				'#C89E9E' // red
+				'#fffab5',// yellow/white
+				'##db6a13',// orange
+				'#312ba8',// blue
+				'#c62d15' // red
 			],
-	speeds = [5000, 8000, 10000, 15000];
+	speeds = [12000, 15000, 18000, 20000];
 
 ////////////////////////////////
 // starCrawl() sets the newest star created into motion
@@ -58,7 +58,7 @@ function makeOneStar() {
 				'-moz-box-shadow':    '0 0 10px 3px ' + randoColor,
 				'-webkit-box-shadow': '0 0 10px 3px ' + randoColor,
 				'box-shadow':         '0 0 10px 3px ' + randoColor
-		}),
+		});
 	
 	++starCount;
 
@@ -112,7 +112,7 @@ function makeManyStars() {
 					'-moz-box-shadow':    '0 0 10px 3px ' + randoColor,
 					'-webkit-box-shadow': '0 0 10px 3px ' + randoColor,
 					'box-shadow':         '0 0 10px 3px ' + randoColor
-			   }),
+			   });
 
 		starCrawl(); // set each star into motion
 
@@ -138,7 +138,7 @@ $('#engage').click(function() {
 
 	$('.star').stop(); // hammer time
 
-	// creates long bars of light L to R
+	// creates long bars of light L to R (unused)
 	function warp() {
 		for (var i = 0; i < 15; i++) {
 
@@ -157,7 +157,7 @@ $('#engage').click(function() {
 						'opacity': '.' + randoOpacity
 					}).animate({
 						'width': bodyWidth
-					})
+					});
 
 		}
 
@@ -188,14 +188,14 @@ $('#engage').click(function() {
 		'left': bodyWidth
 	}).finish();
 	
-	warp(),
-	$(this).hide(),
+	warp();
+	$(this).hide();
 	$('#impulse').show();
 });
 
-$('#impulse').click(function() {
-	$('.star').transition({ width: '1px', left: '-1000px' }),
-	$(this).hide(),
-	$('#engage').show(killAllStars);
+// $('#impulse').click(function() {
+// 	$('.star').transition({ width: '1px', left: '-1000px' });
+// 	$(this).hide();
+// 	$('#engage').show(killAllStars);
 
-});
+// });
