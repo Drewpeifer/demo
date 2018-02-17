@@ -8,6 +8,7 @@ $(document).ready(function(){
 function closeIncident() {
     $('li.outcome-description').html('');
     $('#incident').hide();
+    updateScore();
     gameOverCheck();
 }
 // marketplace Vue app, watches menu objects for changes
@@ -90,6 +91,8 @@ Vue.component('marketplace', {
             } else {// item.delta is 0
                 // do nothing
             }
+
+            updateScore();
         },
         buyFuel(delta, mainStats) {
             // check wallet first
@@ -106,6 +109,8 @@ Vue.component('marketplace', {
                 // reset delta
                 mainStats.port.fuelDelta = 0;
             }
+
+            updateScore();
         },
         upgradeCargo(delta, mainStats) {
             // check wallet first
@@ -126,6 +131,7 @@ Vue.component('marketplace', {
                 // reset delta
                 mainStats.port.cargoUpgradeDelta = 0;
             }
+            updateScore();
         }
     },
     data() {
@@ -201,6 +207,7 @@ Vue.component('incident-list', {
                 console.log('delta = ' + delta);
                 stats.fuel -= delta;
             }
+            updateScore();
         }
     }
 });
@@ -258,9 +265,11 @@ Vue.component('map-list', {
                 } else {
                     // nothing happened
                     console.log('no incident');
+                    updateScore();
                     gameOverCheck();
                 }
             } else {
+                updateScore();
                 gameOverCheck();
             }
         }

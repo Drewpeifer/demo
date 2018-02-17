@@ -41,6 +41,9 @@ ul {
 	line-height:16px;
 	margin:auto 0;
 }
+#controls .stats span {
+	width:30%;
+}
 #controls .stats span:nth-child(2) {
 	text-align:center;
 }
