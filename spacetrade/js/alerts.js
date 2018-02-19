@@ -15,13 +15,14 @@ function showWelcome() {
 					"It's dangerous out here.</p>";
 	button = "<button id='closeWelcome'>Let's Do This!</button>";
 
-   $('#app').prepend(panel);
-   $('#welcome').append(header)
+	$('#app').prepend(panel);
+	$('#welcome').append(header)
 				.append(description)
 				.append(button);
 
-   $('#closeWelcome').bind('click', function() {
+	$('#closeWelcome').bind('click', function() {
 	$('#welcome').slideUp();
+	createSession();
    });
 }
 
