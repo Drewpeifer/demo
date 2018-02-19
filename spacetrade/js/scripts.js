@@ -225,7 +225,10 @@ Vue.component('map-list', {
             $('#map').toggle();
         },
         travel: function(port) {
-            if (stats.fuel >= 1) {
+            if (stats.port == port) {
+                // can't travel from a port to itself
+                showAlert('You\'re already at ' + stats.port.title, 'Captain, have you been drinking?');
+            } else if (stats.fuel >= 1) {
                 // you have enough fuel to travel
                 console.log('traveling to ' + port.title);
                 stats.port = port;
