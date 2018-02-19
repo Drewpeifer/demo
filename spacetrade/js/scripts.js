@@ -6,6 +6,10 @@ $(document).ready(function(){
 });
 
 function closeIncident() {
+    $('button.disabled-good').removeClass('disabled-good')
+                             .attr('disabled', false);
+    $('button.disabled-bad').removeClass('disabled-bad')
+                            .attr('disabled', false);
     $('li.outcome-description').html('');
     $('#incident').hide();
     updateScore();
@@ -168,9 +172,17 @@ Vue.component('incident-list', {
             chosenType = outcome.type;
             chosenEffect = outcome.effect;
             chosenFunc = outcome.func;
+            choiceButtons = $('li.choices button');
+            chosenButton = $(choiceButtons[index]);
+            otherButtons = chosenButton.siblings();
 
-            // call outcome func here so it can modify chosenVars if it wants to
+            // call outcome func here
             chosenFunc();
+            // disable unused choice buttons, and chosen button
+            chosenButton.attr('disabled','true')
+                        .addClass('disabled-good');
+            otherButtons.attr('disabled','true')
+                        .addClass('disabled-bad');
 
             switch(chosenType) {
                 case 'good':
