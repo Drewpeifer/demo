@@ -18,6 +18,7 @@ function setCookie(name,value,days) {
         expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    console.log('cookification of "' + name + '" : "' + value + '" (' + days + ' day expiration)');
 }
 function getCookie(name) {
     var nameEQ = name + "=";
@@ -30,7 +31,13 @@ function getCookie(name) {
     return null;
 }
 function eraseCookie(name) {   
-    document.cookie = name+'=; Max-Age=-99999999;';  
+    document.cookie = name+'=; Max-Age=-99999999;';
+
+    console.log('cookie erased for "' + name + '"');
+}
+
+function eraseAllCookies() {
+    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
 }
 
 // for generating session id
@@ -50,6 +57,7 @@ function generateId (len) {
 function createSession() {
 
     newId = generateId(20);
+    console.log('createSession id = ' + newId);
 
     setCookie('sessionId',newId,10);
 }
