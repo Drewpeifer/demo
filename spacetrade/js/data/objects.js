@@ -188,7 +188,8 @@ var stats = {
     availableIncidents : incidents,
     encounteredIncidents : 0,
     currentIncident : incidents[0],
-    score : 0
+    score : 0,
+    captainName : 'Smith'
 }
 
 // set often-debugged values

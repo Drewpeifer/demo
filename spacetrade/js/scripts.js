@@ -1,7 +1,7 @@
 $(document).ready(function(){
   makeManyStars();
   buildMarket(stats.port);// builds initial marketplace
-  showWelcome();
+  //showWelcome();
   // enable tooltipster via tooltips.js
   buildTooltips();
   $('.tooltip').tooltipster({
@@ -12,6 +12,13 @@ $(document).ready(function(){
       timer: 6000,
       delay: 1000
   }).addClass('unselectable');
+
+  if (document.cookie.match(/^(.*;)?\s*lastCaptainName\s*=\s*[^;]+(.*)?$/)) {
+    lastCapt = getCookie('lastCaptainName');
+    $('#captain').attr('placeholder',lastCapt);
+  } else {
+    $('#captain').attr('placeholder','Dan Smith');
+  }
 
 });
 

@@ -14,7 +14,9 @@ function showWelcome() {
 					"Or if someone hits us with a microwave gun... you get the idea. " +
 					"It's dangerous out here.</p>";
 	button = "<button id='closeWelcome'>Let's Do This!</button>";
-
+	// hide any visible peripherals
+	$('.peripheral').hide();
+	// build welcome UI
 	$('#app').prepend(panel);
 	$('#welcome').append(header)
 				.append(description)
@@ -22,6 +24,12 @@ function showWelcome() {
 
 	$('#closeWelcome').bind('click', function() {
 	$('#welcome').slideUp();
+	// set captain name from home screen
+	if ($('#captain').val() == "") {
+		stats.captainName = "Smith";
+	} else {
+		stats.captainName = $('#captain').val();
+	}
 	createSession();
    });
 }
@@ -179,6 +187,23 @@ if (fuelAmount == 2) {
 		console.log('gameOver conditions not met, continue playing');
 	}
 	function showGameOver() {
+		// This updates the "top" stats in the cookie,
+		// the gameOver UI is built down below...
+		currentTopScore = getCookie('topScore');
+		// reset top score if necessary and linked turns value
+		// as well as captain name
+		if (stats.score >= currentTopScore) {
+			console.log('New high score! Updating cookie...');
+			setCookie('topScore',stats.score,100);
+			setCookie('topTurns',stats.turn,100);
+			setCookie('topCaptain',stats.captainName,100);
+		} else {
+			// save this captain's name as the lastCaptainName
+			// for autofill on next visit
+			setCookie('lastCaptainName',stats.captainName,100);
+			// TODO: add session to list of 10 most recent sessions,
+			// 		 and remove oldest from list
+		}
 		// This actually builds the gameOver message UI if conditions are met
 		// using the content from the condition checks, or default content
 		console.log('running showGameOver...')
@@ -225,6 +250,8 @@ function updateScore() {
 
 	// set the value on the player stats object
 	stats.score = score;
+
+	console.log('starting COOKIE update...');
 	// set the value on the session cookie
 	setCookie('sessionScore',stats.score,10);
 	setCookie('sessionTurns',stats.turn,10);

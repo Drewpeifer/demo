@@ -2,12 +2,8 @@
 
 // - saving custom pilot name (linked to stats object)
 // - saving session stats
-//  - score (for showing high scores)
-//  - highest cargo value
-//  - highest net worth
-//  - highest transaction
-//  - number of turns taken
-//  - # of system upgrades
+//  - score (determines if session is added to high score list)
+//  - number of turns taken (tracked with high score)
 
 // general cookie methods
 function setCookie(name,value,days) {
@@ -59,7 +55,17 @@ function createSession() {
     newId = generateId(20);
     console.log('createSession id = ' + newId);
 
-    setCookie('sessionId',newId,10);
+    if (document.cookie.match(/^(.*;)?\s*topScore\s*=\s*[^;]+(.*)?$/)) {
+        // if you've been here before and this isn't your first visit...
+
+    } else {
+        // this is your first visit, set base "top" values in the cookie
+        setCookie('topScore',0,100);
+        setCookie('topTurns',0,100);
+        setCookie('topCaptain','Smith',100);
+    }
+    setCookie('sessionId',newId,100);
+
 }
 
 // updates pilot name
