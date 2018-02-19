@@ -225,5 +225,8 @@ function updateScore() {
 
 	// set the value on the player stats object
 	stats.score = score;
+	// set the value on the session cookie
+	setCookie('sessionScore',stats.score,10);
+	setCookie('sessionTurns',stats.turn,10);
 
 }
