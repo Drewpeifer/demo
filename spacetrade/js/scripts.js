@@ -84,7 +84,6 @@ Vue.component('marketplace', {
                     // cargo full
                     showAlert("Oh, no!", "Your cargo is full");
                 } else {// purchase goods
-                    console.log('purchase');
                     // subtract cost from wallet
                     mainStats.wallet = parseFloat(mainStats.wallet) - (parseFloat(item.delta) * parseFloat(item.currentPrice));
                     // increment currentLoot value for that item
@@ -228,11 +227,10 @@ Vue.component('incident-list', {
 
         },
         fuelChange(delta) {
-
+            // fuel delta (change) is passed as pos or neg int
             if (delta > 0) {
                 stats.fuel += delta;
             } else {
-                console.log('delta = ' + delta);
                 stats.fuel -= delta;
             }
             updateScore();
@@ -258,7 +256,6 @@ Vue.component('map-list', {
                 showAlert('You\'re already at ' + stats.port.title, 'Captain, have you been drinking?');
             } else if (stats.fuel >= 1) {
                 // you have enough fuel to travel
-                console.log('traveling to ' + port.title);
                 stats.port = port;
                 buildMarket(port);
                 stats.fuel -= 1;
@@ -267,7 +264,6 @@ Vue.component('map-list', {
 
                 // did an incident occur?
                 incidentOccurred = getRandomNumber(1, 2);// 1 = yes, 2 = no
-                console.log('random incident = ' + incidentOccurred);
 
                 if (incidentOccurred == 1) {
                     // incident occurred!
@@ -289,13 +285,10 @@ Vue.component('map-list', {
                         stats.currentIncident.isHappening = true;// make it happen, cap'n
                         stats.currentIncident.hasHappened = true;// exclude it from happening again
                         $('#incident').show();// show the incident peripheral
-                        console.log('incident list length = ' + stats.availableIncidents.length);
-                        console.log('unknown list length = ' + unknownIncidents.length);
                     }
 
                 } else {
                     // nothing happened
-                    console.log('no incident');
                     updateScore();
                     gameOverCheck();
                 }
@@ -331,12 +324,8 @@ function nothingHappened() {
 }
 
 function fuelChange(delta) {
-    console.log('fuel change! fuel = ' + stats.fuel + ' and delta = ' + delta);
-
     if (delta > 0) {
-        console.log('fuel was ' + stats.fuel);
         stats.fuel += delta;
-        console.log('fuel is ' + stats.fuel);
         chosenEffect = '+' + delta + ' fuel';
     } else {
         currentFuel = stats.fuel;
@@ -347,21 +336,15 @@ function fuelChange(delta) {
             stats.fuel = 0;
             chosenEffect = "Oh no, your tank is empty!";
         } else {
-            console.log('fuel was ' + stats.fuel);
             stats.fuel += delta;
-            console.log('fuel is ' + stats.fuel);
             chosenEffect = '' + delta + ' fuel';
         }
     }
 }
 
 function walletChange(delta) {
-    console.log('wallet change! delta = ' + delta);
-
     if (delta > 0) {
-        console.log('wallet was ' + stats.wallet);
         stats.wallet += delta;
-        console.log('wallet is ' + stats.wallet);
         chosenEffect = '+' + delta + ' credits';
     } else {
         // validation
@@ -376,9 +359,7 @@ function walletChange(delta) {
             stats.wallet = 0;
             chosenEffect =  "Oh no, now you're broke!";
         } else {
-            console.log('wallet was ' + stats.wallet);
             stats.wallet += delta;
-            console.log('wallet is ' + stats.wallet);
             chosenEffect = '' + delta + ' Credits';
         }
     }
@@ -391,24 +372,17 @@ function loseRandomGoods() {
         } else { return false; }
     });
 
-    console.log('currently have ' + currentGoods.length + ' goods');
-    console.dir(currentGoods);
     if (currentGoods.length == 0) {
         chosenEffect = 'Luckily our cargo hold was empty, so no loss!';
     } else {
         // get the index of a random item from the list of owned items
         randomIndex = getRandomNumber(0, currentGoods.length - 1);
-        console.log(randomIndex);
         // pick a random amount of that item, within current owned amount
         randomAmount = getRandomNumber(1, currentGoods[randomIndex].currentLoot);
-        console.log(randomAmount);
         // subtract random amount from currentLoot
         currentAmount = currentGoods[randomIndex].currentLoot;
-        console.log('you have ' + currentAmount + ' ' + currentGoods[randomIndex].title + ' and you are losing ' + randomAmount);
         chosenEffect = 'Lost ' + randomAmount + ' ' + currentGoods[randomIndex].title;
-        console.log('currentAmount was ' + currentAmount);
         currentGoods[randomIndex].currentLoot -= randomAmount;
-        console.log('currentAmount is now ' + currentGoods[randomIndex].currentLoot);
     }
 
 }
@@ -431,7 +405,6 @@ function gainRandomGoods() {
 
 function cargoCapIncrease(delta) {
     stats.cargoCap += delta;
-    console.log('cargoCap increased from ' + stats.cargoCap + ' to ' + (stats.cargoCap + delta));
 }
 
 //// debug / help stuff ////

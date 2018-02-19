@@ -12,8 +12,9 @@ function buildTooltips() {
 		turn = $('#turn'),
 		allElements = [location, map, wallet, cargo, fuel, commodity, price, stock, loot, score, turn];
 
+	// tag element for tooltipster
 	$.each(allElements, function() {
-		this.addClass('tooltip');// tag element for tooltipster
+		this.addClass('tooltip');
 	});
 	// set tooltip content for each element
 	location.attr('title', 'This is your current location. Click the planet icon to open the Map and select a destination to travel to.');
