@@ -2,6 +2,16 @@ $(document).ready(function(){
 	makeManyStars();
     buildMarket(stats.port);// builds initial marketplace
     showWelcome();
+    // enable tooltipster via tooltips.js
+    buildTooltips();
+    $('.tooltip').tooltipster({
+        theme: 'tooltipster-light',
+        animation: 'fade',
+        arrow: true,
+        maxWidth: 400,
+        timer: 6000,
+        delay: 1000
+    }).addClass('unselectable');
 
 });
 
@@ -19,13 +29,14 @@ function closeIncident() {
 // and fires events to the main app / stats objects
 Vue.component('marketplace', {
     template: '<ul>' +
-                '<li class="market-header"><span class="title">Commodity</span>' +
+                '<li class="market-header unselectable"><span class="title">Commodity</span>' +
                     '<span class="action"></span>' +
                     '<span class="num">Price</span>' +
                     '<span class="num">Stock</span>' +
                     '<span class="num">Loot</span>' +
                 '</li>' +
-                '<li v-if="mainStats.port.fuelStation"><span class="title">Fuel</span>' +
+                '<li v-if="mainStats.port.fuelStation" class="unselectable">' +
+                    '<span class="title">Fuel</span>' +
                     '<span class="action">' +
                     '<input type="range" v-model="mainStats.port.fuelDelta" value="0" v-bind:max="mainStats.port.fuelAvailable" v-bind:min="0">' +
                     '</span>' +
@@ -35,7 +46,8 @@ Vue.component('marketplace', {
                     '<span class="num">{{ mainStats.port.fuelAvailable }}</span>' +
                     '<span class="num">{{ mainStats.fuel }}</span>' +
                 '</li>' +
-                '<li v-if="mainStats.port.cargoUpgrade"><span class="title">Cargo Hold Upgrade</span>' +
+                '<li v-if="mainStats.port.cargoUpgrade" class="unselectable">' +
+                    '<span class="title">Cargo Hold Upgrade</span>' +
                     '<span class="action">' +
                     '<input type="range" v-model="mainStats.port.cargoUpgradeDelta" value="0" v-bind:max="mainStats.port.cargoUpgrades" v-bind:min="0">' +
                     '</span>' +
@@ -45,15 +57,15 @@ Vue.component('marketplace', {
                     '<span class="num">{{ mainStats.port.cargoUpgrades }}</span>' +
                     '<span class="num">{{ mainStats.cargoUpgrades }}</span></li>' +
                 '<li v-for="(item, index) in mainStats.menu" v-bind:class="item.safeTitle">' +
-                    '<span class="title">{{ item.title }}</span>' +
+                    '<span class="title unselectable">{{ item.title }}</span>' +
                     '<span class="action">' +
                     '<input type="range" v-model="item.delta" value="0" v-bind:max="item.currentStock" v-bind:min="0 - item.currentLoot">' +
                     '</span>' +
                     '<span class="counter"><button disabled="true">{{ item.delta }}</button></span>' +
                     '<span class="exchange"><button v-on:click="buySell(item, mainStats)" v-bind:class="exchangeText(item.delta)">{{ exchangeText(item.delta) }}</button></span>' +
-                    '<span class="num">{{ item.currentPrice }}</span>' +
-                    '<span class="num">{{ item.currentStock }}</span>' +
-                    '<span class="num">{{ item.currentLoot }}</span>' +
+                    '<span class="num unselectable">{{ item.currentPrice }}</span>' +
+                    '<span class="num unselectable">{{ item.currentStock }}</span>' +
+                    '<span class="num unselectable">{{ item.currentLoot }}</span>' +
                 '</li>' +
             '</ul>',
     methods: {
