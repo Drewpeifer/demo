@@ -36,6 +36,17 @@
 					<span id="description">{{ port.description }}</span>
 				</li>
 				<li class="stats">
+					<span id="score" v-bind:class="{ bad: score == 0 }">
+						Score: {{ score }}
+					</span>
+					<span>
+						&nbsp;
+					</span>
+					<span id="turn">
+						Turn: {{ turn }}
+					</span>
+				</li>
+				<li class="stats">
 					<span id="wallet" v-bind:class="{ bad: wallet == 0 }">
 						&#36;{{ wallet }}
 					</span>
@@ -44,17 +55,6 @@
 					</span>
 					<span id="fuel" v-bind:class="{ bad: fuel <= 2 }">
 						Fuel: {{ fuel }}
-					</span>
-				</li>
-				<li class="stats">
-					<span id="score" v-bind:class="{ bad: score == 0 }">
-						Score: {{ score }}
-					</span>
-					<span id="turn">
-						Turn: {{ turn }}
-					</span>
-					<span>
-						&nbsp;
 					</span>
 				</li>
 			</ul>
@@ -66,7 +66,6 @@
 		</div>
 		<!-- end marketplace -->
 		<button id="help">Help</button><button id="debug">Debug</button>
-		<button id="score" onclick="updateScore()">Check Score</button>
 		<div id="debugPanel" style="display:none;">
 			<table>
 				<tr class="turn" data-increment="1">
