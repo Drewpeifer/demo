@@ -16,7 +16,7 @@ $(document).ready(function(){
 });
 
 //// debug stuff ////
-// show debug panel
+//$('#debug, #clearCookie').hide();// comment this out to enable debugging
 $('#debug').bind('click', function() {
 	$('#debugPanel').toggle();
 });
