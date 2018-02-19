@@ -216,6 +216,10 @@ Vue.component('incident-list', {
 
             // bind close button to hide incident peripheral
             $('#chosen-outcome').bind('click change', closeIncident);
+            // scroll to outcome
+            $('#incident').animate({
+                scrollTop: $(".outcome-description").offset().top
+            }, 1000);
 
             // disable the current event
             stats.currentIncident.isHappening = false;
