@@ -1,4 +1,107 @@
-// random incidents that occur during travel phase
+// this file contains the functions called by random incidents (top)
+// as well as the incidents themselves (bottom)
+// incident functions (called by outcomes of incidents)
+function nothingHappened() {
+    console.log('nothing happened!');
+}
+
+function fuelChange(delta) {
+    if (delta > 0) {
+        stats.fuel += delta;
+        chosenEffect = '+' + delta + ' fuel';
+    } else {
+        currentFuel = stats.fuel;
+
+        if (currentFuel == 0) {
+            chosenEffect = "You were out of fuel already! No change.";
+        } else if ((currentFuel += delta) <= 0) {
+            stats.fuel = 0;
+            chosenEffect = "Oh no, your tank is empty!";
+        } else {
+            stats.fuel += delta;
+            chosenEffect = '' + delta + ' fuel';
+        }
+    }
+}
+
+function walletChange(delta) {
+    if (delta > 0) {
+        stats.wallet += delta;
+        chosenEffect = '+' + delta + ' credits';
+    } else {
+        // validation
+        currentWallet = stats.wallet;
+        newWallet = stats.wallet + delta;
+
+        if (currentWallet == 0) {
+            // broke, can't lose more money
+            chosenEffect = "You would have lost credits but you're already broke!";
+        } else if (newWallet <= 0) {
+            // now you're broke
+            stats.wallet = 0;
+            chosenEffect =  "Oh no, now you're broke!";
+        } else {
+            stats.wallet += delta;
+            chosenEffect = '' + delta + ' Credits';
+        }
+    }
+}
+
+function loseRandomGoods() {
+    currentGoods = $.grep(stats.menu, function(item) {
+        if (item.currentLoot > 0) {
+            return true;
+        } else { return false; }
+    });
+
+    if (currentGoods.length == 0) {
+        chosenEffect = 'Luckily our cargo hold was empty, so no loss!';
+    } else {
+        // get the index of a random item from the list of owned items
+        randomIndex = getRandomNumber(0, currentGoods.length - 1);
+        // pick a random amount of that item, within current owned amount
+        randomAmount = getRandomNumber(1, currentGoods[randomIndex].currentLoot);
+        // subtract random amount from currentLoot
+        currentAmount = currentGoods[randomIndex].currentLoot;
+        chosenEffect = 'Lost ' + randomAmount + ' ' + currentGoods[randomIndex].title;
+        currentGoods[randomIndex].currentLoot -= randomAmount;
+    }
+
+}
+
+function gainRandomGoods() {
+    currentCargo = stats.cargoLoot;
+
+    if (currentCargo == stats.cargoCap) {
+        chosenEffect = "Cargo is full! We had to leave the loot behind.";
+    } else {
+        cargoRoom = stats.cargoCap - currentCargo;// remaining cargo space
+        randomAmount = getRandomNumber(1, cargoRoom - 1);
+        availableGoods = stats.menu;
+        randomIndex = getRandomNumber(0, stats.menu.length - 1);
+        // add randomAmount to currentLoot for random item
+        availableGoods[randomIndex].currentLoot += randomAmount;
+
+    }
+}
+
+function cargoCapIncrease(delta) {
+    stats.cargoCap += delta;
+}
+
+function closeIncident() {
+    $('button.disabled-good').removeClass('disabled-good')
+                             .attr('disabled', false);
+    $('button.disabled-bad').removeClass('disabled-bad')
+                            .attr('disabled', false);
+    $('li.outcome-description').html('');
+    $('#incident').hide();
+    updateScore();
+    gameOverCheck();
+}
+
+// the following are random incidents that occur during travel phase
+
 // incidents [X] = {
 // 	type : "recurring event subtitle",
 // 	description : "long text describing event pre-conditions",

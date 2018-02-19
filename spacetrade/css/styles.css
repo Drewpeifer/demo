@@ -226,9 +226,6 @@ ul li {
 }
 
 /* debug panel */
-#debug {
-	display:none;
-}
 #debugPanel {
 	border:2px solid blue;
 }

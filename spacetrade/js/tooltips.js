@@ -1,3 +1,7 @@
+$('#help').bind('click', function() {
+    showAlert('SpaceTrade - Help', 'Hover over elements to learn more about them. On mobile devices, tap and hold (long press).');
+});
+
 function buildTooltips() {
 	var location = $('.location #description'),
 		map = $('#mapToggle'),

@@ -65,8 +65,9 @@
 			<marketplace></marketplace>
 		</div>
 		<!-- end marketplace -->
-		<button id="help">Help</button><button id="debug">Debug</button>
+		<button id="help">Help</button>
 		<button id="clearCookie" onclick="eraseAllCookies();" >Clear Cookies</button>
+		<button id="debug">Debug</button>
 		<div id="debugPanel" style="display:none;">
 			<table>
 				<tr class="turn" data-increment="1">
@@ -109,11 +110,11 @@
 </div>
 <!-- scripts -->
 	<script src="js/browser.js" type="text/javascript"></script><!-- QAD uA detection -->
-	<script src="js/vue.js" type="text/javascript"></script><!-- data binding -->
-	<script src="js/transit.js" type="text/javascript"></script><!-- animations -->
-	<script src="js/space.js" type="text/javascript"></script><!-- starfield background -->
-	<script src="js/incidents.js" type="text/javascript"></script><!-- arrival events -->
-	<script src="js/objects.js" type="text/javascript"></script><!-- map, menu, config -->
+	<script src="js/lib/vue.js" type="text/javascript"></script><!-- data binding -->
+	<script src="js/lib/transit.js" type="text/javascript"></script><!-- animations -->
+	<script src="js/lib/space.js" type="text/javascript"></script><!-- starfield background -->
+	<script src="js/data/incidents.js" type="text/javascript"></script><!-- arrival events -->
+	<script src="js/data/objects.js" type="text/javascript"></script><!-- map, menu, config -->
 	<script src="js/alerts.js" type="text/javascript"></script><!-- modals -->
 	<script src="js/market.js" type="text/javascript"></script><!-- market builder -->
 	<script src="js/cookie.js" type="text/javascript"></script><!-- cookie stuff -->
