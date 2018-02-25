@@ -16,7 +16,7 @@ $(document).ready(function(){
 // fill in the placeholder on the welcome screen if there's an old captain name
   if (document.cookie.match(/^(.*;)?\s*lastCaptainName\s*=\s*[^;]+(.*)?$/)) {
     lastCapt = getCookie('lastCaptainName');
-    $('#captain').attr('placeholder',lastCapt);
+    $('#captain').val(lastCapt);
   } else {
     $('#captain').attr('placeholder','Dan Smith');
   }

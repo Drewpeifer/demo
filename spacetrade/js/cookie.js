@@ -63,6 +63,8 @@ function createSession() {
         setCookie('topScore',0,100);
         setCookie('topTurns',0,100);
         setCookie('topCaptain','Smith',100);
+        setCookie('captainName', stats.captainName,100);
+        setCookie('lastCaptainName',stats.lastCaptainName,100);
     }
     setCookie('sessionId',newId,100);
 

@@ -23,16 +23,21 @@ function showWelcome() {
 				.append(button);
 
 	$('#closeWelcome').bind('click', function() {
-	$('#welcome').slideUp();
-	// set captain name from home screen
-	if ($('#captain').val() == "") {
-		stats.captainName = "Smith";
-	} else {
-		stats.captainName = $('#captain').val();
+		// set captain name from home screen
+		console.log('closeWelcome running');
+		if ($('#captain').val() == "") {
+			console.log('no name given, so youre smith');
+			stats.captainName = "Smith";
+			stats.lastCaptainName = "Smith";
+		} else {
+			console.log('so your name is ' + $('#captain').val());
+			stats.captainName = $('#captain').val();
+			stats.lastCaptainName = $('#captain').val();
+		}
+		createSession();
+		$('#welcome').slideUp();
+		});
 	}
-	createSession();
-   });
-}
 
 // general pop up alert, used to notify user of misc
 // events or upcoming conditions (such as game over soon)
