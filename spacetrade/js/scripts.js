@@ -13,6 +13,7 @@ $(document).ready(function(){
       delay: 1000
   }).addClass('unselectable');
 
+// fill in the placeholder on the welcome screen if there's an old captain name
   if (document.cookie.match(/^(.*;)?\s*lastCaptainName\s*=\s*[^;]+(.*)?$/)) {
     lastCapt = getCookie('lastCaptainName');
     $('#captain').attr('placeholder',lastCapt);
