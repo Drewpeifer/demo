@@ -259,6 +259,7 @@ function updateScore() {
 	console.log('starting COOKIE update...');
 	// set the value on the session cookie
 	setCookie('sessionScore',stats.score,10);
+	setCookie('topScore',stats.score,10);
 	setCookie('sessionTurns',stats.turn,10);
 
 }
