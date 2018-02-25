@@ -63,12 +63,13 @@ function createSession() {
         setCookie('topScore',0,100);
         setCookie('topTurns',0,100);
         setCookie('topCaptain','Smith',100);
+        // these stat values are set as part of showWelcome
         setCookie('captainName', stats.captainName,100);
         setCookie('lastCaptainName',stats.lastCaptainName,100);
     }
     setCookie('sessionId',newId,100);
-    setCookie('sessionScore',0,100);
-    setCookie('sessionTurns',stats.turn,199);
+    setCookie('sessionScore',stats.score,100);
+    setCookie('sessionTurns',stats.turn,100);
 
 }
 
