@@ -67,6 +67,8 @@ function createSession() {
         setCookie('lastCaptainName',stats.lastCaptainName,100);
     }
     setCookie('sessionId',newId,100);
+    setCookie('sessionScore',0,100);
+    setCookie('sessionTurns',stats.turn,199);
 
 }
 

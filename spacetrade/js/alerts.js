@@ -197,7 +197,7 @@ if (fuelAmount == 2) {
 		currentTopScore = getCookie('topScore');
 		// reset top score if necessary and linked turns value
 		// as well as captain name
-		if (stats.score >= currentTopScore) {
+		if (stats.score >= currentTopScore || !currentTopScore) {
 			console.log('New high score! Updating cookie...');
 			setCookie('topScore',stats.score,100);
 			setCookie('topTurns',stats.turn,100);
@@ -241,6 +241,7 @@ function updateScore() {
 	turns = stats.turn;
 	preScore = wallet + (fuel * 1000) + (cargoValue * 2);
 	score = Math.floor((preScore * turns) * .1);
+	currentTopScore = getCookie('topScore');
 
 	console.log('running updateScore...');
 	console.log('wallet is ' + wallet);
@@ -259,7 +260,12 @@ function updateScore() {
 	console.log('starting COOKIE update...');
 	// set the value on the session cookie
 	setCookie('sessionScore',stats.score,10);
-	setCookie('topScore',stats.score,10);
 	setCookie('sessionTurns',stats.turn,10);
+
+	if (stats.score >= currentTopScore || !currentTopScore) {
+		setCookie('topScore',stats.score,10);
+	} else {
+		// do nothing
+	}
 
 }
