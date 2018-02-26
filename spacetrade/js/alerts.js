@@ -198,11 +198,24 @@ if (fuelAmount == 2) {
 		// reset top score if necessary and linked turns value
 		// as well as captain name
 		if (stats.score >= currentTopScore || !currentTopScore) {
-			console.log('New high score! Updating cookie...');
+			console.log('New top score! Updating cookie...');
 			setCookie('topScore',stats.score,100);
 			setCookie('topTurns',stats.turn,100);
 			setCookie('topCaptain',stats.captainName,100);
+			setCookie('lastCaptainName',stats.captainName,100);
 		} else {
+			highScore1 = getCookie('highScore1');
+			highScore2 = getCookie('highScore2');
+			highScore3 = getCookie('highScore3');
+			// check if this score needs added to highScoreList
+			if (stats.score > highScore1 || highScore1 == null) {
+				console.log('score is not top, but it is highScore1');
+				setCookie('highScore1',stats.score,100);
+				setCookie('highScore1Captain',stats.captainName,100);
+				setCookie('highScore1Turns',stats.turn,100);
+			} else {
+				console.log('score is not top, and its below highScore1');
+			}
 			// save this captain's name as the lastCaptainName
 			// for autofill on next visit
 			setCookie('lastCaptainName',stats.captainName,100);
