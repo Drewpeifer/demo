@@ -47,8 +47,8 @@ for code legibility and cross-browser safety.
 
 ### Backend
 All the data is stored in JavaScript objects, and Vue translates it to the
-frontend via `scripts.js`. Most of the objects are heavily commented
-and easily editable, so you can add starports to the map, add goods to
+frontend via `app.js`. Most of the objects are heavily commented
+and easily editable (in `objects.js`), so you can add starports to the map, add goods to
 the marketplaces, or modify config variables.
 
 You can also un-comment the debug script in `scripts.js`, which will enable
