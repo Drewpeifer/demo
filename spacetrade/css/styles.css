@@ -258,11 +258,18 @@ ul li {
 }
 #alert button,
 #incident button,
-#welcome button {
+#welcome button,
+#gameOver button {
 	width:60%;
 	margin:0 auto 5px auto;
 	display:inline-block;
 	font-size:1.1em;
+}
+#gameOver {
+	text-align:center;
+}
+#gameOver button {
+	height:;
 }
 
 /* debug panel */

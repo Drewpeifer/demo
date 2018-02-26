@@ -261,14 +261,15 @@ if (fuelAmount == 2) {
 		$('#map').slideUp();// hide map if necessary
 		$('#app').prepend(panel);
 		$('#gameOver').append(header)
-					.append(setup)
-					.append(circumstance)
-					.append(stinger)
+					.append('<p>' + setup + '</p>')
+					.append('<p>' + circumstance + '</p>')
+					.append('<p>' + stinger + '</p>')
+					.append('<p>Final Score: ' + stats.score + '</p>')
 					.append(button)
 					.show();
 
 		$('#closeGameOver').bind('click', function() {
-			$('#gameOver').slideUp();
+			window.location.reload();
 		});
 	}
 }
