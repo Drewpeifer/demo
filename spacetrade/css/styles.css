@@ -50,8 +50,12 @@ ul {
 #controls .stats span:nth-child(3) {
 	text-align:right;
 }
-#mapToggle, button {
+#controls ul li span#mapToggle, button {
 	cursor:pointer;
+}
+#controls ul li span#mapToggle {
+	font-size:.5em;
+	padding-top:40px;
 }
 .counter button {
 	cursor:default;
