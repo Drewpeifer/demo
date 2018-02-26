@@ -192,39 +192,72 @@ if (fuelAmount == 2) {
 		console.log('gameOver conditions not met, continue playing');
 	}
 	function showGameOver() {
+		console.log('running showGameOver...');
 		// This updates the "top" stats in the cookie,
 		// the gameOver UI is built down below...
 		currentTopScore = getCookie('topScore');
-		// reset top score if necessary and linked turns value
-		// as well as captain name
+		currentTopCaptain = getCookie('topCaptain');
+		currentTopTurns = getCookie('topTurns');
+		highScore1 = getCookie('highScore1');
+		highScore1Captain = getCookie('highScore1Captain');
+		highScore1Turns = getCookie('highScore1Turns');
+		highScore2 = getCookie('highScore2');
+		highScore2Captain = getCookie('highScore2Captain');
+		highScore2Turns = getCookie('highScore2Turns');
+		highScore3 = getCookie('highScore3');
+		highScore3Captain = getCookie('highScore3Captain');
+		highScore3Turns = getCookie('highScore3Turns');
+		// determine whether or not the current score
+		// belongs on the top / high score list
+		// if so, save current turns and pilot name
+		// and also move other scores down on the list
 		if (stats.score >= currentTopScore || !currentTopScore) {
 			console.log('New top score! Updating cookie...');
+			// set old top score to high score 1
+			setCookie('highScore1',currentTopScore,100);
+			setCookie('highScore1Captain',currentTopCaptain,100);
+			setCookie('highScore1Turns',currentTopTurns,100);
+			// set current stats to top stats
 			setCookie('topScore',stats.score,100);
-			setCookie('topTurns',stats.turn,100);
 			setCookie('topCaptain',stats.captainName,100);
+			setCookie('topTurns',stats.turn,100);
+			// set this captain as last captain
 			setCookie('lastCaptainName',stats.captainName,100);
-		} else {
-			highScore1 = getCookie('highScore1');
-			highScore2 = getCookie('highScore2');
-			highScore3 = getCookie('highScore3');
-			// check if this score needs added to highScoreList
-			if (stats.score > highScore1 || highScore1 == null) {
-				console.log('score is not top, but it is highScore1');
-				setCookie('highScore1',stats.score,100);
-				setCookie('highScore1Captain',stats.captainName,100);
-				setCookie('highScore1Turns',stats.turn,100);
-			} else {
-				console.log('score is not top, and its below highScore1');
-			}
-			// save this captain's name as the lastCaptainName
-			// for autofill on next visit
+		} else if (stats.score >= highScore1 || !highScore1) {
+			console.log('You got high score 1! Updating cookie...');
+			// set old score 1 to score 2
+			setCookie('highScore2',highScore1,100);
+			setCookie('highScore2Captain',highScore1Captain,100);
+			setCookie('highScore2Turns',highScore1Turns,100);
+			// set current stats to high score 1 stats
+			setCookie('highScore1',stats.score,100);
+			setCookie('highScore1Captain',stats.captainName,100);
+			setCookie('highScore1Turns',stats.turn,100);
+			// set this captain as last captain
 			setCookie('lastCaptainName',stats.captainName,100);
-			// TODO: add session to list of 10 most recent sessions,
-			// 		 and remove oldest from list
+		} else if (stats.score >= highScore2 || !highScore2) {
+			console.log('You got high score 2! Updating cookie...');
+			// set old score 3 to score 2
+			setCookie('highScore3',highScore2,100);
+			setCookie('highScore3Captain',highScore2Captain,100);
+			setCookie('highScore3Turns',highScore2Turns,100);
+			// set current stats to high score 2
+			setCookie('highScore2',stats.score,100);
+			setCookie('highScore2Captain',stats.captainName,100);
+			setCookie('highScore2Turns',stats.turn,100);
+			// set this captain as last captain
+			setCookie('lastCaptainName',stats.captainName,100);
+		} else if (stats.score >= highScore3 || !highScore3) {
+			console.log('You got high score 2! Updating cookie...');
+			// set current stats to high score 3
+			setCookie('highScore3',stats.score,100);
+			setCookie('highScore3Captain',stats.captainName,100);
+			setCookie('highScore3Turns',stats.turn,100);
+			// set this captain as last captain
+			setCookie('lastCaptainName',stats.captainName,100);
 		}
 		// This actually builds the gameOver message UI if conditions are met
 		// using the content from the condition checks, or default content
-		console.log('running showGameOver...')
 		$('#map').slideUp();// hide map if necessary
 		$('#app').prepend(panel);
 		$('#gameOver').append(header)
