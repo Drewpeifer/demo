@@ -21,6 +21,8 @@ $(document).ready(function(){
     $('#captain').attr('placeholder','Dan Smith');
   }
 
+  $('#debug, #clearCookie').hide();
+
 });
 $('#highScores').bind('click', function() {
   $('#scores li').toggleClass('toggle');
