@@ -49,6 +49,20 @@ function generateId (len) {
   return Array.from(arr, dec2hex).join('')
 }
 
+function convertCookiesToObject(str) {
+    var decode = decodeURIComponent;
+    console.log('str = ' + str);
+        var cookieObj = {};
+        var pairs = str.split(/ *; */);
+        var pair;
+        if ('' == pairs[0]) return cookieObj;
+        for (var i = 0; i < pairs.length; ++i) {
+            pair = pairs[i].split('=');
+            cookieObj[decode(pair[0])] = decode(pair[1]);
+        }
+        return cookieObj;
+}
+
 // creates a new session when user clicks "New Game"
 function createSession() {
 

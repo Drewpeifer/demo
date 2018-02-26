@@ -278,6 +278,32 @@ Vue.component('map-list', {
     }
 });
 
+// high score Vue component, pulls top scores and 3 high scores
+// from cookie if they exist, and adds themto Home screen (toggled off)
+Vue.component('high-scores', {
+    template: '<ul id="scores">' +
+              '<li><button id="highScores" v-on:click="toggleScores();">High Scores</button></li>' +
+              '<li class="score">TOP SCORE: {{ cookie.topScore }}</li>' +
+              '<li class="credits">Capt. {{ cookie.topCaptain }}, {{ cookie.topTurns }} Turns</li>' +
+              '<li class="score">1. {{ cookie.highScore1 }}</li>' +
+              '<li class="credits">Capt. {{ cookie.highScore1Captain }}, {{ cookie.highScore1Turns }} Turns</li>' +
+              '<li class="score">2. {{ cookie.highScore2 }}</li>' +
+              '<li class="credits">Capt. {{ cookie.highScore2Captain }}, {{ cookie.highScore2Turns }} Turns</li>' +
+              '<li class="score">3. {{ cookie.highScore3 }}</li>' +
+              '<li class="credits">Capt. {{ cookie.highScore3Captain }}, {{ cookie.highScore3Turns }} Turns</li>' +
+              '</ul>',
+    methods: {
+        toggleScores: function() {
+            $('#scores .score, #scores .credits').toggle();
+        }
+    },
+    data() {
+        return {
+            cookie: convertCookiesToObject(document.cookie)
+        }
+    }
+});
+
 // main Vue app, wraps market component
 var app = new Vue({
 		el: '#app',
