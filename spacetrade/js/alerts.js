@@ -282,22 +282,20 @@ if (fuelAmount == 2) {
 // game over
 function updateScore() {
 	wallet = stats.wallet,
-	fuel = stats.fuel,
 	cargoValue = cargoValueSum(stats.menu),
 	turns = stats.turn;
-	preScore = wallet + (fuel * 1000) + (cargoValue * 2);
+	preScore = (wallet * 2) + cargoValue;
 	score = Math.floor((preScore * turns) * .1);
 	currentTopScore = getCookie('topScore');
 
 	console.log('running updateScore...');
 	console.log('wallet is ' + wallet);
-	console.log('fuel is ' + fuel);
 	console.log('cargoValue is ' + cargoValue);
 	console.log('turns = ' + turns);
-	console.log('preScore = w + 1000f + 2cV');
+	console.log('preScore = (wallet * 2)  + cV');
 	console.log('preScore = ' + preScore);
-	console.log('score = {[wallet + (fuel x 1000) + (cargo value x 2)] X # of turns taken} / 10');
-	console.log('score = {[' + wallet + ' + (' + fuel + ' x 1000) + (' + cargoValue + ' x 2)] X ' + turns + '} / 10');
+	console.log('score = {[(wallet * 2) + cargo value] X # of turns taken} / 10');
+	console.log('score = {[(' + wallet + ' * 2) + ' + cargoValue + '] X ' + turns + '} / 10');
 	console.log('final score = ' + score);
 
 	// set the value on the player stats object
