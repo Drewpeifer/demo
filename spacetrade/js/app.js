@@ -282,10 +282,10 @@ Vue.component('map-list', {
 // from cookie if they exist, and adds themto Home screen (toggled off)
 Vue.component('high-scores', {
     template: '<ul id="scores">' +
-              '<li><p>TOP SCORE: {{ cookie.topScore }}</p></li>' +
-              '<li><p>Capt. {{ cookie.topCaptain }}, {{ cookie.topTurns }} Turns</p></li>' +
-              '<li class="toggle"><p>1. {{ cookie.highScore1 }}</p></li>' +
-              '<li class="toggle"><p>Capt. {{ cookie.highScore1Captain }}, {{ cookie.highScore1Turns }} Turns</p></li>' +
+              '<li v-show="checkForCookie(\'topScore\')"><p>TOP SCORE: {{ cookie.topScore }}</p></li>' +
+              '<li v-show="checkForCookie(\'topCaptain\')"><p>Capt. {{ cookie.topCaptain }}, {{ cookie.topTurns }} Turns</p></li>' +
+              '<li v-show="checkForCookie(\'highScore1\')" class="toggle"><p>1. {{ cookie.highScore1 }}</p></li>' +
+              '<li v-show="checkForCookie(\'highScore1\')" class="toggle"><p>Capt. {{ cookie.highScore1Captain }}, {{ cookie.highScore1Turns }} Turns</p></li>' +
               '<li v-show="checkForCookie(\'highScore2\')" class="toggle"><p>2. {{ cookie.highScore2 }}</p></li>' +
               '<li v-show="checkForCookie(\'highScore2\')" class="toggle"><p>Capt. {{ cookie.highScore2Captain }}, {{ cookie.highScore2Turns }} Turns</p></li>' +
               '<li v-show="checkForCookie(\'highScore3\')" class="toggle"><p>3. {{ cookie.highScore3 }}</p></li>' +
