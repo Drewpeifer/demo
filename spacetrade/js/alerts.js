@@ -303,11 +303,13 @@ function updateScore() {
 
 	console.log('starting COOKIE update...');
 	// set the value on the session cookie
-	setCookie('sessionScore',stats.score,10);
-	setCookie('sessionTurns',stats.turn,10);
+	setCookie('sessionScore',stats.score,100);
+	setCookie('sessionTurns',stats.turn,100);
 
 	if (stats.score >= currentTopScore || !currentTopScore) {
-		setCookie('topScore',stats.score,10);
+		setCookie('topScore',stats.score,100);
+		setCookie('topCaptain',stats.captainName,100);
+		setCookie('topTurns',stats.turn,100);
 	} else {
 		// do nothing
 	}
