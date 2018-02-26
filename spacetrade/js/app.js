@@ -282,19 +282,20 @@ Vue.component('map-list', {
 // from cookie if they exist, and adds themto Home screen (toggled off)
 Vue.component('high-scores', {
     template: '<ul id="scores">' +
-              '<li><button id="highScores" v-on:click="toggleScores();">High Scores</button></li>' +
-              '<li class="score">TOP SCORE: {{ cookie.topScore }}</li>' +
-              '<li class="credits">Capt. {{ cookie.topCaptain }}, {{ cookie.topTurns }} Turns</li>' +
-              '<li class="score">1. {{ cookie.highScore1 }}</li>' +
-              '<li class="credits">Capt. {{ cookie.highScore1Captain }}, {{ cookie.highScore1Turns }} Turns</li>' +
-              '<li class="score">2. {{ cookie.highScore2 }}</li>' +
-              '<li class="credits">Capt. {{ cookie.highScore2Captain }}, {{ cookie.highScore2Turns }} Turns</li>' +
-              '<li class="score">3. {{ cookie.highScore3 }}</li>' +
-              '<li class="credits">Capt. {{ cookie.highScore3Captain }}, {{ cookie.highScore3Turns }} Turns</li>' +
+              '<li><p>TOP SCORE: {{ cookie.topScore }}</p></li>' +
+              '<li><p>Capt. {{ cookie.topCaptain }}, {{ cookie.topTurns }} Turns</p></li>' +
+              '<li class="toggle"><p>1. {{ cookie.highScore1 }}</p></li>' +
+              '<li class="toggle"><p>Capt. {{ cookie.highScore1Captain }}, {{ cookie.highScore1Turns }} Turns</p></li>' +
+              '<li v-show="checkForCookie(\'highScore2\')" class="toggle"><p>2. {{ cookie.highScore2 }}</p></li>' +
+              '<li v-show="checkForCookie(\'highScore2\')" class="toggle"><p>Capt. {{ cookie.highScore2Captain }}, {{ cookie.highScore2Turns }} Turns</p></li>' +
+              '<li v-show="checkForCookie(\'highScore3\')" class="toggle"><p>3. {{ cookie.highScore3 }}</p></li>' +
+              '<li v-show="checkForCookie(\'highScore3\')" class="toggle"><p>Capt. {{ cookie.highScore3Captain }}, {{ cookie.highScore3Turns }} Turns</p></li>' +
               '</ul>',
     methods: {
-        toggleScores: function() {
-            $('#scores .score, #scores .credits').toggle();
+        checkForCookie: function(cookieName) {
+            console.log('running checkForCookie for ' + cookieName);
+            cookie = convertCookiesToObject(document.cookie);
+            return cookie.hasOwnProperty('' + cookieName + '');
         }
     },
     data() {
