@@ -53,7 +53,7 @@ Vue.component('marketplace', {
                 if ((parseFloat(item.delta) * parseFloat(item.currentPrice)) > parseFloat(mainStats.wallet)) {// check wallet first
                     // too poor
                     showAlert("Oh, no!", "You're too poor");
-                } else if ((parseFloat(item.delta) + parseFloat(mainStats.cargoLoot)) > parseFloat(mainStats.cargoCap)) {// then check cargo
+                } else if ((parseFloat(item.delta) + parseFloat(cargoSum(mainStats.menu))) > parseFloat(mainStats.cargoCap)) {// then check cargo
                     // cargo full
                     showAlert("Oh, no!", "Your cargo is full");
                 } else {// purchase goods
