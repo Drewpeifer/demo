@@ -27,6 +27,18 @@ make one of three choices, which can have good, bad, or neutral consequences.
 These incidents may cause you to lose fuel, gain money, acquire random goods,
 or maybe just explode.
 
+**Scoring**
+
+Currently, the score is calculated like so:
+
+`{[(wallet * 2) + cargo value] * turns taken} / 10`
+
+But, that may change in the future. The top score, as well as
+the latest 3 highest scores, are saved via cookies along with
+the captain name and number of turns taken for each score. The most
+recently used captain name is also retained, currently only used to
+auto-fill the input on the welcome screen. Each cookie expires in 100 days.
+
 ### Frontend
 I've used [jQuery](https://jquery.com/) and [Vue.js](https://vuejs.org/) to
 build the frontend (and integrate with the backend). All the styling
