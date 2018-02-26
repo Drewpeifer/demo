@@ -22,7 +22,9 @@ $(document).ready(function(){
   }
 
 });
-
+$('#highScores').bind('click', function() {
+  $('#scores li').toggleClass('toggle');
+});
 //// debug stuff ////
 //$('#debug, #clearCookie').hide();// comment this out to enable debugging
 $('#debug').bind('click', function() {

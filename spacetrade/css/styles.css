@@ -173,14 +173,26 @@ ul li {
 }
 #home li {
 	width:60%;
-}
-#home li, #home p, #home button {
 	margin:auto;
 	text-align:center;
 }
-#scores .score,
-#scores .credits {
+#home p,
+#home button {
+	margin:auto;
+	text-align:center;
+}
+#scores .toggle {
 	display:none;
+}
+#scores li:nth-child(odd) {
+	margin-top:20px;
+}
+#scores li:nth-child(even) {
+	font-size:.9em;
+	color:#999;
+}
+#scores ul:first-child {
+	display:block;
 }
 #home ul li button {
 	height:40px;
