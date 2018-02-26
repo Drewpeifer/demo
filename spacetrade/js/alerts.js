@@ -14,16 +14,30 @@ function showWelcome() {
 					"Or if someone hits us with a microwave gun... you get the idea. " +
 					"It's dangerous out here.</p>";
 	button = "<button id='closeWelcome'>Let's Do This!</button>";
-
-   $('#app').prepend(panel);
-   $('#welcome').append(header)
+	// hide any visible peripherals
+	$('.peripheral').hide();
+	// build welcome UI
+	$('#app').prepend(panel);
+	$('#welcome').append(header)
 				.append(description)
 				.append(button);
 
-   $('#closeWelcome').bind('click', function() {
-	$('#welcome').slideUp();
-   });
-}
+	$('#closeWelcome').bind('click', function() {
+		// set captain name from home screen
+		console.log('closeWelcome running');
+		if ($('#captain').val() == "") {
+			console.log('no name given, so youre smith');
+			stats.captainName = "Smith";
+			stats.lastCaptainName = "Smith";
+		} else {
+			console.log('so your name is ' + $('#captain').val());
+			stats.captainName = $('#captain').val();
+			stats.lastCaptainName = $('#captain').val();
+		}
+		createSession();
+		$('#welcome').slideUp();
+		});
+	}
 
 // general pop up alert, used to notify user of misc
 // events or upcoming conditions (such as game over soon)
@@ -178,9 +192,72 @@ if (fuelAmount == 2) {
 		console.log('gameOver conditions not met, continue playing');
 	}
 	function showGameOver() {
+		console.log('running showGameOver...');
+		// This updates the "top" stats in the cookie,
+		// the gameOver UI is built down below...
+		currentTopScore = getCookie('topScore');
+		currentTopCaptain = getCookie('topCaptain');
+		currentTopTurns = getCookie('topTurns');
+		highScore1 = getCookie('highScore1');
+		highScore1Captain = getCookie('highScore1Captain');
+		highScore1Turns = getCookie('highScore1Turns');
+		highScore2 = getCookie('highScore2');
+		highScore2Captain = getCookie('highScore2Captain');
+		highScore2Turns = getCookie('highScore2Turns');
+		highScore3 = getCookie('highScore3');
+		highScore3Captain = getCookie('highScore3Captain');
+		highScore3Turns = getCookie('highScore3Turns');
+		// determine whether or not the current score
+		// belongs on the top / high score list
+		// if so, save current turns and pilot name
+		// and also move other scores down on the list
+		if (stats.score >= currentTopScore || !currentTopScore) {
+			console.log('New top score! Updating cookie...');
+			// set old top score to high score 1
+			setCookie('highScore1',currentTopScore,100);
+			setCookie('highScore1Captain',currentTopCaptain,100);
+			setCookie('highScore1Turns',currentTopTurns,100);
+			// set current stats to top stats
+			setCookie('topScore',stats.score,100);
+			setCookie('topCaptain',stats.captainName,100);
+			setCookie('topTurns',stats.turn,100);
+			// set this captain as last captain
+			setCookie('lastCaptainName',stats.captainName,100);
+		} else if (stats.score >= highScore1 || !highScore1) {
+			console.log('You got high score 1! Updating cookie...');
+			// set old score 1 to score 2
+			setCookie('highScore2',highScore1,100);
+			setCookie('highScore2Captain',highScore1Captain,100);
+			setCookie('highScore2Turns',highScore1Turns,100);
+			// set current stats to high score 1 stats
+			setCookie('highScore1',stats.score,100);
+			setCookie('highScore1Captain',stats.captainName,100);
+			setCookie('highScore1Turns',stats.turn,100);
+			// set this captain as last captain
+			setCookie('lastCaptainName',stats.captainName,100);
+		} else if (stats.score >= highScore2 || !highScore2) {
+			console.log('You got high score 2! Updating cookie...');
+			// set old score 3 to score 2
+			setCookie('highScore3',highScore2,100);
+			setCookie('highScore3Captain',highScore2Captain,100);
+			setCookie('highScore3Turns',highScore2Turns,100);
+			// set current stats to high score 2
+			setCookie('highScore2',stats.score,100);
+			setCookie('highScore2Captain',stats.captainName,100);
+			setCookie('highScore2Turns',stats.turn,100);
+			// set this captain as last captain
+			setCookie('lastCaptainName',stats.captainName,100);
+		} else if (stats.score >= highScore3 || !highScore3) {
+			console.log('You got high score 2! Updating cookie...');
+			// set current stats to high score 3
+			setCookie('highScore3',stats.score,100);
+			setCookie('highScore3Captain',stats.captainName,100);
+			setCookie('highScore3Turns',stats.turn,100);
+			// set this captain as last captain
+			setCookie('lastCaptainName',stats.captainName,100);
+		}
 		// This actually builds the gameOver message UI if conditions are met
 		// using the content from the condition checks, or default content
-		console.log('running showGameOver...')
 		$('#map').slideUp();// hide map if necessary
 		$('#app').prepend(panel);
 		$('#gameOver').append(header)
@@ -194,4 +271,47 @@ if (fuelAmount == 2) {
 			$('#gameOver').slideUp();
 		});
 	}
+}
+
+// score calculation
+// {[wallet + (fuel x 1000) + (cargo value x 2)] X # of turns taken} / 10
+// run on the following events:
+// travel
+// incident close
+// buy/sell
+// game over
+function updateScore() {
+	wallet = stats.wallet,
+	cargoValue = cargoValueSum(stats.menu),
+	turns = stats.turn;
+	preScore = (wallet * 2) + cargoValue;
+	score = Math.floor((preScore * turns) * .1);
+	currentTopScore = getCookie('topScore');
+
+	console.log('running updateScore...');
+	console.log('wallet is ' + wallet);
+	console.log('cargoValue is ' + cargoValue);
+	console.log('turns = ' + turns);
+	console.log('preScore = (wallet * 2)  + cV');
+	console.log('preScore = ' + preScore);
+	console.log('score = {[(wallet * 2) + cargo value] X # of turns taken} / 10');
+	console.log('score = {[(' + wallet + ' * 2) + ' + cargoValue + '] X ' + turns + '} / 10');
+	console.log('final score = ' + score);
+
+	// set the value on the player stats object
+	stats.score = score;
+
+	console.log('starting COOKIE update...');
+	// set the value on the session cookie
+	setCookie('sessionScore',stats.score,100);
+	setCookie('sessionTurns',stats.turn,100);
+
+	if (stats.score >= currentTopScore || !currentTopScore) {
+		setCookie('topScore',stats.score,100);
+		setCookie('topCaptain',stats.captainName,100);
+		setCookie('topTurns',stats.turn,100);
+	} else {
+		// do nothing
+	}
+
 }

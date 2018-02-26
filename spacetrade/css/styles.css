@@ -41,6 +41,9 @@ ul {
 	line-height:16px;
 	margin:auto 0;
 }
+#controls .stats span {
+	width:30%;
+}
 #controls .stats span:nth-child(2) {
 	text-align:center;
 }
@@ -134,6 +137,19 @@ ul li {
 .bad {
 	color:red;
 }
+.disabled-good {
+	background:#618c4e;
+	color:#f2f2f2;
+}
+.disabled-bad {
+	background:#8e372f;
+	color:#333;
+}
+.unselectable {
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+}
 /* peripherals */
 .peripheral {
 	position:absolute;
@@ -145,6 +161,42 @@ ul li {
 .peripheral ul li {
 	display:flex;
 	align-items:stretch;
+}
+#home {
+	text-align:center;
+}
+#home ul {
+	margin-top:20px;
+}
+#home ul#scores {
+	margin-top:0px;
+}
+#home li {
+	width:60%;
+	margin:auto;
+	text-align:center;
+}
+#home p,
+#home button {
+	margin:auto;
+	text-align:center;
+}
+#scores .toggle {
+	display:none;
+}
+#scores li:nth-child(odd) {
+	margin-top:20px;
+}
+#scores li:nth-child(even) {
+	font-size:.9em;
+	color:#999;
+}
+#scores ul:first-child {
+	display:block;
+}
+#home ul li button {
+	height:40px;
+	width:30%;
 }
 #mapToggle {
 	width:50px;
@@ -210,9 +262,6 @@ ul li {
 }
 
 /* debug panel */
-#debug {
-	display:none;
-}
 #debugPanel {
 	border:2px solid blue;
 }
