@@ -47,15 +47,16 @@ var getQuery = function(){
         statusMessage.html("<h2>Loading...</h2>");// when waiting
 
         // call RecipePuppy
-        $.getJSON(requestUrl, function(json) {
+        $.getJSON(requestUrl, function(payload) {
 
             results.html('');
 
-            if (json != ""){// show recipe results
+            if (payload != ""){// show recipe results
                 statusMessage.html("<h2>Recipe(s) found!</h2>");
 
-                $.each(json.results, function(i) {
+                recipeList = JSON.parse(payload.body);
 
+                $.each(recipeList.results, function(i) {
                     if (this.thumbnail == "") {
                         imageUrl = 'img/no-image.png';
                     } else {
