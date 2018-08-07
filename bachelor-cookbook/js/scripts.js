@@ -11,7 +11,7 @@ var getQuery = function(){
         tags = $.map($('fieldset input[type=checkbox]:checked'), function(n, i){
                     return n.name;
                 }).join(','),// create concatenated list of radiocheckboxes
-        baseUrl = "https://crossorigin.me/http://www.recipepuppy.com/api/",// base API url
+        baseUrl = "https://cors-proxy.htmldriven.com/?url=http://www.recipepuppy.com/api/",// base API url
         statusMessage = $('div.status'),
         results = $('.results'),
         search = $('#search');// search button
