@@ -45,7 +45,6 @@ function queryData() {
 
     console.log('Returning results from ' + payloadURL);
 
-    console.dir(payload);
     $(payload).find(target).each(function() {
         // list data for each entry
         var list = $('.content ul'),
