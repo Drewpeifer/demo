@@ -15,15 +15,9 @@ h1 {
 	font-size:48px;
 	margin:10 0;
 }
-p {
-	font-size:22px;
-	line-height:30px;
-	background:rgba(0,0,0,.8);
-	vertical-align:middle;
-	opacity:0;
-}
-ul li:hover p {
+.stats p {
 	opacity:1;
+	text-transform:capitalize;
 }
 ul {
 	display:flex;
@@ -32,6 +26,7 @@ ul {
 	height:100%;
 	margin:20px auto;
 }
+/* entries */
 ul li {
 	text-align:center;
 	list-style-type:none;
@@ -43,5 +38,22 @@ ul li {
 	background-position:center;
 	background-size:contain;
 	background-repeat:no-repeat;
+	display:flex;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+ul li p {
+	flex-grow:1;
+	align-self:flex-end;
+	font-size:22px;
+	line-height:30px;
+	background:rgba(0,0,0,.8);
+	vertical-align:middle;
+}
+ul li:hover {
 	border:#fff 1px solid;
+}
+ul li:hover p {
+	opacity:1;
 }

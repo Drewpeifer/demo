@@ -9,6 +9,15 @@ jQuery.extend({
             type: "GET",
             dataType: "xml",
             async: false,
+            beforeSend: function() {
+                // empty out the UI
+                $('.stats, .content ul').html('');
+                // show loading message
+                $('.stats').html('<p>Loading...</p>');
+            },
+            complete: function() {
+                $('.stats').html('');
+            },
             success: function(data) {
                 console.log('ajax success');
                 payload = data;
@@ -30,23 +39,32 @@ jQuery.extend({
 // END PAYLOADS //
 
 // this grabs the appropriate payload depending on which input requests it
-function queryData() {
+// and then populates the UI with entries
+function renderData() {
     // grab the section from the button attribute
     section = $(this).attr('data-section');
+    // build URLs
     serverURL = 'http://192.168.1.6:32400';
     token = 'X-Plex-Token=xxcwJWERP477juYsw4MX';
-    // build it into the ajax query url
+    // build the payload URL for the selected section / library
     payloadURL = serverURL + '/library/sections/' + section + '/all?' + token;
     // store the payload
     payload = $.getPayload(payloadURL);
-    // find the appropriate XML child object depending on what
-    // section was queried
+    // target the entries within the payload
     target = payload.children[0].children;
+    // count entries
+    targetCount = target.length;
+    // store the type of entries being displayed (show / movie)
+    targetType = $(payload.children[0].children[0]).attr('type');
 
     console.log('Returning results from ' + payloadURL);
 
+    // append stats for targeted payload
+    $('.stats').append('<p>' + targetType + 's: ' + targetCount + '</p>');
+
+    // sift through entries and build an interface for each one
     $(payload).find(target).each(function() {
-        // list data for each entry
+        // store data for each entry
         var list = $('.content ul'),
             entry = $(this),
             name = entry.attr('title'),
@@ -62,4 +80,4 @@ function queryData() {
 }
 
 // bind the query buttons
-$('.query').click(queryData);
+$('.query').click(renderData);
