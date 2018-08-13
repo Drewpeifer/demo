@@ -41,13 +41,7 @@ function queryData() {
     payload = $.getPayload(payloadURL);
     // find the appropriate XML child object depending on what
     // section was queried
-    if (section == '30') {// movies
-        target = 'Video';
-    } else if (section == '5') {// tv
-        target = 'Directory';
-    } else {// queried an unauthorized / missing section
-        console.log('couldn\'t find a valid target!');
-    }
+    target = payload.children[0].children;
 
     console.log('Returning results from ' + payloadURL);
 
@@ -57,12 +51,12 @@ function queryData() {
         var list = $('.content ul'),
             entry = $(this),
             name = entry.attr('title'),
-            year = entry.attr('year');
+            year = entry.attr('year'),
             img = entry.attr('thumb'),
             imgURL = serverURL + img + '?' + token;
 
         // build UI for each entry and append it to the list
-        entryInterface = $('<li><p>' + '. ' + name + ' (' + year + ')</p></li>');
+        entryInterface = $('<li><p>' + name + ' (' + year + ')</p></li>');
 
         entryInterface.appendTo(list).css({'background-image':'url('+imgURL+')'});
     });
