@@ -32,10 +32,18 @@ jQuery.extend({
 function renderData() {
 
     section = $(this).attr('data-section');
-    payload = $.getPayload('http://192.168.1.6:32400/library/sections/' + section + '/all?X-Plex-Token=xxcwJWERP477juYsw4MX');
+    payloadURL = 'http://192.168.1.6:32400/library/sections/' + section + '/all?X-Plex-Token=xxcwJWERP477juYsw4MX';
+    payload = $.getPayload(payloadURL);
+    if (section == '30') {
+        target = 'Video';
+    } else if (section == '5') {
+        target = 'Directory';
+    } else {
+        console.log('couldn\'t find a valid target!');
+    }
 
-    console.log(payload);
-    $(payload).find('Video').each(function() {
+    console.log(payloadURL);
+    $(payload).find(target).each(function() {
         var name = $(this).attr('title');
         $('#content').append(name + ', ');
     });
