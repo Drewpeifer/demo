@@ -29,24 +29,31 @@ jQuery.extend({
 // TV = 5
 // END PAYLOADS //
 
+// this grabs the appropriate payload depending on which input requests it
 function renderData() {
-
+    // grab the section from the button attribute
     section = $(this).attr('data-section');
+    // build it into the ajax query url
     payloadURL = 'http://192.168.1.6:32400/library/sections/' + section + '/all?X-Plex-Token=xxcwJWERP477juYsw4MX';
+    // store the payload
     payload = $.getPayload(payloadURL);
-    if (section == '30') {
+    // find the appropriate XML child object depending on what
+    // section was queried
+    if (section == '30') {// movies
         target = 'Video';
-    } else if (section == '5') {
+    } else if (section == '5') {// tv
         target = 'Directory';
-    } else {
+    } else {// queried an unauthorized / missing section
         console.log('couldn\'t find a valid target!');
     }
 
     console.log(payloadURL);
+    // parse the payload and print titles
     $(payload).find(target).each(function() {
         var name = $(this).attr('title');
         $('#content').append(name + ', ');
     });
 }
 
+// bind the query buttons
 $('.query').click(renderData);
