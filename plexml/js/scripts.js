@@ -1,6 +1,6 @@
 // 152.208.9.6
 
-// go grab the plex XML payload when passed a payload url
+// this function is fed a url and retrieves an XML payload
 jQuery.extend({
     getPayload: function(url) {
         var payload = null;
@@ -30,11 +30,13 @@ jQuery.extend({
 // END PAYLOADS //
 
 // this grabs the appropriate payload depending on which input requests it
-function renderData() {
+function queryData() {
     // grab the section from the button attribute
     section = $(this).attr('data-section');
+    serverURL = 'http://192.168.1.6:32400';
+    token = 'X-Plex-Token=xxcwJWERP477juYsw4MX';
     // build it into the ajax query url
-    payloadURL = 'http://192.168.1.6:32400/library/sections/' + section + '/all?X-Plex-Token=xxcwJWERP477juYsw4MX';
+    payloadURL = serverURL + '/library/sections/' + section + '/all?' + token;
     // store the payload
     payload = $.getPayload(payloadURL);
     // find the appropriate XML child object depending on what
@@ -48,12 +50,16 @@ function renderData() {
     }
 
     console.log(payloadURL);
-    // parse the payload and print titles
     $(payload).find(target).each(function() {
-        var name = $(this).attr('title');
-        $('.content ul').append('<li><p>' + name + '</p></li>');
+        var entry = $(this),
+            name = entry.attr('title'),
+            img = entry.attr('thumb');
+        $('.content ul').append('<li>' +
+            '<img src="' + serverURL + img + '?' + token + '"</img>' +
+            '<p>' + name + '</p>' +
+            '</li>');
     });
 }
 
 // bind the query buttons
-$('.query').click(renderData);
+$('.query').click(queryData);
