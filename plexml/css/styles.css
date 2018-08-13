@@ -16,8 +16,9 @@ h1 {
 	margin:10 0;
 }
 .stats p {
-	opacity:1;
 	text-transform:capitalize;
+	font-size:24px;
+	margin:20px 0 10px 0;
 }
 ul {
 	display:flex;
@@ -50,9 +51,10 @@ ul li p {
 	line-height:30px;
 	background:rgba(0,0,0,.8);
 	vertical-align:middle;
+	opacity:0;
 }
 ul li:hover {
-	border:#fff 1px solid;
+	background-color:#333;
 }
 ul li:hover p {
 	opacity:1;
