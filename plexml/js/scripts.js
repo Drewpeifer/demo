@@ -6,7 +6,10 @@ $.ajax({
     dataType: "html",
     success: function(data) {
 
-    console.log(data);
+	$(data).find('Video').each(function() {
+		var name = $(this).attr('title');
+		$('#content').append(name + ', ');
+		});
 
     },
     error: function(jqXHR, textStatus, errorThrown ){
