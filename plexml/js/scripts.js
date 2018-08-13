@@ -1,11 +1,11 @@
 // 152.208.9.6
 
-// go grab the plex XML payload
+// go grab the plex XML payload when passed a payload url
 jQuery.extend({
     getPayload: function(url) {
         var payload = null;
         $.ajax({
-            url: "http://192.168.1.6:32400/library/recentlyAdded/?X-Plex-Token=xxcwJWERP477juYsw4MX",
+            url: url,
             type: "GET",
             dataType: "xml",
             async: false,
@@ -23,9 +23,17 @@ jQuery.extend({
     }
 });
 
-var payload = $.getPayload("http://192.168.1.6:32400/library/recentlyAdded/?X-Plex-Token=xxcwJWERP477juYsw4MX");
+// PAYLOADS //
+// base library locations
+// Movies = 30
+// TV = 5
+// END PAYLOADS //
 
 function renderData() {
+
+    section = $(this).attr('data-section');
+    payload = $.getPayload('http://192.168.1.6:32400/library/sections/' + section + '/all?X-Plex-Token=xxcwJWERP477juYsw4MX');
+
     console.log(payload);
     $(payload).find('Video').each(function() {
         var name = $(this).attr('title');
@@ -33,4 +41,4 @@ function renderData() {
     });
 }
 
-$('#fetchXML').click(renderData);
+$('.query').click(renderData);
