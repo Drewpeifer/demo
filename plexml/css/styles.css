@@ -16,20 +16,32 @@ h1 {
 	margin:10 0;
 }
 p {
-	font-size:14px;
+	font-size:22px;
+	line-height:30px;
+	background:rgba(0,0,0,.8);
+	vertical-align:middle;
+	opacity:0;
+}
+ul li:hover p {
+	opacity:1;
 }
 ul {
-	display:inline-block;
+	display:flex;
+	flex-wrap:wrap;
 	width:80%;
+	height:100%;
+	margin:20px auto;
 }
 ul li {
-	text-align:left;
+	text-align:center;
 	list-style-type:none;
-	display:inline-block;
-	width:30%;
 	margin:0;
-}
-img {
+	min-width:30%;
+	min-height:200px;
 	max-width:200px;
 	max-height:200px;
+	background-position:center;
+	background-size:contain;
+	background-repeat:no-repeat;
+	border:#fff 1px solid;
 }
