@@ -49,15 +49,22 @@ function queryData() {
         console.log('couldn\'t find a valid target!');
     }
 
-    console.log(payloadURL);
+    console.log('Returning results from ' + payloadURL);
+
+    console.dir(payload);
     $(payload).find(target).each(function() {
-        var entry = $(this),
+        // list data for each entry
+        var list = $('.content ul'),
+            entry = $(this),
             name = entry.attr('title'),
-            img = entry.attr('thumb');
-        $('.content ul').append('<li>' +
-            '<img src="' + serverURL + img + '?' + token + '"</img>' +
-            '<p>' + name + '</p>' +
-            '</li>');
+            year = entry.attr('year');
+            img = entry.attr('thumb'),
+            imgURL = serverURL + img + '?' + token;
+
+        // build UI for each entry and append it to the list
+        entryInterface = $('<li><p>' + '. ' + name + ' (' + year + ')</p></li>');
+
+        entryInterface.appendTo(list).css({'background-image':'url('+imgURL+')'});
     });
 }
 
