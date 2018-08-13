@@ -51,7 +51,7 @@ function renderData() {
     // parse the payload and print titles
     $(payload).find(target).each(function() {
         var name = $(this).attr('title');
-        $('#content').append(name + ', ');
+        $('.content ul').append('<li><p>' + name + '</p></li>');
     });
 }
 
