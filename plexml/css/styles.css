@@ -2,6 +2,7 @@ body {
 	background:#000;
 	color:#f2f2f2;
 	text-align:center;
+	font-family: 'Ubuntu', sans-serif;
 }
 button {
 	height:80px;
