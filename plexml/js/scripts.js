@@ -72,7 +72,7 @@ function renderData() {
         }
         console.log('targetType = ' + targetType + '. Returning results from ' + url);
         // build UI
-        targetHeader = '<h3>' + targetLibrary + ': ' + targetCount + '</h3>';
+        targetHeader = '<hr /><h3>' + targetLibrary + ': ' + targetCount + '</h3><hr />';
         targetList = '<ul class="' + targetType + '"></ul>';
         // print a header and empty list
         $(targetHeader).appendTo(wrapper);

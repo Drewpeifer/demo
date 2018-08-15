@@ -15,7 +15,14 @@ h1 {
 	font-size:48px;
 	margin:10 0;
 }
-.stats p {
+h3 {
+	font-size:32px;
+	margin:10px 0;
+}
+hr {
+	border:#fff 1px solid;
+}
+p {
 	text-transform:capitalize;
 	font-size:24px;
 	margin:20px 0 10px 0;
@@ -24,7 +31,6 @@ ul {
 	display:flex;
 	flex-wrap:wrap;
 	width:80%;
-	height:100%;
 	margin:20px auto;
 }
 /* entries */
@@ -32,7 +38,7 @@ ul li {
 	text-align:center;
 	list-style-type:none;
 	margin:0;
-	min-width:30%;
+	width:25%;
 	min-height:200px;
 	max-width:200px;
 	max-height:200px;
