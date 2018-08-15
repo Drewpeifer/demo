@@ -27,6 +27,9 @@ p {
 	font-size:24px;
 	margin:20px 0 10px 0;
 }
+p.collapse {
+	font-size:18px;
+}
 ul {
 	display:flex;
 	flex-wrap:wrap;

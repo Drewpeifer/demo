@@ -10,21 +10,19 @@ jQuery.extend({
             dataType: "xml",
             async: false,
             beforeSend: function() {
-                // empty out the UI
-                $('.stats, .content ul').html('');
-                // show loading message
-                $('.stats').html('<p>Loading...</p>');
+                // call starts
+                $('.alert').html('<p>Loading! Please wait for my tiny computer to process your request.');
             },
             complete: function() {
-                // get rid of loading messages
-                $('.stats').html('');
+                // call ends (before success/error)
+                $('.alert').html('');
             },
             success: function(data) {
                 console.log('ajax success');
                 payload = data;
                 console.log(payload);
             },
-            error: function(jqXHR, textStatus, errorThrown ){
+            error: function(jqXHR, textStatus, errorThrown){
               // debug here
               console.log('Error! The media server must be down right now, sorry.');
             }
@@ -72,8 +70,9 @@ function renderData() {
         }
         console.log('targetType = ' + targetType + '. Returning results from ' + url);
         // build UI
-        targetHeader = '<hr /><h3>' + targetLibrary + ': ' + targetCount + '</h3><hr />';
-        targetList = '<ul class="' + targetType + '"></ul>';
+        targetHeader = '<div class="section ' + targetType + '"><h3>' + targetLibrary +
+                       ': ' + targetCount + '</h3><p class="collapse">Click to collapse</p><hr />';
+        targetList = '<ul class="' + targetType + '"></ul></div>';
         // print a header and empty list
         $(targetHeader).appendTo(wrapper);
         $(targetList).appendTo(wrapper);
