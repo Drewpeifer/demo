@@ -15,6 +15,16 @@ h1 {
 	font-size:48px;
 	margin:10 0;
 }
+p {
+	text-transform:capitalize;
+	font-size:24px;
+	margin:20px 0 10px 0;
+}
+/* alert section */
+.alert p {
+	font-size:24px;
+}
+/* section headers */
 h3 {
 	font-size:32px;
 	margin:10px 0;
@@ -22,21 +32,23 @@ h3 {
 hr {
 	border:#fff 1px solid;
 }
-p {
-	text-transform:capitalize;
-	font-size:24px;
-	margin:20px 0 10px 0;
-}
-p.collapse {
+p.toggle {
 	font-size:18px;
+	content:"[Expand]";
 }
+p.toggle.active {
+	content:"[Collapse]";
+}
+/* entries */
 ul {
-	display:flex;
+	display:none;
 	flex-wrap:wrap;
 	width:80%;
 	margin:20px auto;
 }
-/* entries */
+ul.active {
+	display:flex;
+}
 ul li {
 	text-align:center;
 	list-style-type:none;

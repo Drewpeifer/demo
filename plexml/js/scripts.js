@@ -11,7 +11,7 @@ jQuery.extend({
             async: false,
             beforeSend: function() {
                 // call starts
-                $('.alert').html('<p>Loading! Please wait for my tiny computer to process your request.');
+                $('.alert').html('<p>Loading!</p><p>Please wait for my tiny computer to process your request.</p>');
             },
             complete: function() {
                 // call ends (before success/error)
@@ -70,13 +70,11 @@ function renderData() {
         }
         console.log('targetType = ' + targetType + '. Returning results from ' + url);
         // build UI
-        targetHeader = '<div class="section ' + targetType + '"><h3>' + targetLibrary +
-                       ': ' + targetCount + '</h3><p class="collapse">Click to collapse</p><hr />';
-        targetList = '<ul class="' + targetType + '"></ul></div>';
+        listPanel = '<div class="section ' + targetType + '"><h3>' + targetLibrary +
+                       ': ' + targetCount + '</h3><p class="toggle">[Expand]</p><hr />' +
+                       '<ul class="' + targetType + '"></ul></div>';
         // print a header and empty list
-        $(targetHeader).appendTo(wrapper);
-        $(targetList).appendTo(wrapper);
-
+        $(listPanel).appendTo(wrapper);
 
         // parse and print payloads
         $(payload).find(target).each(function() {
@@ -103,10 +101,22 @@ function renderData() {
 
     });
 
+    // bind section hide/show controls
+    $('p.toggle').bind('click', function() {
+        $(this).siblings('ul').toggleClass('active');
+        $(this).toggleClass('active');
+
+        if ($(this).hasClass('active')) {
+            $(this).text('[Collapse]');
+        } else {
+            $(this).text('[Expand]');
+        }
+    });
 }
 
 // bind the query buttons
 $('.query').click(renderData);
+
 // lazy load images
 $(function() {
     $('.lazy').Lazy({
