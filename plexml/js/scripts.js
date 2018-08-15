@@ -20,7 +20,6 @@ jQuery.extend({
             success: function(data) {
                 console.log('ajax success');
                 payload = data;
-                console.log(payload);
             },
             error: function(jqXHR, textStatus, errorThrown){
               // debug here
@@ -30,12 +29,6 @@ jQuery.extend({
        return payload;
     }
 });
-
-// PAYLOADS //
-// base library locations
-// Movies = 30
-// TV = 5
-// END PAYLOADS //
 
 // this grabs the appropriate payload depending on which input requests it
 // and then populates the UI with entries
@@ -55,28 +48,29 @@ function renderData() {
         payload = $.getPayload(url);
         // target the entries within the payload
         target = payload.children[0].children;
+        // target first entry for sample data
         firstItem = $(payload.children[0].children[0]);
         // count entries
         targetCount = target.length;
-        //store the name of the library being queried
+        // store the name of the library being queried;
+        // recently added needs some massaging
         if ($(payload.children[0]).attr('mixedParents') == 1) {
             targetLibrary = 'Recently Added';
-            // store the type of entries being displayed (show / movie)
             targetType = 'recent';
         } else {
             targetLibrary = $(payload.children[0]).attr('librarySectionTitle');
-            // store the type of entries being displayed (show / movie)
             targetType = firstItem.attr('type');
         }
         console.log('targetType = ' + targetType + '. Returning results from ' + url);
-        // build UI
-        listPanel = '<div class="section ' + targetType + '"><h3>' + targetLibrary +
-                       ': ' + targetCount + '</h3><p class="toggle">[Expand]</p><hr />' +
-                       '<ul class="' + targetType + '"></ul></div>';
-        // print a header and empty list
+        // build UI (section, header, toggle, and empty list)
+        listPanel = '<div class="section ' + targetType + '"><h3>' +
+                    targetLibrary + ': ' + targetCount +
+                    '</h3><p class="toggle">[Expand]</p><hr />' +
+                    '<ul class="' + targetType + '"></ul></div>';
+        // append UI to content area
         $(listPanel).appendTo(wrapper);
 
-        // parse and print payloads
+        // parse payload items and build each entry into the DOM
         $(payload).find(target).each(function() {
             // store data for each entry
             entry = $(this),
@@ -85,6 +79,7 @@ function renderData() {
             img = entry.attr('thumb'),
             imgURL = serverURL + img + '?' + token;
 
+            // again, massage data for recently added entries
             if (targetType == 'recent') {
                 type = 'recent';
             } else {
@@ -93,38 +88,40 @@ function renderData() {
 
             targetList = $('.content ul.' + type);
 
-            // build UI for each entry and append it to the list
+            // build UI for each entry
             entryInterface = $('<li><p>' + name + ' (' + year + ')</p></li>');
-
-            entryInterface.appendTo(targetList).css({'background-image':'url(' + imgURL + ')'});
+            // append it to the target list, set background
+            entryInterface.appendTo(targetList)
+                          .css({'background-image':'url(' + imgURL + ')'});
         });
 
     });
 
     // bind section hide/show controls
     $('p.toggle').bind('click', function() {
-        $(this).siblings('ul').toggleClass('active');
-        $(this).toggleClass('active');
+        toggle = $(this);
+        toggle.siblings('ul').toggleClass('active');
+        toggle.toggleClass('active');
 
-        if ($(this).hasClass('active')) {
-            $(this).text('[Collapse]');
+        if (toggle.hasClass('active')) {
+            toggle.text('[Collapse]');
         } else {
-            $(this).text('[Expand]');
+            toggle.text('[Expand]');
         }
     });
 }
 
-// bind the query buttons
+// bind the query button
 $('.query').click(renderData);
 
-// lazy load images
+// on load
 $(function() {
+    // lazy load images
     $('.lazy').Lazy({
-        // your configuration goes here
         scrollDirection: 'vertical',
         effect: 'fadeIn',
         visibleOnly: true,
-        onError: function(element) {
+        onError: function() {
             console.log('error loading an image!');
         }
     });
