@@ -40,7 +40,7 @@ function renderData() {
     baseURL = 'http://192.168.1.6:32400/library/sections/all?' + token;
     moviesURL = 'http://192.168.1.6:32400/library/sections/30/all?' + token;
     tvURL = 'http://192.168.1.6:32400/library/sections/5/all?' + token;
-    recentlyAddedURL = 'http://192.168.1.6:32400/library/recentlyAdded?' + token;
+    recentlyAddedURL = 'http://192.168.1.6:32400/library/recentlyAdded/search?type=1&X-Plex-Container-Start=0&X-Plex-Container-Size=20&' + token;
     urls = [recentlyAddedURL,tvURL,moviesURL];
     // for each entry in urls, grab XML and print UI
     $.each(urls, function(i, url) {
@@ -58,7 +58,7 @@ function renderData() {
             targetLibrary = 'Recently Added';
             targetType = 'recent';
         } else {
-            targetLibrary = $(payload.children[0]).attr('librarySectionTitle');
+            targetLibrary = 'All ' + $(payload.children[0]).attr('librarySectionTitle');
             targetType = firstItem.attr('type');
         }
         console.log('targetType = ' + targetType + '. Returning results from ' + url);
