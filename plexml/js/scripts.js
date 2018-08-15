@@ -108,3 +108,15 @@ function renderData() {
 
 // bind the query buttons
 $('.query').click(renderData);
+// lazy load images
+$(function() {
+    $('.lazy').Lazy({
+        // your configuration goes here
+        scrollDirection: 'vertical',
+        effect: 'fadeIn',
+        visibleOnly: true,
+        onError: function(element) {
+            console.log('error loading an image!');
+        }
+    });
+});
