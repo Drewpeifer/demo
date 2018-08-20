@@ -41,17 +41,16 @@ function renderData() {
     moviesURL = 'http://192.168.1.6:32400/library/sections/30/all?' + token;
     tvURL = 'http://192.168.1.6:32400/library/sections/5/all?' + token;
     recentlyAddedURL = 'http://192.168.1.6:32400/library/recentlyAdded/search?type=1&X-Plex-Container-Start=0&X-Plex-Container-Size=20&' + token;
-    urls = [recentlyAddedURL,tvURL,moviesURL];
+    urls = [tvURL,moviesURL];// hiding recentlyAddedURL for now
     // for each entry in urls, grab XML and print UI
     $.each(urls, function(i, url) {
+        i = 0;// set count to 0
         wrapper = $('.content');
         payload = $.getPayload(url);
         // target the entries within the payload
         target = payload.children[0].children;
         // target first entry for sample data
         firstItem = $(payload.children[0].children[0]);
-        // count entries
-        targetCount = target.length;
         // store the name of the library being queried;
         // recently added needs some massaging
         if ($(payload.children[0]).attr('mixedParents') == 1) {
@@ -62,13 +61,10 @@ function renderData() {
             targetType = firstItem.attr('type');
         }
         console.log('targetType = ' + targetType + '. Returning results from ' + url);
-        // build UI (section, header, toggle, and empty list)
-        listPanel = '<div class="section ' + targetType + '"><h3>' +
-                    targetLibrary + ': ' + targetCount +
-                    '</h3><p class="toggle">[Expand]</p><hr />' +
-                    '<ul class="' + targetType + '"></ul></div>';
+        // build UI (header and empty grid)
+        gridLayout = '<h3>Contents:</h3><hr /><div class="grid"></div>';
         // append UI to content area
-        $(listPanel).appendTo(wrapper);
+        $(gridLayout).appendTo(wrapper);
 
         // parse payload items and build each entry into the DOM
         $(payload).find(target).each(function() {
@@ -86,28 +82,19 @@ function renderData() {
                 type = entry.attr('type');
             }
 
-            targetList = $('.content ul.' + type);
+            grid = $('.content .grid');
 
             // build UI for each entry
-            entryInterface = $('<li><p>' + name + ' (' + year + ')</p></li>');
+            entryInterface = $('<div class="' + type +
+                            '"><p>' + name + ' (' + year + ')</p></div>');
             // append it to the target list, set background
-            entryInterface.appendTo(targetList)
+            entryInterface.appendTo(grid)
                           .css({'background-image':'url(' + imgURL + ')'});
+            // increment count
+            i = i+1;
         });
-
-    });
-
-    // bind section hide/show controls
-    $('p.toggle').bind('click', function() {
-        toggle = $(this);
-        toggle.siblings('ul').toggleClass('active');
-        toggle.toggleClass('active');
-
-        if (toggle.hasClass('active')) {
-            toggle.text('[Collapse]');
-        } else {
-            toggle.text('[Expand]');
-        }
+        listCount = i;
+        $('.content h3').text('Content: ' + listCount);
     });
 }
 
@@ -126,7 +113,7 @@ $(function() {
         }
     });
     // initialize isotope on the sortable areas
-    $('.section ul').isotope({
-        itemSelector: '.section ul li'
+    $('.content .grid').isotope({
+        itemSelector: '.content .grid div'
     });
 });

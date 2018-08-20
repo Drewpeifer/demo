@@ -32,51 +32,35 @@ h3 {
 hr {
 	border:#fff 1px solid;
 }
-p.toggle {
-	font-size:18px;
-	content:"[Expand]";
-}
-p.toggle.active {
-	content:"[Collapse]";
-}
 /* entries */
-ul {
-	display:none;
-	flex-wrap:wrap;
+.grid {
 	width:80%;
 	margin:20px auto;
 }
-ul.active {
-	display:flex;
-}
-ul li {
+.grid div {
+	display:inline-block;
 	text-align:center;
-	list-style-type:none;
 	margin:0;
 	width:25%;
-	min-height:200px;
+	height:200px;
 	max-width:200px;
-	max-height:200px;
 	background-position:center;
 	background-size:contain;
 	background-repeat:no-repeat;
-	display:flex;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
-ul li p {
-	flex-grow:1;
-	align-self:flex-end;
+.grid div p {
 	font-size:22px;
 	line-height:30px;
 	background:rgba(0,0,0,.8);
 	vertical-align:middle;
 	opacity:0;
 }
-ul li:hover {
+.grid div:hover {
 	background-color:#333;
 }
-ul li:hover p {
+.grid div:hover p {
 	opacity:1;
 }
