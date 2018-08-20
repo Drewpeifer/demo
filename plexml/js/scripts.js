@@ -1,5 +1,3 @@
-// 152.208.9.6
-
 // this function is fed a url and retrieves an XML payload
 jQuery.extend({
     getPayload: function(url) {
@@ -37,15 +35,14 @@ function renderData() {
     // set count to 0
     count = 0
     // build URLs
-    serverURL = 'http://192.168.1.6:32400';
+    serverUrl = 'http://152.208.9.6:23397';
     token = 'X-Plex-Token=xxcwJWERP477juYsw4MX';    
-    baseURL = 'http://192.168.1.6:32400/library/sections/all?' + token;
-    moviesURL = 'http://192.168.1.6:32400/library/sections/30/all?' + token;
-    tvURL = 'http://192.168.1.6:32400/library/sections/5/all?' + token;
-    recentlyAddedURL = 'http://192.168.1.6:32400/library/recentlyAdded/search?type=1&X-Plex-Container-Start=0&X-Plex-Container-Size=20&' + token;
-    urls = [tvURL,moviesURL];// hiding recentlyAddedURL for now
+    baseUrl = serverUrl + '/library/sections/all?' + token;
+    moviesUrl = serverUrl + '/library/sections/30/all?' + token;
+    showsUrl = serverUrl + '/library/sections/5/all?' + token;
+    recentlyAddedUrl = serverUrl + '/library/recentlyAdded/search?type=1&X-Plex-Container-Start=0&X-Plex-Container-Size=20&' + token;
+    urls = [showsUrl,moviesUrl];// hiding recentlyAddedUrl for now
 
-    // build UI
     // build UI (header and empty grid)
     gridLayout = '<h3>Contents:</h3><hr /><div class="grid"></div>';
     // append UI to content area
@@ -85,7 +82,7 @@ function renderData() {
             dateAdded = entry.attr('addedAt'),
             ratingMPAA = entry.attr('contentRating'),
             ratingAudience = entry.attr('audienceRating'),
-            imgURL = serverURL + img + '?' + token,
+            imgUrl = serverUrl + img + '?' + token,
             grid = $('.content .grid');
 
             // again, massage data for recently added entries
@@ -107,7 +104,7 @@ function renderData() {
                                 '</div>');
             // append it to the target list, set background
             entryInterface.appendTo(grid)
-                          .css({'background-image':'url(' + imgURL + ')'});
+                          .css({'background-image':'url(' + imgUrl + ')'});
         });
     count = count + i;
     });
