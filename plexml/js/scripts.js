@@ -69,6 +69,7 @@ function renderData() {
             targetLibrary = 'All ' + $(payload.children[0]).attr('librarySectionTitle');
             targetType = firstItem.attr('type');
         }
+        console.dir(payload);
         console.log('targetType = ' + targetType + ' (' +
             i + '). Returning results from ' + url);
         // parse payload items and build each entry into the DOM
@@ -76,10 +77,15 @@ function renderData() {
             // store data for each entry
             entry = $(this),
             name = entry.attr('title'),
+            sortTitle = entry.attr('titleSort'),
             year = entry.attr('year'),
             img = entry.attr('thumb'),
-            type = entry.attr('type');
-            imgURL = serverURL + img + '?' + token;
+            type = entry.attr('type'),
+            duration = entry.attr('duration'),
+            dateAdded = entry.attr('addedAt'),
+            ratingMPAA = entry.attr('contentRating'),
+            ratingAudience = entry.attr('audienceRating'),
+            imgURL = serverURL + img + '?' + token,
             grid = $('.content .grid');
 
             // again, massage data for recently added entries
@@ -89,8 +95,15 @@ function renderData() {
             };
 
             // build UI for each entry
-            entryInterface = $('<div class="entry ' + type +
-                            ' lazy"><p>' + name + ' (' + year + ')</p></div>');
+            entryInterface = $('<div data-dateReleased="' + year + '" ' +
+                                'data-dateAdded="' + dateAdded + '" ' +
+                                'data-sortTitle="' + sortTitle + '" ' +
+                                'data-duration="' + duration + '" ' +
+                                'class="entry ' + type + ' lazy">' +
+                                '<p class="name">' + name + ' (' + year + ')</p>' +
+                                '<p class="rating-MPAA">Rated: ' + ratingMPAA + '</p>' +
+                                '<p class="rating-audience">Rotten Tomatoes Rating: ' + ratingAudience + '</p>' +
+                                '</div>');
             // append it to the target list, set background
             entryInterface.appendTo(grid)
                           .css({'background-image':'url(' + imgURL + ')'});
@@ -108,7 +121,15 @@ $('button.filter').each(function() {
     $(this).click(function() {
         $('.grid').isotope({ filter: '.' + $(this).attr('data-filter') });
     });
-})
+});
+// sorting
+$('button.sort').each(function() {
+    $(this).click(function() {
+        sortValue = '[' + $(this).attr('data-sort') + ']';
+        $('.grid').isotope({ sortBy: sortValue });
+        console.log('now sorting by ' + $(this).attr('data-sort'));
+    });
+});
 // on load
 $(function() {
     // lazy load images
@@ -121,7 +142,8 @@ $(function() {
         }
     });
     // initialize isotope on the sortable areas
-    $('.content .grid').isotope({
-        itemSelector: '.content .grid div'
+    $('.grid').isotope({
+        itemSelector: 'div.entry',
+        layoutMode: 'fitRows'
     });
 });

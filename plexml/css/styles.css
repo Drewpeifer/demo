@@ -19,7 +19,7 @@ h1 {
 p {
 	text-transform:capitalize;
 	font-size:24px;
-	margin:20px 0 10px 0;
+	margin:0 10px 0 0;
 }
 /* alert section */
 .alert p {
@@ -42,7 +42,7 @@ hr {
 	display:inline-block;
 	text-align:center;
 	margin:0;
-	width:25%;
+	width:140px;
 	height:200px;
 	max-width:200px;
 	background-position:center;
@@ -59,6 +59,10 @@ hr {
 	background:rgba(0,0,0,.8);
 	vertical-align:middle;
 	opacity:0;
+}
+.grid div p.name,
+.grid div p.year {
+	display:inline;
 }
 .grid div:hover {
 	background-color:#333;
