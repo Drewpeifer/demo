@@ -125,4 +125,8 @@ $(function() {
             console.log('error loading an image!');
         }
     });
+    // initialize isotope on the sortable areas
+    $('.section ul').isotope({
+        itemSelector: '.section ul li'
+    });
 });
