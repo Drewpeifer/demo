@@ -80,7 +80,7 @@ function renderData() {
             img = entry.attr('thumb'),
             type = entry.attr('type');
             imgURL = serverURL + img + '?' + token;
-            grid = $('.content .grid')
+            grid = $('.content .grid');
 
             // again, massage data for recently added entries
             if (targetType == 'recent') {
@@ -90,7 +90,7 @@ function renderData() {
 
             // build UI for each entry
             entryInterface = $('<div class="' + type +
-                            '"><p>' + name + ' (' + year + ')</p></div>');
+                            ' lazy"><p>' + name + ' (' + year + ')</p></div>');
             // append it to the target list, set background
             entryInterface.appendTo(grid)
                           .css({'background-image':'url(' + imgURL + ')'});
