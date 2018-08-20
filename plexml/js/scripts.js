@@ -89,7 +89,7 @@ function renderData() {
             };
 
             // build UI for each entry
-            entryInterface = $('<div class="' + type +
+            entryInterface = $('<div class="entry ' + type +
                             ' lazy"><p>' + name + ' (' + year + ')</p></div>');
             // append it to the target list, set background
             entryInterface.appendTo(grid)
@@ -101,8 +101,14 @@ function renderData() {
     $('.content h3').text('Total Entries: ' + count);
 }
 
-// bind the query button
+// bind the query buttons
 $('.query').click(renderData);
+// filtering
+$('button.filter').each(function() {
+    $(this).click(function() {
+        $('.grid').isotope({ filter: '.' + $(this).attr('data-filter') });
+    });
+})
 // on load
 $(function() {
     // lazy load images
