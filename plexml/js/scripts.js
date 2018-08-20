@@ -95,14 +95,15 @@ function renderData() {
             };
 
             // build UI for each entry
-            entryInterface = $('<div data-dateReleased="' + year + '" ' +
-                                'data-dateAdded="' + dateAdded + '" ' +
-                                'data-sortTitle="' + sortTitle + '" ' +
+            entryInterface = $('<div data-datereleased="' + year + '" ' +
+                                'data-name="' + name + '" ' +
+                                'data-dateadded="' + dateAdded + '" ' +
+                                'data-sorttitle="' + sortTitle + '" ' +
                                 'data-duration="' + duration + '" ' +
                                 'class="entry ' + type + ' lazy">' +
                                 '<p class="name">' + name + ' (' + year + ')</p>' +
                                 '<p class="rating-MPAA">Rated: ' + ratingMPAA + '</p>' +
-                                '<p class="rating-audience">Rotten Tomatoes Rating: ' + ratingAudience + '</p>' +
+                                '<p class="rating-audience">Rotten Tomatoes: ' + ratingAudience + '</p>' +
                                 '</div>');
             // append it to the target list, set background
             entryInterface.appendTo(grid)
@@ -111,7 +112,21 @@ function renderData() {
     count = count + i;
     });
     console.log('total entries = ' + count);
+    // append header
     $('.content h3').text('Total Entries: ' + count);
+    // initialize isotope on grid
+    $('.grid').isotope({
+        itemSelector: 'div.entry',
+        layoutMode: 'fitRows',
+        getSortData: {
+            name: '.name',
+            ratingMPAA: '.rating-MPAA',
+            ratingAudience: '.rating-audience',
+            dateReleased: '[data-datereleased]',
+            dateAdded: '[data-dateadded]'
+        },
+        sortBy: 'name'
+    });
 }
 
 // bind the query buttons
@@ -120,13 +135,13 @@ $('.query').click(renderData);
 $('button.filter').each(function() {
     $(this).click(function() {
         $('.grid').isotope({ filter: '.' + $(this).attr('data-filter') });
+        console.log('now filtering by ' + $(this).attr('data-filter'));
     });
 });
 // sorting
 $('button.sort').each(function() {
     $(this).click(function() {
-        sortValue = '[' + $(this).attr('data-sort') + ']';
-        $('.grid').isotope({ sortBy: sortValue });
+        $('.grid').isotope({ sortBy: $(this).attr('data-sort') });
         console.log('now sorting by ' + $(this).attr('data-sort'));
     });
 });
@@ -144,6 +159,14 @@ $(function() {
     // initialize isotope on the sortable areas
     $('.grid').isotope({
         itemSelector: 'div.entry',
-        layoutMode: 'fitRows'
+        layoutMode: 'fitRows',
+        getSortData: {
+            name: '.name',
+            ratingMPAA: '.rating-MPAA',
+            ratingAudience: '.rating-audience',
+            dateReleased: '[data-datereleased]',
+            dateAdded: '[data-dateadded]'
+        },
+        sortBy: 'name'
     });
 });
