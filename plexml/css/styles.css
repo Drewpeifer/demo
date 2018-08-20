@@ -47,6 +47,7 @@ hr {
 	background-position:center;
 	background-size:contain;
 	background-repeat:no-repeat;
+	vertical-align:middle;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;

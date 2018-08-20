@@ -34,6 +34,8 @@ jQuery.extend({
 // and then populates the UI with entries
 function renderData() {
     wrapper = $('.content');
+    // set count to 0
+    count = 0
     // build URLs
     serverURL = 'http://192.168.1.6:32400';
     token = 'X-Plex-Token=xxcwJWERP477juYsw4MX';    
@@ -42,13 +44,20 @@ function renderData() {
     tvURL = 'http://192.168.1.6:32400/library/sections/5/all?' + token;
     recentlyAddedURL = 'http://192.168.1.6:32400/library/recentlyAdded/search?type=1&X-Plex-Container-Start=0&X-Plex-Container-Size=20&' + token;
     urls = [tvURL,moviesURL];// hiding recentlyAddedURL for now
-    // for each entry in urls, grab XML and print UI
+
+    // build UI
+    // build UI (header and empty grid)
+    gridLayout = '<h3>Contents:</h3><hr /><div class="grid"></div>';
+    // append UI to content area
+    $(gridLayout).appendTo(wrapper);
+    // for each entry in urls, grab XML
     $.each(urls, function(i, url) {
-        i = 0;// set count to 0
         wrapper = $('.content');
         payload = $.getPayload(url);
         // target the entries within the payload
         target = payload.children[0].children;
+        // count items
+        i = target.length;
         // target first entry for sample data
         firstItem = $(payload.children[0].children[0]);
         // store the name of the library being queried;
@@ -60,12 +69,8 @@ function renderData() {
             targetLibrary = 'All ' + $(payload.children[0]).attr('librarySectionTitle');
             targetType = firstItem.attr('type');
         }
-        console.log('targetType = ' + targetType + '. Returning results from ' + url);
-        // build UI (header and empty grid)
-        gridLayout = '<h3>Contents:</h3><hr /><div class="grid"></div>';
-        // append UI to content area
-        $(gridLayout).appendTo(wrapper);
-
+        console.log('targetType = ' + targetType + ' (' +
+            i + '). Returning results from ' + url);
         // parse payload items and build each entry into the DOM
         $(payload).find(target).each(function() {
             // store data for each entry
@@ -73,16 +78,15 @@ function renderData() {
             name = entry.attr('title'),
             year = entry.attr('year'),
             img = entry.attr('thumb'),
+            type = entry.attr('type');
             imgURL = serverURL + img + '?' + token;
+            grid = $('.content .grid')
 
             // again, massage data for recently added entries
             if (targetType == 'recent') {
                 type = 'recent';
             } else {
-                type = entry.attr('type');
-            }
-
-            grid = $('.content .grid');
+            };
 
             // build UI for each entry
             entryInterface = $('<div class="' + type +
@@ -90,17 +94,15 @@ function renderData() {
             // append it to the target list, set background
             entryInterface.appendTo(grid)
                           .css({'background-image':'url(' + imgURL + ')'});
-            // increment count
-            i = i+1;
         });
-        listCount = i;
-        $('.content h3').text('Content: ' + listCount);
+    count = count + i;
     });
+    console.log('total entries = ' + count);
+    $('.content h3').text('Total Entries: ' + count);
 }
 
 // bind the query button
 $('.query').click(renderData);
-
 // on load
 $(function() {
     // lazy load images
