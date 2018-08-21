@@ -33,7 +33,7 @@ jQuery.extend({
 function renderData() {
     wrapper = $('.content');
     // set count to 0
-    count = 0
+    count = 0;
     // build URLs
     serverUrl = 'http://152.208.9.6:23397';
     token = 'X-Plex-Token=xxcwJWERP477juYsw4MX';    
@@ -152,18 +152,5 @@ $(function() {
         onError: function() {
             console.log('error loading an image!');
         }
-    });
-    // initialize isotope on the sortable areas
-    $('.grid').isotope({
-        itemSelector: 'div.entry',
-        layoutMode: 'fitRows',
-        getSortData: {
-            name: '.name',
-            ratingMPAA: '.rating-MPAA',
-            ratingAudience: '.rating-audience',
-            dateReleased: '[data-datereleased]',
-            dateAdded: '[data-dateadded]'
-        },
-        sortBy: 'name'
     });
 });
