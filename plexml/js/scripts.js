@@ -43,10 +43,6 @@ function renderData() {
     recentlyAddedUrl = serverUrl + '/library/recentlyAdded/search?type=1&X-Plex-Container-Start=0&X-Plex-Container-Size=20&' + token;
     urls = [showsUrl,moviesUrl];// hiding recentlyAddedUrl for now
 
-    // build UI (header and empty grid)
-    gridLayout = '<h3>Contents:</h3><hr /><div class="grid"></div>';
-    // append UI to content area
-    $(gridLayout).appendTo(wrapper);
     // for each entry in urls, grab XML
     $.each(urls, function(i, url) {
         wrapper = $('.content');
@@ -97,21 +93,52 @@ function renderData() {
                                 'data-dateadded="' + dateAdded + '" ' +
                                 'data-sorttitle="' + sortTitle + '" ' +
                                 'data-duration="' + duration + '" ' +
+                                'data-src="' + imgUrl + '" ' +
                                 'class="entry ' + type + ' lazy">' +
                                 '<p class="name">' + name + ' (' + year + ')</p>' +
                                 '<p class="rating-MPAA">Rated: ' + ratingMPAA + '</p>' +
                                 '<p class="rating-audience">Rotten Tomatoes: ' + ratingAudience + '</p>' +
                                 '</div>');
             // append it to the target list, set background
-            entryInterface.appendTo(grid)
-                          .css({'background-image':'url(' + imgUrl + ')'});
+            entryInterface.appendTo(grid);
         });
     count = count + i;
     });
     console.log('total entries = ' + count);
     // append header
     $('.content h3').text('Total Entries: ' + count);
-    // initialize isotope on grid
+    // there's a bug with lazy load and dynamic elements that
+    // means lazy load needs applied before the element renders,
+    // or else the background starts loading immediately. So,
+    // everything needs to be hidden (.content is set to display:none)
+    // while we lazy load images
+    $('.lazy').Lazy({
+        scrollDirection: 'vertical',
+        effect: 'fadeIn',
+        visibleOnly: true,
+        beforeLoad: function(element) {
+            // called before an elements gets handled
+            console.log('BG starting load');
+        },
+        afterLoad: function(element) {
+            // called after an element was successfully handled
+            console.log('BG loaded!')
+        },
+        onError: function(element) {
+            // called whenever an element could not be handled
+            console.log('BG failed to load :(');
+        },
+        onFinishedAll: function() {
+            // called once all elements was handled
+            console.log('all BGs loaded');
+        }
+    });
+    // now that all entries are appended and have lazy load applied,
+    // reveal the entire grid of entries
+    $('.content').show();
+    // since the .content area was hidden (0 width) when the entries were appended,
+    // they all stack on top of each other, and now we need to
+    // initialize isotope on grid for a fresh sort, which re-aligns them
     $('.grid').isotope({
         itemSelector: 'div.entry',
         layoutMode: 'fitRows',
@@ -124,6 +151,12 @@ function renderData() {
         },
         sortBy: 'name'
     });
+    // another bug with lazy load, even though the .content div
+    // is visible, and so are the entries within it, and they've been
+    // shuffled into horizontal rows by isotope, lazy load still doesn't
+    // consider them "visible" until a scroll event is triggered,
+    // so we have to do this hacky thing:
+    $(window).scroll();
 }
 
 // bind the query buttons
@@ -144,22 +177,5 @@ $('button.sort').each(function() {
 });
 // on load
 $(function() {
-    // lazy load images
-    $('.lazy').Lazy({
-        scrollDirection: 'vertical',
-        effect: 'fadeIn',
-        visibleOnly: true,
-        beforeLoad: function(element) {
-            // called before an elements gets handled
-        },
-        afterLoad: function(element) {
-            // called after an element was successfully handled
-        },
-        onError: function(element) {
-            // called whenever an element could not be handled
-        },
-        onFinishedAll: function() {
-            // called once all elements was handled
-        }
-    });
+
 });

@@ -33,12 +33,17 @@ h3 {
 hr {
 	border:#fff 1px solid;
 }
+/* content wrapper */
+.content {
+	display:none;
+}
 /* entries */
 .grid {
+	display:block;
 	width:80%;
 	margin:20px auto;
 }
-.grid div {
+.grid .entry {
 	display:inline-block;
 	text-align:center;
 	margin:0;
@@ -53,7 +58,7 @@ hr {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
-.grid div p {
+.grid .entry p {
 	font-size:10px;
 	line-height:30px;
 	background:rgba(0,0,0,.8);
@@ -62,14 +67,14 @@ hr {
 	padding:0;
 	margin:0;
 }
-.grid div p.name,
-.grid div p.year {
+.grid .entry p.name,
+.grid .entry p.year {
 	display:inline;
 	font-size:18px;
 }
-.grid div:hover {
+.grid .entry:hover {
 	background-color:#333;
 }
-.grid div:hover p {
+.grid .entry:hover p {
 	opacity:1;
 }
