@@ -8,7 +8,6 @@ html, body {
 button, span {
 	height:2em;
 	font-size:1.5em;
-	border-radius:10px;
 	vertical-align:middle;
 }
 button img {
@@ -20,23 +19,16 @@ h1 {
 	margin:10 0;
 }
 p {
-	text-transform:capitalize;
 	font-size:24px;
-	margin:0 10px 0 0;
-}
-.divider {
-	display:inline-block;
-	width:2px;
-	background:#f2f2f2;
+	margin:10px;
 }
 /* alert section */
 .alert p {
-	font-size:24px;
+	font-size:18px;
 }
 /* section headers */
 h3 {
-	font-size:32px;
-	margin:10px 0;
+	font-size:24px;
 }
 hr {
 	border:#fff 1px solid;
@@ -45,9 +37,22 @@ hr {
 .content {
 	display:none;
 }
+.content p {
+	text-transform:capitalize;
+	margin:0 10px 0 0;
+}
 /* controls */
 .controls {
 	display:none;
+}
+.controls button, .controls span {
+	float:left;
+}
+.controls span {
+	margin:10px;
+}
+.controls h3 {
+	display:block;
 }
 /* entries */
 .grid {
@@ -84,9 +89,6 @@ hr {
 	display:inline;
 	font-size:18px;
 }
-.grid .entry:hover {
-	background-color:#333;
-}
 .grid .entry:hover p {
 	opacity:1;
 }
@@ -94,7 +96,10 @@ hr {
 .entry-icon {
 	height:24px;
 	width:24px;
-	background:rgba(0,0,0,.6);
 	float:left;
-	opacity:.7;
+}
+.grid .entry .entry-icon {
+	position:relative;
+	left:5px;
+	opacity:.5;
 }

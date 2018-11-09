@@ -7,21 +7,20 @@ jQuery.extend({
             type: "GET",
             dataType: "xml",
             async: false,
+            timeout: 5000,
             beforeSend: function() {
                 // call starts
-                $('.alert').html('<p>Loading!</p><p>Please wait for my tiny computer to process your request.</p>');
             },
             complete: function() {
                 // call ends (before success/error)
-                $('.alert').html('');
             },
             success: function(data) {
                 console.log('ajax success');
                 payload = data;
             },
             error: function(jqXHR, textStatus, errorThrown){
-              // debug here
-              console.log('Error! The media server must be down right now, sorry.');
+              $('.alert').html('<p>Sorry!</p><p>The server must be down right now, or you\'re behind a firewall, or your browser doesn\'t like unsecured requests.</p>');
+              console.log('Error = ' + textStatus + '! The media server must be down right now, sorry.');
             }
         });
        return payload;
@@ -119,23 +118,19 @@ function renderData() {
         visibleOnly: true,
         beforeLoad: function(element) {
             // called before an elements gets handled
-            console.log('BG starting load');
         },
         afterLoad: function(element) {
             // called after an element was successfully handled
-            console.log('BG loaded!')
         },
         onError: function(element) {
             // called whenever an element could not be handled
-            console.log('BG failed to load :(');
         },
         onFinishedAll: function() {
             // called once all elements was handled
-            console.log('all BGs loaded');
         }
     });
     // reveal controls
-    $('.controls').show();
+    $('.controls').css('display', 'inline-block');
     // now that all entries are appended and have lazy load applied,
     // reveal the entire grid of entries
     $('.content').show();
