@@ -42,6 +42,9 @@ function renderData() {
     recentlyAddedUrl = serverUrl + '/library/recentlyAdded/search?type=1&X-Plex-Container-Start=0&X-Plex-Container-Size=20&' + token;
     urls = [showsUrl,moviesUrl];// hiding recentlyAddedUrl for now
 
+    // disable query button
+    $('.query').attr('disabled', 'disabled');
+
     // for each entry in urls, grab XML
     $.each(urls, function(i, url) {
         wrapper = $('.content');
