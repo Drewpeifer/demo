@@ -35,7 +35,7 @@ function renderData() {
     // set count to 0
     count = 0;
     // build URLs
-    serverUrl = 'http://152.208.9.6:23397';
+    serverUrl = 'http://152.208.23.228:14551';
     token = 'X-Plex-Token=xxcwJWERP477juYsw4MX';    
     baseUrl = serverUrl + '/library/sections/all?' + token;
     moviesUrl = serverUrl + '/library/sections/30/all?' + token;
@@ -177,5 +177,5 @@ $('button.sort').each(function() {
 });
 // on load
 $(function() {
-
+    // nothing here yet
 });
