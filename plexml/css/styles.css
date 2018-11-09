@@ -5,12 +5,15 @@ html, body {
 	font-family: 'Ubuntu', sans-serif;
 	width:100%;
 }
-button {
-	height:80px;
-	width:140px;
-	font-size:28px;
+button, span {
+	height:2em;
+	font-size:1.5em;
 	border-radius:10px;
-	vertical-align:top;
+	vertical-align:middle;
+}
+button img {
+	vertical-align:middle;
+	position:relative;
 }
 h1 {
 	font-size:48px;
@@ -20,6 +23,11 @@ p {
 	text-transform:capitalize;
 	font-size:24px;
 	margin:0 10px 0 0;
+}
+.divider {
+	display:inline-block;
+	width:2px;
+	background:#f2f2f2;
 }
 /* alert section */
 .alert p {
@@ -35,6 +43,10 @@ hr {
 }
 /* content wrapper */
 .content {
+	display:none;
+}
+/* controls */
+.controls {
 	display:none;
 }
 /* entries */
@@ -78,7 +90,8 @@ hr {
 .grid .entry:hover p {
 	opacity:1;
 }
-.grid .entry .entry-icon {
+/* movie and show icons */
+.entry-icon {
 	height:24px;
 	width:24px;
 	background:rgba(0,0,0,.6);

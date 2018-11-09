@@ -134,6 +134,8 @@ function renderData() {
             console.log('all BGs loaded');
         }
     });
+    // reveal controls
+    $('.controls').show();
     // now that all entries are appended and have lazy load applied,
     // reveal the entire grid of entries
     $('.content').show();

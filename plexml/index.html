@@ -18,16 +18,24 @@
 </head>
 <body>
 	<h1>PleXML</h1>
-	<div class="controls">
-		<button class="query">Query</button>
+	<div>
+		<button class="query">Show Me What You Got</button>
 	</div>
 	<div class="alert"></div>
 	<hr />
 	<div class="controls">
+		<span>Filter:</span>
+		<button class="filter" data-filter="movie">
+			<img class="entry-icon" src="img/movie.jpg">
+			Movies
+		</button>
+		<button class="filter" data-filter="show">
+			<img class="entry-icon" src="img/show.jpg">
+			TV
+		</button>
 		<button class="filter" data-filter="entry">All</button>
-		<button class="filter" data-filter="movie">Movies</button>
-		<button class="filter" data-filter="show">TV</button>
-		<hr />
+		<div class="divider"></div>
+		<span>Sort:</span>
 		<button class="sort" data-sort="name">Title</button>
 		<button class="sort" data-sort="ratingMPAA">MPAA Rating</button>
 		<button class="sort" data-sort="ratingAudience">Audience Rating</button>
