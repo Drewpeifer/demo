@@ -169,7 +169,19 @@ $('button.filter').each(function() {
 // sorting
 $('button.sort').each(function() {
     $(this).click(function() {
-        $('.grid').isotope({ sortBy: $(this).attr('data-sort') });
+        if ($(this).hasClass('active')) {
+            if ($(this).hasClass('reverse-sort')) {
+                $('.grid').isotope({ sortAscending: true });
+                $(this).removeClass('reverse-sort');
+            } else {
+                $('.grid').isotope({ sortAscending: false });
+                $(this).addClass('reverse-sort');
+            }
+        } else {
+            $('button.sort').removeClass('active reverse-sort');
+            $(this).addClass('active');
+            $('.grid').isotope({ sortBy: $(this).attr('data-sort'), sortAscending: true });
+        }
         console.log('now sorting by ' + $(this).attr('data-sort'));
     });
 });
