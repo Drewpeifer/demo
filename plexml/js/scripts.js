@@ -95,6 +95,7 @@ function renderData() {
                                 'data-duration="' + duration + '" ' +
                                 'data-src="' + imgUrl + '" ' +
                                 'class="entry ' + type + ' lazy">' +
+                                '<img class="entry-icon" src="img/' + type + '.jpg">' +
                                 '<p class="name">' + name + ' (' + year + ')</p>' +
                                 '<p class="rating-MPAA">Rated: ' + ratingMPAA + '</p>' +
                                 '<p class="rating-audience">Rotten Tomatoes: ' + ratingAudience + '</p>' +
