@@ -162,8 +162,14 @@ $('.query').click(renderData);
 // filtering
 $('button.filter').each(function() {
     $(this).click(function() {
-        $('.grid').isotope({ filter: '.' + $(this).attr('data-filter') });
-        console.log('now filtering by ' + $(this).attr('data-filter'));
+        if ($(this).hasClass('active')) {
+            // do nothing
+        } else {
+            $('button.filter').removeClass('active');
+            $(this).addClass('active');
+            $('.grid').isotope({ filter: '.' + $(this).attr('data-filter') });
+            console.log('now filtering by ' + $(this).attr('data-filter'));
+        }
     });
 });
 // sorting

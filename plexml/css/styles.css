@@ -15,7 +15,7 @@ button img {
 	position:relative;
 }
 button.active {
-	background:#e2ca9c;
+	color:#c68301;
 }
 h1 {
 	font-size:48px;
