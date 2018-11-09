@@ -14,9 +14,15 @@ button img {
 	vertical-align:middle;
 	position:relative;
 }
+button.active {
+	background:#e2ca9c;
+}
 h1 {
 	font-size:48px;
 	margin:10 0;
+}
+strong {
+	color:orange;
 }
 p {
 	font-size:24px;
