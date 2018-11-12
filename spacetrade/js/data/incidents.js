@@ -120,7 +120,7 @@ function closeIncident() {
 // 			type : "good / bad / neutral",
 // 			description : "semi-long string describing results of choice",
 // 			effect : "short text description of outcome, e.g. lost 2 fuel",
-// 			func : method() that applies outcome to objects
+// 			func : method that applies outcome to objects
 // 		}
 // 	},
 // 	isHappening : always set to false unless currently active,
@@ -129,6 +129,7 @@ function closeIncident() {
 
 incidents = [];
 
+// The one with the silent armed vessel
 incidents[0] = {
 	type : "Unknown Vessel Approaching",
 	description : "Captain, an unknown ship is on approach, sensors are reading " +
@@ -177,6 +178,7 @@ incidents[0] = {
 	hasHappened : false
 }
 
+// The one where you have to pass by the black hole
 incidents[1] = {
 	type : "Stellar Anomaly Detected",
 	description : "Captain, we've warped right to a black hole! It's been a while since you've seen any debris around, " +
@@ -217,6 +219,7 @@ incidents[1] = {
 	hasHappened : false
 }
 
+// The one with the advanced unknown on approach
 incidents[2] = {
 	type : "Unknown Vessel Approaching",
 	description : "Captain, a strange ship is on approach, hailing in an unknown language. " +
@@ -257,6 +260,7 @@ incidents[2] = {
 	hasHappened : false
 }
 
+// The one with the damaged ship on approach
 incidents[3] = {
 	type : "Distress Signal",
 	description : "Captain, we've received a distress signal from an unknown vessel. " +
@@ -298,6 +302,7 @@ incidents[3] = {
 	hasHappened : false
 }
 
+// The one with the adrift shuttle on approach
 incidents[4] = {
 	type : "Unknown Vessel Approaching",
 	description : "Captain, a small ship is approaching with no interplanetary registration markings. " +
@@ -341,6 +346,7 @@ incidents[4] = {
 	hasHappened : false
 }
 
+// The one with the cargo derelict
 incidents[5] = {
 	type : "Derelict Vessel",
 	description : "Captain, derelict ship ahead. Freighter class, no life signs detected. " +
@@ -381,6 +387,7 @@ incidents[5] = {
 	hasHappened : false
 }
 
+// The one with derelict that has bio domes
 incidents[6] = {
 	type : "Derelict Vessel",
 	description : "Derelict sighted, Captain. Scanners show no humanoid lifesigns, though we do see readings that " +
@@ -422,6 +429,7 @@ incidents[6] = {
 	hasHappened : false
 }
 
+// The one with the asteroids and nebula
 incidents[7] = {
 	type : "Asteroid Field Ahead",
 	description : "There's a gaseous nebula above the field, and a belt of radiation below it. " +
@@ -465,6 +473,7 @@ incidents[7] = {
 	hasHappened : false
 }
 
+// The one where you have to look for a way around or caulk the wagon and float it
 incidents[8] = {
 	type : "Stellar Anomaly Detected",
 	description : "Gaseous nebula dead ahead, and it's a few aU's in length captain, there's no way we can go around. " +
@@ -507,6 +516,7 @@ incidents[8] = {
 	hasHappened : false
 }
 
+// The one where you run into a wormhole
 incidents[9] = {
 	type : "Stellar Anomaly Detected",
 	description : "Wormhole sighted, Captain! " +
@@ -549,6 +559,7 @@ incidents[9] = {
 	hasHappened : false
 }
 
+// The one where you meet yourself
 incidents[10] = {
 	type : "Incoming Signal",
 	description : "Uh, Captain? We seem to be receiving hails from... ourselves." +
@@ -590,6 +601,7 @@ incidents[10] = {
 	hasHappened : false
 }
 
+// The one where you meet Tom Baker
 incidents[11] = {
 	type : "Unkown Vessel Approaching",
 	description : "Captain, the guy in the blue phonebooth is here again. " +
@@ -633,6 +645,7 @@ incidents[11] = {
 	hasHappened : false
 }
 
+// The one where you get pulled over by the cops
 incidents[12] = {
 	type : "Incoming Signal",
 	description : "Uh-oh. Captain, we're being pulled over by the Galactic Police. The strange " +
@@ -666,7 +679,7 @@ incidents[12] = {
 		},
 		2 : {
 			type : "bad",
-			description : "HoooEEE that was a good chase! I think we lost them when we slingshotted around that moon, did you see that Captain? Our pilot is awesome. No clue where they ended up but we're still on course and we're moving FAST. We used a little extra fuel, though. Just a little.",
+			description : "HoooEE that was a good chase! I think we lost them when we slingshotted around that moon, did you see that Captain? Our pilot is awesome. No clue where they ended up but we're still on course and we're moving FAST. We used a little extra fuel, though. Just a little.",
 			effect : "-1 Fuel",
 			func : function() { return fuelChange(-1); }
 		},
@@ -674,7 +687,7 @@ incidents[12] = {
 	isHappening : false,
 	hasHappened : false
 }
-
+// SAMPLE INCIDENT
 // incidents[X] = {
 // 	type :
 // 	description :
