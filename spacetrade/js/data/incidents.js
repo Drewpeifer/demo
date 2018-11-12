@@ -731,7 +731,7 @@ incidents[13] = {
 	outcomes : {
 		0 : {
 			type : "bad",
-			description : "Security is reporting a silver mercurial sphere ricocheting around the corridor, avoiding phaser fire completely. Two crewmen down now, the sphere has collided with them and crushed-- sir, four men down now. Security has retreated to a hatchway, sir-- now they report the sphere has smashed through a bulkhead and disappeared. Force fields have sealed the breach, engineers are on their way... Well Captain, the resulting repair costs are going to make those the most expensive Quatro Quesos Dos Fritos ever made. Hope it was worth it.",
+			description : "Security is reporting a mercurial sphere ricocheting around the corridor, avoiding phaser fire completely. Two crewmen down now, the sphere has collided with them and crushed-- sir, four men down now. Security has retreated to a hatchway, sir-- now they report the sphere has smashed through a bulkhead and disappeared. Force fields have sealed the breach, engineers are on their way... Well Captain, the resulting repair costs are going to make those the most expensive Quatro Quesos Dos Fritos ever made. Hope it was worth it.",
 			effect : "Lost 1/3 your credits",
 			func : function() { return walletChange(-stats.wallet * .33); }
 		},
