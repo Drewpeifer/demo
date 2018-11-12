@@ -9,7 +9,7 @@ Vue.component('marketplace', {
                     '<span class="num">Cargo</span>' +
                 '</li>' +
                 '<li v-if="mainStats.port.fuelStation" class="unselectable">' +
-                    '<span class="title">Fuel</span>' +
+                    '<span title="This is what lets you travel, and if you run out it\'s Game Over, man!" class="tooltip title">Fuel</span>' +
                     '<span class="action">' +
                     '<input type="range" v-model="mainStats.port.fuelDelta" value="0" v-bind:max="mainStats.port.fuelAvailable" v-bind:min="0">' +
                     '</span>' +
@@ -20,7 +20,7 @@ Vue.component('marketplace', {
                     '<span class="num">{{ mainStats.fuel }}</span>' +
                 '</li>' +
                 '<li v-if="mainStats.port.cargoUpgrade" class="unselectable">' +
-                    '<span class="title">Cargo Hold Upgrade</span>' +
+                    '<span title="Purchase a cargo upgrade here to increase your ship\'s capacity by 20 units" class="tooltip title">Cargo Hold Upgrade</span>' +
                     '<span class="action">' +
                     '<input type="range" v-model="mainStats.port.cargoUpgradeDelta" value="0" v-bind:max="mainStats.port.cargoUpgrades" v-bind:min="0">' +
                     '</span>' +
