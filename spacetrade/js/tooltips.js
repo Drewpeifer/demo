@@ -15,6 +15,8 @@ function buildTooltips() {
 		score = $('#score'),
 		turn = $('#turn'),
 		allElements = [location, map, wallet, cargo, fuel, commodity, price, stock, loot, score, turn];
+		// NOTE: all the market commodities have their labels manually tagged with
+		// a tooltip class and title attribute within app.js
 
 	// tag element for tooltipster
 	$.each(allElements, function() {

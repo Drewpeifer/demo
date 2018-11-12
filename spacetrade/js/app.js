@@ -30,7 +30,7 @@ Vue.component('marketplace', {
                     '<span class="num">{{ mainStats.port.cargoUpgrades }}</span>' +
                     '<span class="num">{{ mainStats.cargoUpgrades }}</span></li>' +
                 '<li v-for="(item, index) in mainStats.menu" v-bind:class="item.safeTitle">' +
-                    '<span class="title unselectable">{{ item.title }}</span>' +
+                    '<span v-bind:title="item.description" class="title tooltip unselectable">{{ item.title }}</span>' +
                     '<span class="action">' +
                     '<input type="range" v-model="item.delta" value="0" v-bind:max="item.currentStock" v-bind:min="0 - item.currentLoot">' +
                     '</span>' +
