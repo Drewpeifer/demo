@@ -63,16 +63,29 @@ menuA[3] = { title : "Laudinum",
             stockFlux : .4,
 			delta : 0
 };
-menuA[4] = { title : "Unobtainium",
-			safeTitle: "unobtainium",
+menuA[4] = { title : "Uranium",
+			safeTitle: "uranium",
+            description : "Radioactive substance used in fuel and weapons production. Disappointingly, it is not green.",
+            loot : 0,
+            unit : "item",
+            baseStock : 6,
+			currentStock : 0,
+			currentLoot : 0,
+            basePrice : 1000,
+			currentPrice : 0,
+            stockFlux : .8,
+            delta : 0
+};
+menuA[5] = { title : "Unobtainium",
+            safeTitle: "unobtainium",
             description : "Something no one sells, but can sometimes be found randomly in your travels.",
             loot : 0,
             unit : "item",
             baseStock : 0,
-			currentStock : 0,
-			currentLoot : 0,
+            currentStock : 0,
+            currentLoot : 0,
             basePrice : 8000,
-			currentPrice : 0,
+            currentPrice : 0,
             stockFlux : 0,
             delta : 0
 };
@@ -91,7 +104,7 @@ var mapA = [];
 //            cargoUpgradePrice : cost to upgrade, 0 if no upgrade station,
 //            embargo : list of items port does not buy/sell (unused for now),
 //            priceFlux : amount that prices will fluctuate up/down on average,
-//            saleMod : percentage of an items price that will be subtracted dring a sale,
+//            saleMod : percentage of an items price that will be subtracted during a sale,
 //            peakMod : amount an items price will be multiplied by during a hike,
 //            description : the white text below a locations name, above the marketplace
 //         };
