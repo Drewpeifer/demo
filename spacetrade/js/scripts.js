@@ -21,34 +21,39 @@ $(document).ready(function(){
     $('#captain').attr('placeholder','New Captain');
   }
 
-  $('#debug, #clearCookie').hide();
-
 });
 $('#highScores').bind('click', function() {
   $('#scores li').toggleClass('toggle');
 });
-//// debug stuff ////
-//$('#debug, #clearCookie').hide();// comment this out to enable debugging
-$('#debug').bind('click', function() {
-	$('#debugPanel').toggle();
-});
-// bind increase/decrease buttons to stat object
-$('#debugPanel button').bind('click', function() {
-  parentRow = $(this).closest('tr');
-  parentStat = parentRow.attr('class');
-  statIncrement = parseInt(parentRow.attr('data-increment'));
-  
-  if ($(this).hasClass('increase')) {
-  	// raise
-  	stats[parentStat] += statIncrement;
-  } else {
-  	// lower
-  	if ((stats[parentStat] -= statIncrement) <= 0) {
-  		// make sure there are no negative numbers
-  		stats[parentStat] = 0;
-  	} else {
-  		stats[parentStat] -= statIncrement;
-  	}
-  }
-});
+
+//// debug mode //////
+debugMode = false;//// set to false in production
+//////////////////////
+if (debugMode) {
+  // bind debug button
+  $('#debug').bind('click', function() {
+    $('#debugPanel').toggle();
+  });
+  // bind increase/decrease buttons to stat object
+  $('#debugPanel button').bind('click', function() {
+    parentRow = $(this).closest('tr');
+    parentStat = parentRow.attr('class');
+    statIncrement = parseInt(parentRow.attr('data-increment'));
+
+    if ($(this).hasClass('increase')) {
+      // raise
+      stats[parentStat] += statIncrement;
+    } else {
+      // lower
+      if ((stats[parentStat] -= statIncrement) <= 0) {
+        // make sure there are no negative numbers
+        stats[parentStat] = 0;
+      } else {
+        stats[parentStat] -= statIncrement;
+      }
+    }
+  });
+} else {
+  $('#debug, #clearCookie').hide();
+};
 // end debug
