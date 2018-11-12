@@ -8,7 +8,7 @@ function nothingHappened() {
 function fuelChange(delta) {
     if (delta > 0) {
         stats.fuel += delta;
-        chosenEffect = '+' + delta + ' fuel';
+        //chosenEffect = '+' + delta + ' fuel';
     } else {
         currentFuel = stats.fuel;
 
@@ -19,7 +19,7 @@ function fuelChange(delta) {
             chosenEffect = "Oh no, your tank is empty!";
         } else {
             stats.fuel += delta;
-            chosenEffect = '' + delta + ' fuel';
+            //chosenEffect = '' + delta + ' fuel';
         }
     }
 }
