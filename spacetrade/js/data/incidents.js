@@ -85,6 +85,28 @@ function gainRandomGoods() {
     }
 }
 
+function gainSpecificGoods(menuItem, amount) {
+	currentCargo = stats.cargoLoot;
+
+    if (currentCargo == stats.cargoCap) {
+        chosenEffect = "Cargo is full! We had to leave the loot behind.";
+    } else {
+        cargoRoom = stats.cargoCap - currentCargo;// remaining cargo space
+        specificAmount = amount;// intended amount to add
+        specificGoods = menuItem;// intended item to add
+        if (cargoRoom < specificAmount) {
+			// if available cargo is less than intended amount,
+			// set amount to be same as available cargo room
+			specificAmount = cargoRoom;
+	        // add specificAmount to currentLoot for random item
+	        specificGoods.currentLoot += specificAmount;
+        } else {
+	        // add specificAmount to currentLoot for random item
+	        specificGoods.currentLoot += specificAmount;
+        }
+    }
+}
+
 function cargoCapIncrease(delta) {
     stats.cargoCap += delta;
 }
@@ -680,6 +702,48 @@ incidents[12] = {
 		2 : {
 			type : "bad",
 			description : "HoooEE that was a good chase! I think we lost them when we slingshotted around that moon, did you see that Captain? Our pilot is awesome. No clue where they ended up but we're still on course and we're moving FAST. We used a little extra fuel, though. Just a little.",
+			effect : "-1 Fuel",
+			func : function() { return fuelChange(-1); }
+		},
+	},
+	isHappening : false,
+	hasHappened : false
+}
+
+// The one where a creature is detected onboard
+incidents[13] = {
+	type : "Intruder Alert",
+	description : "There's an intruder aboard, Captain! Sensors are going off in the engineering " +
+		"junctions on deck C, security is on its way. Life signs do not match anything in our " +
+		"database. Security sensor information is limited, but the creature appears to be moving " +
+		"at an unbelievable speed and emitting very little heat. It's in B-14 now sir, two hundred meters " +
+		"from the galley, security is about to intercept.",
+	alternatives : [
+        "Ya know it just occurred to me Cap, we have all that extra food we just picked up, wouldn't it be weird if it was just hungry? Anyway, security is awaiting your command.",
+        "In my opinion sir, nothing moves that fast unless it's dangerous. I suggest we shoot first and mop up later.",
+        "For the record sir, the galley is connected to the chow hall, and we have 50 unarmed crew members in there who just started their dinner."
+	],
+	choices : [
+        "The galley?! It's southwestern night and the Captain is NOT going to miss his Quatro Quesos Dos Fritos. Security team, fire at will!",
+        "Hold fire! Do not engage. Clear the galley and chow hall. Contain the target and observe, we may learn what it wants, or how to destroy it.",
+        "Code Ripley! Seal corridors that lead to personnel and then open the airlocks in section 14. Shoot that thing back into the inky black hellscape FROM WHENCE IT CAME!"
+	],
+	outcomes : {
+		0 : {
+			type : "bad",
+			description : "Security is reporting a silver mercurial sphere ricocheting around the corridor, avoiding phaser fire completely. Two crewmen down now, the sphere has collided with them and crushed-- sir, four men down now. Security has retreated to a hatchway, sir-- now they report the sphere has smashed through a bulkhead and disappeared. Force fields have sealed the breach, engineers are on their way... Well Captain, the resulting repair costs are going to make those the most expensive Quatro Quesos Dos Fritos ever made. Hope it was worth it.",
+			effect : "Lost 1/3 your credits",
+			func : function() { return walletChange(-stats.wallet * .33); }
+		},
+		1 : {
+			type : "good",
+			description : "Captain you were right, it was just hungry! Apparently it only wanted things containing cheese, which unfortunately included your Quatro Quesos Dos Fritos. After eating all the cheesey foods, it took a giant-- ah, sorry sir, it \"produced\" a pile of Uranium! Engineering has contained it and transported it to the cargo hold.",
+			effect : "+10 Uranium",
+			func : function() { return gainSpecificGoods(menuA[4], 10); }
+		},
+		2 : {
+			type : "bad",
+			description : "Frankly Captain, I believe you acted precipitously in jettisoning that unknown entity into the infinite void. While we have maintained our own fragile asylum, we shall never know its motives, its beliefs, its curiosities and nightmares-- aw crap, we lost some crates of fuel in the jettison. Oh well, let's get a taco.",
 			effect : "-1 Fuel",
 			func : function() { return fuelChange(-1); }
 		},
