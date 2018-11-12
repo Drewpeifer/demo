@@ -126,7 +126,23 @@ mapA[0] = {  title : "Earth",
             description : "Earth! Home sweet home, the most stable marketplace in the galaxy. You can buy fuel here, or a cheeseburger."
          };
 
-mapA[1] = {  title : "Rilos",
+mapA[1] = {  title : "Triton",
+            fuelStation : false,
+            fuelPrice : 0,
+            fuelAvailable : 0,
+            fuelDelta : 0,
+            cargoUpgradeDelta : 0,
+            cargoUpgrade: false,
+            cargoUpgrades : 0,
+            cargoUpgradePrice : 0,
+            embargo : false,
+            priceFlux : .7,
+            saleMod : .3,
+            peakMod : 8,
+            description : "This moon has a rest stop that's become a popular waypoint for space truckers, probably due to the always-open rotating diner."
+         };
+
+mapA[2] = {  title : "Rilos",
             fuelStation : false,
             fuelPrice : 0,
             fuelAvailable : 0,
@@ -142,7 +158,7 @@ mapA[1] = {  title : "Rilos",
             description : "Rilos, HQ for the Star League, which defends the Frontier from Xur and the Kodan Armada. We have a free pass for the Frontier, in case you were wondering."
          };
 
-mapA[2] = {  title : "Arrakis",
+mapA[3] = {  title : "Arrakis",
             fuelStation : false,
             fuelPrice : 0,
             fuelAvailable : 0,
@@ -158,7 +174,7 @@ mapA[2] = {  title : "Arrakis",
             description : "Arrakis, also known as Dune, home to the spice Melange and also giant worms. Their engineers are awesome at upgrading cargo holds."
          };
 
-mapA[3] = {  title : "Risa",
+mapA[4] = {  title : "Risa",
             fuelStation : true,
             fuelPrice : 600,
             fuelAvailable : 10,
@@ -172,6 +188,54 @@ mapA[3] = {  title : "Risa",
             saleMod : .4,
             peakMod : 8,
             description : "Risa, known throughout the Alpha Quadrant for its recreational attractions and open-minded populace. Seriously. Open-minded. Oh, they sell fuel, too."
+         };
+
+mapA[5] = {  title : "Zarkon",
+            fuelStation : false,
+            fuelPrice : 0,
+            fuelAvailable : 0,
+            fuelDelta : 0,
+            cargoUpgradeDelta : 0,
+            cargoUpgrade: false,
+            cargoUpgrades : 0,
+            cargoUpgradePrice : 0,
+            embargo : false,
+            priceFlux : .5,
+            saleMod : .6,
+            peakMod : 3,
+            description : "Zarkon has a fairly stable economy, and is notable for its continued use of UHF signals."
+         };
+
+mapA[6] = {  title : "Klendathu",
+            fuelStation : false,
+            fuelPrice : 0,
+            fuelAvailable : 0,
+            fuelDelta : 0,
+            cargoUpgradeDelta : 0,
+            cargoUpgrade: false,
+            cargoUpgrades : 0,
+            cargoUpgradePrice : 0,
+            embargo : false,
+            priceFlux : .1,
+            saleMod : .1,
+            peakMod : 9,
+            description : "It's a hostile planet, a bug planet! A constant state of bug-on-bug war means unusually high price hikes when supplies are needed."
+         };
+
+mapA[7] = {  title : "Colonia",
+            fuelStation : true,
+            fuelPrice : 600,
+            fuelAvailable : 5,
+            fuelDelta : 0,
+            cargoUpgradeDelta : 0,
+            cargoUpgrade: false,
+            cargoUpgrades : 0,
+            cargoUpgradePrice : 0,
+            embargo : false,
+            priceFlux : .4,
+            saleMod : .3,
+            peakMod : 2,
+            description : "A backwater outpost dedicated to producing coffee mugs that say \"I'm lost\" in every known language. At least they sell fuel."
          };
 
 // global config variables for easy debugging
