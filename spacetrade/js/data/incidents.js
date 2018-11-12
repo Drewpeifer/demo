@@ -710,7 +710,7 @@ incidents[12] = {
 	hasHappened : false
 }
 
-// The one where a creature is detected onboard
+// The one where a creature is detected onboard and you have Quatro Quesos Dos Fritos
 incidents[13] = {
 	type : "Intruder Alert",
 	description : "There's an intruder aboard, Captain! Sensors are going off in the engineering " +
