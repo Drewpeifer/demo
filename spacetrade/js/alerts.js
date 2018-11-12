@@ -81,7 +81,7 @@ function cargoValueSum(menu) {
 			// do nothing
 		}
 	});
-	console.log(itemValueArray);
+	//console.log(itemValueArray);
 	return itemValueArray.reduce(function(a, b) { return a + b; }, 0);
 }
 
