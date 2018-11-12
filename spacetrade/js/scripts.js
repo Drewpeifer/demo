@@ -18,7 +18,7 @@ $(document).ready(function(){
     lastCapt = getCookie('lastCaptainName');
     $('#captain').val(lastCapt);
   } else {
-    $('#captain').attr('placeholder','Dan Smith');
+    $('#captain').attr('placeholder','New Captain');
   }
 
   $('#debug, #clearCookie').hide();
