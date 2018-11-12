@@ -236,7 +236,7 @@ Vue.component('map-list', {
                 $('#map').toggle();
 
                 // did an incident occur?
-                incidentOccurred = getRandomNumber(1, 2);// 1 = yes, 2 = no
+                incidentOccurred = getRandomNumber(1, 2);// 1 = yes, 2 = no DEBUG
 
                 if (incidentOccurred == 1) {
                     // incident occurred!
@@ -254,7 +254,7 @@ Vue.component('map-list', {
                         console.log('no more incidents!');
                     } else {
                         eventIndex = getRandomNumber(0, (unknownIncidents.length - 1));// pick an unknown event
-                        stats.currentIncident = unknownIncidents[eventIndex];// set it to current
+                        stats.currentIncident = unknownIncidents[eventIndex];// set it to current DEBUG
                         stats.currentIncident.isHappening = true;// make it happen, cap'n
                         stats.currentIncident.hasHappened = true;// exclude it from happening again
                         $('#incident').show();// show the incident peripheral
