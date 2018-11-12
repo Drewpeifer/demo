@@ -4,11 +4,16 @@ var menuA = [];
 // sample menu item
 ////////////////////
 //menuA[i] = { title : name of item,
-//            loot : user's starting amount of item,
-//            unit : increment the item is sold in (currently unused),
-//            baseStock : the average amount that a port usually has in stock,
-//            basePrice : the average price of the good in each port,
-//            stockFlux : the amount that the item stock fluctuates at each port, on average
+//             safetitle : no caps, hyphenated version of title,
+//             loot : user's starting amount of item,
+//             unit : increment the item is sold in (currently unused),
+//             baseStock : the average amount that a port usually has in stock,
+//             currentStock : placeholder to track stock while in port,
+//             currentLoot : placeholder to track user loot while in port,
+//             basePrice : the average price of the good in each port,
+//             currentPrics : placeholder to track "fluxed" price while in port,
+//             stockFlux : the amount that the item stock fluctuates at each port, on average,
+//             delta : placeholder to track the exhanged amount while in port
 //}
 
 menuA[0] = { title : "Meteorite Ore",
@@ -96,17 +101,19 @@ var mapA = [];
 // sample map location
 ///////////////////////
 //mapA[i] = {  title : location name,
-//            fuelStation : do they sell fuel true/false,
+//            fuelStation : do they sell fuel (true/false),
 //            fuelPrice : price of fuel (0 if they don't sell it),
-//            fuelAvailable : starting stock of fuel,
-//            cargoUpgrade : can you upgrade cargo here true/false,
-//            cargoUpgrades : how many times can you upgrade (20 per upgrade for now),
+//            fuelAvailable : starting stock of fuel (0 if they don't sell it),
+//            fuelDelta : placeholder to track exchanged fuel while in port,
+//            cargoUpgradeDelta : placeholder to track purhased upgrades while in port,
+//            cargoUpgrade : can you upgrade cargo here (true/false),
+//            cargoUpgrades : how many times can you upgrade (20 per upgrade, for now),
 //            cargoUpgradePrice : cost to upgrade, 0 if no upgrade station,
-//            embargo : list of items port does not buy/sell (unused for now),
+//            embargo : list of items port does not buy/sell,
 //            priceFlux : amount that prices will fluctuate up/down on average,
 //            saleMod : percentage of an items price that will be subtracted during a sale,
 //            peakMod : amount an items price will be multiplied by during a hike,
-//            description : the white text below a locations name, above the marketplace
+//            description : the white text seen on hover in the marketplace
 //         };
 
 
