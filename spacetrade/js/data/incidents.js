@@ -751,6 +751,53 @@ incidents[13] = {
 	isHappening : false,
 	hasHappened : false
 }
+
+// The one where you find a stowaway
+incidents[14] = {
+	type : "Intruder Alert",
+	description : "Dobson found a stowaway on the cargo deck Captain, situation is under control though. She was hidden in a crate of rations " +
+		"but security is reporting she didn't eat anything even though she was in there for at least a few days. She seems to be very polite and compliant. Scanners indicate normal humanoid life signs " +
+		"but the doctor is saying something seems \"unusually normal\" about the readings. I know captain, I know, I asked " +
+		"him what that meant and he ignored me. Anyway, I have an open comms line to the holding area, if " +
+		"you want to interrogate her.",
+	alternatives : [
+        "Or, if you think she's a saboteur, you can order Dobson to put the screws to her and see what she knows. He can break anyone sir, he just sings to them very quietly right behind their left ear for an hour or so. It's extraordinarily effective.",
+        "She seems fairly approachable and hasn't made any threatening moves. Do you think she's running from something? Or... Someone? Dun dun dun!",
+        "On an unrelated note, I'd like to reinforce the fact that Dobson should not have been rooting around in the cargo area, sir. Just for the record."
+	],
+	choices : [
+        "I've said it before and I'll say it again: No ticket, no ride. Put her in an escape pod and fire it at the nearest patrol buoy, someone will pick her up in a few hours.",
+        "People who hide are usually in trouble. Ask her what she's running from, or running to, in such a hurry that she had to hide in a box.",
+        "What was Dobson doing in the food storage area? He's not supposed to be down there anymore after the incident with the pudding cups. Send him up here now, I want to yell at him. Oh, and put the girl in a room, give her some food, a blanket, whatever, just post a guard. She'll explain when she's ready."
+	],
+	outcomes : {
+		0 : {
+			type : "neutral",
+			description : "We did like you said Captain and she complied without questioning. She was very calm about the whole thing, said thank you for the lift, and signed the guest book on the way out. Freeloaders, eh Cap? Continuing on course.",
+			effect : "No consequence",
+			func : function() { return nothingHappened(); }
+		},
+		1 : {
+			type : "good",
+			description : "She says her name is Galania and she's a 300 year old android on a quest for self-enlightenment (I know, right?). She wanted to study the reaction of a group of humans when they found an uninvited passenger. She assures us that she is not a threat, and is willing to upgrade our cargo hold in exchange for passage to our next scheduled destination. Well I gotta say Captain, that did not turn out the way I expected! Glad we didn't shoot her out into space.",
+			effect : "Cargo hold +10",
+			func : function() { return cargoCapIncrease(10); }
+		},
+		2 : {
+			type : "good",
+			description : "After a few hours our new guest contacted the counselor and gave a statement. Apparently she is an artificial lifeform that's been wandering the galaxy for 300 years, and she wanted to see how we'd react to finding an uninvited but non-threatening passenger. She said she was content to be on her way after our peaceful reception, but \"our continued compassion and hospitality\" have convinced her to stay aboard as an engineer! How about that Captain? Engineering says she has some wild plans for our ship's systems, too.",
+			effect : "Cargo capacity doubled, old energy cells recycled into 10 units of fuel!",
+			func : function() {
+				cargoIncrease = cargoCapIncrease(stats.cargoCap);
+				fuelIncrease = fuelChange(10)
+				return cargoIncrease && fuelIncrease;
+			}
+		},
+	},
+	isHappening : false,
+	hasHappened : false
+}
+
 // SAMPLE INCIDENT
 // incidents[X] = {
 // 	type :
