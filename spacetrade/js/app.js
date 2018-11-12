@@ -6,7 +6,7 @@ Vue.component('marketplace', {
                     '<span class="action"></span>' +
                     '<span class="num">Price</span>' +
                     '<span class="num">Stock</span>' +
-                    '<span class="num">Loot</span>' +
+                    '<span class="num">Cargo</span>' +
                 '</li>' +
                 '<li v-if="mainStats.port.fuelStation" class="unselectable">' +
                     '<span class="title">Fuel</span>' +
