@@ -54,14 +54,15 @@ hr {
 .controls {
 	display:none;
 }
-.controls button, .controls span {
-	float:left;
-}
 .controls span {
 	margin:10px;
 }
-.controls h3 {
+.content h3 {
 	display:block;
+	margin:5px 0;
+}
+.controls button {
+	margin:2px -2px;
 }
 /* entries */
 .grid {
@@ -111,4 +112,20 @@ hr {
 	position:relative;
 	left:5px;
 	opacity:.5;
+}
+/* mobile */
+@media all and (max-width:640px) {
+	.grid {
+		width:98%;
+	}
+	.grid .entry {
+		width:30%;
+		max-height:160px;
+	}
+	button {
+		background:#f2f2f2;/* chrome mobile emulator fix */
+	}
+	button, span {
+		font-size:1.2em;
+	}
 }
