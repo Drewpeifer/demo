@@ -340,6 +340,12 @@ ul li {
 /* ---- end starfield background ---- */
 /* responsive calls */
 @media (max-width: 600px) {
+	body {
+		font-size:.8em;
+	}
+	button {
+		background:#f2f2f2;/* chrome mobile emulator fix */
+	}
 	#app, .peripheral {
 		width:100%;
 	}
