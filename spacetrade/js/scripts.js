@@ -22,6 +22,7 @@ $(document).ready(function(){
   }
 
 });
+// bind high scores button
 $('#highScores').bind('click', function() {
   $('#scores li').toggleClass('toggle');
 });

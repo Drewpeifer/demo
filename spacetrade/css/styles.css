@@ -210,9 +210,39 @@ ul li {
 #map ul li span.title {
 	min-width:25%;
 	max-width:25%;
-	font-size:2em;
+	min-height:4em;
+	font-size:1.1em;
 	margin-right:5px;
+	background:url(../img/planets/planet1.png) 0 1em no-repeat transparent;
+	background-size:3em 3em;
 }
+/* map icons */
+#map ul li span.title[data=Earth] {
+	background-image:url(../img/planets/planet15.png);
+}
+#map ul li span.title[data=Triton] {
+	background-image:url(../img/planets/planet20.png);
+}
+#map ul li span.title[data=Rilos] {
+	background-image:url(../img/planets/planet10.png);
+}
+#map ul li span.title[data=Arrakis] {
+	background-image:url(../img/planets/planet5.png);
+}
+#map ul li span.title[data=Risa] {
+	background-image:url(../img/planets/planet4.png);
+}
+#map ul li span.title[data=Zarkon] {
+	background-image:url(../img/planets/planet6.png);
+}
+#map ul li span.title[data=Klendathu] {
+	background-image:url(../img/planets/planet12.png);
+}
+#map ul li span.title[data=Colonia] {
+	background-image:url(../img/planets/planet17.png);
+}
+
+/* end map icons */
 #welcome h1,
 #welcome p {
 	margin-left:5px;
