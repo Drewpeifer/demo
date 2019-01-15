@@ -300,6 +300,11 @@ ul li {
 }
 
 /* debug panel */
+.debug-alert {
+	background:yellow;
+	color:black;
+	text-align:center;
+}
 #debugPanel {
 	border:2px solid blue;
 }
