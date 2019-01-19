@@ -126,17 +126,19 @@ if (fuelAmount == 2) {
 	if (!isFuelStation) {
 		// no fuel here
 		showAlert('Low Fuel Alert!', 'You have 2 units of fuel, better get to a system with a fuel station soon...');
+	} else {
+		// fuel for sale here
+		showAlert('Low Fuel Alert!', 'You have 2 units of fuel, maybe buy some here?');
 	}
-	// fuel for sale here
-	showAlert('Low Fuel Alert!', 'You have 2 units of fuel, maybe buy some here?');
 } else if (fuelAmount == 1) {
 	// fuel is REALLY low
 	if (!isFuelStation) {
 		// no fuel here
 		showAlert('CRITICAL Fuel Alert!', 'You have 1 unit of fuel left, hope your next destination sells some!');
+	} else {
+		// fuel for sale here
+		showAlert('CRITICAL Fuel Alert!', 'You have 1 unit of fuel left, better buy some before you leave!');
 	}
-	// fuel for sale here
-	showAlert('CRITICAL Fuel Alert!', 'You have 1 unit of fuel left, better buy some before you leave!');
 } else if (fuelAmount == 0) {
 		// out of gas! are you at a fuel station?
 		console.log('your fuel is zero');
