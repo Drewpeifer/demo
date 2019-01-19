@@ -377,7 +377,7 @@ ul li {
 /* responsive calls */
 @media (max-width: 600px) {
 	body {
-		font-size:.8em;
+		font-size:1em;
 	}
 	button {
 		background:#f2f2f2;/* chrome mobile emulator fix */
