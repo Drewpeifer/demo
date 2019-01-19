@@ -120,6 +120,7 @@ function gameOverCheck() {
 // If conditions are good, keep on playing.
 
 console.log('running gameOverCheck...');
+stats.cargoLoot = cargoSum(stats.menu);// update cargo total stat
 if (fuelAmount == 2) {
 	// fuel is low
 	if (!isFuelStation) {
@@ -301,6 +302,7 @@ function updateScore() {
 
 	// set the value on the player stats object
 	stats.score = score;
+	stats.cargoLoot = cargoSum(stats.menu);// update cargo total stat
 
 	console.log('starting COOKIE update...');
 	// set the value on the session cookie

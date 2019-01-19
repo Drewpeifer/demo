@@ -22,6 +22,7 @@ function fuelChange(delta) {
             //chosenEffect = '' + delta + ' fuel';
         }
     }
+	updateScore();
 }
 
 function walletChange(delta) {
@@ -45,6 +46,7 @@ function walletChange(delta) {
             chosenEffect = '' + delta + ' Credits';
         }
     }
+    updateScore();
 }
 
 function loseRandomGoods() {
@@ -66,7 +68,7 @@ function loseRandomGoods() {
         chosenEffect = 'Lost ' + randomAmount + ' ' + currentGoods[randomIndex].title;
         currentGoods[randomIndex].currentLoot -= randomAmount;
     }
-
+    updateScore();
 }
 
 function gainRandomGoods() {
@@ -83,6 +85,7 @@ function gainRandomGoods() {
         availableGoods[randomIndex].currentLoot += randomAmount;
 
     }
+    updateScore();
 }
 
 function gainSpecificGoods(menuItem, amount) {
@@ -105,10 +108,12 @@ function gainSpecificGoods(menuItem, amount) {
 	        specificGoods.currentLoot += specificAmount;
         }
     }
+    updateScore();
 }
 
 function cargoCapIncrease(delta) {
     stats.cargoCap += delta;
+    updateScore();
 }
 
 function closeIncident() {
