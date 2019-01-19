@@ -207,6 +207,7 @@ ul li {
 }
 #map ul li {
 	border-bottom:#fff 1px solid;
+	margin:5px;
 }
 #map ul li span.title {
 	min-width:25%;
