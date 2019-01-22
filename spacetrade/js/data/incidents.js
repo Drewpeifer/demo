@@ -464,7 +464,7 @@ incidents[7] = {
                   "going straight through. The repair cost may be lower than the fuel cost if " +
                   "we try to go around it. We definitely need to get to the other side, though." +
                   "The field density is low enough we can fit the ship through most of the " +
-                  "larger gaps, but we can't predict the motions of the asteroids at all." +
+                  "larger gaps, but we can't predict the motions of the asteroids at all. " +
                   "Basically we have 3 choices: Go over, go under, or go through. Your call, Cap'n.",
 	alternatives : [
         "If I were a gambler, which I'm not, I'd say we could make it through the field with minimal damage from collisions.",
