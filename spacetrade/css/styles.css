@@ -243,19 +243,19 @@ ul li {
 #map ul li span.title[data=Triton] {
 	background-image:url(../img/planets/planet20.png);
 }
-#map ul li span.title[data=Rilos] {
+#map ul li span.title[data="Indus Beta"] {
 	background-image:url(../img/planets/planet10.png);
 }
-#map ul li span.title[data=Arrakis] {
+#map ul li span.title[data=Murdock] {
 	background-image:url(../img/planets/planet5.png);
 }
-#map ul li span.title[data=Risa] {
+#map ul li span.title[data=Noveria] {
 	background-image:url(../img/planets/planet4.png);
 }
 #map ul li span.title[data=Zarkon] {
 	background-image:url(../img/planets/planet6.png);
 }
-#map ul li span.title[data=Klendathu] {
+#map ul li span.title[data=Denklathu] {
 	background-image:url(../img/planets/planet12.png);
 }
 #map ul li span.title[data=Colonia] {

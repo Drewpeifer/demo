@@ -130,7 +130,7 @@ mapA[0] = {  title : "Earth",
             priceFlux : .1,
             saleMod : .9,
             peakMod : 2,
-            description : "Earth! Home sweet home, the most stable marketplace in the galaxy. You can buy fuel here, or a cheeseburger."
+            description : "Earth! Home sweet home, the most stable marketplace in the galaxy."
          };
 
 mapA[1] = {  title : "Triton",
@@ -146,10 +146,10 @@ mapA[1] = {  title : "Triton",
             priceFlux : .7,
             saleMod : .3,
             peakMod : 8,
-            description : "This moon has a rest stop that's become a popular waypoint for space truckers, probably due to the always-open rotating diner."
+            description : "This moon of Neptune has a rest stop which has become a popular waypoint for space truckers, probably due to the always-open always-rotating diner."
          };
 
-mapA[2] = {  title : "Rilos",
+mapA[2] = {  title : "Indus Beta",
             fuelStation : false,
             fuelPrice : 0,
             fuelAvailable : 0,
@@ -162,10 +162,10 @@ mapA[2] = {  title : "Rilos",
             priceFlux : .2,
             saleMod : .5,
             peakMod : 6,
-            description : "Rilos, HQ for the Star League, which defends the Frontier from Xur and the Kodan Armada. We have a free pass for the Frontier, in case you were wondering."
+            description : "Indus Beta, home to Ipizak's Emporium. You don't want to go down here without a security detail, or at least a very big phaser rifle. Decent prices, though."
          };
 
-mapA[3] = {  title : "Arrakis",
+mapA[3] = {  title : "Murdock",
             fuelStation : false,
             fuelPrice : 0,
             fuelAvailable : 0,
@@ -178,10 +178,10 @@ mapA[3] = {  title : "Arrakis",
             priceFlux : .4,
             saleMod : .7,
             peakMod : 9,
-            description : "Arrakis, also known as Dune, home to the spice Melange and also giant worms. Their engineers are awesome at upgrading cargo holds."
+            description : "Murdock is a barren, sandy world that relies on imported goods for survival. They have a healthy commercial hub and engineers capable of upgrading cargo holds beyond their normal capacity."
          };
 
-mapA[4] = {  title : "Risa",
+mapA[4] = {  title : "Noveria",
             fuelStation : true,
             fuelPrice : 600,
             fuelAvailable : 10,
@@ -194,7 +194,7 @@ mapA[4] = {  title : "Risa",
             priceFlux : .3,
             saleMod : .4,
             peakMod : 8,
-            description : "Risa, known throughout the Alpha Quadrant for its recreational attractions and open-minded populace. Seriously. Open-minded. Oh, they sell fuel, too."
+            description : "Noveria is an elite pleasure planet that hosts rich and famous citizens from all over the galaxy. It has one of busiest spaceports around and a convenient fueling station in high orbit."
          };
 
 mapA[5] = {  title : "Zarkon",
@@ -210,10 +210,10 @@ mapA[5] = {  title : "Zarkon",
             priceFlux : .5,
             saleMod : .6,
             peakMod : 3,
-            description : "Zarkon has a fairly stable economy, and is notable for its continued use of UHF signals."
+            description : "Zarkon has a fairly stable economy, and is notable for its continued use of UHF signals despite other extremely advanced technology."
          };
 
-mapA[6] = {  title : "Klendathu",
+mapA[6] = {  title : "Denklathu",
             fuelStation : false,
             fuelPrice : 0,
             fuelAvailable : 0,
@@ -226,7 +226,7 @@ mapA[6] = {  title : "Klendathu",
             priceFlux : .1,
             saleMod : .1,
             peakMod : 9,
-            description : "It's a hostile planet, a bug planet! A constant state of bug-on-bug war means unusually high price hikes when supplies are needed."
+            description : "Home to three space-faring insectoid races, Denklathu is all but poisonous to non-native life. High above the planet sits the Denklathu Bazaar, where goods are exchanged and ships are refueled while massive bug-on-bug wars rage far below."
          };
 
 mapA[7] = {  title : "Colonia",
