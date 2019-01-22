@@ -87,7 +87,7 @@ ul {
 }
 #market ul li span.title {
 	width:30%;
-	flex-grow:0;
+	flex-grow:1;
 	min-width:24%;
 }
 #market ul li span.num {
@@ -113,7 +113,6 @@ ul {
 }
 #market ul li span.action {
 	border-left:none;
-	min-width:15%;
 }
 #market ul li span.exchange button,
 #market ul li span.exchange button.Buy,
