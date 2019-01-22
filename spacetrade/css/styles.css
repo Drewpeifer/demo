@@ -4,8 +4,10 @@ body {
 	margin:0;
 	background:#000;
 	color:#f2f2f2;
-	font-family: 'Titillium Web', sans-serif;
 	overflow-y:hidden;
+}
+body, button {
+	font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
 ::-webkit-scrollbar {
 display: none;
@@ -26,6 +28,7 @@ div#wrapper,
 div#starfield,
 div#app {
 	border:none;
+	overflow-x:hidden;
 }
 ul {
 	margin:0;
@@ -77,10 +80,12 @@ ul {
 	display:inline-block;
 	vertical-align:center;
 	padding-left:5px;
+	min-width:12%;
 }
 #market ul li span.title {
 	width:30%;
 	flex-grow:0;
+	min-width:24%;
 }
 #market ul li span.num {
 	width:10%;
@@ -105,6 +110,7 @@ ul {
 }
 #market ul li span.action {
 	border-left:none;
+	min-width:15%;
 }
 #market ul li span.exchange button,
 #market ul li span.exchange button.Buy,
@@ -165,6 +171,11 @@ ul li {
 #home {
 	text-align:center;
 }
+#home #highScores,
+#home #newGame {
+	font-size:1.5em;
+	min-width:50%;
+}
 #home ul {
 	margin-top:20px;
 }
@@ -195,8 +206,7 @@ ul li {
 	display:block;
 }
 #home ul li button {
-	height:40px;
-	width:30%;
+	width:50%;
 }
 #mapToggle {
 	min-width:50px;
@@ -295,12 +305,10 @@ ul li {
 	margin:0 auto 5px auto;
 	display:inline-block;
 	font-size:1.1em;
+	line-height:1.2em;
 }
 #gameOver {
 	text-align:center;
-}
-#gameOver button {
-	height:;
 }
 
 /* debug panel */
@@ -380,8 +388,9 @@ ul li {
 /* ---- end starfield background ---- */
 /* responsive calls */
 @media (max-width: 600px) {
-	body {
+	body, .location #description {
 		font-size:1em;
+		line-height:1.3em;
 	}
 	button {
 		background:#f2f2f2;/* chrome mobile emulator fix */
