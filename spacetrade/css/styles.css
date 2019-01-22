@@ -35,6 +35,9 @@ ul {
 	padding:0;
 }
 /* controls */
+#controls {
+	border-bottom:#fff 2px solid;
+}
 #controls ul li {
 	display:flex;
 }
@@ -221,6 +224,9 @@ ul li {
 #map ul li {
 	border-bottom:#fff 1px solid;
 	margin:5px;
+}
+#map ul li:last-child {
+	border:none;
 }
 #map ul li span.title {
 	min-width:25%;
