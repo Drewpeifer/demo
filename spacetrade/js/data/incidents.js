@@ -27,12 +27,12 @@ function fuelChange(delta) {
 
 function walletChange(delta) {
     if (delta > 0) {
-        stats.wallet += delta;
-        chosenEffect = '+' + delta + ' credits';
+        stats.wallet += Math.round(delta);
+        chosenEffect = '+' + Math.round(delta) + ' credits';
     } else {
         // validation
         currentWallet = stats.wallet;
-        newWallet = stats.wallet + delta;
+        newWallet = stats.wallet + Math.round(delta);
 
         if (currentWallet == 0) {
             // broke, can't lose more money
@@ -42,8 +42,8 @@ function walletChange(delta) {
             stats.wallet = 0;
             chosenEffect =  "Oh no, now you're broke!";
         } else {
-            stats.wallet += delta;
-            chosenEffect = '' + delta + ' Credits';
+            stats.wallet += Math.round(delta);
+            chosenEffect = '' + Math.round(delta) + ' Credits';
         }
     }
     updateScore();
