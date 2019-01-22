@@ -213,7 +213,7 @@ ul li {
 #mapToggle {
 	min-width:50px;
 	min-height:50px;
-	background:transparent url("../img/map_icon.png") no-repeat scroll 14px 1.5em / 50% 50%;
+	background:transparent url("../img/map_icon.png") no-repeat scroll 14px 1.5em / fit;
 	text-align:center;
 	font-size:.9em;
 }
