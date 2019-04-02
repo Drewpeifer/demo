@@ -35,7 +35,7 @@ var getQuery = function(){
         console.log('query is ' + query);
     }
 
-    requestUrl = baseUrl + '?i=' + query + '&p=5';
+    requestUrl = baseUrl + '?i=' + encodeURIComponent(query + '&format=json&p=5') + '&callback=?';
 
     console.log('API request made to ' + requestUrl);
 
@@ -54,7 +54,7 @@ var getQuery = function(){
             if (payload != ""){// show recipe results
                 statusMessage.html("<h2>Recipe(s) found!</h2>");
 
-                recipeList = JSON.parse(payload.body);
+                recipeList = JSON.parse(payload.contents);
 
                 $.each(recipeList.results, function(i) {
                     if (this.thumbnail == "") {
