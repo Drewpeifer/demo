@@ -5,6 +5,7 @@ body {
 	background:#000;
 	color:#f2f2f2;
 	overflow-y:hidden;
+	font-size:18px;
 }
 body, button {
 	font-family: 'Fira Sans Extra Condensed', sans-serif;
@@ -37,15 +38,16 @@ ul {
 /* controls */
 #controls {
 	border-bottom:#fff 2px solid;
-}
-#controls ul li {
-	display:flex;
+	font-size:2em;
 }
 #controls ul li span {
 	flex-grow:1;
 	padding:2px 5px;
-	line-height:16px;
 	margin:auto 0;
+}
+#controls ul li {
+	min-height:30px;
+	display:flex;
 }
 #controls .stats span {
 	width:30%;
@@ -77,11 +79,13 @@ ul {
 #market ul li.market-header {
 	font-weight:bold;
 	border-bottom:#fff 2px solid;
+	line-height:1.2em;
+	font-size:1.1em;
 }
 #market ul li span {
 	flex-grow:1;
 	display:inline-block;
-	vertical-align:center;
+	vertical-align:middle;
 	padding-left:5px;
 	min-width:12%;
 }
@@ -89,6 +93,7 @@ ul {
 	width:30%;
 	flex-grow:1;
 	min-width:24%;
+	font-size:1.2em;
 }
 #market ul li span.num {
 	width:10%;
@@ -210,13 +215,6 @@ ul li {
 #home ul li button {
 	width:50%;
 }
-#mapToggle {
-	min-width:50px;
-	min-height:50px;
-	background:transparent url("../img/map_icon.png") no-repeat scroll 14px 1.5em / fit;
-	text-align:center;
-	font-size:.9em;
-}
 .location {
 	border-bottom:#fff 2px solid;
 }
@@ -315,7 +313,22 @@ ul li {
 #gameOver {
 	text-align:center;
 }
-
+/* icons */
+span.fa ,
+span.fas,
+span.far,
+span > span.fa {
+	font-size:1.1em;
+}
+#controls .stats span.fa,
+#controls .stats span.far,
+#controls .stats span.fas {
+	width:auto;
+	flex-grow:0;
+}
+#controls #helpWrapper {
+	text-align:right;
+}
 /* debug panel */
 .debug-alert {
 	background:yellow;
@@ -394,8 +407,8 @@ ul li {
 /* responsive calls */
 @media (max-width: 600px) {
 	body, .location #description {
-		font-size:1em;
-		line-height:1.3em;
+		font-size:14px;
+		line-height:1.2em;
 	}
 	button {
 		background:#f2f2f2;/* chrome mobile emulator fix */
@@ -413,5 +426,27 @@ ul li {
 	}
 	#map ul li span.description {
 		line-height:1.2em;
+	}
+	#market, #controls {
+		font-size:.9em;
+		line-height:1em;
+	}
+	/* icons */
+	span.fa ,
+	span.fas,
+	span.far,
+	span > span.fa {
+		font-size:.9em;
+	}
+	#controls .stats span.fa,
+	#controls .stats span.far,
+	#controls .stats span.fas {
+		width:auto;
+		flex-grow:0;
+	}
+	li.market-header span.fa,
+	li.market-header span.far,
+	li.market-header span.fas {
+		font-size:.9em;
 	}
 }
