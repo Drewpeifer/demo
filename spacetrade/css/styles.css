@@ -295,6 +295,8 @@ ul li {
 #alert ul,
 #alert ul li button {
 	width:90%;
+}
+#alert ul li button {
 	background:#f7c956;
 }
 #welcome,
