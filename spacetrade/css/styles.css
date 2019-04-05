@@ -3,9 +3,12 @@ body {
 	width:100%;
 	margin:0;
 	background:#000;
-	color:#f2f2f2;
-	font-family: 'Titillium Web', sans-serif;
+	color:#ffe29b;
 	overflow-y:hidden;
+	font-size:18px;
+}
+body, button {
+	font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
 ::-webkit-scrollbar {
 display: none;
@@ -16,7 +19,7 @@ display: none;
 	overflow:scroll;
 }
 #wrapper div {
-	border:#fff 1px solid;
+	/*border:#fff 1px solid;*/
 	/* inner borders */
 	box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -26,20 +29,28 @@ div#wrapper,
 div#starfield,
 div#app {
 	border:none;
+	overflow-x:hidden;
+}
+div#app {
+	border:#e88f22 1px solid;
 }
 ul {
 	margin:0;
 	padding:0;
 }
 /* controls */
-#controls ul li {
-	display:flex;
+#controls {
+	border-bottom:#e88f22 2px solid;
+	font-size:1.5em;
 }
 #controls ul li span {
 	flex-grow:1;
 	padding:2px 5px;
-	line-height:16px;
 	margin:auto 0;
+}
+#controls ul li {
+	min-height:30px;
+	display:flex;
 }
 #controls .stats span {
 	width:30%;
@@ -70,17 +81,22 @@ ul {
 }
 #market ul li.market-header {
 	font-weight:bold;
-	border-bottom:#fff 2px solid;
+	border-bottom:#e88f22 2px solid;
+	line-height:1.2em;
+	font-size:1.1em;
 }
 #market ul li span {
 	flex-grow:1;
 	display:inline-block;
-	vertical-align:center;
+	vertical-align:middle;
 	padding-left:5px;
+	min-width:12%;
 }
 #market ul li span.title {
 	width:30%;
-	flex-grow:0;
+	flex-grow:1;
+	min-width:24%;
+	font-size:1.2em;
 }
 #market ul li span.num {
 	width:10%;
@@ -97,11 +113,14 @@ ul {
 /** buy / sell interface and range overrides **/
 #market ul li span.counter {
 	max-width:50px;
+	font-weight:bold;
 }
 #market ul li span.counter button {
 	width:45px;
-	background:#f2f2f2;
+	background:#f7c956;
 	border-radius:50%;
+	font-size:1.5em;
+	color:#000;
 }
 #market ul li span.action {
 	border-left:none;
@@ -111,6 +130,9 @@ ul {
 #market ul li span.exchange button.Sell {
 	width:35px;
 	border-radius:50%;
+}
+#market ul li span.exchange button {
+	background:#f7c956;
 }
 #market ul li span.exchange button:focus {
 	outline:none;
@@ -154,7 +176,7 @@ ul li {
 .peripheral {
 	position:absolute;
 	background:#000;
-	border:#fff 2px solid;
+	border:#e88f22 2px solid;
 	border-radius:5px;
 	height:100%;
 }
@@ -164,6 +186,12 @@ ul li {
 }
 #home {
 	text-align:center;
+}
+#home #highScores,
+#home #newGame,
+#home input {
+	font-size:1.5em;
+	min-width:50%;
 }
 #home ul {
 	margin-top:20px;
@@ -181,6 +209,10 @@ ul li {
 	margin:auto;
 	text-align:center;
 }
+#home button {
+	background:#f7c956;
+	border:#e88f22 1px solid;
+}
 #scores .toggle {
 	display:none;
 }
@@ -195,28 +227,64 @@ ul li {
 	display:block;
 }
 #home ul li button {
-	height:40px;
-	width:30%;
+	width:50%;
 }
-#mapToggle {
-	width:50px;
-	height:50px;
-	background-image:url(../img/nav-icon.svg);
-	background-repeat:no-repeat;
+.location {
+	border-bottom:#e88f22 2px solid;
+}
+.location #description {
+	font-size:.7em;
 }
 #map ul li {
-	border-bottom:#fff 1px solid;
+	border-bottom:#e88f22 1px solid;
+	margin:5px;
+}
+#map ul li:last-child {
+	border:none;
 }
 #map ul li span.title {
 	min-width:25%;
 	max-width:25%;
-	font-size:2em;
+	min-height:4em;
+	font-size:1.1em;
 	margin-right:5px;
+	background:url(../img/planets/planet1.png) 0 1em no-repeat transparent;
+	background-size:3em 3em;
 }
+/* map icons */
+#map ul li span.title[data=Earth] {
+	background-image:url(../img/planets/planet15.png);
+}
+#map ul li span.title[data=Triton] {
+	background-image:url(../img/planets/planet20.png);
+}
+#map ul li span.title[data="Indus Beta"] {
+	background-image:url(../img/planets/planet10.png);
+}
+#map ul li span.title[data=Murdock] {
+	background-image:url(../img/planets/planet5.png);
+}
+#map ul li span.title[data=Noveria] {
+	background-image:url(../img/planets/planet4.png);
+}
+#map ul li span.title[data=Zarkon] {
+	background-image:url(../img/planets/planet6.png);
+}
+#map ul li span.title[data=Denklathu] {
+	background-image:url(../img/planets/planet12.png);
+}
+#map ul li span.title[data=Colonia] {
+	background-image:url(../img/planets/planet17.png);
+}
+
+/* end map icons */
 #welcome h1,
 #welcome p {
 	margin-left:5px;
 	margin-right:5px;
+}
+#welcome button {
+	background:#f7c956;
 }
 #alert {
 	display:flex;
@@ -228,6 +296,9 @@ ul li {
 #alert ul li button {
 	width:90%;
 }
+#alert ul li button {
+	background:#f7c956;
+}
 #welcome,
 #incident ul li {
 	display:block;
@@ -235,7 +306,7 @@ ul li {
 }
 #alert ul li p,
 #incident ul li p {
-	width:100%;
+	width:90%;
 	margin:10px auto;
 	line-height:18px
 }
@@ -260,15 +331,33 @@ ul li {
 	margin:0 auto 5px auto;
 	display:inline-block;
 	font-size:1.1em;
+	line-height:1.2em;
 }
 #gameOver {
 	text-align:center;
 }
-#gameOver button {
-	height:;
+/* icons */
+span.fa ,
+span.fas,
+span.far,
+span > span.fa {
+	font-size:1.1em;
 }
-
+#controls .stats span.fa,
+#controls .stats span.far,
+#controls .stats span.fas {
+	width:auto;
+	flex-grow:0;
+}
+#controls #helpWrapper {
+	text-align:right;
+}
 /* debug panel */
+.debug-alert {
+	background:yellow;
+	color:black;
+	text-align:center;
+}
 #debugPanel {
 	border:2px solid blue;
 }
@@ -340,8 +429,9 @@ ul li {
 /* ---- end starfield background ---- */
 /* responsive calls */
 @media (max-width: 600px) {
-	body {
-		font-size:.8em;
+	body, .location #description {
+		font-size:14px;
+		line-height:1.2em;
 	}
 	button {
 		background:#f2f2f2;/* chrome mobile emulator fix */
@@ -359,5 +449,27 @@ ul li {
 	}
 	#map ul li span.description {
 		line-height:1.2em;
+	}
+	#market, #controls {
+		font-size:.9em;
+		line-height:1em;
+	}
+	/* icons */
+	span.fa ,
+	span.fas,
+	span.far,
+	span > span.fa {
+		font-size:1.5em;
+	}
+	#controls .stats span.fa,
+	#controls .stats span.far,
+	#controls .stats span.fas {
+		width:auto;
+		flex-grow:0;
+	}
+	li.market-header span.fa,
+	li.market-header span.far,
+	li.market-header span.fas {
+		font-size:1.2em;
 	}
 }

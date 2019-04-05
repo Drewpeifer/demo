@@ -4,9 +4,9 @@ Vue.component('marketplace', {
     template: '<ul>' +
                 '<li class="market-header unselectable"><span class="title">Commodity</span>' +
                     '<span class="action"></span>' +
-                    '<span class="num">Price</span>' +
-                    '<span class="num">Stock</span>' +
-                    '<span class="num">Cargo</span>' +
+                    '<span class="num"><span class="fa fa-comments-dollar"></span></span>' +
+                    '<span class="num"><span class="fa fa-cubes"></span></span>' +
+                    '<span class="num"><span class="fa fa-boxes"></span></span>' +
                 '</li>' +
                 '<li v-if="mainStats.port.fuelStation" class="unselectable">' +
                     '<span title="This is what lets you travel, and if you run out it\'s Game Over, man!" class="tooltip title">Fuel</span>' +
@@ -216,7 +216,7 @@ Vue.component('map-list', {
     template: '<ul>' +
                     '<li v-on:click="toggleMap" class="close">[X] Close Map</li>' +
                     '<li v-for="item in mainStats.map">' +
-                    '<span v-on:click="travel(item)" class="title">{{ item.title }}</span>' +
+                    '<span v-on:click="travel(item)" v-bind:data="item.title" class="title">{{ item.title }}</span>' +
                     '<span class="description">{{ item.description }}</span>' +
                 '</li></ul>',
     methods: {

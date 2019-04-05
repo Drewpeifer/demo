@@ -22,16 +22,17 @@ function fuelChange(delta) {
             //chosenEffect = '' + delta + ' fuel';
         }
     }
+	updateScore();
 }
 
 function walletChange(delta) {
     if (delta > 0) {
-        stats.wallet += delta;
-        chosenEffect = '+' + delta + ' credits';
+        stats.wallet += Math.round(delta);
+        chosenEffect = '+' + Math.round(delta) + ' credits';
     } else {
         // validation
         currentWallet = stats.wallet;
-        newWallet = stats.wallet + delta;
+        newWallet = stats.wallet + Math.round(delta);
 
         if (currentWallet == 0) {
             // broke, can't lose more money
@@ -41,10 +42,11 @@ function walletChange(delta) {
             stats.wallet = 0;
             chosenEffect =  "Oh no, now you're broke!";
         } else {
-            stats.wallet += delta;
-            chosenEffect = '' + delta + ' Credits';
+            stats.wallet += Math.round(delta);
+            chosenEffect = '' + Math.round(delta) + ' Credits';
         }
     }
+    updateScore();
 }
 
 function loseRandomGoods() {
@@ -66,7 +68,7 @@ function loseRandomGoods() {
         chosenEffect = 'Lost ' + randomAmount + ' ' + currentGoods[randomIndex].title;
         currentGoods[randomIndex].currentLoot -= randomAmount;
     }
-
+    updateScore();
 }
 
 function gainRandomGoods() {
@@ -83,6 +85,7 @@ function gainRandomGoods() {
         availableGoods[randomIndex].currentLoot += randomAmount;
 
     }
+    updateScore();
 }
 
 function gainSpecificGoods(menuItem, amount) {
@@ -105,10 +108,12 @@ function gainSpecificGoods(menuItem, amount) {
 	        specificGoods.currentLoot += specificAmount;
         }
     }
+    updateScore();
 }
 
 function cargoCapIncrease(delta) {
     stats.cargoCap += delta;
+    updateScore();
 }
 
 function closeIncident() {
@@ -459,7 +464,7 @@ incidents[7] = {
                   "going straight through. The repair cost may be lower than the fuel cost if " +
                   "we try to go around it. We definitely need to get to the other side, though." +
                   "The field density is low enough we can fit the ship through most of the " +
-                  "larger gaps, but we can't predict the motions of the asteroids at all." +
+                  "larger gaps, but we can't predict the motions of the asteroids at all. " +
                   "Basically we have 3 choices: Go over, go under, or go through. Your call, Cap'n.",
 	alternatives : [
         "If I were a gambler, which I'm not, I'd say we could make it through the field with minimal damage from collisions.",

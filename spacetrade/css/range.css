@@ -15,7 +15,7 @@ input[type=range]::-webkit-slider-runnable-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #444;
+  background: #e88f22;
   border-radius: 1.3px;
   border: 0.2px solid #010101;
 }
@@ -25,13 +25,13 @@ input[type=range]::-webkit-slider-thumb {
   height: 36px;
   width: 16px;
   border-radius: 3px;
-  background: #ffffff;
+  background: #ffe29b;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -14px;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #444;
+  background: #e88f22;
 }
 input[type=range]::-moz-range-track {
   width: 100%;
@@ -39,7 +39,7 @@ input[type=range]::-moz-range-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #444;
+  background: #e88f22;
   border-radius: 1.3px;
   border: 0.2px solid #010101;
 }
@@ -49,7 +49,7 @@ input[type=range]::-moz-range-thumb {
   height: 36px;
   width: 16px;
   border-radius: 3px;
-  background: #ffffff;
+  background: #ffe29b;
   cursor: pointer;
 }
 input[type=range]::-ms-track {
@@ -80,12 +80,12 @@ input[type=range]::-ms-thumb {
   height: 36px;
   width: 16px;
   border-radius: 3px;
-  background: #ffffff;
+  background: #ffe29b;
   cursor: pointer;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #444;
+  background: #e88f22;
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: #444;
+  background: #e88f22;
 }

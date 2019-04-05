@@ -22,6 +22,7 @@ $(document).ready(function(){
   }
 
 });
+// bind high scores button
 $('#highScores').bind('click', function() {
   $('#scores li').toggleClass('toggle');
 });
@@ -30,6 +31,8 @@ $('#highScores').bind('click', function() {
 debugMode = false;//// set to false in production
 //////////////////////
 if (debugMode) {
+  // add obnoxious alert
+  $('#market').append('<div class="debug-alert">DEBUG MODE ENABLED</div>');
   // bind debug button
   $('#debug').bind('click', function() {
     $('#debugPanel').toggle();
