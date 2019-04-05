@@ -459,7 +459,7 @@ span > span.fa {
 	span.fas,
 	span.far,
 	span > span.fa {
-		font-size:.9em;
+		font-size:1.5em;
 	}
 	#controls .stats span.fa,
 	#controls .stats span.far,
@@ -470,6 +470,6 @@ span > span.fa {
 	li.market-header span.fa,
 	li.market-header span.far,
 	li.market-header span.fas {
-		font-size:.9em;
+		font-size:1.2em;
 	}
 }
