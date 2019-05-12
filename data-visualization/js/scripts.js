@@ -40,8 +40,7 @@ function buildPlanetApp(planetData) {
 $(function() {
 	// initialize populations / D3.js demo
 	$.getJSON('data/us-population-1960-2019.json', function(data) {
-		var populations = data;
-		buildPopulations(populations);
+		buildPopulations(data);
 	});
 
 	//initialize planetary Vue demo

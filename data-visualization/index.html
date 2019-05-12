@@ -33,7 +33,7 @@
 		</div>
 		<div class="content">
 			<ul>
-				<li><a href="#Planets">Planets</a></li>
+				<li><a href="#planets">Planets</a></li>
 				<li><a href="#populations">U.S. Populations</a></li>
 				<li><a href="#tab-3">Tab 3</a></li>
 			</ul>
@@ -49,7 +49,9 @@
 				<h2>Planetary Statistics</h2>
 				<p>Powered by <a href="/">Vue.js</a> and data from Wikipedia</p>
 				<div id="planetApp">
-					<p>{{ planets[0].Name }}</p>
+					<div v-for="(planet, index) in planets" class="planet-card">
+						<p>&num;{{ index + 1 }} - Name: {{ planet.name }}</p>
+					</div>
 				</div>
 			</div>
 			<div id="tab-3">Tab 3</div>
