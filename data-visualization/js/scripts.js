@@ -5,23 +5,30 @@ $.fn.digits = function(){
     })
 }
 
+// populate the D3 population demo
 function populateD3(data) {
 	var populations = data;
+	console.log(populations[0].value);
+	maxPop = populations[0].value;
 
-	d3.select("#tab-1")
+	d3.select("#populations")
 		.selectAll("p")
 		.data(populations)
 		.enter()
 		.append("p")
-			.style("width", function(d) { newWidth = d.value/500000 + "px"; return newWidth; })
-			.style("background-image","linear-gradient(to left, orange, red)")
+			.style("width", function(d) {
+				// set top entry to 100%, make following
+				// entries scale size by relative value
+				newWidth = ""+((d.value/maxPop)*100) + "%"; return newWidth;
+			})
+			.style("background-image","linear-gradient(to right, orange, gold)")
 			.text(function(d) {
 				newValue = d.value.toLocaleString('en');
 				return "("+d.date+") - "+newValue });
 }
 
 $(function() {
-	// initialize d3.js demo
+	// initialize D3.js demo
 	$.getJSON('data/us-population-1960-2019.json', function(data) {
 		var populations = data;
 		populateD3(populations);
