@@ -35,11 +35,9 @@ h1 {
 }
 
 /* populations */
-#populations h2 {
-	text-align: left;
-}
-
-#populations p {
+#populations span {
+	display: block;
 	margin: 5px 0;
-	font-size: .8em;
+	text-align: left;
+	background-image: linear-gradient(to right, gold, orange);
 }

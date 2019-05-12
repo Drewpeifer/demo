@@ -1,40 +1,39 @@
-// add commas to long numbers
-$.fn.digits = function(){ 
-    return this.each(function(){ 
-        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
-    })
-}
-
 // populate the D3 population demo
-function populateD3(data) {
-	var populations = data;
-	console.log(populations[0].value);
-	maxPop = populations[0].value;
+function buildPopulations(populations) {
+	maxPop = parseInt(populations[0].value);
 
 	d3.select("#populations")
-		.selectAll("p")
+		.selectAll("span")
 		.data(populations)
 		.enter()
-		.append("p")
+		.append("span")
 			.style("width", function(d) {
-				// set top entry to 100%, make following
+				// set first entry to 100%, make following
 				// entries scale size by relative value
-				newWidth = ""+((d.value/maxPop)*100) + "%"; return newWidth;
+				pop = parseInt(d.value);
+				newSize = "" + ((pop/maxPop) * 100)+ "%";
+				return newSize;
 			})
-			.style("background-image","linear-gradient(to right, orange, gold)")
-			.text(function(d) {
-				newValue = d.value.toLocaleString('en');
-				return "("+d.date+") - "+newValue });
+			.style("font-size", function(d) {
+				pop = parseInt(d.value);
+				popRatio = (pop/maxPop);
+				newSize = "" + ((popRatio * popRatio) + .8) + "em";
+				return newSize;
+			})
+			.text(function(d) {return "(" + d.date + ") - Pop: " + parseInt(d.value).toLocaleString('en');});
+}
+
+// build planetary gravity demo
+function buildGravity(gravities) {
+
 }
 
 $(function() {
-	// initialize D3.js demo
+	// initialize populations / D3.js demo
 	$.getJSON('data/us-population-1960-2019.json', function(data) {
 		var populations = data;
-		populateD3(populations);
+		buildPopulations(populations);
 	});
-	
-	$('#tab-1 p').digits();
 
 	// jqueryUI, etc.
 	$(".content").tabs();
