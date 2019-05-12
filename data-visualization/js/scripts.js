@@ -15,17 +15,26 @@ function buildPopulations(populations) {
 				return newSize;
 			})
 			.style("font-size", function(d) {
+				// scale font-size similar to width
 				pop = parseInt(d.value);
 				popRatio = (pop/maxPop);
 				newSize = "" + ((popRatio * popRatio) + .8) + "em";
 				return newSize;
 			})
-			.text(function(d) {return "(" + d.date + ") - Pop: " + parseInt(d.value).toLocaleString('en');});
+			.text(function(d) {return "" + d.date + " - Pop: " + parseInt(d.value).toLocaleString('en');});
 }
 
-// build planetary gravity demo
-function buildGravity(gravities) {
-
+// build planetary gravity Vue demo
+function buildPlanetApp(planetData) {
+	var app = new Vue({
+		el: '#planetApp',
+		data() {
+			console.log(planetData);
+			return {
+				planets: planetData
+			}
+		},
+	});
 }
 
 $(function() {
@@ -33,6 +42,11 @@ $(function() {
 	$.getJSON('data/us-population-1960-2019.json', function(data) {
 		var populations = data;
 		buildPopulations(populations);
+	});
+
+	//initialize planetary Vue demo
+	$.getJSON('data/celestial-bodies.json', function(data) {
+		buildPlanetApp(data);
 	});
 
 	// jqueryUI, etc.

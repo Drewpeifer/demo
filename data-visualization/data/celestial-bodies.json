@@ -1,0 +1,110 @@
+[
+ {
+   "Name": "Mercury",
+   "Relative Equatorial diameter": 0.382,
+   "Relative Mass": 0.06,
+   "Orbital period (years)": 0.24,
+   "Rotation period (days)": "58.64",
+   "Confirmed moons": 0,
+   "Axial tilt (deg)": 0.04,
+   "Rings": "no",
+   "Atmosphere": "minimal",
+   "Relative Gravitational Modifier": 0.38
+ },
+ {
+   "Name": "Venus",
+   "Relative Equatorial diameter": 0.949,
+   "Relative Mass": 0.82,
+   "Orbital period (years)": 0.62,
+   "Rotation period (days)": "−243.02",
+   "Confirmed moons": 0,
+   "Axial tilt (deg)": 177.36,
+   "Rings": "no",
+   "Atmosphere": "CO2, N2",
+   "Relative Gravitational Modifier": 0.91
+ },
+ {
+   "Name": "Earth",
+   "Relative Equatorial diameter": 1,
+   "Relative Mass": 1,
+   "Orbital period (years)": 1,
+   "Rotation period (days)": "1",
+   "Confirmed moons": 1,
+   "Axial tilt (deg)": 23.44,
+   "Rings": "no",
+   "Atmosphere": "N2, O2, Ar",
+   "Relative Gravitational Modifier": 1
+ },
+ {
+   "Name": "Mars",
+   "Relative Equatorial diameter": 0.532,
+   "Relative Mass": 0.11,
+   "Orbital period (years)": 1.88,
+   "Rotation period (days)": "1.03",
+   "Confirmed moons": 2,
+   "Axial tilt (deg)": 25.19,
+   "Rings": "no",
+   "Atmosphere": "CO2, N2, Ar",
+   "Relative Gravitational Modifier": 0.38
+ },
+ {
+   "Name": "Jupiter",
+   "Relative Equatorial diameter": 11.209,
+   "Relative Mass": 317.8,
+   "Orbital period (years)": 11.86,
+   "Rotation period (days)": "0.41",
+   "Confirmed moons": 79,
+   "Axial tilt (deg)": 3.13,
+   "Rings": "yes",
+   "Atmosphere": "H2, He",
+   "Relative Gravitational Modifier": 2.34
+ },
+ {
+   "Name": "Saturn",
+   "Relative Equatorial diameter": 9.449,
+   "Relative Mass": 95.2,
+   "Orbital period (years)": 29.46,
+   "Rotation period (days)": "0.43",
+   "Confirmed moons": 62,
+   "Axial tilt (deg)": 26.73,
+   "Rings": "yes",
+   "Atmosphere": "H2, He",
+   "Relative Gravitational Modifier": 1.06
+ },
+ {
+   "Name": "Uranus",
+   "Relative Equatorial diameter": 4.007,
+   "Relative Mass": 14.6,
+   "Orbital period (years)": 84.01,
+   "Rotation period (days)": "−0.72",
+   "Confirmed moons": 27,
+   "Axial tilt (deg)": 97.77,
+   "Rings": "yes",
+   "Atmosphere": "H2, He, CH4",
+   "Relative Gravitational Modifier": 0.92
+ },
+ {
+   "Name": "Neptune",
+   "Relative Equatorial diameter": 3.883,
+   "Relative Mass": 17.2,
+   "Orbital period (years)": 164.8,
+   "Rotation period (days)": "0.67",
+   "Confirmed moons": 14,
+   "Axial tilt (deg)": 28.32,
+   "Rings": "yes",
+   "Atmosphere": "H2, He, CH4",
+   "Relative Gravitational Modifier": 0.06
+ },
+ {
+   "Name": "Pluto",
+   "Relative Equatorial diameter": 0.186,
+   "Relative Mass": 0.002,
+   "Orbital period (years)": 248,
+   "Rotation period (days)": "6.39",
+   "Confirmed moons": 5,
+   "Axial tilt (deg)": 122.53,
+   "Rings": "no",
+   "Atmosphere": "N2, CO2, CH4",
+   "Relative Gravitational Modifier": 0.063
+ }
+]
