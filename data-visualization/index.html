@@ -14,8 +14,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<!-- D3.js -->
 	<script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
-	<!-- Chart.js
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+	<!-- Chart.js -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 	<!-- moment.js
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
 	<!-- fonts -->
@@ -33,11 +33,12 @@
 		</div>
 		<div class="content">
 			<ul>
+				<li><a href="#nobel">Nobel Laureates</a></li>
 				<li><a href="#planets">Planets</a></li>
-				<li><a href="#populations">U.S. Populations</a></li>
+				<li><a href="#populations">U.S. Population</a></li>
 			</ul>
 			<div id="populations">
-				<h2>U.S. Populations 1960-2019</h2>
+				<h2>U.S. Population 1960-2019</h2>
 				<p>Powered by <a href="/">D3</a> and data from
 					<a href="/">
 						The World Bank API
@@ -93,6 +94,15 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div id="nobel">
+				<h3>Nobel Laureates 1901-2018</h3>
+				<p>Powered by <a href="/">Chart.js</a> and data from
+					<a href="/">
+						nobelprize.org
+					</a>
+				</p>
+				<canvas id="nobelChart" width="400" height="400"></canvas>
 			</div>
 		</div>
 		<div class="footer"></div>
