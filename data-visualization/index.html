@@ -35,7 +35,6 @@
 			<ul>
 				<li><a href="#planets">Planets</a></li>
 				<li><a href="#populations">U.S. Populations</a></li>
-				<li><a href="#tab-3">Tab 3</a></li>
 			</ul>
 			<div id="populations">
 				<h2>U.S. Populations 1960-2019</h2>
@@ -46,15 +45,55 @@
 				</p>
 			</div>
 			<div id="planets">
-				<h2>Planetary Statistics</h2>
-				<p>Powered by <a href="/">Vue.js</a> and data from Wikipedia</p>
+				<h2>Planetary Comparisons</h2>
+				<p><i>How does Earth stack up to its neighbors?</i></p>
+				<hr />
 				<div id="planetApp">
+					<label for="userWeight">
+						<strong>BONUS!</strong> Enter your weight to see it calculated for each planet:
+					</label>
+					<input
+						id="userWeight"
+						class="ui-corners-all"
+						placeholder="Enter weight"
+						v-model="weight" />
+					<br /><br />
+					<small>Powered by <a href="/">Vue.js</a> and data from Wikipedia</small>
 					<div v-for="(planet, index) in planets" class="planet-card">
-						<p>&num;{{ index + 1 }} - Name: {{ planet.name }}</p>
+						<hr />
+						<h3>{{ planet.name }}</h3>
+						<div v-if="planet.name != 'Earth'" class="img-wrap">
+							<img class="main planet"
+							v-bind:src="'img/' + planet.name + '.jpg'"
+							v-bind:class="planet.name"
+							v-bind:style="{ transform: 'rotate(' + planet.axial_tilt_degrees + 'deg)' }"/>
+							<img class="planet scale-earth"
+							src="img/Earth.png"
+							v-bind:style="{ transform: 'rotate(' + planet.axial_tilt_degrees + 'deg) scale(' + scaleRatio(planet) + ')' }"/>
+							<small>(Earth for scale)</small>
+						</div>
+						<div v-else class="img-wrap-earth">
+							<img class="planet earth"
+							src="img/Earth.png"
+							v-bind:style="{ transform: 'rotate(' + planet.axial_tilt_degrees + 'deg)' }"/>
+						</div>
+						<div class="stat-wrap">
+							<p>Your weight on {{ planet.name }}: {{ weight * planet.relative_gravitational_modifier }}
+							<p v-if="planet.name != 'Earth'">Equatorial Diameter: {{ planet.relative_equatorial_diameter }} x Earth diameter</p>
+							<p v-if="planet.name != 'Earth'">Mass: {{ planet.relative_mass }} x Earth mass</p>
+							<p v-if="planet.name != 'Earth'">Orbital Period: {{ planet.orbital_period_years }} Earth years</p>
+							<p v-if="planet.name != 'Earth'">Rotational Period: {{ planet.rotation_period_days }} Earth days</p>
+							<p>Number of Moons: {{ planet.confirmed_moons }}</p>
+							<p>Axial Tilt: {{ planet.axial_tilt_degrees }}&deg;</p>
+							<p>Rings: {{ planet.rings | capitalize }}</p>
+							<p>Atmosphere: {{ planet.atmosphere | capitalize }}</p>
+							<p v-if="planet.name != 'Earth'">Gravity:
+								{{ planet.relative_gravitational_modifier }} x Earth gravity
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div id="tab-3">Tab 3</div>
 		</div>
 		<div class="footer"></div>
 	</div>

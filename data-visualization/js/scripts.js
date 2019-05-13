@@ -28,12 +28,29 @@ function buildPopulations(populations) {
 function buildPlanetApp(planetData) {
 	var app = new Vue({
 		el: '#planetApp',
-		data() {
-			console.log(planetData);
-			return {
-				planets: planetData
+		data: {
+				planets: planetData,
+				weight: 100
+			},
+		methods: {
+			scaleRatio : function(planet) {
+				console.log('scaleRatio fired', planet);
+				return (1/planet.relative_equatorial_diameter);
+			},
+			axialRotation : function(planet) {
+				return planet.axial_tilt_degrees;
+			},
+			earthAxialRotation : function(planet) {
+				return planets[2].axial_tilt_degrees;
 			}
 		},
+		filters: {
+			capitalize: function (value) {
+				if (!value) return ''
+				value = value.toString()
+				return value.charAt(0).toUpperCase() + value.slice(1)
+			}
+		}
 	});
 }
 

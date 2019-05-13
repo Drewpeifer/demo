@@ -6,7 +6,7 @@
    "orbital_period_years": 0.24,
    "rotation_period_days": 58.64,
    "confirmed_moons": 0,
-   "axial_tild_degrees": 0.04,
+   "axial_tilt_degrees": 0.04,
    "rings": "no",
    "atmosphere": "minimal",
    "relative_gravitational_modifier": 0.38
@@ -18,7 +18,7 @@
    "orbital_period_years": 0.62,
    "rotation_period_days": 243.02,
    "confirmed_moons": 0,
-   "axial_tild_degrees": 177.36,
+   "axial_tilt_degrees": 177.36,
    "rings": "no",
    "atmosphere": "CO2, N2",
    "relative_gravitational_modifier": 0.91
@@ -30,7 +30,7 @@
    "orbital_period_years": 1,
    "rotation_period_days": 1,
    "confirmed_moons": 1,
-   "axial_tild_degrees": 23.44,
+   "axial_tilt_degrees": 23.44,
    "rings": "no",
    "atmosphere": "N2, O2, Ar",
    "relative_gravitational_modifier": 1
@@ -42,7 +42,7 @@
    "orbital_period_years": 1.88,
    "rotation_period_days": 1.03,
    "confirmed_moons": 2,
-   "axial_tild_degrees": 25.19,
+   "axial_tilt_degrees": 25.19,
    "rings": "no",
    "atmosphere": "CO2, N2, Ar",
    "relative_gravitational_modifier": 0.38
@@ -54,7 +54,7 @@
    "orbital_period_years": 11.86,
    "rotation_period_days": 0.41,
    "confirmed_moons": 79,
-   "axial_tild_degrees": 3.13,
+   "axial_tilt_degrees": 3.13,
    "rings": "yes",
    "atmosphere": "H2, He",
    "relative_gravitational_modifier": 2.34
@@ -66,7 +66,7 @@
    "orbital_period_years": 29.46,
    "rotation_period_days": 0.43,
    "confirmed_moons": 62,
-   "axial_tild_degrees": 26.73,
+   "axial_tilt_degrees": 26.73,
    "rings": "yes",
    "atmosphere": "H2, He",
    "relative_gravitational_modifier": 1.06
@@ -78,7 +78,7 @@
    "orbital_period_years": 84.01,
    "rotation_period_days": 0.72,
    "confirmed_moons": 27,
-   "axial_tild_degrees": 97.77,
+   "axial_tilt_degrees": 97.77,
    "rings": "yes",
    "atmosphere": "H2, He, CH4",
    "relative_gravitational_modifier": 0.92
@@ -90,7 +90,7 @@
    "orbital_period_years": 164.8,
    "rotation_period_days": 0.67,
    "confirmed_moons": 14,
-   "axial_tild_degrees": 28.32,
+   "axial_tilt_degrees": 28.32,
    "rings": "yes",
    "atmosphere": "H2, He, CH4",
    "relative_gravitational_modifier": 0.06
@@ -102,7 +102,7 @@
    "orbital_period_years": 248,
    "rotation_period_days": 6.39,
    "confirmed_moons": 5,
-   "axial_tild_degrees": 122.53,
+   "axial_tilt_degrees": 122.53,
    "rings": "no",
    "atmosphere": "N2, CO2, CH4",
    "relative_gravitational_modifier": 0.063
