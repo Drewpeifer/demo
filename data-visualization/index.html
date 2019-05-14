@@ -16,10 +16,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
 	<!-- Chart.js -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
-	<!-- moment.js
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
 	<!-- fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<!-- fontAwesome (icons) -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<!-- custom -->
 	<link rel="stylesheet" href="css/styles.css">
 	<!--[if lt IE 9]>
@@ -49,7 +49,7 @@
 					all using simple demos with favorable datasets, outlining the pros and cons below.
 				</p>
 				<hr />
-				<h2 id="planetIntro">Planetary Comparisons (<a href="https://vuejs.org/" target="_blank">Vue.js</a>)</h2>
+				<h2 id="planetIntro"><span class="fa fa-caret-right">&nbsp;</span>Planetary Comparisons (<a href="https://vuejs.org/" target="_blank">Vue.js</a>)</h2>
 				<div class="planetIntro intro-wrap">
 					<p>Lines of JS: 25</p>
 					<p>Lines of HTML: 50</p>
@@ -81,7 +81,7 @@
 					</ul>
 				</div>
 				<hr />
-				<h2 id="populationIntro">U.S. Populations (<a href="https://d3js.org/" target="_blank">D3.js</a>)</h2>
+				<h2 id="populationIntro"><span class="fa fa-caret-right">&nbsp;</span>U.S. Populations (<a href="https://d3js.org/" target="_blank">D3.js</a>)</h2>
 				<div class="populationIntro intro-wrap">
 					<p>Lines of JS: 23</p>
 					<p>Lines of HTML: 0</p>
@@ -116,7 +116,7 @@
 					</ul>
 				</div>
 				<hr />
-				<h2 id="nobelIntro">Nobels by Nation (<a href="https://www.chartjs.org/" target="_blank">Chart.js</a>)</h2>
+				<h2 id="nobelIntro"><span class="fa fa-caret-right">&nbsp;</span>Nobels by Nation (<a href="https://www.chartjs.org/" target="_blank">Chart.js</a>)</h2>
 				<div class="nobelIntro intro-wrap">
 					<p>Lines of JS: 60 (~30 lines of chart settings)</p>
 					<p>Lines of HTML: 1 (canvas tag)</p>
@@ -147,6 +147,7 @@
 					<ul>
 						<li>Needs most data converted to a plain arrays, adding an extra step for complex datasets</li>
 						<li>Generating the chart via canvas limits the amount of DOM manipulation that can occur outside of Chart.js logic</li>
+						<li>Canvas element makes responsive charts difficult; Chart.js offers some responsive configuration options, but they are not very extensive</li>
 						<li>Most necessary configuration values must be created manually, or via custom function, e.g. to generate the colors in the graph, I either had to write out one hex code for each country value (no thank you), or write a custom function that generates a random hex code by looping through the country list (which I did).</li>
 					</ul>
 				</div>

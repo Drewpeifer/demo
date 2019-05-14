@@ -134,3 +134,25 @@ img.scale-earth {
 	padding: 5px;
 	border-radius: 5px;
 }
+
+/* nobels */
+canvas {
+	min-width: 200px;
+}
+
+/* responsive */
+@media (max-width:600px) {
+	li.ui-tabs-tab {
+		width: 48%;
+	}
+
+	li.ui-tabs-tab a {
+		width: 100%;
+		text-align: left;
+	}
+
+	#planets {
+		font-size: .8em;
+	}
+
+}

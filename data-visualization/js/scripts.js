@@ -106,6 +106,7 @@ function buildNobelApp(nobel) {
 	        }]
 	    },
 	    options: {
+	    	responsive: true,
 	    	legend: {
 	    		position: 'bottom'
 	    	},
@@ -149,8 +150,12 @@ $(function() {
 		// bind intro headers to their respective sections
 		if (active) {
 			$('.' + section + '.intro-wrap').slideUp();
+			$('#' + section + ' span.fa').addClass('fa-caret-right');
+			$('#' + section + ' span.fa').removeClass('fa-caret-down');
 		} else {
 			$('.' + section + '.intro-wrap').slideDown();
+			$('#' + section + ' span.fa').removeClass('fa-caret-right');
+			$('#' + section + ' span.fa').addClass('fa-caret-down');
 		}
 		$(this).toggleClass('active');
 	});
