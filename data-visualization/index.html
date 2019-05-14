@@ -177,8 +177,8 @@
 					<small>Powered by <a href="https://vuejs.org/" target="_blank">Vue.js</a> and data from Wikipedia</small>
 					<div v-for="(planet, index) in planets" class="planet-card">
 						<hr />
-						<h3>{{ planet.name }}</h3>
-						<div v-if="planet.name != 'Earth'" class="img-wrap">
+						<h3>{{ planet.name | capitalize }}</h3>
+						<div v-if="planet.name != 'earth'" class="img-wrap">
 							<img class="main planet"
 							v-bind:src="'img/' + planet.name + '.jpg'"
 							v-bind:class="planet.name"
@@ -195,14 +195,14 @@
 						</div>
 						<div class="stat-wrap">
 							<ul>
-								<li>Your weight on {{ planet.name }}: {{ weight * planet.relative_gravitational_modifier }}
-								<li v-if="planet.name != 'Earth'">Gravity:
+								<li>Your weight on {{ planet.name | capitalize }}: {{ weight * planet.relative_gravitational_modifier }}
+								<li v-if="planet.name != 'earth'">Gravity:
 									{{ planet.relative_gravitational_modifier }} x Earth gravity
 								</li>
-								<li v-if="planet.name != 'Earth'">Diameter: {{ planet.relative_equatorial_diameter }} x Earth diameter</li>
-								<li v-if="planet.name != 'Earth'">Mass: {{ planet.relative_mass }} x Earth mass</li>
-								<li v-if="planet.name != 'Earth'">1 Year: {{ planet.orbital_period_years }} Earth years</li>
-								<li v-if="planet.name != 'Earth'">1 Day: {{ planet.rotation_period_days }} Earth days</li>
+								<li v-if="planet.name != 'earth'">Diameter: {{ planet.relative_equatorial_diameter }} x Earth diameter</li>
+								<li v-if="planet.name != 'earth'">Mass: {{ planet.relative_mass }} x Earth mass</li>
+								<li v-if="planet.name != 'earth'">1 Year: {{ planet.orbital_period_years }} Earth years</li>
+								<li v-if="planet.name != 'earth'">1 Day: {{ planet.rotation_period_days }} Earth days</li>
 								<li>Moons: {{ planet.confirmed_moons }}</li>
 								<li>Axial Tilt: {{ planet.axial_tilt_degrees }}&deg;</li>
 								<li>Rings: {{ planet.rings | capitalize }}</li>

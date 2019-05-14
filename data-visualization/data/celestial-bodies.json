@@ -1,6 +1,6 @@
 [
  {
-   "name": "Mercury",
+   "name": "mercury",
    "relative_equatorial_diameter": 0.382,
    "relative_mass": 0.06,
    "orbital_period_years": 0.24,
@@ -12,7 +12,7 @@
    "relative_gravitational_modifier": 0.38
  },
  {
-   "name": "Venus",
+   "name": "venus",
    "relative_equatorial_diameter": 0.949,
    "relative_mass": 0.82,
    "orbital_period_years": 0.62,
@@ -24,7 +24,7 @@
    "relative_gravitational_modifier": 0.91
  },
  {
-   "name": "Earth",
+   "name": "earth",
    "relative_equatorial_diameter": 1,
    "relative_mass": 1,
    "orbital_period_years": 1,
@@ -36,7 +36,7 @@
    "relative_gravitational_modifier": 1
  },
  {
-   "name": "Mars",
+   "name": "mars",
    "relative_equatorial_diameter": 0.532,
    "relative_mass": 0.11,
    "orbital_period_years": 1.88,
@@ -48,7 +48,7 @@
    "relative_gravitational_modifier": 0.38
  },
  {
-   "name": "Jupiter",
+   "name": "jupiter",
    "relative_equatorial_diameter": 11.209,
    "relative_mass": 317.8,
    "orbital_period_years": 11.86,
@@ -60,7 +60,7 @@
    "relative_gravitational_modifier": 2.34
  },
  {
-   "name": "Saturn",
+   "name": "saturn",
    "relative_equatorial_diameter": 9.449,
    "relative_mass": 95.2,
    "orbital_period_years": 29.46,
@@ -72,7 +72,7 @@
    "relative_gravitational_modifier": 1.06
  },
  {
-   "name": "Uranus",
+   "name": "uranus",
    "relative_equatorial_diameter": 4.007,
    "relative_mass": 14.6,
    "orbital_period_years": 84.01,
@@ -84,7 +84,7 @@
    "relative_gravitational_modifier": 0.92
  },
  {
-   "name": "Neptune",
+   "name": "neptune",
    "relative_equatorial_diameter": 3.883,
    "relative_mass": 17.2,
    "orbital_period_years": 164.8,
@@ -96,7 +96,7 @@
    "relative_gravitational_modifier": 0.06
  },
  {
-   "name": "Pluto",
+   "name": "pluto",
    "relative_equatorial_diameter": 0.186,
    "relative_mass": 0.002,
    "orbital_period_years": 248,
