@@ -92,7 +92,6 @@ function buildNobelApp(nobel) {
 	    }
 	    colorArray.push(color);
 	}
-	console.log('colorArray ' + colorArray);
 
 	var ctx = document.getElementById('nobelChart').getContext('2d');
 	var myChart = new Chart(ctx, {
@@ -107,6 +106,9 @@ function buildNobelApp(nobel) {
 	        }]
 	    },
 	    options: {
+	    	legend: {
+	    		position: 'bottom'
+	    	},
 	        scales: {
 	            yAxes: [{
 	                ticks: {
@@ -131,7 +133,6 @@ $(function() {
 
 	// initialize nobel / chart.js demo
 	$.getJSON('data/nobel-laureates.json', function(data) {
-		console.log('getting json');
 		buildNobelApp(data);
 	});
 
@@ -140,5 +141,17 @@ $(function() {
 	$(".widget input[type=submit], .widget a, .widget button").button();
 	$("button, input, a").click(function(event) {
 		event.preventDefault();
+	});
+	// custom
+	$('#intro h2').click(function() {
+		section = $(this).attr('id');
+		active = $(this).hasClass('active');
+		// bind intro headers to their respective sections
+		if (active) {
+			$('.' + section + '.intro-wrap').slideUp();
+		} else {
+			$('.' + section + '.intro-wrap').slideDown();
+		}
+		$(this).toggleClass('active');
 	});
 });

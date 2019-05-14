@@ -33,17 +33,131 @@
 		</div>
 		<div class="content">
 			<ul>
-				<li><a href="#nobel">Nobel Laureates</a></li>
+				<li><a href="#intro">Intro</a></li>
 				<li><a href="#planets">Planets</a></li>
-				<li><a href="#populations">U.S. Population</a></li>
+				<li><a href="#populations">Populations</a></li>
+				<li><a href="#nobel">Nobels</a></li>
 			</ul>
+			<div id="intro">
+				<p>
+					This page contains a few different data visualization demos,
+					each utilizing a different framework and dataset. All data is stored
+					locally in a JSON file and retrieved via jQuery when the page loads.
+				</p>
+				<p>
+					Each framework has its strengths and weaknesses so I've showcased them
+					all using simple demos with favorable datasets, outlining the pros and cons below.
+				</p>
+				<hr />
+				<h2 id="planetIntro">Planetary Comparisons (<a href="https://vuejs.org/" target="_blank">Vue.js</a>)</h2>
+				<div class="planetIntro intro-wrap">
+					<p>Lines of JS: 25</p>
+					<p>Lines of HTML: 50</p>
+					<p>
+						Vue is great for client-side UI manipulation, and the templating system
+						is fairly intuitive. It lends itself well to dynamically creating a modular
+						UI while using the data to control layout, content, and styling.
+					</p>
+					<p>
+						It's very easy to perform calculations within the HTML using Vue, so I've
+						used the values printed below each planet (e.g. Diameter, Axis) to transform
+						the images of the planets. If you look closely, each planet is rotated using
+						CSS to match the natural axial rotation, and the image of Earth added for scale
+						is likewise scaled using CSS according to the relative diameter of each planet.
+					</p>
+					<h3>Vue.js</h3>
+					<p><u>Strengths</u></p>
+					<ul>
+						<li>Similar syntax to Angular and React</li>
+						<li>Lightweight</li>
+						<li>Intuitive binding and templating system</li>
+						<li>Can access and update large, complex objects very quickly</li>
+					</ul>
+					<p><u>Weaknesses</u></p>
+					<ul>
+						<li>Slight learning curve for more complex applications / component usage</li>
+						<li>Benefits from local and low-overhead data calls (using something like JSON will be faster and more semantic than sql)</li>
+						<li>Can be tempting to perform lots of logic in the UI, but performs best when complex calculations are done via computed values and local methods (and some would say that takes away from the UI-centric philosophy).</li>
+					</ul>
+				</div>
+				<hr />
+				<h2 id="populationIntro">U.S. Populations (<a href="https://d3js.org/" target="_blank">D3.js</a>)</h2>
+				<div class="populationIntro intro-wrap">
+					<p>Lines of JS: 23</p>
+					<p>Lines of HTML: 0</p>
+					<p>
+						Whereas Vue focuses on binding a UI to data so that both can be dynamically
+						modified, D3.js is a great library for generating a semi-static
+						UI based upon a dataset. That means that generating a chart or graph using
+						a block of JSON is fairly easy; modifying that UI after it renders requires
+						custom JS logic.
+					</p>
+					<p>
+						In my demo, I have pulled a list of U.S. population statistics for the
+						past few decades, and then printed those values in the UI. Based upon
+						the population value itself, I've modified the element containing the value
+						to scale proportionally (as well as the font-size). In about 20 lines of
+						code, D3 has converted a JSON array to a visual representation requiring
+						minimal math / logic.
+					</p>
+					<h3>D3.js</h3>
+					<p><u>Strengths</u></p>
+					<ul>
+						<li>Low learning curve for simple / 2D visuals</li>
+						<li>Fairly simple to integrate multiple datasets in the same visual</li>
+						<li>Supports easy integration of custom / vanilla JS</li>
+						<li>Large selection of formats / types of visualizations</li>
+					</ul>
+					<p><u>Weaknesses</u></p>
+					<ul>
+						<li>Higher learning curve for complex / 3D visuals</li>
+						<li>Sparse documentation (beyond basic examples)</li>
+						<li>Much of the logic / UI integration is reliant on the developer</li>
+					</ul>
+				</div>
+				<hr />
+				<h2 id="nobelIntro">Nobels by Nation (<a href="https://www.chartjs.org/" target="_blank">Chart.js</a>)</h2>
+				<div class="nobelIntro intro-wrap">
+					<p>Lines of JS: 60 (~30 lines of chart settings)</p>
+					<p>Lines of HTML: 1 (canvas tag)</p>
+					<p>
+						Chart.js is capable of generating robust and aesthetically-pleasing
+						visuals using HTML5 Canvas, but lacks flexibility from a developer perspective. Each of
+						the frameworks used on this page are fairly quick to set up, with D3 being the fastest, Vue the slowest, and Chart depending mostly on the data itself. While it's quick to
+						create a simple chart with static data, it takes a decent amount of manual effort to massage a complex object into something Chart.js can work with.
+					</p>
+					<p>
+						Chart works best (almost exclusively) with plain arrays, which
+						means you have to parse your data and create those arrays if they
+						don't exist already. This adds overhead to load time, and development
+						effort, depending on the data structure. There is also very little in
+						the way of helper methods, e.g. it's one line of code to loop through
+						an entire file for each instance of a value; it's about 15 lines of code
+						to count those occurrences and return the value.
+					</p>
+					<h3>Chart.js</h3>
+					<p><u>Strengths</u></p>
+					<ul>
+						<li>Chart formats are robust enough to represent large datasets</li>
+						<li>Uses canvas to create slick, responsive UI</li>
+						<li>Pre-configured settings cover most general use cases</li>
+						<li>Provides support for generating complex legends via HTML instead of pure canvas</li>
+					</ul>
+					<p><u>Weaknesses</u></p>
+					<ul>
+						<li>Needs most data converted to a plain arrays, adding an extra step for complex datasets</li>
+						<li>Generating the chart via canvas limits the amount of DOM manipulation that can occur outside of Chart.js logic</li>
+						<li>Most necessary configuration values must be created manually, or via custom function, e.g. to generate the colors in the graph, I either had to write out one hex code for each country value (no thank you), or write a custom function that generates a random hex code by looping through the country list (which I did).</li>
+					</ul>
+				</div>
+			</div>
 			<div id="populations">
 				<h2>U.S. Population 1960-2019</h2>
-				<p>Powered by <a href="/">D3</a> and data from
-					<a href="/">
+				<small>Powered by <a href="https://d3js.org/" target="_blank">D3</a> and data from
+					<a href="https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation" target="_blank">
 						The World Bank API
 					</a>
-				</p>
+				</small>
 			</div>
 			<div id="planets">
 				<h2>Planetary Comparisons</h2>
@@ -59,7 +173,7 @@
 						placeholder="Enter weight"
 						v-model="weight" />
 					<br /><br />
-					<small>Powered by <a href="/">Vue.js</a> and data from Wikipedia</small>
+					<small>Powered by <a href="https://vuejs.org/" target="_blank">Vue.js</a> and data from Wikipedia</small>
 					<div v-for="(planet, index) in planets" class="planet-card">
 						<hr />
 						<h3>{{ planet.name }}</h3>
@@ -69,39 +183,42 @@
 							v-bind:class="planet.name"
 							v-bind:style="{ transform: 'rotate(' + planet.axial_tilt_degrees + 'deg)' }"/>
 							<img class="planet scale-earth"
-							src="img/Earth.png"
-							v-bind:style="{ transform: 'rotate(' + planet.axial_tilt_degrees + 'deg) scale(' + scaleRatio(planet) + ')' }"/>
+							src="img/earth.jpg"
+							v-bind:style="{ transform: 'rotate(' + planets[2].axial_tilt_degrees + 'deg) scale(' + scaleRatio(planet) + ')' }"/>
 							<small>(Earth for scale)</small>
 						</div>
 						<div v-else class="img-wrap-earth">
 							<img class="planet earth"
-							src="img/Earth.png"
+							src="img/earth.jpg"
 							v-bind:style="{ transform: 'rotate(' + planet.axial_tilt_degrees + 'deg)' }"/>
 						</div>
 						<div class="stat-wrap">
-							<p>Your weight on {{ planet.name }}: {{ weight * planet.relative_gravitational_modifier }}
-							<p v-if="planet.name != 'Earth'">Equatorial Diameter: {{ planet.relative_equatorial_diameter }} x Earth diameter</p>
-							<p v-if="planet.name != 'Earth'">Mass: {{ planet.relative_mass }} x Earth mass</p>
-							<p v-if="planet.name != 'Earth'">Orbital Period: {{ planet.orbital_period_years }} Earth years</p>
-							<p v-if="planet.name != 'Earth'">Rotational Period: {{ planet.rotation_period_days }} Earth days</p>
-							<p>Number of Moons: {{ planet.confirmed_moons }}</p>
-							<p>Axial Tilt: {{ planet.axial_tilt_degrees }}&deg;</p>
-							<p>Rings: {{ planet.rings | capitalize }}</p>
-							<p>Atmosphere: {{ planet.atmosphere | capitalize }}</p>
-							<p v-if="planet.name != 'Earth'">Gravity:
-								{{ planet.relative_gravitational_modifier }} x Earth gravity
-							</p>
+							<ul>
+								<li>Your weight on {{ planet.name }}: {{ weight * planet.relative_gravitational_modifier }}
+								<li v-if="planet.name != 'Earth'">Gravity:
+									{{ planet.relative_gravitational_modifier }} x Earth gravity
+								</li>
+								<li v-if="planet.name != 'Earth'">Diameter: {{ planet.relative_equatorial_diameter }} x Earth diameter</li>
+								<li v-if="planet.name != 'Earth'">Mass: {{ planet.relative_mass }} x Earth mass</li>
+								<li v-if="planet.name != 'Earth'">1 Year: {{ planet.orbital_period_years }} Earth years</li>
+								<li v-if="planet.name != 'Earth'">1 Day: {{ planet.rotation_period_days }} Earth days</li>
+								<li>Moons: {{ planet.confirmed_moons }}</li>
+								<li>Axial Tilt: {{ planet.axial_tilt_degrees }}&deg;</li>
+								<li>Rings: {{ planet.rings | capitalize }}</li>
+								<li>Atmosphere: {{ planet.atmosphere | capitalize }}</li>
+							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div id="nobel">
-				<h3>Nobel Laureates 1901-2018</h3>
-				<p>Powered by <a href="/">Chart.js</a> and data from
-					<a href="/">
+				<h2>Nations of Birth for</h2>
+				<h2>Nobel Laureates 1901-2018</h2>
+				<small>Powered by <a href="https://www.chartjs.org/">Chart.js</a> and data from
+					<a href="https://www.nobelprize.org/" target="_blank">
 						nobelprize.org
 					</a>
-				</p>
+				</small>
 				<canvas id="nobelChart" width="400" height="400"></canvas>
 			</div>
 		</div>

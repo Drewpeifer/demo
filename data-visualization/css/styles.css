@@ -23,6 +23,10 @@ h1 {
 	text-transform: uppercase;
 }
 
+h2 {
+	margin: 5px;
+}
+
 /* end fonts */
 .wrapper {
 	width: 100vw;
@@ -32,6 +36,19 @@ h1 {
 	margin-left: -50vw;
 	margin-right: -50vw;
 	text-align: center;
+}
+
+/* intro */
+#intro {
+	text-align: left;
+}
+
+#intro ul lh {
+	text-decoration: underline;
+}
+
+.intro-wrap {
+	display: none;
 }
 
 /* populations */
@@ -61,13 +78,16 @@ h1 {
 	color: gold;
 }
 
-.planet-card {
+div.planet-card {
 	background: #000;
+	color: #f2f2f2;
 }
 
-.planet-card p,
-.planet-card h3 {
+.planet-card ul {
+	list-style: none;
 	color: #f2f2f2;
+	margin: 10px 0;
+	padding: 0;
 }
 
 div.img-wrap,
@@ -85,8 +105,8 @@ div.img-wrap {
 /* planet images */
 img.planet {
 	display: inline-block;
-	min-height: 150px;
-	min-width: 150px;
+	height: 150px;
+	width: 150px;
 	border-radius: 50%;
 	background-size: stretch;
 	background-position: left;
@@ -98,6 +118,8 @@ img.planet {
 img.scale-earth {
 	position: relative;
 	z-index: 1;
+	height: 150px;
+	width: 150px;
 }
 
 .img-wrap small {
