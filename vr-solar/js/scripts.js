@@ -20,6 +20,8 @@ function buildUI(planets) {
   $(planets).each(function (index) {
     console.log(sizeScale);
     var planet = this,
+        initialRotation = '' + planet.axial_tilt_degrees + ' 0 0',
+        finalRotation = '' + planet.axial_tilt_degrees + ' 360 0',
         diameter = sizeScale * planet.relative_equatorial_diameter,
         displacement = displacementScale * -planet.distance_au,
         sphere = document.createElement('a-sphere');
@@ -35,6 +37,14 @@ function buildUI(planets) {
     }
 
     // build planet
+    sphere.setAttribute('animation', {
+      property: 'rotation',
+      from: initialRotation,
+      to: finalRotation,
+      dur: '5000',
+      easing: 'linear',
+      loop: 'true'
+    });
     sphere.setAttribute('material', { shader: 'flat', src: texture });
     sphere.setAttribute('position', { x: 0, y: 0, z: displacement });
     sphere.setAttribute('scale', { x: diameter, y: diameter, z: diameter });
