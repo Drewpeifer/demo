@@ -1,6 +1,8 @@
 // build UI
 function buildUI(planets) {
   var scene = document.querySelector('a-scene'),
+      rotationScale = 1,// rotational speed multiplier
+      rotationDefault = '5000',// earth's rotation, in ms
       sizeScale = 10,// controls planet size
       displacementScale = 100;// multiplier applied to standard a-frame distance "unit"
 
@@ -22,6 +24,7 @@ function buildUI(planets) {
     var planet = this,
         initialRotation = '' + planet.axial_tilt_degrees + ' 0 0',
         finalRotation = '' + planet.axial_tilt_degrees + ' 360 0',
+        rotationSpeed = rotationScale * planet.rotation_period_days,
         diameter = sizeScale * planet.relative_equatorial_diameter,
         displacement = displacementScale * -planet.distance_au,
         sphere = document.createElement('a-sphere');
@@ -41,7 +44,7 @@ function buildUI(planets) {
       property: 'rotation',
       from: initialRotation,
       to: finalRotation,
-      dur: '5000',
+      dur: rotationScale * rotationDefault,
       easing: 'linear',
       loop: 'true'
     });
