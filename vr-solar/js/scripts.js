@@ -9,10 +9,17 @@ function buildUI(planets) {
     var planet = this,
         diameter = planet.relative_equatorial_diameter,
         displacement = 10 * planet.distance_au,
+        texture = '../img/2k_' + planet.name + '.jpg',
         sphere = document.createElement('a-sphere');
 
+    if (this.name == 'earth') {
+      texture = '../img/2k_earth_daymap.jpg';
+      sphere.setAttribute('material', { shader: 'flat', src: texture });
+    } else {
+      sphere.setAttribute('material', { shader: 'flat', src: texture });
+    }
+
     // build planet
-    sphere.setAttribute('material', { shader: 'flat', src: '../img/2k_' + planet.name + '.jpg' });
     sphere.setAttribute('position', { x: 0, y: 0, z: -displacement });
     sphere.setAttribute('scale', { x: diameter, y: diameter, z: diameter });
     // add planet to solar system
