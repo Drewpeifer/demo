@@ -12,7 +12,7 @@ function buildUI(planets) {
         sphere = document.createElement('a-sphere');
 
     // build planet
-    sphere.setAttribute('material', { color: planet.color });
+    sphere.setAttribute('material', { shader: 'flat', src: '../img/2k_' + planet.name + '.jpg' });
     sphere.setAttribute('position', { x: 0, y: 0, z: -displacement });
     sphere.setAttribute('scale', { x: diameter, y: diameter, z: diameter });
     // add planet to solar system
