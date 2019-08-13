@@ -8,9 +8,14 @@
   <body>
     <a-scene solar-system>
       <a-sky material="shader: flat; src: /img/8k_stars.jpg"></a-sky>
-      <a-entity camera="active: true" look-controls wasd-controls="acceleration: 10000" position="0 1.6 0"></a-entity>
+      <a-entity camera="active: true" look-controls wasd-controls="acceleration: 5000" position="0 1.6 0"></a-entity>
       <a-entity
-        text="value: Explore the Solar System; align: center;"
+        geometry="primitive: plane; width: auto; height: auto;"
+        material="color: #111; opacity: .8"
+        text="value: Explore the Solar System \n
+              5 seconds = 1 Earth day \n
+              In browser, use WASD/arrows to fly, grab w/ mouse to pan \n
+              Distances, speeds, and sizes are relative but not to scale; align: center"
         scale="2 2 2"
         position="0 1.6 -1">
       </a-entity>
