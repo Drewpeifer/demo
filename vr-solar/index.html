@@ -8,7 +8,12 @@
   <body>
     <a-scene solar-system>
       <a-sky material="shader: flat; src: /img/8k_stars.jpg"></a-sky>
-      <a-entity camera="active: true" look-controls wasd-controls="acceleration: 500" position="0 1.6 0"></a-entity>
+      <a-entity camera="active: true" look-controls wasd-controls="acceleration: 1000" position="0 1.6 0"></a-entity>
+      <a-entity
+        text="value: Explore the Solar System; align: center;"
+        scale="2 2 2"
+        position="0 1.6 -1">
+      </a-entity>
     </a-scene>
   </body>
 </html>
