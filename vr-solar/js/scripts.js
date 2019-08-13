@@ -32,11 +32,11 @@ function buildUI(planets) {
     // different layers and resolutions are available
     // for each planet
     if (this.name == 'earth') {
-      texture = '../img/8k_earth_daymap.jpg';
+      texture = 'img/8k_earth_daymap.jpg';
     } else if (this.name == 'uranus' || 'neptune' || 'pluto' ){
-      texture = '../img/2k_' + planet.name + '.jpg';
+      texture = 'img/2k_' + planet.name + '.jpg';
     } else {
-      texture = '../img/8k_' + planet.name + '.jpg';
+      texture = 'img/8k_' + planet.name + '.jpg';
     }
 
     // build planet
