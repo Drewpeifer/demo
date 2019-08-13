@@ -20,8 +20,8 @@ function buildUI(planets) {
     sphere.setAttribute('material', { shader: 'flat', src: texture });
 
     // build planet
-    sphere.setAttribute('position', { x: 0, y: 0, z: -displacement });
-    sphere.setAttribute('scale', { x: diameter, y: diameter, z: diameter });
+    sphere.setAttribute('position', { x: 0, y: 0, z: 2 * -displacement });
+    sphere.setAttribute('scale', { x: 2* diameter, y: 2 * diameter, z: 2 * diameter });
     // add planet to solar system
     scene.appendChild(sphere);
   });
