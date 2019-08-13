@@ -1,10 +1,13 @@
 // build UI
 function buildUI(planets) {
   var scene = document.querySelector('a-scene'),
+      sky = document.querySelector('a-sky'),
       rotationScale = 1,// rotational speed multiplier
       rotationDefault = '5000',// earth's rotation, in ms
       sizeScale = 10,// controls planet size
       displacementScale = 100;// multiplier applied to standard a-frame distance "unit"
+
+  sky.setAttribute('material', { shader: 'flat', src: 'img/8k_stars.jpg' });
 
   // Note:
   // displacementScale determines the "size" of one unit (aU),
