@@ -4,9 +4,9 @@ Vue.component('marketplace', {
     template: '<ul>' +
                 '<li class="market-header unselectable"><span class="title">Commodity</span>' +
                     '<span class="action"></span>' +
-                    '<span class="num"><span class="fa fa-comments-dollar"></span></span>' +
-                    '<span class="num"><span class="fa fa-cubes"></span></span>' +
-                    '<span class="num"><span class="fa fa-boxes"></span></span>' +
+                    '<span class="num price"><span class="fa fa-comments-dollar"></span></span>' +
+                    '<span class="num stock"><span class="fa fa-cubes"></span></span>' +
+                    '<span class="num loot"><span class="fa fa-boxes"></span></span>' +
                 '</li>' +
                 '<li v-if="mainStats.port.fuelStation" class="unselectable">' +
                     '<span title="This is what lets you travel, and if you run out it\'s Game Over, man!" class="tooltip title">Fuel</span>' +
