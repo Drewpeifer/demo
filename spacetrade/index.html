@@ -57,22 +57,22 @@
 				</li>
 				<li class="stats">
 					<span id="score" v-bind:class="{ bad: score == 0 }">
-						Score: {{ score }}
+						<span class="label">Score:</span> {{ score }}
 					</span>
 					<span></span>
 					<span id="turn">
-						Turn: {{ turn }}
+						<span class="label">Turn:</span> {{ turn }}
 					</span>
 				</li>
 				<li class="stats">
 					<span id="wallet" v-bind:class="{ bad: wallet == 0 }">
-						<span class="fa fa-dollar-sign"></span>{{ wallet }}
+						<span class="label fa fa-dollar-sign"></span>{{ wallet }}
 					</span>
 					<span id="cargo" v-bind:class="{ bad: currentCargoSum(menu) == cargoCap }">
-						<span class="fa fa-box-open"></span>: {{ currentCargoSum(menu) }}/{{ cargoCap }}
+						<span class="label fa fa-box-open"></span> {{ currentCargoSum(menu) }}/{{ cargoCap }}
 					</span>
 					<span id="fuel" v-bind:class="{ bad: fuel <= 2 }">
-						<span class="fa fa-gas-pump"></span>: {{ fuel }}
+						<span class="label fa fa-gas-pump"></span> {{ fuel }}
 					</span>
 				</li>
 			</ul>
