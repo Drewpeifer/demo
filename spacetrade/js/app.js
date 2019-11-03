@@ -221,6 +221,10 @@ Vue.component('map-list', {
                 '</li></ul>',
     methods: {
         toggleMap: function() {
+            allPortLabels = $('#map ul li span.title');
+            currentPortLabel = $('#map ul li span.title[data="' + stats.port.title + '"]');
+            allPortLabels.removeClass('current');
+            currentPortLabel.addClass('current');
             $('#map').toggle();
         },
         travel: function(port) {
@@ -233,6 +237,10 @@ Vue.component('map-list', {
                 buildMarket(port);
                 stats.fuel -= 1;
                 stats.turn += 1;
+                allPortLabels = $('#map ul li span.title');
+                currentPortLabel = $('#map ul li span.title[data="' + stats.port.title + '"]');
+                allPortLabels.removeClass('current');
+                currentPortLabel.addClass('current');
                 $('#map').toggle();
 
                 // did an incident occur?
@@ -311,8 +319,8 @@ var app = new Vue({
 		data: stats,
         methods: {
             toggleMap: function() {
-                        $('#map').toggle();
-                    },
+                $('#map').toggle();
+            },
             currentCargoSum: function(menu) { return cargoSum(menu); },
             currentCargoValueSum: function(menu) { return cargoValueSum(menu); }
         }

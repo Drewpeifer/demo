@@ -135,9 +135,9 @@ ul {
 #market ul li span.exchange button.Buy,
 #market ul li span.exchange button.Sell {
 	border-color:#e88f22;
-	width:35px;
-	border-radius:50%;
-}
+	width:45px;
+	font-size:1.2em;
+	border-radius:50%;}
 #market ul li span.exchange button {
 	background:#f7c956;
 }
@@ -146,9 +146,12 @@ ul {
 }
 #market ul li span.exchange button.Buy {
 	background:#9fe59e;
+	box-shadow: 0px 0px 5px 3px #9fe59e;
 }
 #market ul li span.exchange button.Sell {
 	background:#ea8481;
+	box-shadow: 0px 0px 5px 3px #ea8481;
+
 }
 /* text */
 h1 {
@@ -258,6 +261,16 @@ ul li {
 	margin-right:5px;
 	background:url(../img/planets/planet1.png) 0 1em no-repeat transparent;
 	background-size:3em 3em;
+}
+#map ul li span.title.current:after {
+	height:.8em;
+	width:1em;
+	padding:.2em;
+	color: #e88f22;
+	font-style:normal;
+	font-family: FontAwesome;
+	font-size:.8em;
+	content: '\f3c5';
 }
 /* map icons */
 #map ul li span.title[data=Earth] {
