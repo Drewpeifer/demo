@@ -134,7 +134,7 @@ ul {
 #market ul li span.exchange button,
 #market ul li span.exchange button.Buy,
 #market ul li span.exchange button.Sell {
-	border-color:#e88f22;
+	border-color:transparent;
 	width:45px;
 	font-size:1.2em;
 	border-radius:50%;}
