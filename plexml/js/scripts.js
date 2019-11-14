@@ -196,5 +196,8 @@ $('button.sort').each(function() {
 });
 // on load
 $(function() {
-    // nothing here yet
+    data = $.getPayload('http://152.208.23.228:29915/library/sections/1/all?X-Plex-Token=xxcwJWERP477juYsw4MX');
+    console.log('data is ' + data);
+    newJson = xmlToJson(data);
+    console.log(newJson);
 });
