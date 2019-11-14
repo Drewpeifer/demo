@@ -1,4 +1,5 @@
 /**
+ * https://gist.github.com/chinchang/8106a82c56ad007e27b1
  * Changes XML to JSON
  * Modified version from here: http://davidwalsh.name/convert-xml-json
  * @param {string} xml XML DOM tree
