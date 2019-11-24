@@ -30,23 +30,27 @@ jQuery.extend({
 // render charts on page load
 function renderCharts(jsonData) {
     console.dir(jsonData.MediaContainer);
-    var releaseDateList = [],
+    var movieCount = jsonData.MediaContainer.Video.length,
+        releaseDateList = [],
         releaseDateCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0],
         decadePrefixes = ["193", "194", "195", "196", "197", "198", "199", "200", "201"],
-        decades = ["1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s"];
+        decades = ["1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s"],
+        studioList = [];
 
-    // loop through movies
+    // loop through movies and gather important data
     $.each(jsonData.MediaContainer.Video, function() {
         // track year
         releaseDateList.push(this['@attributes'].year);
-        //console.log(this['@attributes'].year);
+        // track studio
+        studioList.push(this['@attributes'].studio);
     });
-    // TODO: find a better way to do the following...
-    // sort through the releaseDateList, and depending on which decade prefix matches the year value,
-    // increment the corresponding releaseDateCount
-    console.log('ReleaseDateList:');
-    console.dir(releaseDateList);
+
+    // movies by decade chart
     $.each(releaseDateList, function() {
+        // TODO: find a better way to do the following...
+        // sort through the releaseDateList,
+        // and depending on which decade prefix matches the year value,
+        // increment the corresponding releaseDateCount
         var yearSub = this.substring(0, 3);
 
         if (yearSub == decadePrefixes[0]) {
@@ -74,8 +78,6 @@ function renderCharts(jsonData) {
         }
     });
     releaseDateCounts.unshift("releaseDateCounts");
-    console.dir(decades);
-    console.dir(releaseDateCounts);
     c3.generate({
         bindto: '.decade',
         x: 'x',
@@ -93,6 +95,54 @@ function renderCharts(jsonData) {
         },
         legend: {
             hide: true
+        },
+        color: {
+            pattern: ['#D62828', '#F75C03', '#F77F00', '#FCBF49', '#EAE2B7']
+        }
+    });
+
+    // movies by studio chart
+    var studioInstances = {},
+        studios = [];
+    // count how many times each studio occurs in studioList,
+    // and build a dictionary from results
+    for (var i = 0, j = studioList.length; i < j; i++) {
+       studioInstances[studioList[i]] = (studioInstances[studioList[i]] || 0) + 1;
+    }
+    // split dictionary into two arrays
+    for (var prop in studioInstances) {
+       if (!studioInstances.hasOwnProperty(prop)) {
+          continue;
+       }
+       studios.push([prop, studioInstances[prop]]);
+    }
+
+    c3.generate({
+        bindto: '.studio',
+        data: {
+            columns: studios.slice(0, 50),
+            type : 'pie'
+        },
+        pie: {
+            label: {
+                format: function (value, ratio, id) {
+                    return value;
+                }
+            }
+        },
+        color: {
+            pattern: ['#D62828', '#F75C03', '#F77F00', '#FCBF49', '#EAE2B7']
+        },
+        legend: {
+            hide: true,
+            position: 'right'
+        },
+        tooltip: {
+            format: {
+                value: function (value, ratio, id) {
+                    return id + ' : ' + value;
+                }
+            }
         }
     });
 
@@ -288,7 +338,6 @@ $('button.sort').each(function() {
 // on load
 $(function() {
     data = $.getPayload('http://152.208.23.228:29915/library/sections/1/all?X-Plex-Token=xxcwJWERP477juYsw4MX');
-    console.log('data is ' + data);
     var jsonData = xmlToJson(data);
     renderCharts(jsonData);
 });
