@@ -90,6 +90,9 @@ function renderCharts(jsonData) {
                 type: 'category',
                 categories: decades
             }
+        },
+        legend: {
+            hide: true
         }
     });
 
