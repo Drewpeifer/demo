@@ -27,19 +27,107 @@ jQuery.extend({
     }
 });
 
+// render charts on page load 
+function renderCharts(jsonData) {
+    console.dir(jsonData.MediaContainer);
+    var releaseDateList = [],
+        releaseDateCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        decadePrefixes = ["193", "194", "195", "196", "197", "198", "199", "200", "201"],
+        decades = ["1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s"];
+
+    // loop through movies
+    $.each(jsonData.MediaContainer.Video, function() {
+        // track year
+        releaseDateList.push(this['@attributes'].year);
+        //console.log(this['@attributes'].year);
+    });
+    // TODO: find a better way to do the following...
+    // sort through the releaseDateList, and depending on which decade prefix matches the year value,
+    // increment the corresponding releaseDateCount
+    console.log('ReleaseDateList:');
+    console.dir(releaseDateList);
+    $.each(releaseDateList, function() {
+        var yearSub = this.substring(0, 3);
+
+        if (yearSub == decadePrefixes[0]) {
+            releaseDateCounts[0]++;
+        } else if (yearSub == decadePrefixes[1]) {
+            releaseDateCounts[1]++;
+        } else if (yearSub == decadePrefixes[2]) {
+            releaseDateCounts[2]++;
+        } else if (yearSub == decadePrefixes[3]) {
+            releaseDateCounts[3]++;
+        } else if (yearSub == decadePrefixes[4]) {
+            releaseDateCounts[4]++;
+        } else if (yearSub == decadePrefixes[5]) {
+            releaseDateCounts[5]++;
+        } else if (yearSub == decadePrefixes[6]) {
+            releaseDateCounts[6]++;
+        } else if (yearSub == decadePrefixes[7]) {
+            releaseDateCounts[7]++;
+        } else if (yearSub == decadePrefixes[8]) {
+            releaseDateCounts[8]++;
+        } else {
+            // date falls outside range
+            console.log('date out of range');
+            return false;
+        }
+    });
+    releaseDateCounts.unshift("releaseDateCounts");
+    console.dir(decades);
+    console.dir(releaseDateCounts);
+    c3.generate({
+        bindto: '.decade',
+        x: 'x',
+        data: {
+            columns: [
+                releaseDateCounts
+            ],
+            type: 'bar'
+        },
+        axis: {
+            x: {
+                type: 'category',
+                categories: decades
+            }
+        }
+    });
+
+    // c3.generate({
+    //     bindto: ".decade",
+    //     data: {
+    //         columns: [
+    //             movies,
+    //         ],
+    //         type: 'bar'
+    //     },
+    //     axis: {
+    //         x: {
+    //             min: 1920,
+    //             max: 2020
+    //         }
+    //     },
+    //     bar: {
+    //         width: {
+    //             ratio: 0.5// this makes bar width 50% of length between ticks
+    //         }
+    //     }
+    // });
+}
+
 // this grabs the appropriate payload depending on which input requests it
 // and then populates the UI with entries
-function renderData() {
-    wrapper = $('.content');
+function renderGrid() {
+    var wrapper = $('.content'),
     // set count to 0
-    count = 0;
+    count = 0,
     // build URLs
-    serverUrl = 'http://152.208.23.228:29915';
-    token = 'X-Plex-Token=xxcwJWERP477juYsw4MX';    
-    baseUrl = serverUrl + '/library/sections/all?' + token;
-    moviesUrl = serverUrl + '/library/sections/1/all?' + token;
-    showsUrl = serverUrl + '/library/sections/2/all?' + token;
-    recentlyAddedUrl = serverUrl + '/library/recentlyAdded/search?type=1&X-Plex-Container-Start=0&X-Plex-Container-Size=20&' + token;
+    serverUrl = 'http://152.208.23.228:29915',
+    token = 'X-Plex-Token=xxcwJWERP477juYsw4MX',
+    baseUrl = serverUrl + '/library/sections/all?' + token,
+    moviesUrl = serverUrl + '/library/sections/1/all?' + token,
+    showsUrl = serverUrl + '/library/sections/2/all?' + token,
+    recentlyAddedUrl = serverUrl + '/library/recentlyAdded/search?type=1&X-Plex-Container-Start=0&X-Plex-Container-Size=20&' + token,
     urls = [showsUrl,moviesUrl];// hiding recentlyAddedUrl for now
 
     // disable query button
@@ -161,7 +249,7 @@ function renderData() {
 }
 
 // bind the query buttons
-$('.query').click(renderData);
+$('.query').click(renderGrid);
 // filtering
 $('button.filter').each(function() {
     $(this).click(function() {
@@ -198,6 +286,6 @@ $('button.sort').each(function() {
 $(function() {
     data = $.getPayload('http://152.208.23.228:29915/library/sections/1/all?X-Plex-Token=xxcwJWERP477juYsw4MX');
     console.log('data is ' + data);
-    newJson = xmlToJson(data);
-    console.log(newJson);
+    var jsonData = xmlToJson(data);
+    renderCharts(jsonData);
 });
