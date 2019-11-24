@@ -76,6 +76,9 @@ p {
 .pie .c3-chart-arc path {
 	stroke: #111;
 }
+.pie .c3-chart-arc text {
+	fill: #111;
+}
 /* alert section */
 .alert {
 	height:15px;

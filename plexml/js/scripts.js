@@ -27,9 +27,8 @@ jQuery.extend({
     }
 });
 
-// render charts on page load
-function renderCharts(jsonData) {
-    console.dir(jsonData.MediaContainer);
+// render movie charts on page load
+function renderMovieCharts(jsonData) {
     var movieCount = jsonData.MediaContainer.Video.length,
         releaseDateList = [],
         releaseDateCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -74,12 +73,11 @@ function renderCharts(jsonData) {
         } else {
             // date falls outside range
             console.log('date out of range');
-            return false;
         }
     });
     releaseDateCounts.unshift("releaseDateCounts");
     c3.generate({
-        bindto: '.decade',
+        bindto: '.movies-by-decade',
         x: 'x',
         data: {
             columns: [
@@ -118,7 +116,7 @@ function renderCharts(jsonData) {
     }
 
     c3.generate({
-        bindto: '.studio',
+        bindto: '.movies-by-studio',
         data: {
             columns: studios.slice(0, 50),
             type : 'pie'
@@ -145,27 +143,79 @@ function renderCharts(jsonData) {
             }
         }
     });
+}
 
-    // c3.generate({
-    //     bindto: ".decade",
-    //     data: {
-    //         columns: [
-    //             movies,
-    //         ],
-    //         type: 'bar'
-    //     },
-    //     axis: {
-    //         x: {
-    //             min: 1920,
-    //             max: 2020
-    //         }
-    //     },
-    //     bar: {
-    //         width: {
-    //             ratio: 0.5// this makes bar width 50% of length between ticks
-    //         }
-    //     }
-    // });
+// render TV charts on page load
+function renderTVCharts(jsonData) {
+    var showCount = jsonData.MediaContainer.Directory.length,
+        releaseDateList = [],
+        releaseDateCounts = [0, 0, 0, 0, 0, 0],
+        decadePrefixes = ["196", "197", "198", "199", "200", "201"],
+        decades = ["1960s", "1970s", "1980s", "1990s", "2000s", "2010s"],
+        studioList = [];
+
+    // loop through TV and gather important data
+    $.each(jsonData.MediaContainer.Directory, function() {
+        // track year
+        releaseDateList.push(this['@attributes'].year);
+        // track studio
+        studioList.push(this['@attributes'].studio);
+    });
+
+    // TV Shows by decade chart
+    $.each(releaseDateList, function() {
+        // TODO: find a better way to do the following...
+        // sort through the releaseDateList,
+        // and depending on which decade prefix matches the year value,
+        // increment the corresponding releaseDateCount
+        if (typeof this === 'string' || this instanceof String) {
+            var yearSub = this.substring(0, 3);
+        } else {
+            yearSub = "undefined";
+        }
+
+        if (yearSub == decadePrefixes[0]) {
+            releaseDateCounts[0]++;
+        } else if (yearSub == decadePrefixes[1]) {
+            releaseDateCounts[1]++;
+        } else if (yearSub == decadePrefixes[2]) {
+            releaseDateCounts[2]++;
+        } else if (yearSub == decadePrefixes[3]) {
+            releaseDateCounts[3]++;
+        } else if (yearSub == decadePrefixes[4]) {
+            releaseDateCounts[4]++;
+        } else if (yearSub == decadePrefixes[5]) {
+            releaseDateCounts[5]++;
+        } else if (yearSub == decadePrefixes[6]) {
+            releaseDateCounts[6]++;
+        } else {
+            // date falls outside range
+            console.log('date undefined or out of range');
+        }
+    });
+    releaseDateCounts.unshift("releaseDateCounts");
+    c3.generate({
+        bindto: '.shows-by-decade',
+        x: 'x',
+        data: {
+            columns: [
+                releaseDateCounts
+            ],
+            type: 'bar'
+        },
+        axis: {
+            x: {
+                type: 'category',
+                categories: decades
+            }
+        },
+        legend: {
+            hide: true
+        },
+        color: {
+            pattern: ['#D62828', '#F75C03', '#F77F00', '#FCBF49', '#EAE2B7']
+        }
+    });
 }
 
 // this grabs the appropriate payload depending on which input requests it
@@ -205,9 +255,6 @@ function renderGrid() {
             targetLibrary = 'All ' + $(payload.children[0]).attr('librarySectionTitle');
             targetType = firstItem.attr('type');
         }
-        console.dir(payload);
-        console.log('targetType = ' + targetType + ' (' +
-            i + '). Returning results from ' + url);
         // parse payload items and build each entry into the DOM
         $(payload).find(target).each(function() {
             // store data for each entry
@@ -248,7 +295,6 @@ function renderGrid() {
         });
     count = count + i;
     });
-    console.log('total entries = ' + count);
     // append header
     $('.content h3').text('Total Entries: ' + count);
     // there's a bug with lazy load and dynamic elements that
@@ -337,7 +383,13 @@ $('button.sort').each(function() {
 });
 // on load
 $(function() {
-    data = $.getPayload('http://152.208.23.228:29915/library/sections/1/all?X-Plex-Token=xxcwJWERP477juYsw4MX');
-    var jsonData = xmlToJson(data);
-    renderCharts(jsonData);
+    var movieData = $.getPayload('http://152.208.23.228:29915/library/sections/1/all?X-Plex-Token=xxcwJWERP477juYsw4MX'),
+        movieJson = xmlToJson(movieData),
+        tvData = $.getPayload('http://152.208.23.228:29915/library/sections/2/all?X-Plex-Token=xxcwJWERP477juYsw4MX'),
+        tvJson = xmlToJson(tvData);
+
+    console.log('TV Data');
+    console.dir(tvJson);
+    renderMovieCharts(movieJson);
+    renderTVCharts(tvJson);
 });
