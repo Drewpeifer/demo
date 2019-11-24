@@ -166,7 +166,7 @@ hr {
 	opacity:.5;
 }
 /* mobile */
-@media all and (max-width:640px) {
+@media all and (max-width:800px) {
 	.chart {
 		display:block;
 		width:95%;
