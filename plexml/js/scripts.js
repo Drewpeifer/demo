@@ -216,6 +216,51 @@ function renderTVCharts(jsonData) {
             pattern: ['#D62828', '#F75C03', '#F77F00', '#FCBF49', '#EAE2B7']
         }
     });
+
+    // TV shows by studio chart
+    var studioInstances = {},
+        studios = [];
+    // count how many times each studio occurs in studioList,
+    // and build a dictionary from results
+    for (var i = 0, j = studioList.length; i < j; i++) {
+       studioInstances[studioList[i]] = (studioInstances[studioList[i]] || 0) + 1;
+    }
+    // split dictionary into two arrays
+    for (var prop in studioInstances) {
+       if (!studioInstances.hasOwnProperty(prop)) {
+          continue;
+       }
+       studios.push([prop, studioInstances[prop]]);
+    }
+
+    c3.generate({
+        bindto: '.shows-by-studio',
+        data: {
+            columns: studios.slice(0, 50),
+            type : 'pie'
+        },
+        pie: {
+            label: {
+                format: function (value, ratio, id) {
+                    return value;
+                }
+            }
+        },
+        color: {
+            pattern: ['#D62828', '#F75C03', '#F77F00', '#FCBF49', '#EAE2B7']
+        },
+        legend: {
+            hide: true,
+            position: 'right'
+        },
+        tooltip: {
+            format: {
+                value: function (value, ratio, id) {
+                    return id + ' : ' + value;
+                }
+            }
+        }
+    });
 }
 
 // this grabs the appropriate payload depending on which input requests it
