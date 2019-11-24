@@ -27,7 +27,7 @@ jQuery.extend({
     }
 });
 
-// render charts on page load 
+// render charts on page load
 function renderCharts(jsonData) {
     console.dir(jsonData.MediaContainer);
     var releaseDateList = [],
