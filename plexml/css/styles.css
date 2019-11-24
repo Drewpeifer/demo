@@ -167,6 +167,10 @@ hr {
 }
 /* mobile */
 @media all and (max-width:640px) {
+	.chart {
+		display:block;
+		width:95%;
+	}
 	.grid {
 		width:98%;
 	}
