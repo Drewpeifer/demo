@@ -1,20 +1,21 @@
 # PleXML
 ### An SPA that displays the XML output of my Plex server
+[Try it live](http://www.drewpeifer.com/demo/plexml/)
 
 # How does it work?
 My [Plex](http://www.plex.tv) server streams a sizable library of awesome movies and TV shows. You can
 access the metadata for all that media via an XML feed that the server generates.
 This applicaiton calls that XML feed, parses it, and displays it in a format that's
-easy to filter and sort.
+easy to filter and sort. I also convert that feed to JSON for use with the visualizations (charts).
 
 # How recent is this data?
-Data is retrieved from Plex in real time. When you click the big button at the top of
-the page, you are making a fresh request to my server.
+Data is retrieved from Plex in real time. When you load the page, you are making a fresh request to my server.
 
 # What is it built with?
 jQuery does most of the work making the AJAX call and parsing the results. The sorting
 and filtering logic, as well as the accompanying animations, are all controlled by
 an awesome library called [Isotope](https://isotope.metafizzy.co).
+Charts are built using [D3](https://d3js.org/)/[C3](https://c3js.org/).
 
 # Why is some data missing?
 Plex pulls all its metadata from [theTVDB.com](http://thetvdb.com) which is
