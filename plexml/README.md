@@ -18,8 +18,8 @@ an awesome library called [Isotope](https://isotope.metafizzy.co).
 Charts are built using [D3](https://d3js.org/)/[C3](https://c3js.org/).
 
 # Why is some data missing?
-Plex pulls all its metadata from [theTVDB.com](http://thetvdb.com) which is
-crowd-sourced information. Some of the more obscure titles have incomplete data,
+Plex pulls all its metadata from [theTVDB.com](http://thetvdb.com) and [themoviedb.org](https://www.themoviedb.org/),
+which is crowd-sourced information. Some of the more obscure titles have incomplete data,
 especially when it comes to ratings, and I have not bothered to handle all the edge
 cases yet so you'll still see a few 'undefined' values floating around.
 
