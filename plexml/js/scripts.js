@@ -132,8 +132,7 @@ function renderMovieCharts(jsonData) {
             pattern: ['#D62828', '#F75C03', '#F77F00', '#FCBF49', '#EAE2B7']
         },
         legend: {
-            hide: true,
-            position: 'right'
+            hide: true
         },
         tooltip: {
             format: {
@@ -250,8 +249,7 @@ function renderTVCharts(jsonData) {
             pattern: ['#D62828', '#F75C03', '#F77F00', '#FCBF49', '#EAE2B7']
         },
         legend: {
-            hide: true,
-            position: 'right'
+            hide: true
         },
         tooltip: {
             format: {
@@ -433,8 +431,6 @@ $(function() {
         tvData = $.getPayload('http://152.208.23.228:29915/library/sections/2/all?X-Plex-Token=xxcwJWERP477juYsw4MX'),
         tvJson = xmlToJson(tvData);
 
-    console.log('TV Data');
-    console.dir(tvJson);
     renderMovieCharts(movieJson);
     renderTVCharts(tvJson);
 });
