@@ -19,11 +19,10 @@ function buildUI(planets) {
   // The ratio of size / displacement scale should be at least 1:10 to avoid
   // clipping, and the planet size determines the texture detail.
 
-  console.dir(planets);
+  console.log("Planets:", planets);
 
   // loop through json and forge the solar system
   $(planets).each(function (index) {
-    console.log(sizeScale);
     var planet = this,
         initialRotation = '' + planet.axial_tilt_degrees + ' 0 0',
         finalRotation = '' + planet.axial_tilt_degrees + ' 360 0',
