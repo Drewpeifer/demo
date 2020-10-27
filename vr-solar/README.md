@@ -1,6 +1,6 @@
 # A-Frame Solar System Demo
 
-This is a simple (A-Frame)[https://aframe.io/] implementation, which is a client-side JS-based 3D framework. It's specifically designed to work
+This is a simple [A-Frame](https://aframe.io/) implementation, which is a client-side JS-based 3D framework. It's specifically designed to work
 easily with VR integration, or just simple 3D web applications. It provides a lot of simple constructors and behavior
 that is more commonly reserved for desktop software / engines (e.g. Unity), such as lightbox effects or spacial geometry.
 
