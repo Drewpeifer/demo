@@ -14,3 +14,8 @@ ingredient, provides thumbnails, and links to the original source.
 I also used [CORS proxy](https://cors-proxy.htmldriven.com/) to
 get around cross-origin domain policy problems, after the
 sad demise of [crossorigin](https://crossorigin.me/).
+
+### UPDATE 2021
+
+API has degraded, and this app is sadly no longer functional using the current endpoint.
+Unfortunately the RecipePuppy API is no more, and a suitable replacement will need to be found.
