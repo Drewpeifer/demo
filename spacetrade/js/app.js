@@ -4,9 +4,9 @@ Vue.component('marketplace', {
     template: '<ul>' +
                 '<li class="market-header unselectable"><span class="title">Commodity</span>' +
                     '<span class="action"></span>' +
-                    '<span class="num"><span class="fa fa-comments-dollar"></span></span>' +
-                    '<span class="num"><span class="fa fa-cubes"></span></span>' +
-                    '<span class="num"><span class="fa fa-boxes"></span></span>' +
+                    '<span class="num price"><span class="fa fa-comments-dollar"></span></span>' +
+                    '<span class="num stock"><span class="fa fa-cubes"></span></span>' +
+                    '<span class="num loot"><span class="fa fa-boxes"></span></span>' +
                 '</li>' +
                 '<li v-if="mainStats.port.fuelStation" class="unselectable">' +
                     '<span title="This is what lets you travel, and if you run out it\'s Game Over, man!" class="tooltip title">Fuel</span>' +
@@ -216,23 +216,36 @@ Vue.component('map-list', {
     template: '<ul>' +
                     '<li v-on:click="toggleMap" class="close">[X] Close Map</li>' +
                     '<li v-for="item in mainStats.map">' +
-                    '<span v-on:click="travel(item)" v-bind:data="item.title" class="title">{{ item.title }}</span>' +
-                    '<span class="description">{{ item.description }}</span>' +
+                        '<span v-on:click="travel(item)" v-bind:data="item.title" class="title">{{ item.title }}' +
+                            '<span v-if="Math.abs(mainStats.port.mapOrder - item.mapOrder) > 0" class="fa fa-gas-pump"> -{{ Math.abs(mainStats.port.mapOrder - item.mapOrder) }}</span></span>' +
+                        '<span class="description">{{ item.description }}</span>' +
                 '</li></ul>',
     methods: {
         toggleMap: function() {
+            allPortLabels = $('#map ul li span.title');
+            currentPortLabel = $('#map ul li span.title[data="' + stats.port.title + '"]');
+            allPortLabels.removeClass('current');
+            currentPortLabel.addClass('current');
             $('#map').toggle();
         },
         travel: function(port) {
+            var travelCost = Math.abs(stats.port.mapOrder - port.mapOrder);
             if (stats.port == port) {
                 // can't travel from a port to itself
                 showAlert('You\'re already at ' + stats.port.title, 'Captain, have you been drinking?');
+            } else if (travelCost > stats.fuel) {
+                // can't travel to a destination further than your urrent fuel allows
+                showAlert('Not enough fuel for the trip!', 'Try to find a fuel station within range.');
             } else if (stats.fuel >= 1) {
                 // you have enough fuel to travel
                 stats.port = port;
                 buildMarket(port);
-                stats.fuel -= 1;
+                stats.fuel -= travelCost;
                 stats.turn += 1;
+                allPortLabels = $('#map ul li span.title');
+                currentPortLabel = $('#map ul li span.title[data="' + stats.port.title + '"]');
+                allPortLabels.removeClass('current');
+                currentPortLabel.addClass('current');
                 $('#map').toggle();
 
                 // did an incident occur?
@@ -311,8 +324,8 @@ var app = new Vue({
 		data: stats,
         methods: {
             toggleMap: function() {
-                        $('#map').toggle();
-                    },
+                $('#map').toggle();
+            },
             currentCargoSum: function(menu) { return cargoSum(menu); },
             currentCargoValueSum: function(menu) { return cargoValueSum(menu); }
         }

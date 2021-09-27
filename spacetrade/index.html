@@ -7,6 +7,7 @@
 	<meta name="author" content="drewpeifer">
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://kit.fontawesome.com/ea1c973e9d.js" crossorigin="anonymous"></script><!-- icons -->
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<!-- tooltipster -->
@@ -30,6 +31,7 @@
 				<li><p>&nbsp;</p></li>
 				<li><button id="newGame" onClick="showWelcome();">New Game</button></li>
 				<li><button id="highScores">High Scores</button></li>
+				<li><p class="tiny">This game uses cookies to store high scores (and that's it)</p></li>
 			</ul>
 			<high-scores></high-scores>
 		</div>
@@ -57,22 +59,22 @@
 				</li>
 				<li class="stats">
 					<span id="score" v-bind:class="{ bad: score == 0 }">
-						Score: {{ score }}
+						<span class="label">Score:</span> {{ score }}
 					</span>
 					<span></span>
 					<span id="turn">
-						Turn: {{ turn }}
+						<span class="label">Turn:</span> {{ turn }}
 					</span>
 				</li>
 				<li class="stats">
 					<span id="wallet" v-bind:class="{ bad: wallet == 0 }">
-						<span class="fa fa-dollar-sign"></span>{{ wallet }}
+						<span class="label fa fa-dollar-sign"></span>{{ wallet }}
 					</span>
 					<span id="cargo" v-bind:class="{ bad: currentCargoSum(menu) == cargoCap }">
-						<span class="fa fa-box-open"></span>: {{ currentCargoSum(menu) }}/{{ cargoCap }}
+						<span class="label fa fa-box-open"></span> {{ currentCargoSum(menu) }}/{{ cargoCap }}
 					</span>
 					<span id="fuel" v-bind:class="{ bad: fuel <= 2 }">
-						<span class="fa fa-gas-pump"></span>: {{ fuel }}
+						<span class="label fa fa-gas-pump"></span> {{ fuel }}
 					</span>
 				</li>
 			</ul>

@@ -13,6 +13,9 @@ $(document).ready(function(){
       delay: 1000
   }).addClass('unselectable');
 
+  // mark Earth as the current port
+  $('#map ul li span.title[data="Earth"]').addClass('current');
+
 // fill in the placeholder on the welcome screen if there's an old captain name
   if (document.cookie.match(/^(.*;)?\s*lastCaptainName\s*=\s*[^;]+(.*)?$/)) {
     lastCapt = getCookie('lastCaptainName');

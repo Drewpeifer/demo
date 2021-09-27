@@ -32,7 +32,7 @@ div#app {
 	overflow-x:hidden;
 }
 div#app {
-	border:#e88f22 1px solid;
+	border:#ffe29b 1px solid;
 }
 ul {
 	margin:0;
@@ -40,13 +40,17 @@ ul {
 }
 /* controls */
 #controls {
-	border-bottom:#e88f22 2px solid;
+	border-bottom:#ffe29b 2px solid;
 	font-size:1.5em;
 }
 #controls ul li span {
 	flex-grow:1;
 	padding:2px 5px;
 	margin:auto 0;
+}
+#controls span.label, #mapToggle, #help,
+#market .market-header span {
+	color:#e88f22;
 }
 #controls ul li {
 	min-height:30px;
@@ -77,13 +81,14 @@ ul {
 	align-items:center;
 }
 #market ul li:nth-child(even) {
-	background:rgba(255, 255, 255, .2);
+	background:rgba(255, 255, 255, .1);
 }
 #market ul li.market-header {
 	font-weight:bold;
-	border-bottom:#e88f22 2px solid;
+	border-bottom:#ffe29b 2px solid;
 	line-height:1.2em;
 	font-size:1.1em;
+	padding: 4px 0;
 }
 #market ul li span {
 	flex-grow:1;
@@ -119,6 +124,7 @@ ul {
 	width:45px;
 	background:#f7c956;
 	border-radius:50%;
+	border-color:#e88f22;
 	font-size:1.5em;
 	color:#000;
 }
@@ -128,9 +134,10 @@ ul {
 #market ul li span.exchange button,
 #market ul li span.exchange button.Buy,
 #market ul li span.exchange button.Sell {
-	width:35px;
-	border-radius:50%;
-}
+	border-color:transparent;
+	width:45px;
+	font-size:1.2em;
+	border-radius:50%;}
 #market ul li span.exchange button {
 	background:#f7c956;
 }
@@ -139,13 +146,17 @@ ul {
 }
 #market ul li span.exchange button.Buy {
 	background:#9fe59e;
+	box-shadow: 0px 0px 5px 3px #9fe59e;
 }
 #market ul li span.exchange button.Sell {
 	background:#ea8481;
+	box-shadow: 0px 0px 5px 3px #ea8481;
+
 }
 /* text */
 h1 {
 	margin:10px 0;
+	color:#e88f22;
 }
 ul li {
 	list-style-type:none;
@@ -176,7 +187,7 @@ ul li {
 .peripheral {
 	position:absolute;
 	background:#000;
-	border:#e88f22 2px solid;
+	border:#ffe29b 2px solid;
 	border-radius:5px;
 	height:100%;
 }
@@ -209,6 +220,10 @@ ul li {
 	margin:auto;
 	text-align:center;
 }
+#home p.tiny {
+	font-size: .8em;
+	margin: 10px auto;
+}
 #home button {
 	background:#f7c956;
 	border:#e88f22 1px solid;
@@ -230,13 +245,13 @@ ul li {
 	width:50%;
 }
 .location {
-	border-bottom:#e88f22 2px solid;
+	border-bottom:#ffe29b 2px solid;
 }
 .location #description {
 	font-size:.7em;
 }
 #map ul li {
-	border-bottom:#e88f22 1px solid;
+	border-bottom:#ffe29b 1px solid;
 	margin:5px;
 }
 #map ul li:last-child {
@@ -250,6 +265,21 @@ ul li {
 	margin-right:5px;
 	background:url(../img/planets/planet1.png) 0 1em no-repeat transparent;
 	background-size:3em 3em;
+}
+#map ul li span.title.current:after {
+	height:.8em;
+	width:1em;
+	padding:.2em;
+	color: red;
+	font-style:normal;
+	font-family: FontAwesome;
+	font-size:.8em;
+	content: '\f3c5';
+}
+#map ul li span.fa {
+	font-size: .9em;
+	margin-left: 10px;
+	color:  #e88f22;
 }
 /* map icons */
 #map ul li span.title[data=Earth] {
@@ -278,6 +308,9 @@ ul li {
 }
 
 /* end map icons */
+#closeWelcome {
+	border-color:#e88f22;
+}
 #welcome h1,
 #welcome p {
 	margin-left:5px;
