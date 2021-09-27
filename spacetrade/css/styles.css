@@ -49,8 +49,7 @@ ul {
 	margin:auto 0;
 }
 #controls span.label, #mapToggle, #help,
-#market .market-header span,
-#market ul li span.title {
+#market .market-header span {
 	color:#e88f22;
 }
 #controls ul li {
@@ -89,6 +88,7 @@ ul {
 	border-bottom:#ffe29b 2px solid;
 	line-height:1.2em;
 	font-size:1.1em;
+	padding: 4px 0;
 }
 #market ul li span {
 	flex-grow:1;
