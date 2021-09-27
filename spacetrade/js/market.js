@@ -23,6 +23,17 @@ function buildMarket(currentPort) {
     // clear sale/hike tags
     $('.sale, .hike').remove();
 
+    // if it's a fuel station, check if there's fuel available to sell.
+    // if there isn't (e.g. you bought it all during a previous visit), then
+    // generate a random number of fuel in stock between 1-4
+    if (currentPort.fuelStation) {
+        // it's a fuel station!
+        if (currentPort.fuelAvailable === 0) {
+            // regenerate 1-4 fuel units
+            currentPort.fuelAvailable = getRandomNumber(1,4);
+        }
+    }
+
 	// calculate flux-based prices and stock amounts, and apply to 'currentX' props
 	menuA.forEach( function (stock) {
 
