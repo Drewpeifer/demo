@@ -220,6 +220,10 @@ ul li {
 	margin:auto;
 	text-align:center;
 }
+#home p.tiny {
+	font-size: .8em;
+	margin: 10px auto;
+}
 #home button {
 	background:#f7c956;
 	border:#e88f22 1px solid;
