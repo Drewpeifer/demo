@@ -216,8 +216,9 @@ Vue.component('map-list', {
     template: '<ul>' +
                     '<li v-on:click="toggleMap" class="close">[X] Close Map</li>' +
                     '<li v-for="item in mainStats.map">' +
-                    '<span v-on:click="travel(item)" v-bind:data="item.title" class="title">{{ item.title }}</span>' +
-                    '<span class="description">{{ item.description }}</span>' +
+                        '<span v-on:click="travel(item)" v-bind:data="item.title" class="title">{{ item.title }}' +
+                            '<span v-if="Math.abs(mainStats.port.mapOrder - item.mapOrder) > 0" class="fa fa-gas-pump"> -{{ Math.abs(mainStats.port.mapOrder - item.mapOrder) }}</span></span>' +
+                        '<span class="description">{{ item.description }}</span>' +
                 '</li></ul>',
     methods: {
         toggleMap: function() {
@@ -228,14 +229,18 @@ Vue.component('map-list', {
             $('#map').toggle();
         },
         travel: function(port) {
+            var travelCost = Math.abs(stats.port.mapOrder - port.mapOrder);
             if (stats.port == port) {
                 // can't travel from a port to itself
                 showAlert('You\'re already at ' + stats.port.title, 'Captain, have you been drinking?');
+            } else if (travelCost > stats.fuel) {
+                // can't travel to a destination further than your urrent fuel allows
+                showAlert('Not enough fuel for the trip!', 'Try to find a fuel station within range.');
             } else if (stats.fuel >= 1) {
                 // you have enough fuel to travel
                 stats.port = port;
                 buildMarket(port);
-                stats.fuel -= 1;
+                stats.fuel -= travelCost;
                 stats.turn += 1;
                 allPortLabels = $('#map ul li span.title');
                 currentPortLabel = $('#map ul li span.title[data="' + stats.port.title + '"]');

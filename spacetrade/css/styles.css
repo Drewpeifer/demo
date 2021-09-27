@@ -266,11 +266,16 @@ ul li {
 	height:.8em;
 	width:1em;
 	padding:.2em;
-	color: #e88f22;
+	color: red;
 	font-style:normal;
 	font-family: FontAwesome;
 	font-size:.8em;
 	content: '\f3c5';
+}
+#map ul li span.fa {
+	font-size: .9em;
+	margin-left: 10px;
+	color:  #e88f22;
 }
 /* map icons */
 #map ul li span.title[data=Earth] {
